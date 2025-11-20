@@ -1,0 +1,85 @@
+.cta {
+  all: unset;
+  display: flex;
+  padding: 7px 33px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background: #599066;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #fbc638;
+  }
+
+  .second {
+    transition: 0.5s;
+    margin-right: 0px;
+  }
+  &:hover .second {
+    transition: 0.5s;
+    margin-right: 45px;
+  }
+
+  .span {
+    transform: skewX(15deg);
+  }
+  .second {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 50%;
+    transform: translateY(5px) !important;
+  }
+  
+  .one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+  }
+  
+  .two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+  }
+
+  &:hover .three {
+    animation: color_anim 1s infinite 0.2s;
+  }
+  
+  &:hover .one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+  }
+  
+  &:hover .two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+  }
+}
+
+
+
+
+
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: #fbc638;
+  }
+
+  100% {
+    fill: white;
+  }
+}

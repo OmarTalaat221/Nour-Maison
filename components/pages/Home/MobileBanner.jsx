@@ -1,0 +1,154 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+export default function VideoBanner() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const textMessages = [
+    "Welcome to Nour Maiosn",
+    "Bringing French & Mediterranean Cuisine",
+    "Step Inside Nour Maison",
+    "Dream. Build. Launch.",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+
+      setTimeout(() => {
+        setCurrentTextIndex((prev) => (prev + 1) % textMessages.length);
+        setIsVisible(true);
+      }, 500);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative w-full h-[100svh] overflow-hidden bg-black">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-70"
+      >
+        <source
+          src="/images/At Nour Maison, every mood has a flavour 👌🏻Whether you’re into classic comfort or bold new tas.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#CA852D]/40 via-transparent to-[#84B067]/40" />
+
+      {/* Animated Grid Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
+          }}
+        />
+      </div>
+
+      {/* Content Overlay */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
+        {/* Animated Background Circle */}
+        <div className="absolute w-96 h-96 bg-gradient-to-r from-[#CA852D]/20 to-[#84B067]/20 rounded-full blur-3xl animate-pulse" />
+
+        {/* Main Text */}
+        <div className="relative">
+          <h1
+            className={`text-5xl font-bold mb-6 transition-all duration-500 transform ${
+              isVisible
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 -translate-y-8 scale-95"
+            }`}
+          >
+            <span className="bg-gradient-to-r from-softMintGreen  via-pestachio2 to-sageGreen bg-clip-text text-transparent animate-gradient">
+              {textMessages[currentTextIndex]}
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Experience the next generation of taste creativity
+          </p>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-wrap gap-4 justify-center mt-8">
+          <Link
+            href="/booking"
+            className="group relative px-8 py-4 bg-gradient-to-r from-softMintGreen to-softMintGreen rounded-full font-semibold text-white overflow-hidden transition-transform hover:scale-105"
+          >
+            <span className="relative z-10">Book Your Seat</span>
+            <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+          </Link>
+
+          <Link
+            href="/about-us"
+            className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full font-semibold text-white hover:bg-white/20 transition-all hover:border-white/50"
+          >
+            About Us
+          </Link>
+        </div>
+
+        {/* Floating Elements */}
+      </div>
+
+      {/* Progress Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        {textMessages.map((_, index) => (
+          <div
+            key={index}
+            className={`h-1 rounded-full transition-all duration-300 ${
+              index === currentTextIndex ? "w-12 bg-white" : "w-8 bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 right-8 flex flex-col items-center gap-2 text-white/60 animate-bounce">
+        <span className="text-sm">Scroll</span>
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
+      </div>
+
+      <style jsx>{`
+        @keyframes gradient {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 3s ease infinite;
+        }
+      `}</style>
+    </div>
+  );
+}

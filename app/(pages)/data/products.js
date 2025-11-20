@@ -1,0 +1,88 @@
+ const products = [
+  {
+    id: 1,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_1.jpg",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+  {
+    id: 2,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739871140/pwwv0fl91gfrcdgq85sk.avif",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+  {
+    id: 3,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_1.jpg",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+  {
+    id: 4,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_1.jpg",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+  {
+    id: 5,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_1.jpg",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+  {
+    id: 6,
+    name: "Nour Maison GOOD MORNING CUP",
+    category: "CUPS",
+    price: 20.5,
+    original_price: 30.0,
+    discount: "20%",
+    rating: 4,
+    images: [
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_1.jpg",
+      "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
+      "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
+    ],
+  },
+];
+
+export default products

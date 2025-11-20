@@ -1,0 +1,11 @@
+.portfoilo_content {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+a:hover {
+  text-decoration: none !important;
+}

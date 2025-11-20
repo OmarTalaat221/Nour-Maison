@@ -1,0 +1,46 @@
+$background-color_1: theme("colors.logoGold");
+
+.clear {
+	clear: both;
+}
+.checkBox {
+	display: block;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	border: 3px solid rgba(255, 255, 255, 0);
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0px 0px 0px 2px $background-color_1;
+	&.small{
+		width: 20px;
+		height: 20px;
+	}
+	div {
+		width: 60px;
+		height: 60px;
+		background-color: $background-color_1;
+		top: -52px;
+		left: -52px;
+		position: absolute;
+		transform: rotateZ(45deg);
+		z-index: 100;
+	}
+	input[type=checkbox] {
+		&:checked {
+			+ {
+				div {
+					left: -10px;
+					top: -10px;
+				}
+			}
+		}
+		position: absolute;
+		left: 50px;
+		visibility: hidden;
+	}
+}
+.transition {
+	transition: 300ms ease;
+}

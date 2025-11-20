@@ -1,0 +1,49 @@
+.stepper_container {
+}
+
+.stepper_button {
+  all: unset;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  background-color: #2447079d;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  /* border-radius: 50% !important; */
+  margin-top: 0;
+  transition: .3s ease;
+  padding: 0;
+  /* padding-inline: 5px; */
+  font-weight: bolder;
+}
+
+.stepper_button:hover{
+  background-color: #244707;
+  color: white;
+}
+
+.stepper_input {
+  width: 40px !important;
+  height: 30px !important;
+  border: none;
+  font-size: 20px;
+  /* margin-inline: 20px; */
+  background-color: transparent !important;
+  /* border-inline: 1px solid rgb(8, 0, 0); */
+  outline: none;
+  color: #222;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

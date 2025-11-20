@@ -1,0 +1,181 @@
+.masonry-gallery {
+  column-count: 4;
+  column-gap: 1em;
+  margin-top: 2rem;
+}
+
+/* @media (max-width: 1200px) {
+  .masonry-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 800px) {
+  .masonry-gallery {
+    column-count: 1;
+  }
+} */
+/* src/components/MasonryItem.css */
+.masonry-item {
+  margin-bottom: 1em;
+  display: inline-block;
+  width: 100%;
+  /* break-inside: avoid; */
+  position: relative;
+}
+
+.masonry-item::-webkit-scrollbar {
+  width: 5px;
+}
+
+.masonry-item::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+.masonry-item::-webkit-scrollbar-thumb {
+  background: #dd9933 !important;
+}
+
+.masonry-item .masonry-data {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+  width: 100%;
+  opacity: 0;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.34) 0%,
+    rgba(0, 0, 0, 0.337) 3.5%,
+    rgba(0, 0, 0, 0.325) 7%,
+    rgba(0, 0, 0, 0.306) 10.35%,
+    rgba(0, 0, 0, 0.286) 13.85%,
+    rgba(0, 0, 0, 0.263) 17.35%,
+    rgba(0, 0, 0, 0.235) 20.85%,
+    rgba(0, 0, 0, 0.21) 24.35%,
+    rgba(0, 0, 0, 0.19) 27.85%,
+    rgba(0, 0, 0, 0.165) 31.35%,
+    rgba(0, 0, 0, 0.145) 34.85%,
+    rgba(0, 0, 0, 0.125) 38.35%,
+    rgba(0, 0, 0, 0.114) 41.85%,
+    rgba(0, 0, 0, 0.1) 45.35% 48.85%,
+    rgba(0, 0, 0, 0.1) 52.35%,
+    rgba(0, 0, 0, 0.114) 55.85%,
+    rgba(0, 0, 0, 0.125) 59.35%,
+    rgba(0, 0, 0, 0.145) 62.85%,
+    rgba(0, 0, 0, 0.165) 66.35%,
+    rgba(0, 0, 0, 0.19) 69.85%,
+    rgba(0, 0, 0, 0.21) 73.35%,
+    rgba(0, 0, 0, 0.235) 76.85%,
+    rgba(0, 0, 0, 0.263) 80.35%,
+    rgba(0, 0, 0, 0.286) 83.85%,
+    rgba(0, 0, 0, 0.306) 87.35%,
+    rgba(0, 0, 0, 0.325) 90.85%,
+    rgba(0, 0, 0, 0.337) 94.35%,
+    rgba(0, 0, 0, 0.345) 97.85%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.masonry-item:hover {
+  transform: scale(1.02);
+}
+
+/* .masonry-item:hover .masonry-data {
+  animation: slide-in-bottom 0.3s both;
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+} */
+
+
+
+  
+
+
+/* Ultra Small devices (phones, 360px and below) */
+@media (max-width: 300px) {
+  /* Your styles here */
+  .masonry-gallery {
+    column-count: 1;
+    column-gap: 0.2em;
+    margin-top: 0.25rem;
+  }
+  .masonry-item {
+    margin-bottom: 0.2em;
+  } 
+}
+
+
+
+/* Extra Small devices (phones, 480px and below) */
+@media (min-width:301px) and (max-width: 575.98px) {
+  /* Your styles here */
+  .masonry-gallery {
+    column-count: 2;
+    column-gap: 0.5em;
+    margin-top: 0.5rem;
+  }
+  .masonry-item {
+    margin-bottom: 0.5em;
+  } 
+
+}
+
+
+
+
+/* Small devices (tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Your styles here */
+  
+  .masonry-gallery {
+    column-count: 3;
+    column-gap: 1em;
+    margin-top: 1rem;   
+  }
+}
+
+/* Medium devices (desktops, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Your styles here */
+  
+  .masonry-gallery {
+    column-count: 3;
+
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Your styles here */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* Your styles here */
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* Your styles here */
+}

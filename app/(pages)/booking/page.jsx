@@ -1,0 +1,80 @@
+import React from "react";
+// import Booking2 from "./Booking2";
+import PagesBanner from "../../../components/PagesBanner/PagesBanner";
+import BookingConent from "../../../components/pages/Booking/BookingContent";
+
+//metadata
+export const metadata = {
+  title: "Book a Table | NOUR MAISON Restaurant & Café",
+  description:
+    "Reserve your table at NOUR MAISON for elegant halal dining in Milton Keynes. Enjoy fine cuisine, cozy ambiance, and quick online booking.",
+  keywords: [
+    "Book a table Milton Keynes",
+    "Nour Maison reservation",
+    "halal restaurant Milton Keynes",
+    "French Middle Eastern food",
+    "halal brunch Milton Keynes",
+    "family dining restaurant UK",
+    "book halal food online",
+    "Milton Keynes halal cuisine",
+    "Middle Eastern halal booking",
+    "halal fine dining",
+    "halal-friendly restaurant",
+    "book French restaurant MK",
+    "best halal restaurant in Milton Keynes",
+    "halal dinner reservation",
+    "reserve Nour Maison table",
+    "book table online UK",
+    "Nour Maison Milton Keynes booking",
+    "halal food online booking",
+    "Book a Table",
+    "online booking",
+    "Reserve your table",
+    "Best place to book dinner in UK ",
+    "Restaurant reservation online",
+    "Book a table NOUR MAISON",
+
+  ],
+  alternates: {
+    canonical: "https://www.nourmaison.co.uk/booking",
+  },
+  openGraph: {
+    title:
+      "Book a Table | Nour Maison – Halal French & Middle Eastern Restaurant",
+    description:
+      "Reserve your spot now at Nour Maison, Milton Keynes. Enjoy elegant halal dining with a unique blend of French & Middle Eastern flavors. Family-friendly & perfect for every occasion.",
+    url: "https://www.nourmaison.co.uk/booking",
+    siteName: "Nour Maison",
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Book Your Table at Nour Maison",
+    description:
+      "French & Middle Eastern halal restaurant in Milton Keynes. Book online in seconds.",
+    site: "@nourmaison", // ضع حساب تويتر إن وجد
+  },
+};
+
+export default async function BookingPage() {
+
+  return (
+    <>
+      <div>
+        <PagesBanner
+          title={"Book A Table"}
+          slogan={"Reserve your seat, taste the extraordinary."}
+          scrollTo={"booking"}
+          images={[
+            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028867/inopk72hwfwrtgx2munx.webp",
+            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028866/pgtrnkcomtslajpppxcb.webp",
+            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028873/obkj0zmhvplrxbnj2hy0.webp"
+          ]}
+        />
+
+        <BookingConent   />
+      </div>
+    </>
+  );
+}

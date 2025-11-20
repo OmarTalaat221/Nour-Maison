@@ -1,0 +1,18 @@
+.social_button_contact {
+  width: 50px;
+  background: #599066;
+  transition: 0.3s !important;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social_button_contact:hover {
+  background: #e2e2e2;
+  color: #fff;
+}

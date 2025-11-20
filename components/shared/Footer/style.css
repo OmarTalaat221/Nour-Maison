@@ -1,0 +1,189 @@
+.foot_cont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  align-items: start;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 20px;
+}
+
+.social_button {
+  width: 50px;
+  background: #fff;
+  transition: 0.3s ease-in-out !important;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: #599066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social_button:hover {
+  background: #e2e2e2;
+  color: #fff;
+}
+.foot_terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
+  overflow: auto;
+  color: white;
+  font-size: 28px;
+  font-weight: bolder;
+  padding-bottom: 15px;
+}
+
+.foot_term_ele {
+  border-right: 1.5px solid #fff;
+  padding-inline: 20px;
+  transition: 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+  /* border-radius: 10px; */
+  color: black;
+  font-size: 30px;
+}
+
+.foot_term_ele:hover {
+  background: theme("colors.goldenOrange");
+  color: white;
+  transition: 0.3s;
+}
+
+.foot_term_ele:last-child {
+  border: none;
+}
+
+.foot_term_ele.active {
+  background: theme("colors.goldenOrange");
+  color: white;
+  text-shadow: 0 0 10px #fff;
+}
+
+.insta:hover {
+  background: linear-gradient(
+    45deg,
+    #bc1888,
+    #cc2366,
+    #dc2743,
+    #e6683c,
+    #f09433
+  ) !important;
+}
+
+.tiktok:hover {
+  background: #000000 !important;
+}
+
+.face:hover {
+  background: #0866ff !important;
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Your styles here */
+  .foot_cont {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    border-bottom: 2px solid #fff;
+    padding-bottom: 20px;
+    gap: 40px;
+  }
+  .foot_terms {
+    overflow: auto;
+    justify-content: start;
+    scroll-snap-type: x mandatory;
+  }
+  .foot_term_ele {
+    scroll-snap-align: start;
+  }
+
+  .foot_terms:hover {
+    background: transparent;
+  }
+  .foot_terms::-webkit-scrollbar {
+    display: none;
+  }
+
+  .foot_term_ele:hover {
+    background: transparent;
+    color: white;
+  }
+}
+
+/* Small devices (tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Your styles here */
+
+  .foot_cont {
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+    border-bottom: 2px solid #fff;
+    padding-bottom: 20px;
+    gap: 40px;
+  }
+  .foot_terms {
+    overflow: auto;
+    justify-content: start;
+    scroll-snap-type: x mandatory;
+  }
+  .foot_term_ele {
+    scroll-snap-align: start;
+  }
+
+  .foot_term_ele:hover {
+    background: transparent;
+    color: white;
+  }
+  .foot_terms::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Medium devices (desktops, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Your styles here */
+  .foot_cont {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    border-bottom: 2px solid #fff;
+    padding-bottom: 20px;
+    gap: 40px;
+  }
+  .foot_terms {
+    overflow: auto;
+    justify-content: start;
+    scroll-snap-type: x mandatory;
+  }
+  .foot_term_ele {
+    scroll-snap-align: start;
+  }
+
+  .foot_term_ele:hover {
+    background: transparent;
+    color: white;
+  }
+  .foot_terms::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Your styles here */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* Your styles here */
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* Your styles here */
+}
