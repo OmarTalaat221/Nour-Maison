@@ -12,13 +12,14 @@ import toast, { Toaster } from "react-hot-toast";
 import PaperPlaneSuccess from "../../PaperPlaneSuccess/PaperPlaneSuccess";
 import AlleadyReservedModal from "./AlleadyReservedModal";
 import BusyModal from "./BusyModal";
+import createChatForBooking from "../../../lib/createChatForBooking";
 
 const BookingConent = () => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
   const [busyModal, setBusyModal] = useState(false);
-  const [chatId , setChatid] = useState("")
+  const [chatId, setChatid] = useState("");
   const [bookingData, setBookingData] = useState({
     name: "",
     email: "",
@@ -159,15 +160,20 @@ const BookingConent = () => {
       return;
     }
 
-    dispatch(addBooking(dataset)).then((res) => {
+    dispatch(addBooking(dataset)).then(async (res) => {
       if (res.payload.message == "You have a reservation in this time") {
         console.log(res.payload.id);
         setAllreadyReservedModal(true);
         return;
       }
-      
+
       if (res.payload.status == "success") {
-        setChatid(res.payload.id)
+        setChatid(res.payload.id);
+        try {
+          await createChatForBooking(res.payload.id, dataset);
+        } catch (err) {
+          console.error("Failed to create chat in Firestore:", err);
+        }
         setShowOverlay(true);
         setBookingData({
           name: "",
@@ -536,7 +542,7 @@ const BookingConent = () => {
         </div>
         <Toaster />
         <PaperPlaneSuccess
-        chatLink={chatId}
+          chatLink={chatId}
           showOverlay={showOverlay}
           setShowOverlay={setShowOverlay}
         />

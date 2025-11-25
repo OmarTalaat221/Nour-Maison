@@ -31,7 +31,7 @@ const BranchesImage = ({
             draggable='false'
             className='select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]'
             width={width || 500}
-            src={image || "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"}
+            src={image || "/images/pngegg.png"}
             alt='Branch'
             />
         </SimpleParallax>
@@ -42,7 +42,7 @@ const BranchesImage = ({
           draggable='false'
           className='select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]'
           width={width || 500}
-          src={image || "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"}
+          src={image || "/images/pngegg.png"}
           alt='Branch'
         />
       )}

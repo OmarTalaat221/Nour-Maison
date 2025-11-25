@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaPaperPlane } from "react-icons/fa";
 import Link from "next/link";
@@ -15,8 +15,6 @@ export default function PlaneOverlaySuccess({
     const timer = setTimeout(() => setShowOverlay(false), 4000);
     return () => clearTimeout(timer);
   }, [showOverlay]);
-
-
 
   return (
     <AnimatePresence>
@@ -51,7 +49,7 @@ export default function PlaneOverlaySuccess({
               className="absolute top-20 !text-white text-6xl font-tangerine w-full text-center  font-bold"
             >
               {text || "Table booked—can’t wait to see you!"}
-              {/* <div className="mt-10">
+              <div className="mt-10">
                 <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
                   <svg xmlns="http://www.w3.org/2000/svg">
                     <rect
@@ -66,8 +64,7 @@ export default function PlaneOverlaySuccess({
                     Booking Chat
                   </Link>
                 </button>
-
-              </div> */}
+              </div>
             </motion.p>
           </div>
         </motion.div>
