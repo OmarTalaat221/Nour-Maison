@@ -58,7 +58,7 @@ export default function PlaneOverlaySuccess({
                     />
                   </svg>
                   <Link
-                    href={`http://localhost:3002/?bookingId=${chatLink}`}
+                    href={`https://app.nourmaison.co.uk/?bookingId=${chatLink}`}
                     className="txt-upload !text-white no-underline font-black hover:no-underline  text-5xl "
                   >
                     Booking Chat
