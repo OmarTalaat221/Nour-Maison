@@ -13,7 +13,6 @@ import HappyMoments from "../../components/pages/HappyMoments/HappyMoments";
 import KidsSection from "../../components/pages/Home/KidsSection";
 import NourKidsMenuHero from "../../components/pages/Home/KidsSection";
 import VideoBanner from "../../components/pages/Home/MobileBanner";
-import Annerversary from "../../components/pages/Home/Anneversary";
 import RatingStars from "../../components/pages/Home/RatingWithSound";
 import ChefsSection2 from "../../components/pages/Home/ChefsSection/ChefsSection2";
 import HomaRoastMenu from "../../components/pages/Home/HomaRoastMenu";
@@ -498,7 +497,6 @@ export default function Home() {
         {/* <BlogSectionServer /> */}
         {/* <ChefsSection /> */}
         <ChefsSection2 />
-        <Annerversary />
       </main>
     </div>
   );
