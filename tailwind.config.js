@@ -8,7 +8,7 @@ module.exports = {
     "./src/**/*.{ts,tsx,js,jsx}",
     "./utils/**/*.{ts,tsx,js,jsx}",
   ],
-  theme: {
+  theme: { 
     extend: {
       screens: {
         mdd: "960px",
