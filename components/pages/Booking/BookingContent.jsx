@@ -5,7 +5,6 @@ import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
 import Tilt from "react-parallax-tilt";
 import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
-import AnimButton2 from "../../../utils/AnimButton2/AnimButton2";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../../../features/bookingSlice";
 import toast, { Toaster } from "react-hot-toast";
@@ -14,7 +13,7 @@ import AlleadyReservedModal from "./AlleadyReservedModal";
 import BusyModal from "./BusyModal";
 import createChatForBooking from "../../../lib/createChatForBooking";
 
-const BookingConent = () => {
+const BookingConent = ({bg}) => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
@@ -89,6 +88,8 @@ const BookingConent = () => {
     dataset.seats = bookingData.seats.value;
     dataset.time = bookingData.time.value;
 
+    
+
     // this code is for sunday's party 🥳
     //from 2 pm to 10 pm
 
@@ -160,6 +161,9 @@ const BookingConent = () => {
       return;
     }
 
+    
+    
+
     dispatch(addBooking(dataset)).then(async (res) => {
       if (res.payload.message == "You have a reservation in this time") {
         console.log(res.payload.id);
@@ -221,8 +225,8 @@ const BookingConent = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundImage: `
-        linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-        url("https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745921239/bznj0n2qms9qo0jxjvfc.webp")
+        linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+        url(${ bg ||"https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745921239/bznj0n2qms9qo0jxjvfc.webp"})
       `,
         }}
       >

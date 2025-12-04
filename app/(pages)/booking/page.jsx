@@ -73,7 +73,7 @@ export default async function BookingPage() {
           ]}
         />
 
-        <BookingConent   />
+        <BookingConent    />
       </div>
     </>
   );

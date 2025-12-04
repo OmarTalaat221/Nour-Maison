@@ -26,6 +26,7 @@ import { motion } from "framer-motion";
 import { useMediaQuery } from "../../../../Hooks/GeneralHooks/useMediaQueries";
 import AnimButton from "../../../../utils/AnimButton/AnimButton";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const BannerSwiper = () => {
   const swiperRef = useRef(null);
@@ -132,6 +133,50 @@ const BannerSwiper = () => {
           className=" home_swiper  mx-auto"
         >
           {[
+            {
+              image:
+                "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
+              content: (
+                <>
+                  <motion.h1
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    variants={childVariants}
+                  >
+                    Christmas 2026 at Nour Maison
+                  </motion.h1>
+
+                  <motion.strong
+                    style={{
+                      textShadow: "0 0 12px #5B562D",
+                    }}
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
+                    variants={textRevealVariants}
+                  >
+                    A Pistachio Wonderland
+                  </motion.strong>
+
+                  <motion.p
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    variants={childVariants}
+                  >
+                    Where the season glows in soft green magic.{" "}
+                  </motion.p>
+                  <div className="w-fit mt-3">
+                  <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
+              <svg xmlns="http://www.w3.org/2000/svg">
+                <rect
+                  className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+                  pathLength={100}
+                />
+              </svg>
+              <Link href={"/cristmas-menu"} className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico">
+                Cristmas Menu
+              </Link>
+            </button>
+                  </div>
+                </>
+              ),
+            },
             {
               image:
                 "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746457700/tvw5ermawiyq0o5uspyg.webp",
@@ -244,7 +289,7 @@ const BannerSwiper = () => {
                     className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-semibold lg:font-normal"
                     variants={textRevealVariants}
                   >
-                    Blending French Flavor {" "}
+                    Blending French Flavor{" "}
                   </motion.strong>
 
                   <motion.h2
@@ -304,6 +349,7 @@ const BannerSwiper = () => {
           <ScrollXImage
             src={
               "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744567770/nkp9h9cgxyotbvip7yuq.png"
+              // "/images/—Pngtree—colorful christmas balls_19731035.png"
             }
             parentStyles={{}}
             isMoveable={true}

@@ -65,7 +65,7 @@ const CustomSelect = ({
   return (
     <div className={`custom_select relative  ${inRow ? "inRow" : ""}`} ref={selectRef}>
       {label && (
-        <label htmlFor={selectId} className="text-white font-medium text-shadow-sm">
+        <label htmlFor={selectId} className="!text-white font-medium text-shadow-sm">
           {label}
           {required && <span className="text-yellow-300 ml-1">(*)</span>}
         </label>

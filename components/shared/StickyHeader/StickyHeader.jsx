@@ -43,11 +43,11 @@ const StickyHeader = ({ open, setOpen }) => {
       path: "/menu-gallery",
       type: "navigate",
       items: [
+        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
         { id: 1, name: "Menu Classic", path: "/menu" },
         { id: 2, name: "Menu Gallery ", path: "menu" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
-
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },

@@ -2,60 +2,9 @@
 
 import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import BranchesImage from "./../../../utils/BranchesImage/BranchesImage";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
 
 const KidsMenu = () => {
-  const data = [
-    {
-      item: "On Toast",
-      description:
-        "Pick your toppings—eggs, beans, sausage, or bacon! It’s like a breakfast bash on toast, and you’re the boss!",
-    },
-    {
-      item: "Nuggets",
-      description:
-        "Golden bites of crispy, juicy fun! Perfect for dunking, crunching, and loving!",
-    },
-    {
-      item: "Mini Chicken Milanese",
-      description:
-        "Crispy chicken made just for little foodies. It’s fancy but oh-so-fun!",
-    },
-    {
-      item: "Falafel Bites",
-      description:
-        "Crunchy, munchy bites of yum! A flavor party in every bite—no disguises, just fun!",
-    },
-    {
-      item: "Pancakes",
-      description:
-        "Fluffy little clouds of joy! Stack ’em, snack ’em, and lick the plate clean!",
-    },
-    {
-      item: "Waffle",
-      description:
-        "Crispy, crisscrossed fun with all the sticky, sweet toppings you can handle. Warning: may cause happy dances!",
-    },
-    {
-      item: "Pick Your Fave Juices",
-
-      description: (
-        <>
-          Apple, Orange, Mango, Pineapple",
-          <br />
-          <span className="  text-base md:text-xl text-softMintGreen font-bold">
-            Or
-          </span>
-          <br />
-          <span className="bg-black text-white px-4 text-center whitespace-nowrap rounded-full py-1">
-            Baby-chino kids hot chocolate topped with cream
-          </span>
-        </>
-      ),
-    },
-  ];
-
   return (
     <div>
       <PagesBanner

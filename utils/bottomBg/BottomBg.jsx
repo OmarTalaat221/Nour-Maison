@@ -1,9 +1,10 @@
 import React from "react";
+import  cx  from 'classnames';
 
-const BottomBg = () => {
+const BottomBg = ({className}) => {
   return (
     <div
-      className=' absolute  z-20 bottom-[-1px] w-full h-[15px] '
+      className={cx(' absolute  z-20 bottom-[-1px] w-full h-[15px] ', className)}
       style={{
         backgroundRepeat: "repeat",
         backgroundImage:

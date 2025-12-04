@@ -20,6 +20,7 @@ const TopHeader = () => {
       path: "/menu-gallery",
       type: "navigate",
       items: [
+        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
         { id: 1, name: "Menu Classic", path: "/menu" },
         { id: 2, name: "Menu Gallery ", path: "/menu-gallery" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
@@ -36,6 +37,7 @@ const TopHeader = () => {
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
+    // { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
 
   const pathname = usePathname();

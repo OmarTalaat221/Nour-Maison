@@ -20,7 +20,7 @@ const CustomInput = ({
     <>
       <div className={`custom_input ${inRow ? "inRow" : ""} ${label ?"gap-[7px]":""} `}>
         {label && (
-          <label htmlFor={inputId} className="text-white font-medium text-shadow-sm">
+          <label htmlFor={inputId} className="!text-white font-medium text-shadow-sm">
             {label}
             {required && <span className="text-yellow-300 ml-1">(*)</span>}
           </label>
