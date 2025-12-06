@@ -184,6 +184,52 @@ const BannerSwiper = () => {
               ),
             },
             {
+              image: "/images/nnour polaraid pics_1_11zon.webp",
+              content: (
+                <div className="relative">
+                  <motion.h1
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    variants={childVariants}
+                  >
+                    The Art of Roast Dinner At
+                  </motion.h1>
+
+                  <motion.strong
+                    style={{
+                      textShadow: "0 0 12px #5B562D",
+                    }}
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
+                    variants={textRevealVariants}
+                  >
+                    Nour Maison Café
+                  </motion.strong>
+
+                  <motion.p
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    variants={childVariants}
+                  >
+                    Timeless flavors, perfected for the season.{" "}
+                  </motion.p>
+                  <div className="w-fit mt-6">
+                    <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg">
+                        <rect
+                          className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+                          pathLength={100}
+                        />
+                      </svg>
+                      <Link
+                        href={"/cristmas-menu"}
+                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
+                      >
+                        Roast Dinner Menu
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              ),
+            },
+            {
               image:
                 "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746457700/tvw5ermawiyq0o5uspyg.webp",
               content: (
@@ -338,7 +384,7 @@ const BannerSwiper = () => {
                   <div className="overlay hidden lg:block bg-transparent">
                     <img
                       loading="lazy"
-                      className="absolute  top-1/2 -translate-y-1/2 right-20 !w-[100px] !h-[100px] lg:!w-[500px] lg:!h-[500px]  object-contain  "
+                      className="absolute  top-1/2 -translate-y-1/2 right-20 !w-[100px] !h-[100px] lg:!w-[500px] lg:!h-[500px]  !object-contain  "
                       src={item?.image}
                       alt="banner image"
                     />

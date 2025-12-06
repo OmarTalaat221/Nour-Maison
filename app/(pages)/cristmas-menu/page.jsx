@@ -6,6 +6,7 @@ import {
   useScroll,
   useTransform,
   AnimatePresence,
+  useInView,
 } from "framer-motion";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
@@ -14,15 +15,20 @@ import BookingConent from "../../../components/pages/Booking/BookingContent";
 const CristmastMenu = () => {
   const sectionRef = useRef(null);
 
+  // 🔹 بداية المحتوى (AMUSE) – هنستخدمها كمؤشر للتبديل بين الصورتين
+  const menuStartRef = useRef(null);
+  const isMenuStartInView = useInView(menuStartRef, {
+    once: false,
+    amount: 0.2, // لما ~20% من AMUSE تبان في الشاشة نعتبره in view
+  });
+
   // ✅ Popup state
   const [showPopup, setShowPopup] = useState(true);
 
-  // يظهر 2 ثانية عند فتح / إعادة تحميل الصفحة ثم يختفي
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(false);
-    }, 4000); // 2000ms = 2sec
-
+    }, 4000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -63,9 +69,17 @@ const CristmastMenu = () => {
   const menuOpacity = useTransform(scrollYProgress, [0.05, 0.25, 1], [0, 1, 1]);
   const menuY = useTransform(scrollYProgress, [0.05, 0.25, 1], [80, 0, 0]);
 
-  // 🔹 Variants (اتجاهات الحركة)
+  // 🔹 Variants
   const fromTop = {
-    hidden: { opacity: 0, y: -60 },
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+  const fromTop2 = {
+    hidden: { opacity: 0 },
     show: {
       opacity: 1,
       y: 0,
@@ -131,17 +145,16 @@ const CristmastMenu = () => {
           >
             <motion.img
               src="/images/cristmas/christmas menu ndd_page-0001.jpg"
-              className=" rounded-3xl  px-6 py-6 md:px-10 md:py-8 max-w-xl shadow-2xl drop-shadow-2xl w-[90%] text-center border border-emerald-100"
+              className="rounded-3xl  px-6 py-6 md:px-10 md:py-8 max-w-xl shadow-2xl drop-shadow-2xl w-[90%] text-center border border-emerald-100"
               initial={{ opacity: 0, y: -40, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.9 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-            ></motion.img>
+            />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Banner نفسه معمول له أنيميشن داخل الكومبوننت بتاعه */}
       <PagesBanner
         bottomBg={false}
         images={[
@@ -190,7 +203,7 @@ const CristmastMenu = () => {
           style={{
             textShadow: " 2px 2px 2px #000000,",
           }}
-          className=" text-center font-tangerine text-white font-bold text-3xl sm:text-7xl lg:text-9xl relative z-50"
+          className="text-center font-tangerine text-white font-bold text-3xl sm:text-7xl lg:text-9xl relative z-50"
         >
           4 course meal for £35 per person
         </div>
@@ -262,6 +275,40 @@ const CristmastMenu = () => {
         />
 
         {/* 🎁 Main animated menu wrapper */}
+
+        {/* 🔄 هنا السويتش بين صورة 1 و 2 حسب isMenuStartInView */}
+        <AnimatePresence mode="wait">
+          {/* الصورة الأولى – تظهر قبل بداية المحتوى */}
+          {!isMenuStartInView && (
+            <motion.img
+              key="bg-first"
+              src="/images/cristmas/Untitled design - 2025-12-04T145105.220.png"
+              className="w-full mb-10"
+              alt="Christmas Menu Background"
+              variants={fromTop}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          )}
+
+          {/* الصورة الثانية – تظهر بعد بداية المحتوى */}
+          {isMenuStartInView && (
+            <motion.img
+              key="bg-second"
+              src="/images/cristmas/NNNNNNNNNNNN.png"
+              className="w-full mb-10 !scale-[1.02]"
+              alt="Christmas Menu Background light"
+              variants={fromTop2}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          )}
+        </AnimatePresence>
+
         <motion.div
           className="w-full container mx-auto rounded-3xl relative z-20 px-3 md:px-0"
           style={{
@@ -272,22 +319,9 @@ const CristmastMenu = () => {
           initial="hidden"
           animate="show"
         >
-          {/* Top menu background – من فوق لتحت */}
-          <motion.img
-            src="/images/cristmas/NNNNNNNNNNNN.png"
-            className="w-full mb-10"
-            alt="Christmas Menu Background"
-            variants={fromTop}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-          />
-
-          {/* باقي الكود كما هو عندك (AMUSE, STARTER, DESSERTS, MAIN...) */}
-          {/* ... نفس البلوكات اللي أرسلتها بدون تغيير */}
-
-          {/* AMUSE section */}
+          {/* AMUSE section = بداية المحتوى */}
           <motion.div
+            ref={menuStartRef}
             className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 mb-16 mt-[-100px]"
             variants={staggerContainer}
             initial="hidden"
@@ -306,12 +340,12 @@ const CristmastMenu = () => {
 
             {/* CENTER text – من تحت لفوق */}
             <motion.div
-              className="flex justify-center flex-col items-center text-white relative text-center px-4  "
+              className="flex justify-center flex-col items-center text-white relative text-center px-4"
               variants={fromBottom}
             >
               <motion.img
                 src="/images/cristmas/AMUSE.png"
-                className="max-w-xs md:max-w-sm drop-shadow-2xl mb-3 scale-down-center "
+                className="max-w-xs md:max-w-sm drop-shadow-2xl mb-3 scale-down-center"
                 alt=""
                 variants={fromTop}
                 whileHover={{ scale: 1.03 }}
@@ -343,8 +377,6 @@ const CristmastMenu = () => {
             />
           </motion.div>
 
-          {/* STARTER + DESSERTS */}
-          {/* ... (سيب الباقي كما هو في آخر كود أرسلته) */}
           {/* STARTER + DESSERTS */}
           <motion.div
             className="flex flex-col md:flex-row items-start justify-center mx-auto gap-10 md:gap-9"
@@ -391,8 +423,8 @@ const CristmastMenu = () => {
                 ].map((item, idx) => (
                   <motion.div
                     key={item.title}
-                    className="flex hover:bg-gradient-to-r  from-logoGold/40 to to-softMintGreen/40 transition-all rounded-3xl px-2 py-2  flex-col gap-1 w-full items-center text-white text-center"
-                    variants={fromBottom} // من تحت لفوق
+                    className="flex hover:bg-gradient-to-r from-logoGold/40 to-softMintGreen/40 transition-all rounded-3xl px-2 py-2 flex-col gap-1 w-full items-center text-white text-center"
+                    variants={fromBottom}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.25 }}
@@ -493,7 +525,7 @@ const CristmastMenu = () => {
             />
           </motion.div>
 
-          {/* MAIN COURSE items – كلها من تحت لفوق */}
+          {/* MAIN COURSE items */}
           <motion.div
             className="w-full mt-6 md:mt-8 mb-12"
             variants={staggerContainer}
@@ -530,7 +562,7 @@ const CristmastMenu = () => {
               ].map((item, idx) => (
                 <motion.div
                   key={item.title}
-                  className=" hover:bg-gradient-to-r  from-logoGold/40 to to-softMintGreen/40 transition-all rounded-3xl px-2 py-2 "
+                  className="hover:bg-gradient-to-r from-logoGold/40 to-softMintGreen/40 transition-all rounded-3xl px-2 py-2"
                   variants={fromBottom}
                   initial="hidden"
                   whileInView="show"
@@ -542,7 +574,7 @@ const CristmastMenu = () => {
                   }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <h3 className="text-2xl md:text-3xl font-semibold ">
+                  <h3 className="text-2xl md:text-3xl font-semibold">
                     {item.title}
                   </h3>
                   <p className="mt-1 text-sm md:text-base leading-relaxed">
@@ -566,6 +598,7 @@ const CristmastMenu = () => {
 
         <BottomBg />
       </motion.div>
+
       <BookingConent bg={"/images/cristmas-1.jpeg"} />
     </div>
   );
