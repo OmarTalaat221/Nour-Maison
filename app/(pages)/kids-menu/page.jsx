@@ -2,6 +2,55 @@ import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import NourKidsMenuHero from "../../../components/pages/Home/KidsSection";
 
+// ✅ SEO Metadata for Nour Maison Kids Menu
+export const metadata = {
+  title:
+    "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+  description:
+    "Explore Nour Maison’s Kids Menu – delicious, healthy, and fun meals crafted with love for your little ones. Fresh ingredients, kid-friendly portions, and a family-friendly café experience in Egypt.",
+  keywords: [
+    "Nour Maison kids menu",
+    "kids menu Egypt",
+    "children food café",
+    "healthy kids meals",
+    "family restaurant menu",
+    "kid friendly café",
+    "Nour Maison restaurant",
+    "pistachio café menu",
+    "kids friendly restaurant in Egypt",
+    "children meals nour maison",
+  ],
+  openGraph: {
+    title:
+      "Nour Maison Kids Menu | Healthy & Fun Meals for Little Foodies in Egypt",
+    description:
+      "A playful, healthy and delicious kids menu at Nour Maison Café – mini mains, pancakes, waffles, nuggets, juices and more for your little foodies.",
+    type: "website",
+    // 👉 Replace with your real production URL
+    url: "https://example.com/kids-menu",
+    siteName: "Nour Maison Café",
+    images: [
+      {
+        url: "/images/kids.png",
+        width: 1200,
+        height: 630,
+        alt: "Nour Maison Kids Menu – happy children enjoying food",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+    description:
+      "Discover Nour Maison’s Kids Menu with fun, balanced meals and drinks crafted especially for kids.",
+    images: ["/images/kids.png"],
+  },
+  alternates: {
+    canonical: "https://example.com/kids-menu", // 👈 استبدلها بالدومين الفعلي
+  },
+};
+
 const KidsMenu = () => {
   const data = [
     {
@@ -36,12 +85,11 @@ const KidsMenu = () => {
     },
     {
       item: "Pick Your Fave Juices",
-
       description: (
         <>
-          Apple, Orange, Mango, Pineapple",
+          Apple, Orange, Mango, Pineapple
           <br />
-          <span className="  text-base md:text-xl text-softMintGreen font-bold">
+          <span className="text-base md:text-xl text-softMintGreen font-bold">
             Or
           </span>
           <br />
@@ -53,8 +101,31 @@ const KidsMenu = () => {
     },
   ];
 
+  // ✅ Basic structured data for SEO (Restaurant + Menu)
+  const kidsMenuStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    name: "Nour Maison Kids Menu",
+    description:
+      "Kids menu at Nour Maison Café featuring fun, healthy, and kid-friendly meals and drinks.",
+    hasMenuSection: [
+      {
+        "@type": "MenuSection",
+        name: "Kids Mains & Treats",
+        hasMenuItem: data.map((item) => ({
+          "@type": "MenuItem",
+          name: item.item,
+          description:
+            typeof item.description === "string" ? item.description : undefined,
+        })),
+      },
+    ],
+    inLanguage: "en",
+  };
+
   return (
     <div>
+      {/* 🔹 Banner with strong visual and SEO-friendly title */}
       <PagesBanner
         images={[
           "/images/kids.png",
@@ -62,64 +133,108 @@ const KidsMenu = () => {
           "/images/Whisk_qjy0qwmhftm4edz20soxktotemn5qtl0kjm40sy.jpeg",
         ]}
         slogan={"Where every little bite brings a big smile!"}
-        title={"Kids Corner"}
+        title={"Kids Corner – Nour Maison Kids Menu"}
         scrollTo={"kids-menu"}
       />
+
+      {/* 🎥 Hero kids animation section */}
       <NourKidsMenuHero
         src="/images/Kids_Menu_Animation_Generation.mp4"
         poster="/images/kids menu .jpeg"
       />
+
+      {/* 🖼 Main hero image with descriptive alt for SEO */}
       <div className="w-full px-10">
         <img
           src="/images/2241974483.png"
-          className="w-full  mx-auto mt-5 rounded-3xl shadow-2xl"
-          alt=""
+          className="w-full mx-auto mt-5 rounded-3xl shadow-2xl"
+          alt="Nour Maison kids menu board with playful food illustrations"
+          loading="lazy"
         />
       </div>
-      <div
-        id="kids-menu"
-        className="container hidden mx-auto  px-4 sm:px-6 lg:px-4 relative"
-      >
-        <div className="relative  mb-5 md:mb-10">
-          <img
-            src="/images/image-priece-arrow.png"
-            alt=""
-            className="absolute  top-3 md:top-32 left-0"
-          />
-          <img
-            className="  w-[100px] md:w-[200px]  ms-auto md:mx-auto"
-            src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
-            alt=""
-          />
-          <div className="mx-auto relative  z-20 text-center  text-3xl md:text-7xl font-pacifico text-softMintGreen font-black my-4">
-            Kids Menu
-          </div>
-          <p className="text-center relative z-20 text-xl font-oswald text-goldenOrange">
-            Delicious Food and Refreshing Drinks For Little Ones
-          </p>
-        </div>
 
-        <div className="grid grid-cols lg:grid-cols-2  ">
-          {data.map((item, index) => (
-            <div className="relative ">
-              <img
-                src="/images/Whisk_3ec94f4af6fee939e944ae5f75649288dr.jpg"
-                alt=""
-              />
-              <div className="absolute top-0 left-0 w-full h-full overflow-hidden flex flex-col items-center text-center  px-[60px]  py-[70px]  md:px-[80px]  lg:px-[130px]   md:!py-[120px] lg:py-[110px]   ">
-                <h3 className="font-oswald font-bold  text-2xl md:text-4xl  text-softMintGreen">
-                  {item.item}{" "}
-                </h3>
-                <p className="  mt-2 md:mt-4 font-oswald  text-sm md:text-lg ">
-                  {item.description}
-                </p>
-              </div>
+      {/* ✅ Main content – visible on all screens for better SEO */}
+      <main
+        id="kids-menu"
+        className="container mx-auto px-4 sm:px-6 lg:px-4 relative py-10"
+      >
+        {/* Primary H1 for the page (SEO) */}
+        <h1 className="sr-only">
+          Nour Maison Kids Menu – Healthy and Fun Food for Children in Egypt
+        </h1>
+
+        <section aria-labelledby="kids-menu-heading">
+          <div className="relative mb-5 md:mb-10 text-center">
+            <img
+              src="/images/image-priece-arrow.png"
+              alt="Decorative arrow pointing to kids menu title"
+              className="absolute top-3 md:top-32 left-0"
+              loading="lazy"
+            />
+            <img
+              className="w-[100px] md:w-[200px] ms-auto md:mx-auto"
+              src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+              alt="Nour Maison kids menu badge"
+              loading="lazy"
+            />
+            <div
+              id="kids-menu-heading"
+              className="mx-auto relative z-20 text-center text-3xl md:text-7xl font-pacifico text-softMintGreen font-black my-4"
+            >
+              Kids Menu
             </div>
-          ))}
-        </div>
-      </div>
+            <p className="text-center relative z-20 text-xl font-oswald text-goldenOrange max-w-3xl mx-auto">
+              Delicious food and refreshing drinks crafted especially for little
+              ones at Nour Maison Café – a cozy, kid-friendly spot for families.
+            </p>
+          </div>
+
+          {/* Grid of kids items */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {data.map((item) => (
+              <article
+                key={item.item}
+                className="relative rounded-3xl overflow-hidden shadow-lg"
+                itemScope
+                itemType="https://schema.org/MenuItem"
+              >
+                <img
+                  src="/images/Whisk_3ec94f4af6fee939e944ae5f75649288dr.jpg"
+                  alt={`Nour Maison kids menu item: ${item.item}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-black/40 flex flex-col items-center text-center px-[40px] md:px-[80px] lg:px-[130px] py-[60px] md:py-[120px] lg:py-[110px]">
+                  <h2
+                    className="font-oswald font-bold text-2xl md:text-4xl text-softMintGreen drop-shadow-lg"
+                    itemProp="name"
+                  >
+                    {item.item}
+                  </h2>
+                  <p
+                    className="mt-2 md:mt-4 font-oswald text-sm md:text-lg text-white"
+                    itemProp="description"
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 🔹 JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          // لمنع مشاكل الـ hydration
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(kidsMenuStructuredData),
+          }}
+        />
+      </main>
     </div>
-  );  
+  );
 };
 
 export default KidsMenu;

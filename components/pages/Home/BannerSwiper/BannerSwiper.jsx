@@ -191,7 +191,7 @@ const BannerSwiper = () => {
                     className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
                     variants={childVariants}
                   >
-                    The Art of Roast Dinner At
+                   Experience our new 
                   </motion.h1>
 
                   <motion.strong
@@ -201,14 +201,14 @@ const BannerSwiper = () => {
                     className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
                     variants={textRevealVariants}
                   >
-                    Nour Maison Café
+                    Roast Dinner Menu
                   </motion.strong>
 
                   <motion.p
                     className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
                     variants={childVariants}
                   >
-                    Timeless flavors, perfected for the season.{" "}
+                   A halal roast where Arabic spice meets French finesse. Crafted with soul.{" "}
                   </motion.p>
                   <div className="w-fit mt-6">
                     <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">

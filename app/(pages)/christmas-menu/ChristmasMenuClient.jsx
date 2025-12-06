@@ -9,10 +9,14 @@ import {
   useInView,
 } from "framer-motion";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import BottomBg from "./../../../utils/bottomBg/BottomBg";
+import BottomBg from "../../../utils/bottomBg/BottomBg";
 import BookingConent from "../../../components/pages/Booking/BookingContent";
 
-const CristmastMenu = () => {
+
+
+
+
+const CristmastMenuClient = () => {
   const sectionRef = useRef(null);
 
   // 🔹 بداية المحتوى (AMUSE) – هنستخدمها كمؤشر للتبديل بين الصورتين
@@ -71,7 +75,7 @@ const CristmastMenu = () => {
 
   // 🔹 Variants
   const fromTop = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     show: {
       opacity: 1,
       y: 0,
@@ -170,7 +174,7 @@ const CristmastMenu = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Your favorite café… now in festive colors.
+            Your favorite Café & Brasserie now in festive colors.
           </motion.div>
         }
         title={"Nour Maison Christmas Edition"}
@@ -277,12 +281,13 @@ const CristmastMenu = () => {
         {/* 🎁 Main animated menu wrapper */}
 
         {/* 🔄 هنا السويتش بين صورة 1 و 2 حسب isMenuStartInView */}
-        <AnimatePresence mode="wait">
+      <div className="  lg:h-[650px]">
+      <AnimatePresence mode="wait" >
           {/* الصورة الأولى – تظهر قبل بداية المحتوى */}
           {!isMenuStartInView && (
             <motion.img
               key="bg-first"
-              src="/images/cristmas/Untitled design - 2025-12-04T145105.220.png"
+              src="/images/Asset 3.webp"
               className="w-full mb-10"
               alt="Christmas Menu Background"
               variants={fromTop}
@@ -297,17 +302,18 @@ const CristmastMenu = () => {
           {isMenuStartInView && (
             <motion.img
               key="bg-second"
-              src="/images/cristmas/NNNNNNNNNNNN.png"
-              className="w-full mb-10 !scale-[1.02]"
+              src="/images/Asset 1.webp"
+              className="w-full mb-10 "
               alt="Christmas Menu Background light"
               variants={fromTop2}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
+              // initial="hidden"
+              // animate="show"
+              // exit="hidden"
               transition={{ duration: 0.6, ease: "easeOut" }}
             />
           )}
         </AnimatePresence>
+      </div>
 
         <motion.div
           className="w-full container mx-auto rounded-3xl relative z-20 px-3 md:px-0"
@@ -604,4 +610,4 @@ const CristmastMenu = () => {
   );
 };
 
-export default CristmastMenu;
+export default CristmastMenuClient;

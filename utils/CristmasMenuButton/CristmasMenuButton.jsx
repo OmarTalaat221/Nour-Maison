@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const CristmasMenuButton = () => {
   return (
-    <Link href="/cristmas-menu">
+    <Link href="/christmas-menu">
     <button className="cristmas-menu-button !bg-gradient-to-r hover:!bg-gradient-to-l !text-white !from-[#FF3A2F]  !to-[#A92921]  transition-all">
       Cristmas Menu
       <div id="container-stars">
