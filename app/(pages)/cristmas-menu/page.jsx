@@ -34,7 +34,8 @@ const CristmastMenu = () => {
 
   const leftX = useTransform(scrollYProgress, [0, 1], [-90, 60]);
   const rightX = useTransform(scrollYProgress, [0, 1], [100, -40]);
-  const sockX = useTransform(scrollYProgress, [0, 1], [70, -90]);
+  const sockX = useTransform(scrollYProgress, [0, 1], [70, -140]);
+  const sockX2 = useTransform(scrollYProgress, [0, 1], [-70, 140]);
 
   // 🔹 Rotation
   const leftRotate = useTransform(scrollYProgress, [0, 1], [-8, 10]);
@@ -239,10 +240,21 @@ const CristmastMenu = () => {
           transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
         />
 
-        <img
+        <motion.img
           src="/images/cristmas/Untitled-6NNN.png"
           alt="Christmas decoration bottom right"
           className="hidden md:block absolute bottom-[-100px] right-0 w-[480px] md:w-[700px] z-30 pointer-events-none"
+          style={{
+            y: sockY,
+            x: sockX2,
+            rotate: sockRotate,
+            skewX: sockSkew,
+            opacity: decoOpacity,
+          }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+
         />
 
         {/* 🎁 Main animated menu wrapper */}
@@ -281,7 +293,7 @@ const CristmastMenu = () => {
             {/* LEFT image – من الشمال */}
             <motion.img
               src="/images/cristmas/Untitled-6 A.png"
-              className=" hidden md:block w-[170px] md:w-[200px] drop-shadow-2xl"
+              className=" hidden md:block w-[170px] md:w-[200px] drop-shadow-2xl  animate-pulse"
               alt=""
               variants={fromLeft}
               whileHover={{ scale: 1.06, rotate: 2 }}
@@ -290,12 +302,12 @@ const CristmastMenu = () => {
 
             {/* CENTER text – من تحت لفوق */}
             <motion.div
-              className="flex justify-center flex-col items-center text-white relative text-center px-4"
+              className="flex justify-center flex-col items-center text-white relative text-center px-4  "
               variants={fromBottom}
             >
               <motion.img
                 src="/images/cristmas/AMUSE.png"
-                className="max-w-xs md:max-w-sm drop-shadow-2xl mb-3"
+                className="max-w-xs md:max-w-sm drop-shadow-2xl mb-3 scale-down-center "
                 alt=""
                 variants={fromTop}
                 whileHover={{ scale: 1.03 }}
@@ -319,7 +331,7 @@ const CristmastMenu = () => {
             {/* RIGHT image – من اليمين */}
             <motion.img
               src="/images/cristmas/Untitled-6 G.png"
-              className=" hidden md:block w-[130px] md:w-[170px] drop-shadow-2xl"
+              className=" hidden md:block w-[130px] md:w-[170px] drop-shadow-2xl animate-pulse"
               alt=""
               variants={fromRight}
               whileHover={{ scale: 1.06, rotate: -2 }}
@@ -344,13 +356,13 @@ const CristmastMenu = () => {
             >
               <motion.img
                 src="/images/cristmas/STARTER.png"
-                className="w-[240px] md:w-[370px] drop-shadow-2xl mb-2"
+                className="w-[240px] md:w-[370px] drop-shadow-2xl mb-2 scale-down-center"
                 alt=""
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.4 }}
               />
 
-              <div className="space-y-4 w-full">
+              <div className="w-full">
                 {[
                   {
                     title: "Pumpkin Kibbeh",
@@ -375,7 +387,7 @@ const CristmastMenu = () => {
                 ].map((item, idx) => (
                   <motion.div
                     key={item.title}
-                    className="flex flex-col gap-1 w-full items-center text-white text-center"
+                    className="flex hover:bg-gradient-to-r  from-logoGold/40 to to-softMintGreen/40 transition-all rounded-3xl px-2 py-2  flex-col gap-1 w-full items-center text-white text-center"
                     variants={fromBottom} // من تحت لفوق
                     initial="hidden"
                     whileInView="show"
@@ -385,7 +397,7 @@ const CristmastMenu = () => {
                       ease: "easeOut",
                       delay: idx * 0.08,
                     }}
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.06 }}
                   >
                     <h2 className="text-lg md:text-xl font-semibold">
                       {item.title}
@@ -403,7 +415,7 @@ const CristmastMenu = () => {
             >
               <motion.img
                 src="/images/cristmas/DESSERTS.png"
-                className="w-[240px] md:w-[370px] drop-shadow-2xl"
+                className="w-[240px] md:w-[370px] drop-shadow-2xl scale-down-center"
                 alt=""
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.4 }}
@@ -470,7 +482,7 @@ const CristmastMenu = () => {
           >
             <motion.img
               src="/images/cristmas/MAIN CO.png"
-              className="w-[240px] md:w-[370px] drop-shadow-2xl"
+              className="w-[240px] md:w-[370px] drop-shadow-2xl scale-down-center"
               alt=""
               whileHover={{ scale: 1.04 }}
               transition={{ duration: 0.4 }}
@@ -485,7 +497,7 @@ const CristmastMenu = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="max-w-2xl mx-auto text-center text-white space-y-6 md:space-y-7 px-4">
+            <div className="max-w-2xl mx-auto text-center text-white px-4">
               {[
                 {
                   title: "Steak Diane",
@@ -514,7 +526,7 @@ const CristmastMenu = () => {
               ].map((item, idx) => (
                 <motion.div
                   key={item.title}
-                  className="space-y-1"
+                  className=" hover:bg-gradient-to-r  from-logoGold/40 to to-softMintGreen/40 transition-all rounded-3xl px-2 py-2 "
                   variants={fromBottom}
                   initial="hidden"
                   whileInView="show"
@@ -526,7 +538,7 @@ const CristmastMenu = () => {
                   }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <h3 className="text-2xl md:text-3xl font-semibold">
+                  <h3 className="text-2xl md:text-3xl font-semibold ">
                     {item.title}
                   </h3>
                   <p className="mt-1 text-sm md:text-base leading-relaxed">

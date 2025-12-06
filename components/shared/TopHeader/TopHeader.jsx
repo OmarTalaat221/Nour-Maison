@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
+import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
 const TopHeader = () => {
   const { isNotFound } = useNotFound();
 
@@ -20,11 +21,11 @@ const TopHeader = () => {
       path: "/menu-gallery",
       type: "navigate",
       items: [
-        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
         { id: 1, name: "Menu Classic", path: "/menu" },
         { id: 2, name: "Menu Gallery ", path: "/menu-gallery" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu", new: true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -35,7 +36,7 @@ const TopHeader = () => {
     // {id: 6, name: "RESERVATION", path: "/", type: "navigate"},
     // {id: 7, name: "PORTFOLIO", path: "/portfolio", type: "navigate"},
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
-    { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
+    // { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
     // { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
@@ -122,13 +123,19 @@ const TopHeader = () => {
                             {item.items.map((subItem) => (
                               <Dropdown.Item
                                 key={subItem.id}
+                                className="relative"
                                 // onClick={() => navigate(subItem.path)}
                               >
                                 <Link
                                   href={subItem.path}
-                                  className="text-black hover:text-black no-underline hover:no-underline "
+                                  className="text-black  hover:text-black no-underline hover:no-underline "
                                 >
                                   {subItem?.name}
+                                  {subItem?.new && (
+                                    <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
+                                      New
+                                    </span>
+                                  )}
                                 </Link>
                               </Dropdown.Item>
                             ))}
@@ -140,7 +147,8 @@ const TopHeader = () => {
                 </ul>
               </nav>
             </div>
-            <div className="hidden lg:flex">
+            <div className="hidden lg:flex  gap-3">
+              <CristmasMenuButton />
               <AnimButton
                 href="/booking"
                 onClick={() => navigate("/booking")}

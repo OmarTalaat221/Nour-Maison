@@ -12,12 +12,13 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 2, name: "MENU CLASSIC", path: "/menu", type: "navigate" },
     { id: 10, name: "MENU GALLERY", path: "/menu-gallery", type: "navigate" },
     { id: 10, name: "KIDS MENU", path: "/kids-menu", type: "navigate" },
+    { id: 10, name: "CHRISTMAS MENU", path: "/cristmas-menu", type: "navigate" , new:true },
     { id: 4, name: "GALLERY", path: "/gallery", type: "navigate" },
     { id: 11, name: "OUR EVENTS", path: "/services", type: "navigate" },
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     // { id: 9, name: "STORE", path: "/store", type: "navigate" },
-    { id: 3, name: "GIFT CARDS & STORE", path: "store", type: "navigate" },
+    // { id: 3, name: "GIFT CARDS & STORE", path: "store", type: "navigate" },
     { id: 6, name: "Blogs", path: "/blog", type: "navigate" },
   ];
   const router = useRouter();
@@ -90,7 +91,13 @@ const Sidebar = ({ open, setOpen }) => {
                           type: "spring",
                           stiffness: 100,
                         }}
+                        className="relative"
                       >
+                          {item.new && (
+                            <span className="absolute -top-0 -right-2 bg-logoGold text-white px-2 py-1 rounded-full text-sm">
+                              NEW
+                            </span>
+                          )}
                         <motion.div
                           className="text-white text-center cursor-pointer transition hover:text-white/75 whitespace-nowrap"
                           onClick={() => {

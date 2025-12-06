@@ -6,6 +6,7 @@ import MenuButton from "../../../utils/MenuButton/MenuButton";
 import { Dropdown } from "rsuite";
 import { usePathname, useRouter } from "next/navigation";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
+import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
 
 const StickyHeader = ({ open, setOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,11 +44,11 @@ const StickyHeader = ({ open, setOpen }) => {
       path: "/menu-gallery",
       type: "navigate",
       items: [
-        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
         { id: 1, name: "Menu Classic", path: "/menu" },
         { id: 2, name: "Menu Gallery ", path: "menu" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -58,7 +59,7 @@ const StickyHeader = ({ open, setOpen }) => {
     // {id: 6, name: "RESERVATION", path: "/", type: "navigate"},
     // {id: 7, name: "PORTFOLIO", path: "/portfolio", type: "navigate"},
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
-    { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
+    // { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
 
@@ -247,12 +248,17 @@ const StickyHeader = ({ open, setOpen }) => {
                 </nav>
               </div>
 
+               <div className=" hidden lg:flex gap-3">
+
+              <CristmasMenuButton/>
+
               <button
                 className="  site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
                 onClick={() => (window.location.href = "/booking")}
-              >
+                >
                 BOOK NOW
               </button>
+                </div>       
             </div>
           </div>
         </header>

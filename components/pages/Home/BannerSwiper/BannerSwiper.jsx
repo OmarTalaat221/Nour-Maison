@@ -35,7 +35,6 @@ const BannerSwiper = () => {
   const navigate = (path) => {
     router.push(path);
   };
-  const [animationKey, setAnimationKey] = useState(0); // Key to re-trigger animations
   const handleSlideChange = (e) => {
     setActiveIndex(e.activeIndex);
   };
@@ -105,6 +104,7 @@ const BannerSwiper = () => {
           }
         />
       </div>
+
       <div className="w-full h-full  relative ">
         <Swiper
           modules={[EffectCoverflow, Navigation, Autoplay]}
@@ -129,15 +129,18 @@ const BannerSwiper = () => {
             crossFade: true, // Ensure smooth transition between slides
           }}
           loop={true} // Enable looping (optional)
-          autoplay={{ delay: 2000 }} // Auto-slide every 3 seconds (optional)
+          autoplay={{ delay: 4000 }} // Auto-slide every 3 seconds (optional)
           className=" home_swiper  mx-auto"
         >
+          <div id="container-stars">
+            <div id="stars"></div>
+          </div>
           {[
             {
               image:
                 "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
               content: (
-                <>
+                <div className="relative">
                   <motion.h1
                     className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
                     variants={childVariants}
@@ -162,19 +165,22 @@ const BannerSwiper = () => {
                     Where the season glows in soft green magic.{" "}
                   </motion.p>
                   <div className="w-fit mt-3">
-                  <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
-              <svg xmlns="http://www.w3.org/2000/svg">
-                <rect
-                  className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-                  pathLength={100}
-                />
-              </svg>
-              <Link href={"/cristmas-menu"} className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico">
-                Cristmas Menu
-              </Link>
-            </button>
+                    <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg">
+                        <rect
+                          className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+                          pathLength={100}
+                        />
+                      </svg>
+                      <Link
+                        href={"/cristmas-menu"}
+                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
+                      >
+                        Christmas Menu
+                      </Link>
+                    </button>
                   </div>
-                </>
+                </div>
               ),
             },
             {
