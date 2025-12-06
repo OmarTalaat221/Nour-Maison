@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
 import BookingConent from "../../../components/pages/Booking/BookingContent";
@@ -131,9 +136,7 @@ const CristmastMenu = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.9 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-            
-            </motion.img>
+            ></motion.img>
           </motion.div>
         )}
       </AnimatePresence>
@@ -160,7 +163,6 @@ const CristmastMenu = () => {
         title={"Nour Maison Christmas Edition"}
         scrollTo={"cristmas"}
       />
-    
 
       <motion.div
         id="cristmas"
@@ -184,10 +186,13 @@ const CristmastMenu = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         />
 
-        <div style={{
-          textShadow:" 2px 2px 2px #000000,"
-        }} className=" text-center font-tangerine text-white font-bold text-3xl sm:text-7xl lg:text-9xl relative z-50">
-        4 course meal for £35 per person
+        <div
+          style={{
+            textShadow: " 2px 2px 2px #000000,",
+          }}
+          className=" text-center font-tangerine text-white font-bold text-3xl sm:text-7xl lg:text-9xl relative z-50"
+        >
+          4 course meal for £35 per person
         </div>
 
         {/* 🎄 Top decorations (animated) */}
@@ -254,7 +259,6 @@ const CristmastMenu = () => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
-
         />
 
         {/* 🎁 Main animated menu wrapper */}
@@ -270,7 +274,7 @@ const CristmastMenu = () => {
         >
           {/* Top menu background – من فوق لتحت */}
           <motion.img
-            src="/images/cristmas/Untitled design - 2025-12-04T145105.220.png"
+            src="/images/cristmas/NNNNNNNNNNNN.png"
             className="w-full mb-10"
             alt="Christmas Menu Background"
             variants={fromTop}
@@ -284,7 +288,7 @@ const CristmastMenu = () => {
 
           {/* AMUSE section */}
           <motion.div
-            className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 mb-16 mt-[-140px]"
+            className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 mb-16 mt-[-100px]"
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -341,8 +345,8 @@ const CristmastMenu = () => {
 
           {/* STARTER + DESSERTS */}
           {/* ... (سيب الباقي كما هو في آخر كود أرسلته) */}
-           {/* STARTER + DESSERTS */}
-           <motion.div
+          {/* STARTER + DESSERTS */}
+          <motion.div
             className="flex flex-col md:flex-row items-start justify-center mx-auto gap-10 md:gap-9"
             variants={staggerContainer}
             initial="hidden"
@@ -562,8 +566,7 @@ const CristmastMenu = () => {
 
         <BottomBg />
       </motion.div>
-      <BookingConent  bg={"/images/cristmas-1.jpeg"}   />
-
+      <BookingConent bg={"/images/cristmas-1.jpeg"} />
     </div>
   );
 };
