@@ -48,7 +48,7 @@ const StickyHeader = ({ open, setOpen }) => {
         { id: 2, name: "Menu Gallery ", path: "menu" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
-        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" },
+        { id: 5, name: "Christmas Menu ", path: "/cristmas-menu" , new:true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -161,8 +161,15 @@ const StickyHeader = ({ open, setOpen }) => {
                                 <Dropdown.Item
                                   key={subItem.id}
                                   onClick={() => navigate(subItem.path)}
+                                  className="relative"
                                 >
+                               
                                   {subItem.name}
+                                  {subItem?.new && (
+                                    <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
+                                      New
+                                    </span>
+                                  )}
                                 </Dropdown.Item>
                               ))}
                             </Dropdown>
