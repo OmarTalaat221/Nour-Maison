@@ -22,7 +22,7 @@
     "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
     "meshline": "^3.3.1",
-    "next": "15.2.3",
+    "next": "^16.0.7",
     "popmotion": "^11.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
