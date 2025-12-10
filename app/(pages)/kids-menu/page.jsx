@@ -156,7 +156,7 @@ const KidsMenu = () => {
       {/* ✅ Main content – visible on all screens for better SEO */}
       <main
         id="kids-menu"
-        className="container mx-auto px-4 sm:px-6 lg:px-4 relative py-10"
+        className="container hidden mx-auto px-4 sm:px-6 lg:px-4 relative py-10"
       >
         {/* Primary H1 for the page (SEO) */}
         <h1 className="sr-only">
