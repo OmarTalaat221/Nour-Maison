@@ -1,24 +1,15 @@
 import BannerSwiper from "../../components/pages/Home/BannerSwiper/BannerSwiper";
 import InstagramFeeds from "../../components/pages/Home/InstagramFeeds/InstagramFeeds";
-import OurServices from "./../../components/pages/Home/OurServices/OurServices";
 import BookTableSection from "./../../components/pages/Home/BookTableSection/BookTableSection";
 import FeedBack from "../../components/pages/Home/FeedBack/FeedBack";
-import ChefsSection from "./../../components/pages/Home/ChefsSection/ChefsSection";
 import AboutUsSection from "../../components/pages/Home/AboutUsSection/AboutUsSection";
-import FeaturesSections from "../../components/pages/Home/FeaturesSections/FeaturesSections";
 import AfternoonTea from "./../../components/pages/Home/AfternoonTea/AfternoonTea";
-import BlogSectionServer from "../../components/pages/Home/BlogsSection/BlogSectionServer";
-import GoogleReviews from "../../components/pages/Home/GoogleReviews/GoogleReviews";
-import HappyMoments from "../../components/pages/HappyMoments/HappyMoments";
-import KidsSection from "../../components/pages/Home/KidsSection";
 import NourKidsMenuHero from "../../components/pages/Home/KidsSection";
 import VideoBanner from "../../components/pages/Home/MobileBanner";
-import RatingStars from "../../components/pages/Home/RatingWithSound";
 import ChefsSection2 from "../../components/pages/Home/ChefsSection/ChefsSection2";
 import HomaRoastMenu from "../../components/pages/Home/HomaRoastMenu";
 export const metadata = {
   title: "Nour Maison | Halal French & middle eastern Café Restaurant",
-
   description:
     "Enjoy halal French and Middle Eastern brunch at Nour Maison in Milton Keynes. A cozy café offering pancakes, coffee, and elegant breakfast options.",
   keywords: ["aesthetic brunch MK",
@@ -1984,6 +1975,9 @@ export const metadata = {
  * Home component - Main page component of the application
  * Renders the complete homepage layout with various sections
  */
+
+
+
 export default function Home() {
   return (
     <div className="overflow-hidden">

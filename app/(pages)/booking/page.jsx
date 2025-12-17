@@ -33,7 +33,6 @@ export const metadata = {
     "Best place to book dinner in UK ",
     "Restaurant reservation online",
     "Book a table NOUR MAISON",
-
   ],
   alternates: {
     canonical: "https://www.nourmaison.co.uk/booking",
@@ -58,7 +57,6 @@ export const metadata = {
 };
 
 export default async function BookingPage() {
-
   return (
     <>
       <div>
@@ -69,11 +67,11 @@ export default async function BookingPage() {
           images={[
             "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028867/inopk72hwfwrtgx2munx.webp",
             "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028866/pgtrnkcomtslajpppxcb.webp",
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028873/obkj0zmhvplrxbnj2hy0.webp"
+            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028873/obkj0zmhvplrxbnj2hy0.webp",
           ]}
         />
 
-        <BookingConent    />
+        <BookingConent />
       </div>
     </>
   );

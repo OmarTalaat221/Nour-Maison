@@ -173,7 +173,7 @@ const BannerSwiper = () => {
                         />
                       </svg>
                       <Link
-                        href={"/cristmas-menu"}
+                        href={"/christmas-menu"}
                         className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
                       >
                         Christmas Menu
@@ -219,7 +219,7 @@ const BannerSwiper = () => {
                         />
                       </svg>
                       <Link
-                        href={"/cristmas-menu"}
+                        href={"/christmas-menu"}
                         className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
                       >
                         Roast Dinner Menu

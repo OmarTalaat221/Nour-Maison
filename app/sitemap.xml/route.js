@@ -19,7 +19,7 @@ export async function GET() {
     "/gallery",
     "/kids-menu",
     "/roast-menu",
-    "/cristmas-menu",
+    "/christmas-menu",
     "/booking",
     "/store",
     "/terms-conditions",

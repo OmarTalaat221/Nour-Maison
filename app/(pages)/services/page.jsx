@@ -1,9 +1,6 @@
-import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import OurServices from "../../../components/pages/Home/OurServices/OurServices";
 import HappyMoments from "../../../components/pages/HappyMoments/HappyMoments";
-import PaperPlaneSuccess from "../../../components/PaperPlaneSuccess/PaperPlaneSuccess";
-
 const page = () => {
   return (
     <div>
