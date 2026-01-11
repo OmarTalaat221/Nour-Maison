@@ -8,25 +8,25 @@ const InstagramFeeds = () => {
   const feeds = [
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1739288995/iqhclykglpbdcggm4hcn.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/iqhclykglpbdcggm4hcn_e31rmw.jpg",
       link: "https://www.instagram.com/p/DCpc0k1sL4A/?img_index=2",
       text: " A huge thank you to everyone who joined us for the VIP grand opening of Nour Maison!",
     },
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1739289017/omzzqoihwdbgjfqc0lhm.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443796/omzzqoihwdbgjfqc0lhm_ksik2s.jpg",
       link: "https://www.instagram.com/p/DCpc0k1sL4A/?img_index=1",
       text: " A huge thank you to everyone who joined us for the VIP grand opening of Nour Maison!",
     },
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1739290288/h7kizulgt2eapp7w027d.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443792/h7kizulgt2eapp7w027d_lxeyhb.jpg",
       link: "https://www.instagram.com/p/DFw6SjPsu1u/",
       text: "At Nour Maison, every dish tells a story of passion and precision. 🌿 From the finest ingredients to artful plating,",
     },
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1739290409/s6juqgcui3lzu8kdjrmt.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443797/s6juqgcui3lzu8kdjrmt_yxqzrl.jpg",
       link: "https://www.instagram.com/p/DF43J7dMg6w/",
       text: `
 Nour Maison ✨️
@@ -34,14 +34,14 @@ Nour Maison ✨️
     },
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1738574913/q5ccc9oqexswwudxiwcm.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/q5ccc9oqexswwudxiwcm_mxd1wp.jpg",
       link: "https://www.instagram.com/p/DFe3SPVMY_b/",
       text: `Celebrate Love the Nour Maison Way!
 `,
     },
     {
       mediaUrl:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/f_auto,q_auto/v1739290642/u4otupy2jgvif8buuly3.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/u4otupy2jgvif8buuly3_bg6wad.jpg",
       link: "https://www.instagram.com/p/DFpJojGMRu6/",
       text: `Milton Keynes get ready! 🚨 The city’s FIRST EVER ☕️ Coffee & 🍵 Matcha Party is finally here—and you do NOT want to miss this!`,
     },

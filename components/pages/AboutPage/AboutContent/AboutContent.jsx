@@ -49,19 +49,19 @@ const AboutContent = ({}) => {
   // };
 
   const images = [
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063314/465984384_1590238098232979_2569484348972359367_n_lndhof.jpg",
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063369/466253647_534065926272992_1731520913535440885_n_lccww5.jpg",
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063478/download_tflo0m.jpg",
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063489/download_b1l96d.jpg",
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063529/download_cmgnkv.jpg",
-    "https://res.cloudinary.com/dkc5klynm/image/upload/v1738063553/download_pvviax.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/465984384_1590238098232979_2569484348972359367_n_lndhof_aewybh.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452495/466253647_534065926272992_1731520913535440885_n_lccww5_g53xx5.jpg",
+    "hhttps://res.cloudinary.com/dhebgz7qh/image/upload/v1767452494/download_tflo0m_xsvqce.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452497/download_b1l96d_hdflbq.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/download_cmgnkv_llygqn.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452494/download_pvviax_g29yau.jpg",
   ];
 
   const images2 = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027122/txw1mwe5rnw8evxzgvye.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027118/ja2xpjfj93egefk7ggvt.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027113/kmxpexva5pbfocltc48o.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027101/hgq4dkeki4dw5qwzudqp.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452497/txw1mwe5rnw8evxzgvye_wutn8r.webp ",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/ja2xpjfj93egefk7ggvt_uxsqjo.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452497/kmxpexva5pbfocltc48o_dsb1il.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/hgq4dkeki4dw5qwzudqp_coo6nb.webp",
   ];
 
   const [videoModal, setVideoModal] = useState(false);
@@ -151,7 +151,7 @@ const AboutContent = ({}) => {
           style={{
             filter: "drop-shadow(0 0 4px rgba(0, 0, 0, 0.3))",
           }}
-          src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+          src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
           alt=""
           className="w-[100px] h-[100px] "
         />

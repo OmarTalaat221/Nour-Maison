@@ -48,7 +48,7 @@ const StickyHeader = ({ open, setOpen }) => {
         { id: 2, name: "Menu Gallery ", path: "menu" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
-        { id: 5, name: "Christmas Menu ", path: "/christmas-menu" , new:true },
+        // { id: 5, name: "Christmas Menu ", path: "/christmas-menu" , new:true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -107,7 +107,7 @@ const StickyHeader = ({ open, setOpen }) => {
                   <span className="sr-only">Home</span>
                   <img
                     loading="lazy"
-                    src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+                    src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
                     alt="Nour Maison Logo"
                     className="  w-[60px] md:w-[70px] mdd:!w-[60px]"
                     title="NOUR MAISON"
@@ -257,7 +257,7 @@ const StickyHeader = ({ open, setOpen }) => {
 
                <div className=" hidden lg:flex gap-3">
 
-              <CristmasMenuButton/>
+              {/* <CristmasMenuButton/> */}
 
               <button
                 className="  site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "

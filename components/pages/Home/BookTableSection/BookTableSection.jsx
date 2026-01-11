@@ -23,7 +23,7 @@ const BookTableSection = () => {
       >
         <img
           loading="lazy"
-          src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737643607/zexptzvrvwxbsvi8pqho.jpg"
+          src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg"
           alt="nour caffe"
           className="fixed-img"
           draggable="false"

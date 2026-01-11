@@ -8,8 +8,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573631/muftscgujz2hc3fmrwtg.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536319/muftscgujz2hc3fmrwtg_kshscq.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
   {
@@ -21,8 +21,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739871140/pwwv0fl91gfrcdgq85sk.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536398/pwwv0fl91gfrcdgq85sk_ornodn.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
   {
@@ -34,8 +34,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573631/muftscgujz2hc3fmrwtg.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536319/muftscgujz2hc3fmrwtg_kshscq.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
   {
@@ -47,8 +47,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573631/muftscgujz2hc3fmrwtg.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536319/muftscgujz2hc3fmrwtg_kshscq.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
   {
@@ -60,8 +60,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573631/muftscgujz2hc3fmrwtg.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536319/muftscgujz2hc3fmrwtg_kshscq.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
   {
@@ -73,8 +73,8 @@ export default  [
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573631/muftscgujz2hc3fmrwtg.avif",
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1744573695/auh4rhatfwyvkokdnmtx.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536319/muftscgujz2hc3fmrwtg_kshscq.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536366/auh4rhatfwyvkokdnmtx_w2hysi.avif",
     ],
   },
 ];

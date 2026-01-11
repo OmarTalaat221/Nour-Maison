@@ -25,7 +25,7 @@ const TopHeader = () => {
         { id: 2, name: "Menu Gallery ", path: "/menu-gallery" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
-        { id: 5, name: "Christmas Menu ", path: "/christmas-menu", new: true },
+        // { id: 5, name: "Christmas Menu ", path: "/christmas-menu", new: true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -71,7 +71,7 @@ const TopHeader = () => {
                     filter: "drop-shadow(4px 2px 2px rgba(63, 63, 63, 0.63)",
                   }}
                   loading="lazy"
-                  src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+                  src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
                   alt="Nour Maison Logo"
                   title="NOUR MAISON"
                   width={100}
@@ -90,7 +90,7 @@ const TopHeader = () => {
                         {!item?.items ? (
                           <Link
                             className={cx(
-                              `cursor-pointer active:no-underline transition no-underline hover:no-underline  hover:text-white/75 whitespace-nowrap  text-white text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] `,
+                              `cursor-pointer font-nour font-semibold tracking-widest active:no-underline transition no-underline hover:no-underline  hover:text-white/75 whitespace-nowrap  text-white text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] `,
                               { "!text-goldenOrange": pathname == item?.path }
                             )}
                             href={item.path}
@@ -106,7 +106,7 @@ const TopHeader = () => {
                                 {...props}
                                 ref={ref}
                                 className={cx(
-                                  "cursor-pointer transition text-white hover:text-white/75 whitespace-nowrap  text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] ",
+                                  "cursor-pointer font-nour font-semibold tracking-widest transition text-white hover:text-white/75 whitespace-nowrap  text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] ",
                                   {
                                     "!text-goldenOrange":
                                       pathname == "/menu" ||
@@ -148,7 +148,7 @@ const TopHeader = () => {
               </nav>
             </div>
             <div className="hidden lg:flex  gap-3">
-              <CristmasMenuButton />
+              {/* <CristmasMenuButton /> */}
               <AnimButton
                 href="/booking"
                 onClick={() => navigate("/booking")}

@@ -5,7 +5,7 @@ const SEO = ({
   description = 'استمتع بأشهى الأكلات الحلال في قلب ميلتون كينز. زرنا الآن أو اطلب أونلاين!',
   keywords = 'مطعم حلال, أكل حلال, ميلتون كينز, Halal Restaurant Milton Keynes',
   image = '/logo.jpg',
-  url = 'https://example.com'
+  url = 'https://www.nourmaison.co.uk'
 }) => {
   return (
     <Head>

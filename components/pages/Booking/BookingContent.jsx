@@ -225,8 +225,8 @@ const BookingConent = ({bg}) => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundImage: `
-        linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-        url(${ bg ||"https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745921239/bznj0n2qms9qo0jxjvfc.webp"})
+        linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+        url(${ bg ||"https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
       `,
         }}
       >
@@ -453,7 +453,6 @@ const BookingConent = ({bg}) => {
               style={
                 // {
                 //   backgroundImage:
-                //     "url('https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739272293/otzqvoi0cg0oi6c12tyr.svg')",
                 //   backgroundPosition: "center",
                 //   backgroundSize: "",
                 //   backgroundRepeat: "no-repeat",
@@ -534,12 +533,7 @@ const BookingConent = ({bg}) => {
                   </address>
                 </div>
 
-                {/* <img
-                loading="lazy"
-                src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739275204/r4coihthjsdfizqskhwi.png"
-                className=" top-0 left-0 z-10 w-full"
-                alt=""
-              /> */}
+               
               </Tilt>
             </div>
           </div>

@@ -15,25 +15,25 @@ const ChefsSection = () => {
     {
       name: "Mo G",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746113545/pjjufhv9xhfz70tupqar.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536858/pjjufhv9xhfz70tupqar_moqoxx.webp",
       position: "Chef Owner",
     },
     {
       name: "Cristina",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746111403/v7x2fulaz4kzk7ydwols.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536860/v7x2fulaz4kzk7ydwols_cte2hr.jpg",
       position: " Chef",
     },
     {
       name: "Hani",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746111403/ujwjsbeuc9xxnonv0xut.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536868/ujwjsbeuc9xxnonv0xut_zropkh.jpg",
       position: " Chef",
     },
     {
       name: "Ramona",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746627804/mvsnlu3qcmjhpsgxxewe.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767537001/mvsnlu3qcmjhpsgxxewe_ytpcke.webp",
       position: " Chef",
     },
   ];
@@ -72,9 +72,7 @@ const ChefsSection = () => {
             The Faces Behind the Flavors
           </SectionTitle>
 
-          {/* <BranchesImage variant={"top-left"} className={" opacity-60 rotate-[0deg] w-[300px] top-[200px]"}  image={"https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737981147/oyjxzt0oynrfgyc847ek.png"} />
-        <BranchesImage variant={"top-right"} className={" opacity-60 rotate-180 w-[300px] bottom-12"}  image={"https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737981147/oyjxzt0oynrfgyc847ek.png"} /> */}
-
+         
           <div
             data-aos="fade-right"
             className="overflow-hidden container  md:my-11 flex flex-col md:flex-row justify-between gap-5 md:gap-10"

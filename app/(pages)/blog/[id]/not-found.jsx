@@ -63,7 +63,7 @@ const NotFound = () => {
         <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0" >
           <img
             className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-contain "
-            src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
             alt="Nour Maison Logo"
             title="NOUR MAISON"
           />

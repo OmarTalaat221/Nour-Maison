@@ -85,8 +85,8 @@ const BannerSwiper = () => {
           className=' opacity-1 lg:opacity-1  !h-screen  !object-fill !w-screen    '
           src={
             smallScreen
-              ? "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1740993770/mk7eelfwnkwcoyuh4hrt.png"
-              : "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739195958/epsmbzu1evrskdc0sp52.png"
+              ? "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767788978/mk7eelfwnkwcoyuh4hrt_dwrre4.webp"
+              : "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767788965/epsmbzu1evrskdc0sp52_f2tpcb.webp"
           }
           alt={"image"}
         />
@@ -119,8 +119,8 @@ const BannerSwiper = () => {
           className=' home_swiper overflow-visible mx-auto'
         >
           {[
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739203606/mefgs0cxedk7nisok4xa.png",
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739203592/nl5zm5to02k1cvtqwt7r.png",
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767789236/mefgs0cxedk7nisok4xa_waxdsm.webp",
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767789240/nl5zm5to02k1cvtqwt7r_yqz1aa.webp",
           ].map((item, index) => (
             <SwiperSlide className=' flex items-center justify-center relative'>
               <div className='banner_swiper min-h-lvh'>

@@ -7,7 +7,7 @@ export const IMAGES = [
   {
     id: 0,
     imageSrc:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737643607/zexptzvrvwxbsvi8pqho.jpg"
+      "https://images.pexels.com/photos/3570733/pexels-photo-3570733.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
   },
   {
     id: 1,

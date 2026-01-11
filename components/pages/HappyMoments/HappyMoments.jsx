@@ -10,21 +10,21 @@ import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import Framer_gallery from "../../../utils/FramerGallery/FramerGallery";
 
 const images = [
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444834/wx7yvxpnuhorzamdll4z.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444925/xvv9gdzrqav3jwgx6j6m.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444838/vlcxgm3mwg0nm5bfxqtp.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444848/sjvctg5eayu7olg8dyal.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444854/iixragagyik56yfd9c8p.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444854/iixragagyik56yfd9c8p.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444920/l1xuunwfxdhcywyharos.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746445326/c1d8ccewqatmvhcmlzei.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746445563/ga4mdhcqwbr2sqhdc7os.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444904/rcudtzg6dkuyukfezowp.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444898/yuz4ndz00ojqb9wlomhk.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444907/ljfkamtlrkvhlmvm3pwp.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745663343/pgmv9wndeci5vmmduvtp.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745663516/ybrrcsa8rg83s7hqza9k.webp",
-  "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745487109/wz8v83uwixxf93l6qtdq.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451828/wx7yvxpnuhorzamdll4z_1_n0bcjo.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451830/xvv9gdzrqav3jwgx6j6m_wdalav.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/vlcxgm3mwg0nm5bfxqtp_uec67t.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451825/sjvctg5eayu7olg8dyal_ewkot9.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451822/iixragagyik56yfd9c8p_dnsdwb.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451822/iixragagyik56yfd9c8p_dnsdwb.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451822/l1xuunwfxdhcywyharos_twhu7m.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/c1d8ccewqatmvhcmlzei_dry2et.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/ga4mdhcqwbr2sqhdc7os_1_eahl9l.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451826/rcudtzg6dkuyukfezowp_xgozjw.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451831/yuz4ndz00ojqb9wlomhk_wmjngu.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451822/ljfkamtlrkvhlmvm3pwp_namc4e.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451824/pgmv9wndeci5vmmduvtp_timwzb.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451831/ybrrcsa8rg83s7hqza9k_kn3unw.webp",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451831/wz8v83uwixxf93l6qtdq_kaempo.webp",
 ];
 
 const HappyMoments = ({ withBg = false }) => {

@@ -94,7 +94,7 @@ const OurServices = () => {
               <img
                 style={{boxShadow: "-20px -20px 0 0 #599066"}}
                 className='!h-full w-full md:w-[600px] lg:w-[800px] object-cover mx-auto'
-                src='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738574913/q5ccc9oqexswwudxiwcm.webp'
+                src='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/q5ccc9oqexswwudxiwcm_mxd1wp.jpg'
                 alt='valentine-banner'
               />
             </div>

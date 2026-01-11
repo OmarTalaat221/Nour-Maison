@@ -11,8 +11,8 @@ const BookTableSection = () => {
         id="fixed-bg"
         class="fixed-bg section dark-background relative select-none "
       >
-        <img
-          src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737643607/zexptzvrvwxbsvi8pqho.jpg"
+        <img  
+          src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447627/eo5sxlh0gym8drgtc32j_qiznnz.jpg"
           alt="nour maison caffee"
           className="fixed-img"
           draggable="false"

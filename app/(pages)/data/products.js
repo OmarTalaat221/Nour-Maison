@@ -22,7 +22,7 @@
     discount: "20%",
     rating: 4,
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739871140/pwwv0fl91gfrcdgq85sk.avif",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529523/pwwv0fl91gfrcdgq85sk_r7rgbp.webp",
       "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
       "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
     ],

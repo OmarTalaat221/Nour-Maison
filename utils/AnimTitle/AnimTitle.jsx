@@ -11,14 +11,14 @@ const AnimTitle = ({className, children , ...props}) => {
           transformOrigin: "center",
         }}
         className=' !w-[30px] md:w-[40px] animate-wiggle '
-        src='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983207/dnxwhfpgkrgpevziszif.png'
+        src='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767791112/dnxwhfpgkrgpevziszif_gdraa9.webp'
         alt='leav-1'
       />
       {children}
       <img
         loading="lazy"
         className='w-[30px] md:w-[40px] animate-wiggle  '
-        src='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983207/dnxwhfpgkrgpevziszif.png'
+        src='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767791112/dnxwhfpgkrgpevziszif_gdraa9.webp'
         alt='leave-2'
       />
     </div>

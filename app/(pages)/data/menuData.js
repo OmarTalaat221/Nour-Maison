@@ -4,7 +4,7 @@ export const menu_1 = [
     category: "Breakfast Croissant",
     slogan: "Flaky, Buttery, Irresistible – A Bite of Paris in Every Layer!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg",
     items: [
       {
         name: "Jambon-Fromage Croissant",
@@ -236,7 +236,7 @@ export const menu_1 = [
     category: "Toasts and Rolls",
     slogan: "Golden, Toasted, and Stuffed with Love!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036273/jxayyufwzd6e7o9vb5n4.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529840/Toasts_and_Rolls_u6inky.jpg",
     items: [
       {
         name: "Truffle & Cheese Egg Rolls",
@@ -333,7 +333,7 @@ export const menu_1 = [
     category: "Classic Breakfast",
     slogan: "Timeless Mornings, One Bite at a Time!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036412/ktjbtmstmfemce5s61ib.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Croissant_Almond_jjy5uo.jpg",
     items: [
       {
         name: "Full English",
@@ -460,7 +460,7 @@ export const menu_1 = [
     category: "Artisan Benedict",
     slogan: "Eggsquisite Delights with a Gourmet Twist!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036507/gmxlwfuwg1jdhugb5ffj.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529804/Artisan_Benedict_tlnupg.jpg",
     items: [
       {
         name: "Avo Tartine",
@@ -602,7 +602,7 @@ export const menu_1 = [
     id: 5,
     category: "Signature Breakfast",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036676/uxywiv5atdba11lkj0g4.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529848/Waffle_Truffle_ako4il.jpg",
     slogan: "Bold Flavors, Signature Perfection!",
     items: [
       {
@@ -766,7 +766,7 @@ export const menu_1 = [
     category: "Salads",
     slogan: "Fresh, Crisp, and Full of Vibrant Goodness!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741037264/l68comvvcxiaudj7c3u3.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Salads_krgtsh.jpg",
     items: [
       {
         name: "Herb Feta and Olive Tabbouleh",
@@ -789,7 +789,7 @@ export const menu_1 = [
     category: "Coffee",
     slogan: "Brewed to Perfection, Sipped with Passion.",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529819/Coffee_y1u5ai.jpg",
     items: [
       { name: "Double Espresso", price: 2.65, allergens: [] },
       { name: "Americano", price: 2.65, allergens: [] },

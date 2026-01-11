@@ -19,7 +19,7 @@ export const blogData = [
         — <em data-start="1250" data-end="1272">The Nour Maison Team</em></span></p>
     `,
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745663343/pgmv9wndeci5vmmduvtp.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451824/pgmv9wndeci5vmmduvtp_timwzb.webp",
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ We are now fully booked for lunchtime and can no longer take any more reservatio
 <p data-start="1372" data-end="1409" class=""><span style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">With love,<br data-start="1382" data-end="1385">
         — <em data-start="1387" data-end="1409">The Nour Maison Team</em></span></p>`,
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745486869/fgo6tkc6csnbxg86bamg.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451831/ybrrcsa8rg83s7hqza9k_kn3unw.webp",
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ Enjoy a 3-course meal for just £34.95 per person, complete with a complimentary
 arrival--because romance deserves a touch of luxury`,
 
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745487109/wz8v83uwixxf93l6qtdq.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451831/wz8v83uwixxf93l6qtdq_kaempo.webp",
     content: `<h4 data-start="414" data-end="459" class=""><span style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">A Romantic Evening, Crafted with Love 🌹</span></h4>
 <p><br></p>
 <p data-start="461" data-end="679" class=""><span style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">At <strong data-start="464" data-end="479">Nour Maison</strong>, we believe that love deserves a setting as special as the feeling itself. This Valentine’s Day, we welcomed couples from across the city for a night of warmth, fine food, and unforgettable memories.<br><br></span></p>
@@ -86,7 +86,7 @@ Dine in style at our restaurant, where stunning decor meets delicious cuisine �
 `,
 
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745488669/betlkcldrbkos7qhor6m.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767528246/betlkcldrbkos7qhor6m_yis7yk.jpg",
     content: `<h4 data-start="396" data-end="441" class=""><span style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">A Place Where Taste Meets Tranquility 🌿</span></h4>
 <p><br></p>
 <p data-start="443" data-end="572" class=""><span style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">Step into <strong data-start="453" data-end="468">Nour Maison</strong>, a space where dining is more than just a meal — it’s an experience designed to engage all your senses.</span></p>

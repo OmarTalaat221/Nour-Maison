@@ -46,57 +46,56 @@ const Gallrey = () => {
       {
         id: 1,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 2,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/video/upload/v1738496477/ofln6neksu02dynedeax.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 3,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/video/upload/v1738497730/rw7mjpgfye1ke6a6wmvr.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 4,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/video/upload/v1738497729/ooaf1ruia6doeip4qwdg.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 5,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495075/cd2oxrizxts95az7bhyy.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 6,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 7,
         media_url:
-          // "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738498619/jeefokrectjock0u7sst.jpg",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1745664212/gylzsw4bkzut4wwteqqh.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448115/gylzsw4bkzut4wwteqqh_humy6h.jpg",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 8,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738499209/xgdljvsjasrf969yugaa.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448131/xgdljvsjasrf969yugaa_jhxw8w.jpg",
         type: "drinks",
         descripiton: "",
       },
@@ -104,147 +103,147 @@ const Gallrey = () => {
       {
         id: 9,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738499446/qao703vvgwlbsogiv5cw.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448121/qao703vvgwlbsogiv5cw_wjhvgp.jpg",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 10,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500690/zivckxpxoj7eoz3k0fbg.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/zivckxpxoj7eoz3k0fbg_asox1j.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 11,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500635/mitkyzcyqpgraudf4mzo.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448118/mitkyzcyqpgraudf4mzo_ytgfkx.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 12,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500584/va3spn6weremalxijnim.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448129/va3spn6weremalxijnim_j50w9s.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 13,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500555/hekcsbfgdyg9d6pup5ft.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hekcsbfgdyg9d6pup5ft_ceblkf.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 14,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500540/lrejrej4vkgm6pwz4pji.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448116/lrejrej4vkgm6pwz4pji_bflzxl.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 15,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500501/hcond6tzxbabx0ce4aku.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hcond6tzxbabx0ce4aku_g4z6r2.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 16,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500897/xmx5t5xm3uxrjf6ihcdt.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/xmx5t5xm3uxrjf6ihcdt_upfix4.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 17,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501018/ozwomw2ybv9bkx2fkbxf.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448120/ozwomw2ybv9bkx2fkbxf_r4ziut.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 18,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501082/geo9wdmyu4pnh7c7mr9q.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/geo9wdmyu4pnh7c7mr9q_lypzi7.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 19,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501391/r6vdvndpnx7cvr5dntjd.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448123/r6vdvndpnx7cvr5dntjd_tir57j.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 20,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501550/ujwwyfjsuybmzd2swakw.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448125/ujwwyfjsuybmzd2swakw_tus5pp.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 21,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501636/em1myinhecewatd7a5ih.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448110/em1myinhecewatd7a5ih_hecxyp.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 22,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738501928/b3u713dp7cpcwiidqpie.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448108/b3u713dp7cpcwiidqpie_b9ej1h.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 23,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738502000/a60azsrb6y4zzrdki2t6.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/a60azsrb6y4zzrdki2t6_at2eoq.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 24,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738502060/ldwesrionjbuwffp0cw7.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448114/ldwesrionjbuwffp0cw7_ivexgx.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 25,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738502268/uk23x8ahosnejilqkjdq.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448126/uk23x8ahosnejilqkjdq_j9uqm1.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 26,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738502637/maqykxobznkum8ygukbv.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448117/maqykxobznkum8ygukbv_htaziu.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 27,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738502731/ahgneikwijzkfi1z3vih.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/ahgneikwijzkfi1z3vih_snz6jg.jpg",
         type: "food",
         descripiton: "",
       },
       {
         id: 28,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503684/osygbhyemxoc2vbe7xx5.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449259/osygbhyemxoc2vbe7xx5_iaiz3j.webp",
         type: "food",
         descripiton: "",
       },
       {
         id: 29,
         media_url:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449500/rq65qikrbefpqmhsbfnt_g6megq.webp",
         type: "food",
         descripiton: "",
       },
@@ -264,14 +263,12 @@ const Gallrey = () => {
     <div className="relative">
       <PagesBanner
         images={[
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495075/cd2oxrizxts95az7bhyy.webp",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1745664212/gylzsw4bkzut4wwteqqh.webp",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738499209/xgdljvsjasrf969yugaa.jpg",
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738500635/mitkyzcyqpgraudf4mzo.jpg",
-
-
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448115/gylzsw4bkzut4wwteqqh_humy6h.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448131/xgdljvsjasrf969yugaa_jhxw8w.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448121/qao703vvgwlbsogiv5cw_wjhvgp.jpg",
         ]}
         slogan={"Artisanal Visions: A Taste of Creativity "}
         title={"Gallery Corner"}

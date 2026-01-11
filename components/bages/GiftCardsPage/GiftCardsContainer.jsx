@@ -13,7 +13,7 @@ const GiftCardsContainer = () => {
       <div className=' text-[35px]  md:text-[45px] px-2 text-center font-bold text-goldenOrange font-tangerine'>
         A Gift That Speaks Style – Nour Miason Gift Cards"{" "}
       </div>
-      <div className='flex flex-col gap-10 '>
+      <div className='flex flex-col gap-10'>
         {giftcards.map((category, index) => (
           <GiftSection category={category} key={index} />
         ))}

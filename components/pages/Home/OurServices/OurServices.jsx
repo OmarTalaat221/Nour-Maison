@@ -27,7 +27,7 @@ const OurServices = () => {
     description:
       "Join us for an experience that tastes like adventure and feels like love.",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581228/xvt7iw6wqrjw2ifcsxyk.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/xvt7iw6wqrjw2ifcsxyk_dd0dap.jpg",
   };
 
   const services = [
@@ -51,7 +51,7 @@ const OurServices = () => {
       description:
         "Make your birthday celebration unforgettable with a fun-filled party and delightful memories for everyone.",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444834/wx7yvxpnuhorzamdll4z.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451828/wx7yvxpnuhorzamdll4z_1_n0bcjo.webp",
     },
     {
       id: 4,
@@ -59,7 +59,7 @@ const OurServices = () => {
       description:
         "Mark your special milestone with an elegant celebration tailored to create lasting memories of love and joy.",
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746445563/ga4mdhcqwbr2sqhdc7os.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451825/ga4mdhcqwbr2sqhdc7os_ogwrgw.webp",
     },
   ];
 
@@ -76,24 +76,6 @@ const OurServices = () => {
     "https://html.merku.love/cafert/img/gallery/preview03.webp",
     "https://html.merku.love/cafert/img/gallery/preview04.webp",
     "https://html.merku.love/cafert/img/gallery/preview02.webp",
-  ];
-
-  const images = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444834/wx7yvxpnuhorzamdll4z.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444925/xvv9gdzrqav3jwgx6j6m.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444838/vlcxgm3mwg0nm5bfxqtp.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444848/sjvctg5eayu7olg8dyal.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444854/iixragagyik56yfd9c8p.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444854/iixragagyik56yfd9c8p.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444920/l1xuunwfxdhcywyharos.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746445326/c1d8ccewqatmvhcmlzei.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746445563/ga4mdhcqwbr2sqhdc7os.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444904/rcudtzg6dkuyukfezowp.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444898/yuz4ndz00ojqb9wlomhk.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746444907/ljfkamtlrkvhlmvm3pwp.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745663343/pgmv9wndeci5vmmduvtp.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745663516/ybrrcsa8rg83s7hqza9k.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745487109/wz8v83uwixxf93l6qtdq.webp",
   ];
 
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -138,7 +120,7 @@ const OurServices = () => {
                   loading="lazy"
                   style={{ boxShadow: "-20px -20px 0 0 #599066" }}
                   className=" rounded-tr-[10px]  shadow-2xl w-full h-full rounded-  object-cover mx-auto"
-                  src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581228/xvt7iw6wqrjw2ifcsxyk.jpg"
+                  src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/xvt7iw6wqrjw2ifcsxyk_dd0dap.jpg"
                   alt="valentine-bannre"
                 />
                 <div className="p-6 md:p-10 rounded-xl ">

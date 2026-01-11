@@ -9,6 +9,7 @@ import {
   Great_Vibes,
   Pacifico,
   Playfair_Display,
+  EB_Garamond,
 } from "next/font/google";
 import Script from "next/script";
 
@@ -77,6 +78,13 @@ const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-eb-garamond",
+  display: "swap",
+});
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "700", "900"], // Add the weights you need
@@ -136,7 +144,7 @@ export const metadata = {
       "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
 
     images: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
     ],
   },
   other: {
@@ -161,13 +169,15 @@ function generateStructuredMenu(menuItems) {
         "@type": "MenuItem",
         name: item.name,
         image: item?.image ?? "https://www.nourmaison.co.uk/logo.png",
-        description: item.description ?? "Best " + item.name + " in Milton Keynes",
+        description:
+          item.description ?? "Best " + item.name + " in Milton Keynes",
 
         itemReviewed: {
           "@type": "Product",
           name: item.name,
           image: item?.image ?? "https://www.nourmaison.co.uk/logo.png",
-          description: item.description ?? "Best " + item.name + " in Milton Keynes",
+          description:
+            item.description ?? "Best " + item.name + " in Milton Keynes",
           offers: {
             "@type": "Offer",
             price: item.price.toFixed(2),
@@ -193,7 +203,7 @@ const structuredData = {
     url: "https://www.nourmaison.com",
     logo: "https://www.nourmaison.co.uk/logo.png",
     image: [
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
     ],
     address: {
       "@type": "PostalAddress",
@@ -248,7 +258,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body
-        className={` ${geistSans.className} ${greatVibes.variable} ${inter.variable} ${lato.variable} ${oswald.variable} ${tajawal.variable} ${tangerine.variable} ${pacifico.variable} `}
+        className={` ${geistSans.className} ${greatVibes.variable} ${inter.variable} ${lato.variable} ${oswald.variable} ${tajawal.variable} ${tangerine.variable} ${pacifico.variable} ${ebGaramond.variable} `}
       >
         <noscript>
           <iframe

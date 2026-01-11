@@ -1,125 +1,172 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 import Button2 from "../../../utils/Button2/Button2";
 
 const HomaRoastMenu = () => {
   const containerRef = useRef(null);
+  const reduceMotion = useReducedMotion();
 
-  // Track scroll for this section
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"], // tweak if needed
+    offset: ["start end", "end start"],
   });
 
-  // ===== IMAGE ANIMATIONS =====
-  const rotateRaw = useTransform(scrollYProgress, [0, 0.5], [0, 30.5]);
-  const scaleRaw = useTransform(scrollYProgress, [0, 0.5], [0.9, 1.5]);
+  // ✅ Smooth the progress itself, then derive everything from it
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 22,
+    mass: 0.9,
+  });
 
-  const springConfig = { stiffness: 120, damping: 18, mass: 0.8 };
-  const rotate = useSpring(rotateRaw, springConfig);
-  const scale = useSpring(scaleRaw, springConfig);
+  // ===== IMAGE ANIMATIONS (lighter) =====
+  const rotate = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [0, 12]
+  );
+
+  // ✅ Avoid huge scale jumps (expensive on big images)
+  const scale = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [1, 1] : [0.98, 1.14]
+  );
 
   // ===== TEXT SIDE ANIMATIONS =====
-  const textYRaw = useTransform(scrollYProgress, [0, 0.5], [40, 0]);
-  const textOpacityRaw = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const textScaleRaw = useTransform(scrollYProgress, [0, 0.5], [0.9, 1.05]);
-  const textRotateRaw = useTransform(scrollYProgress, [0, 0.5], [-3, 0]);
+  const textY = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [24, 0]
+  );
+  const textOpacity = useTransform(smoothProgress, [0, 0.25], [0, 1]);
+  const textScale = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [1, 1] : [0.98, 1.02]
+  );
+  const textRotate = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [-1.2, 0]
+  );
 
-  const textY = useSpring(textYRaw, springConfig);
-  const textOpacity = useSpring(textOpacityRaw, springConfig);
-  const textScale = useSpring(textScaleRaw, springConfig);
-  const textRotate = useSpring(textRotateRaw, springConfig);
+  // ===== BRANCHES PARALLAX (lighter + fewer big moves) =====
+  const branchRightX = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [70, 0]
+  );
+  const branchRightRotate = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [4, 0]
+  );
+  const branchRightOpacity = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.5],
+    [0, 0.6, 0.5]
+  );
 
+  const branchLeftX = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [-70, 0]
+  );
+  const branchLeftRotate = useTransform(
+    smoothProgress,
+    [0, 0.5],
+    reduceMotion ? [0, 0] : [-4, 0]
+  );
+  const branchLeftOpacity = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.5],
+    [0, 0.6, 0.85]
+  );
 
-    // ====== BRANCHES PARALLAX ======
-  // Right branch (slides from right → center a bit + small rotate)
-  const branchRightXRaw = useTransform(scrollYProgress, [0, 0.5], [120, 0]);
-  const branchRightRotateRaw = useTransform(scrollYProgress, [0, 0.5], [8, 0]);
-  const branchRightOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 0.5]);
-
-  const branchRightX = useSpring(branchRightXRaw, springConfig);
-  const branchRightRotate = useSpring(branchRightRotateRaw, springConfig);
-  const branchRightOpacity = useSpring(branchRightOpacityRaw, springConfig);
-
-  // Left branch (slides from left → center a bit + small rotate)
-  const branchLeftXRaw = useTransform(scrollYProgress, [0, 0.5], [-120, 0]);
-  const branchLeftRotateRaw = useTransform(scrollYProgress, [0, 0.5], [-8, 0]);
-  const branchLeftOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 0.8]);
-
-  const branchLeftX = useSpring(branchLeftXRaw, springConfig);
-  const branchLeftRotate = useSpring(branchLeftRotateRaw, springConfig);
-  const branchLeftOpacity = useSpring(branchLeftOpacityRaw, springConfig);
+  const gpuStyle = {
+    willChange: "transform",
+    transform: "translateZ(0)", // ✅ forces GPU layer in many cases
+  };
 
   return (
-    <section ref={containerRef} className="py-10 sm:py-16 md:py-20 relative">
-        <motion.img
+    <section
+      ref={containerRef}
+      className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
+    >
+      {/* Right branch */}
+      <motion.img
         loading="lazy"
+        decoding="async"
         draggable="false"
-        className="select-none absolute right-0 top-[0] sm:top-[0] md:top-[0] w-[180px] sm:w-[250px] md:w-[300px] lg:w-[500px] drop-shadow-2xl"
+        className="select-none absolute right-0 top-0 w-[180px] sm:w-[250px] md:w-[300px] lg:w-[500px] drop-shadow-2xl pointer-events-none"
         width={500}
-        src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"
+        src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443795/ocbeg0zszow5hwba7l4z_hyrfsl.webp"
         alt="Branch"
         style={{
+          ...gpuStyle,
           x: branchRightX,
           rotate: branchRightRotate,
           opacity: branchRightOpacity,
         }}
       />
 
-      {/* Left branch with parallax */}
+      {/* Left branch */}
       <motion.img
         loading="lazy"
+        decoding="async"
         draggable="false"
-        className="select-none absolute !rotate-180 !top-[200px] sm:top-[150px] md:!top-[0] left-0 w-[180px] sm:w-[250px] md:w-[300px] lg:w-[800px] drop-shadow-2xl"
+        className="select-none absolute left-0 !rotate-180 !top-[200px] sm:top-[150px] md:!top-[0] w-[180px] sm:w-[250px] md:w-[300px] lg:w-[800px] drop-shadow-2xl pointer-events-none"
         width={500}
-        src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"
+        src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443795/ocbeg0zszow5hwba7l4z_hyrfsl.webp"
         alt="Branch"
         style={{
+          ...gpuStyle,
           x: branchLeftX,
           rotate: branchLeftRotate,
           opacity: branchLeftOpacity,
         }}
       />
+
       <div className="mx-auto px-4 justify-center grid grid-cols-1 md:grid-cols-2">
         <motion.img
-          src="/images/nour 25.png"
+          loading="lazy"
+          decoding="async"
+          src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767445430/nour_25_1_11zon_gxbeb1.png"
           alt="Homa Roast Menu"
           className="
-          mx-auto
-          mb-10
-          md:mb-0
-            w-full 
-            max-w-xs 
-            sm:max-w-md 
-            md:max-w-lg 
-            lg:max-w-2xl 
-            xl:max-w-full 
+            mx-auto mb-10 md:mb-0
+            w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-full
             drop-shadow-2xl
+            transform-gpu
           "
-          style={{ rotate, scale }}
+          style={{
+            ...gpuStyle,
+            rotate,
+            scale,
+          }}
         />
 
-
-
-        {/* TEXT Side with scroll animation + scale + slight rotation */}
         <motion.div
-          className="space-y-6 text-center md:text-left"
+          className="space-y-6 text-center md:text-left transform-gpu"
           style={{
+            ...gpuStyle,
             y: textY,
             opacity: textOpacity,
             scale: textScale,
             rotate: textRotate,
           }}
         >
-          <h1 style={{
-            
-          }} className="text-3xl sm:text-4xl lg:text-8xl font-oswald font-bold text-softMintGreen">
-            <span style={{
-              textShadow: "4px 5px 0px #5c5948",
-            }}>
-            Award-Winning Café/brasserie
+          <h1 className="text-3xl sm:text-4xl lg:text-8xl font-oswald font-bold text-softMintGreen">
+            <span style={{ textShadow: "4px 5px 0px #5c5948" }}>
+              Award-Winning Café/brasserie
             </span>
             <span className="block text-2xl !leading-loose text-logoGold">
               Crafted for Moments That Matter

@@ -46,8 +46,6 @@ const Movie = ({item}) => {
       ) : (
         <motion.video
           src={item?.media_url}
-          // src='https://res.cloudinary.com/dbzn1y8rt/video/upload/v1738496477/ofln6neksu02dynedeax.mp4' // Replace with your video link
-          // /
           loop
           ref={videoRef}
 
@@ -85,7 +83,7 @@ export default Movie;
 //       exit={{ opactiy: 0 }}
 //     >
 //       <img
-//         src={"https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png"}
+//         src={"https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg"}
 //         // alt={movie.title}
 //       />
 //       {/* <h2>{movie.title}</h2> */}

@@ -70,7 +70,7 @@ const ShippingCart = () => {
       discount: "20%",
       rating: 4,
       images: [
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739871140/pwwv0fl91gfrcdgq85sk.avif",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767536398/pwwv0fl91gfrcdgq85sk_ornodn.webp",
         "https://f.nooncdn.com/p/v1605009883/N41436259A_2.jpg",
         "https://f.nooncdn.com/p/v1605009884/N41436259A_3.jpg",
       ],
@@ -113,7 +113,7 @@ const ShippingCart = () => {
           <motion.div className="flex justify-center  items-center flex-col gap-5 sm:gap-11 h-full mt-4">
             <img
               loading="lazy"
-              src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
               alt="Nour Maison Logo"
               title="NOUR MAISON"
 

@@ -16,10 +16,9 @@ const FeedBack = () => {
           variant={"top-right"}
           parallax={false}
           className={"opacity-30"}
-          image='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737982152/l1m9yrbxe4eqvciznwxl.png'
+          image='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443796/l1m9yrbxe4eqvciznwxl_zpplbq.png'
         />
       </div>
-      {/* <BranchesImage variant={"top-left"} parallax={true}  className={"opacity-30 rotate-0"} image="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737982152/l1m9yrbxe4eqvciznwxl.png"  /> */}
 
       <div className='w-[85%] m-auto relative z-10'>
         <div className=''>

@@ -1,8 +1,4 @@
-
-
 "use client"
-import React from "react";
-import GiftCard from "../../Cards/GiftCard/GiftCard";
 import GiftSection from "./GiftSection";
 import giftcards from "./data";
 // import giftcards from "../../../data/giftCards";

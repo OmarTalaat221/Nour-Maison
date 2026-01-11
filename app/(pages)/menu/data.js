@@ -4,7 +4,7 @@ export const menu_1 = [
     category: "Breakfast Croissant",
     slogan: "Flaky, Buttery, Irresistible – A Bite of Paris in Every Layer!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg",
     items: [
       {
         name: "Jambon-Fromage Croissant",
@@ -53,7 +53,7 @@ export const menu_1 = [
       {
         name: "Smoked Salmon Croissant",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624558/wjxtfmnv1csmp7elzizo.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529845/Smoked_Salmon_Croissant_fpncmv.jpg",
         price: 10.95,
         description:
           "Croissant, smoked salmon, cream cheese, capers, red onion, and rocket.",
@@ -161,7 +161,7 @@ export const menu_1 = [
       {
         name: "Croissant Pistachio ",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624474/vq9dabeokcareeh9b1zd.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Croissant_Pistachio_itmaea.jpg",
         price: 5.95,
         description: "",
         allergens: ["Gluten", "Dairy", "Eggs", "Tree Nuts"],
@@ -184,7 +184,7 @@ export const menu_1 = [
       {
         name: "Croissant Almond ",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624474/vq9dabeokcareeh9b1zd.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Croissant_Pistachio_itmaea.jpg",
         price: 3.95,
         description: "",
         allergensItems: {
@@ -210,7 +210,7 @@ export const menu_1 = [
     category: "Toasts and Rolls",
     slogan: "Golden, Toasted, and Stuffed with Love!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036273/jxayyufwzd6e7o9vb5n4.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529840/Toasts_and_Rolls_u6inky.jpg",
     items: [
       {
         name: "Truffle & Cheese Egg Rolls",
@@ -260,7 +260,7 @@ export const menu_1 = [
         name: "Lahma Brioche",
         price: 12.95,
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746622954/swpbwoz5fgsxxnq0fdck.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529832/Lahma_Brioche_tayxif.webp",
         description:
           "Shredded smoked brisket, generously filled on a soft, buttery brioche toast, topped with crispy fried shallots and a touch of Harissa mayo.",
         allergens: ["Gluten", "Dairy", "Eggs"],
@@ -284,7 +284,7 @@ export const menu_1 = [
         name: "Loaded Toast",
         price: 10.95,
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746623175/wrxputw0ifdlv5ubtpt5.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Loaded_Toast_nonqq8.webp",
         description:
           "Brioche toast filled with crispy hash browns, beef sausage, and beef bacon, drizzled with Harissa mayo, and garnished with fresh herbs.",
         allergens: ["Gluten", "Dairy", "Eggs"],
@@ -311,7 +311,7 @@ export const menu_1 = [
     category: "Classic Breakfast",
     slogan: "Timeless Mornings, One Bite at a Time!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036412/ktjbtmstmfemce5s61ib.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Croissant_Pistachio_itmaea.jpg",
     items: [
       {
         name: "Full English",
@@ -361,7 +361,7 @@ export const menu_1 = [
         name: "Turkish Breakfast",
         price: 13.95,
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746623961/ii6z4do1bcc0j3b1ivof.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529845/Turkish_Breakfast_yrrguc.webp",
         description:
           "A vibrant selection of boiled eggs, feta cheese, olives, spicy sausage, tomatoes, cucumbers, honey butter, jam, and simit.",
         allergens: ["Gluten", "Dairy", "Eggs", "Nuts"],
@@ -406,7 +406,7 @@ export const menu_1 = [
       {
         name: "Classic Shakshuka",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624805/zyvzth2o6ptqejhvukns.jpg ",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529819/Classic_Shakshuka_zntz65.jpg ",
         price: 10.95,
         description:
           "Runny eggs in a rich tomato, pepper, and onion sauce, served with sourdough.",
@@ -456,7 +456,7 @@ export const menu_1 = [
     category: "Artisan Benedict",
     slogan: "Eggsquisite Delights with a Gourmet Twist!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036507/gmxlwfuwg1jdhugb5ffj.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529804/Artisan_Benedict_tlnupg.jpg",
     items: [
       {
         name: "Avo Tartine",
@@ -505,7 +505,7 @@ export const menu_1 = [
       {
         name: "Egg Royale",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624366/jlh7oxnnd2chkhvmcnbm.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529825/Egg_Royale_whb5vh.jpg",
         price: 12.95,
         description:
           "Poached eggs, smoked salmon, and Harissa hollandaise on an English muffin.",
@@ -598,14 +598,14 @@ export const menu_1 = [
     id: 5,
     category: "Signature Breakfast",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741036676/uxywiv5atdba11lkj0g4.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529848/Waffle_Truffle_ako4il.jpg",
     slogan: "Bold Flavors, Signature Perfection!",
     items: [
       {
         name: "Waffle Truffle",
         price: 13.95,
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624092/tea2cgwsidkrb3qnrvlu.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529848/Waffle_Truffle_ako4il.jpg",
         description:
           "Waffles topped with brie cheese, figs, honey on a bed of sweet carrot purée, and a drizzle of truffle oil.",
         allergens: ["Gluten", "Dairy", "Eggs"],
@@ -628,7 +628,7 @@ export const menu_1 = [
       {
         name: "Croque Monsieur",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624658/eh90bupnub2zqv2bdrfe.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529830/Croque_Monsieur_c2ptgy.jpg",
         price: 13.95,
         description:
           "Toasted baked sourdough layered with turkey ham, creamy béchamel sauce, and melted Swiss cheese served with mix leaves.",
@@ -652,7 +652,7 @@ export const menu_1 = [
       {
         name: "French Toast",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746625260/ify8zukoxtlzhhrq7sfp.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529828/French_Toast_h6n9lx.jpg",
         price: 13.95,
         description:
           "Thick slices of brioche soaked in a cinnamon-vanilla-egg batter, served with berries.",
@@ -767,7 +767,7 @@ export const menu_1 = [
     category: "All-Day Brunch",
     slogan: "Brunch O’Clock, Anytime You Crave",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741037264/l68comvvcxiaudj7c3u3.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Salads_krgtsh.jpg",
     items: [
       {
         name: "Chicken Escalope",
@@ -930,7 +930,7 @@ export const menu_1 = [
     category: "CHEF SPECIAL",
     slogan: "Crafted by the Chef, Served with Soul.",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746623379/cfznulcmra1iudgsznuw.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529838/The_Green_Smoothie_hkpuur.webp",
     items: [
       {
         name: "Chicken Olive Tagine",
@@ -1027,7 +1027,7 @@ export const menu_1 = [
     category: "Salads",
     slogan: "Fresh, Crisp, and Full of Vibrant Goodness!",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1741037264/l68comvvcxiaudj7c3u3.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529834/Salads_krgtsh.jpg",
     items: [
       {
         name: "Herb Feta and Olive Tabbouleh",
@@ -1050,7 +1050,7 @@ export const menu_1 = [
     category: "Coffee",
     slogan: "Brewed to Perfection, Sipped with Passion.",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738495110/u7uslcapng0rhneh7ond.webp",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529819/Coffee_y1u5ai.jpg",
     items: [
       { name: "Double Espresso", price: 2.65, allergens: [] },
       { name: "Americano", price: 2.65, allergens: [] },
@@ -1061,7 +1061,7 @@ export const menu_1 = [
       {
         name: "Latte",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746625183/ujwj26rdsznbmar9kpxl.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529831/Latte_c9jqf9.jpg",
         price: 3.75,
         allergens: ["Dairy"],
       },
@@ -1128,7 +1128,7 @@ export const menu_1 = [
         price: 6.55,
         allergens: ["Dairy"],
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746622695/hdfce8wecv0k3znj2gja.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529835/Blue_Moon_Latte_katty1.webp",
       },
       {
         name: "Crème Brûlée Latte (Hot/Iced)",
@@ -1153,7 +1153,7 @@ export const menu_1 = [
       {
         name: "Baklava Latte",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746625092/lfoj3autjakkzdgzyu8i.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529804/Baklava_Latte_cttpdh.jpg",
         price: 5.95,
         allergens: ["Gluten", "Dairy", "Nuts"],
       },
@@ -1170,7 +1170,7 @@ export const menu_1 = [
         allergens: ["Dairy"],
 
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746625005/jqa5zzjucno0vs3lunea.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529837/Spanish_Latte_l2cupo.jpg",
       },
       { name: "Affogato", price: 4.95, allergens: ["Dairy"] },
       { name: "Café Shakerato", price: 4.95, allergens: ["Dairy"] },
@@ -1180,7 +1180,7 @@ export const menu_1 = [
         allergens: ["Dairy"],
 
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746623516/hebm0c1imzmuqnpccr9p.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529823/Dalgona_yfz9fo.jpg",
       },
       { name: "Turkish Coffee", price: 3.45, allergens: [] },
       { name: "Arabic Cardamom Coffee", price: 4.95, allergens: [] },
@@ -1221,7 +1221,7 @@ export const menu_1 = [
       {
         name: "The Green Smoothie",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746623379/cfznulcmra1iudgsznuw.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529838/The_Green_Smoothie_hkpuur.webp",
         price: 5.45,
         description: "Kale, Banana, Mango & Lemongrass",
         allergens: [],
@@ -1353,7 +1353,7 @@ export const menu_1 = [
         id: 3,
         name: "Red Velvet Cake",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746624225/so4caqsbc4tegbxyh71l.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529841/Red_Velvet_Cake_ks8dt8.jpg",
         price: 6.55,
         allergens: ["Gluten", "Dairy", "Eggs"],
       },
@@ -1374,7 +1374,7 @@ export const menu_1 = [
         name: "Pistachio Dream Cake",
         price: 6.55,
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746622506/tzmvkfycokfnqhdyjfca.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529835/Pistachio_Dream_Cake_r6ftib.webp",
         allergens: ["Gluten", "Dairy", "Eggs", "Nuts"],
       },
       {
@@ -1393,7 +1393,7 @@ export const menu_1 = [
         id: 9,
         name: "Raspberry Tart",
         image:
-          "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746625426/lowvinwxb1e5rahc0u1n.jpg",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529832/Raspberry_Tart_gjjn8v.jpg",
         price: 6.55,
         allergens: ["Gluten", "Dairy", "Eggs"],
       },

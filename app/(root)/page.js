@@ -8,6 +8,7 @@ import NourKidsMenuHero from "../../components/pages/Home/KidsSection";
 import VideoBanner from "../../components/pages/Home/MobileBanner";
 import ChefsSection2 from "../../components/pages/Home/ChefsSection/ChefsSection2";
 import HomaRoastMenu from "../../components/pages/Home/HomaRoastMenu";
+// import EntryDesign from './../../components/bages/HomePage/EntryDesign/EntryDesign';
 export const metadata = {
   title: "Nour Maison | Halal French & middle eastern Café Restaurant",
   description:
@@ -1992,8 +1993,7 @@ export default function Home() {
       </header>
       <main className="bg-s-700 overflow-hidden ">
         <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
-          <AboutUsSection />
-          {/* <FeaturesSections /> */}
+          <AboutUsSection />  
         </section>
         <HomaRoastMenu />
         {/* <GoogleReviews /> */}
@@ -2016,7 +2016,6 @@ export default function Home() {
         {/* <HappyMoments withBg={true} /> */}
         <FeedBack />
         {/* <BlogSectionServer /> */}
-        {/* <ChefsSection /> */}
         <ChefsSection2 />
       </main>
     </div>

@@ -1,15 +1,30 @@
-// app/(whatever)/roast-dinner/page.tsx  ← example path (App Router)
+// app/(whatever)/roast-dinner/page.tsx
 
 import React from "react";
+import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
+import Script from "next/script";
 
-// ✅ SEO Metadata for Nour Maison Roast Dinner Menu
+const siteUrl = "https://nourmaison.com"; // <-- غيّره للدومين الحقيقي
+const pathname = "/roast-dinner"; // <-- غيّره للمسار الحقيقي
+const url = `${siteUrl}${pathname}`;
+
+const title =
+  "Roast Dinner Menu | Nour Maison Café – A Sunday Ritual with Arabic Flair";
+const description =
+  "Discover Nour Maison Café's Roast Dinner Menu — where Arabic spice meets French finesse to reimagine the classic British roast. Halal-friendly, locally sourced ingredients, and a soulful Sunday dining ritual in Egypt.";
+
 export const metadata = {
-  title:
-    "Roast Dinner Menu | Nour Maison Café – A Sunday Ritual with Arabic Flair",
-  description:
-    "Discover Nour Maison Café’s Roast Dinner Menu – where Arabic spice meets French finesse to reimagine the classic British roast. Halal-friendly, locally sourced ingredients, and a soulful Sunday dining ritual in Egypt.",
+  metadataBase: new URL(siteUrl),
+
+  title,
+  description,
+
+  alternates: {
+    canonical: url,
+  },
+
   keywords: [
     "Nour Maison roast dinner",
     "Sunday roast Egypt",
@@ -20,16 +35,87 @@ export const metadata = {
     "family roast dinner Egypt",
     "British roast with Arabic twist",
   ],
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    url,
+    title,
+    description,
+    siteName: "Nour Maison Café",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/rc.webp", // لازم يكون قابل للوصول
+        width: 1200,
+        height: 630,
+        alt: "Nour Maison Café roast dinner menu board with Sunday roast dishes",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/rc.webp"],
+  },
 };
 
 const RoastDinnerMenuPage = () => {
+  // ✅ JSON-LD (Menu + Restaurant)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    name: "Nour Maison Café Roast Dinner Menu",
+    description,
+    url,
+    inLanguage: "en",
+    isPartOf: {
+      "@type": "Restaurant",
+      name: "Nour Maison Café",
+      url: siteUrl,
+      servesCuisine: ["French", "Middle Eastern", "Fusion"],
+      // لو عندك عنوان/تليفون حطّهم هنا
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "EG",
+        addressLocality: "Cairo",
+      },
+    },
+  };
+
   return (
     <div>
-      {/* 🔹 Accessible SEO H1 for search engines */}
-      <h1 className="sr-only">
-        Nour Maison Café Roast Dinner Menu – Sunday Halal Roast with Arabic
-        Spice and French Finesse
-      </h1>
+      {/* ✅ Structured Data */}
+      <Script
+        id="roast-menu-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* ✅ Visible semantic heading (أفضل من sr-only للـ SEO/UX) */}
+      <header className="sr-only">
+        <h1>
+          Nour Maison Café Roast Dinner Menu – Sunday Halal Roast with Arabic
+          Spice and French Finesse
+        </h1>
+        <p>
+          Halal-friendly Sunday roast in Egypt with locally sourced ingredients,
+          crafted as a comforting ritual.
+        </p>
+      </header>
 
       <PagesBanner
         bottomBg={false}
@@ -59,15 +145,41 @@ const RoastDinnerMenuPage = () => {
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
         }}
+        aria-labelledby="roast-menu-heading"
       >
         <BottomBg />
 
-        <img
-          src="/images/rc.webp"
-          className="w-full max-w-2xl xl:max-w-4xl mx-auto rounded-3xl relative"
-          alt="Nour Maison Café roast dinner menu board with Sunday roast dishes"
-          loading="lazy"
-        />
+        {/* ✅ Helpful H2 for semantics */}
+        <h2 id="roast-menu-heading" className="sr-only">
+          Roast Dinner Menu Board
+        </h2>
+
+        {/* ✅ next/image (أفضل للـ SEO + الأداء + LCP) */}
+        <div className="w-full max-w-2xl xl:max-w-4xl mx-auto relative">
+          <Image
+            src="/images/rc.webp"
+            alt="Nour Maison Café roast dinner menu board with Sunday roast dishes"
+            width={1400}
+            height={1800}
+            className="w-full h-auto rounded-3xl relative"
+            priority // لو الصورة دي هي أول حاجة كبيرة على الصفحة (LCP)
+            sizes="(max-width: 768px) 92vw, (max-width: 1280px) 800px, 1100px"
+          />
+        </div>
+
+        {/* ✅ “SEO support text” (خفيف ومفيد) */}
+        <section className="sr-only" aria-label="Roast dinner details">
+          <p>
+            Our roast dinner menu blends a classic British Sunday roast with
+            Arabic spices and French cooking finesse. Ideal for families and
+            groups looking for a halal-friendly roast dinner experience in
+            Egypt.
+          </p>
+          <p>
+            Browse the full menu board above, then book your table to enjoy a
+            comforting Sunday ritual with locally sourced ingredients.
+          </p>
+        </section>
       </main>
     </div>
   );

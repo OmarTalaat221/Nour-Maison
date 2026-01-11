@@ -48,6 +48,8 @@ module.exports = {
         greatvibes: ["var(--font-greatvibes)", "cursive"],
         pacifico: ["var(--font-pacifico)", "cursive"],
         playfair: ["var(--font-playfair)", "cursive"],
+        nour: ["var(--font-eb-garamond)", "serif"],
+
       },
     },
   },

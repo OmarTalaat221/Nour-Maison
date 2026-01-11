@@ -54,10 +54,10 @@ const FeaturesSections = () => {
   ];
 
   const images = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027122/txw1mwe5rnw8evxzgvye.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027118/ja2xpjfj93egefk7ggvt.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027113/kmxpexva5pbfocltc48o.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746027101/hgq4dkeki4dw5qwzudqp.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790682/txw1mwe5rnw8evxzgvye_lujj4y.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790692/ja2xpjfj93egefk7ggvt_zkwoqe.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790754/kmxpexva5pbfocltc48o_dq0hya.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790787/ja2xpjfj93egefk7ggvt_xrybzr.webp",
   ];
 
   const content = (

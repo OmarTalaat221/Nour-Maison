@@ -41,7 +41,7 @@ const Footer = () => {
         <div className="flex justify-center w-full">
           <div className="flex justify-center w-[250px] mb-6 text-center h-[250px]">
             <Image
-              src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
               className=" object-contain !w-full !h-full"
               alt="Nour Maison Logo"
               title="NOUR MAISON"

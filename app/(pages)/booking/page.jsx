@@ -64,10 +64,10 @@ export default async function BookingPage() {
           title={"Book A Table"}
           slogan={"Reserve your seat, taste the extraordinary."}
           scrollTo={"booking"}
-          images={[
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028867/inopk72hwfwrtgx2munx.webp",
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028866/pgtrnkcomtslajpppxcb.webp",
-            "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746028873/obkj0zmhvplrxbnj2hy0.webp",
+          images={[ 
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg",
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
           ]}
         />
 

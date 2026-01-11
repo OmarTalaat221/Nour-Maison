@@ -52,9 +52,9 @@ const AfternoonTea = ({}) => {
     damping: 20,
   });
   const images = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581250/ysw9lhrajjolqksohoce.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581228/xvt7iw6wqrjw2ifcsxyk.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581281/bxalmi3bmvqrkry8htpq.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/ysw9lhrajjolqksohoce_kywsw0.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bxalmi3bmvqrkry8htpq_vw0vmi.jpg",
   ];
 
   const afternoonTea = {
@@ -63,7 +63,7 @@ const AfternoonTea = ({}) => {
     description:
       "Join us for an experience that tastes like adventure and feels like love.",
     image:
-      "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744581228/xvt7iw6wqrjw2ifcsxyk.jpg",
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg",
   };
 
   return (
@@ -75,7 +75,7 @@ const AfternoonTea = ({}) => {
           backgroundSize: "cover",
           backgroundImage: `
       linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-      url("https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745921239/bznj0n2qms9qo0jxjvfc.webp")
+      url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp")
     `,
         }}
       >

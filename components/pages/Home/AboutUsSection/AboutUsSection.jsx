@@ -47,13 +47,14 @@ const AboutUsSection = () => {
     { id: 3, title: "Our Rating", value: 4.7, bg: "bg-sageGreen" },
   ];
 
+
   const images = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737643607/zexptzvrvwxbsvi8pqho.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815733/l2vsemfnzxd9rvtck24a.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815710/t9noktexya7m7o2dtum4.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815685/sdw9jufkrx0onoo2vwfp.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815659/kgkdwtofzolvzkb6oyh5.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815623/zmovmsobwahf2a353gxu.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/l2vsemfnzxd9rvtck24a_jzeww6.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767444279/zmovmsobwahf2a353gxu_xdwksa.jpg",
   ];
 
   return (
@@ -64,16 +65,6 @@ const AboutUsSection = () => {
       {/* swiper here */}
 
       <div className="w-full " data-aos="fade-down-right">
-        {/* <DraggableImages /> */}
-        {/* <div className='w-screen h-full absolute top-0 left-0 '>
-          <SimpleParallax delay={1} transition='cubic-bezier(0,0,0,1)'>
-            <img
-              className='w-screen object-contain opacity-[.3]'
-              src='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737800917/kps9lxi7vxw4w01pkbhq.svg'
-              alt=''
-            />
-          </SimpleParallax>
-        </div> */}
         <Swiper
           className=" !max-h-[600px] hs-full relative"
           // className='  hs-full relative'
@@ -181,7 +172,7 @@ const AboutUsSection = () => {
               key={index}
               className={cx(
                 "  flex  py-5 items-center gap-4 flex-col justify-center ",
-                item.bg ,
+                item.bg,
                 item.id === 3 && "col-span-2 lg:col-span-1 !gap-2"
               )}
             >

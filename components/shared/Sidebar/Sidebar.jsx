@@ -12,7 +12,7 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 2, name: "MENU CLASSIC", path: "/menu", type: "navigate" },
     { id: 10, name: "MENU GALLERY", path: "/menu-gallery", type: "navigate" },
     { id: 10, name: "KIDS MENU", path: "/kids-menu", type: "navigate" },
-    { id: 10, name: "CHRISTMAS MENU", path: "/christmas-menu", type: "navigate" , new:true },
+    // { id: 10, name: "CHRISTMAS MENU", path: "/christmas-menu", type: "navigate" , new:true },
     { id: 4, name: "GALLERY", path: "/gallery", type: "navigate" },
     { id: 11, name: "OUR EVENTS", path: "/services", type: "navigate" },
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
@@ -56,7 +56,7 @@ const Sidebar = ({ open, setOpen }) => {
             style={
               open
                 ? {
-                    backgroundImage: `url("https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815710/t9noktexya7m7o2dtum4.jpg")`,
+                    backgroundImage: `url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg")`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center",

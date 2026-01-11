@@ -1,3 +1,5 @@
+
+"use client"
 import React, {useState} from "react";
 import Framer_gallery from "../../../../utils/FramerGallery/FramerGallery";
 import "swiper/css";
@@ -23,47 +25,47 @@ const EntryDesign = () => {
   const images = [
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404364/e1ycajrwue0h5ulmwkq4.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452497/download_b1l96d_hdflbq.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404544/l7rrpg7uw0iog5mwv3qz.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/465984384_1590238098232979_2569484348972359367_n_lndhof_aewybh.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815733/l2vsemfnzxd9rvtck24a.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767444148/l2vsemfnzxd9rvtck24a_qhtcjz.webp",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404483/g1tuejg9clpraiuoiko3.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404437/m99m4bkk3j2izr0cpkfc.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767789970/m99m4bkk3j2izr0cpkfc_iuqjky.webp",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404468/bzkqvxkdf4gbr61ufgej.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452494/download_pvviax_g29yau.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738404504/jysotiaqfzcxqh4djuhm.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452495/466253647_534065926272992_1731520913535440885_n_lccww5_g53xx5.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815710/t9noktexya7m7o2dtum4.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535305/t9noktexya7m7o2dtum4_p9klyo.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815685/sdw9jufkrx0onoo2vwfp.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815659/kgkdwtofzolvzkb6oyh5.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443796/kgkdwtofzolvzkb6oyh5_1_uk9l6o.jpg",
     },
     {
       image:
-        "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737815623/zmovmsobwahf2a353gxu.jpg",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
     },
   ];
 
@@ -81,12 +83,12 @@ const EntryDesign = () => {
          <BranchesImage
           variant="top-left"
           className="opacity-60 rotate-[0deg] w-[300px] top-[200px] sm:w-[250px] sm:top-[150px]"
-          image="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737981147/oyjxzt0oynrfgyc847ek.png"
+          image="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790342/oyjxzt0oynrfgyc847ek_yygrbp.webp"
         />
         <BranchesImage
           variant="top-right"
           className="opacity-60 rotate-180 w-[300px] bottom-12 sm:w-[250px] sm:bottom-10"
-          image="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737981147/oyjxzt0oynrfgyc847ek.png"
+          image="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767790342/oyjxzt0oynrfgyc847ek_yygrbp.webp"
         />
 
         <FancyboxElement

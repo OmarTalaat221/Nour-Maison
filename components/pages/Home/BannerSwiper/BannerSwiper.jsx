@@ -93,14 +93,7 @@ const BannerSwiper = () => {
           alt="Hero Image"
           fetchPriority="high"
           src={
-            smallScreen
-              ? // ? "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745833135/snfgcnk3wvvpl2h1msob.webp"
-                "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746026814/xcy7pz41wnk5qsseex7p.webp"
-              : // : "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1742717111/kke3rdzoqcj5xz5dnyov.webp"
-                // "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744568463/gxkq6itrfuea3sjpqnee.webp"
-                // "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745506457/coc5ewxprkfg73myjxpn.png"
-                "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746026736/jnd1i37zypsinyyigm1o.webp"
-            // "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745833038/xrxvl4q5lb8ubtnzmrij.webp"
+            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
           }
         />
       </div>
@@ -136,79 +129,81 @@ const BannerSwiper = () => {
             <div id="stars"></div>
           </div>
           {[
-            {
-              image:
-                "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
-              content: (
-                <div className="relative">
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
-                    variants={childVariants}
-                  >
-                    Christmas 2026 at Nour Maison
-                  </motion.h1>
+            // This banner is for cristmas menu
+            // {
+            //   image:
+            //     "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
+            //   content: (
+            //     <div className="relative">
+            //       <motion.h1
+            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
+            //         variants={childVariants}
+            //       >
+            //         Christmas 2026 at Nour Maison
+            //       </motion.h1>
 
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
-                    variants={textRevealVariants}
-                  >
-                    A Pistachio Wonderland
-                  </motion.strong>
+            //       <motion.strong
+            //         style={{
+            //           textShadow: "0 0 12px #5B562D",
+            //         }}
+            //         className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:!font-bold"
+            //         variants={textRevealVariants}
+            //       >
+            //         A Pistachio Wonderland
+            //       </motion.strong>
 
-                  <motion.p
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
-                    variants={childVariants}
-                  >
-                    Where the season glows in soft green magic.{" "}
-                  </motion.p>
-                  <div className="w-fit mt-3">
-                    <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
-                      <svg xmlns="http://www.w3.org/2000/svg">
-                        <rect
-                          className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-                          pathLength={100}
-                        />
-                      </svg>
-                      <Link
-                        href={"/christmas-menu"}
-                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
-                      >
-                        Christmas Menu
-                      </Link>
-                    </button>
-                  </div>
-                </div>
-              ),
-            },
+            //       <motion.p
+            //         className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
+            //         variants={childVariants}
+            //       >
+            //         Where the season glows in soft green magic.{" "}
+            //       </motion.p>
+            //       <div className="w-fit mt-3">
+            //         <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
+            //           <svg xmlns="http://www.w3.org/2000/svg">
+            //             <rect
+            //               className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+            //               pathLength={100}
+            //             />
+            //           </svg>
+            //           <Link
+            //             href={"/christmas-menu"}
+            //             className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-nour"
+            //           >
+            //             Christmas Menu
+            //           </Link>
+            //         </button>
+            //       </div>
+            //     </div>
+            //   ),
+            // },
             {
               image: "/images/nnour polaraid pics_1_11zon.webp",
               content: (
                 <div className="relative">
                   <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
                     variants={childVariants}
                   >
-                   Experience our new 
+                    Experience our new
                   </motion.h1>
 
                   <motion.strong
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl !font-nour font-bold lg:!font-bold"
                     variants={textRevealVariants}
                   >
                     Roast Dinner Menu
                   </motion.strong>
 
                   <motion.p
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
                     variants={childVariants}
                   >
-                   A halal roast where Arabic spice meets French finesse. Crafted with soul.{" "}
+                    A halal roast where Arabic spice meets French finesse.
+                    Crafted with soul.{" "}
                   </motion.p>
                   <div className="w-fit mt-6">
                     <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
@@ -220,7 +215,7 @@ const BannerSwiper = () => {
                       </svg>
                       <Link
                         href={"/christmas-menu"}
-                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico"
+                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-nour"
                       >
                         Roast Dinner Menu
                       </Link>
@@ -231,11 +226,11 @@ const BannerSwiper = () => {
             },
             {
               image:
-                "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746457700/tvw5ermawiyq0o5uspyg.webp",
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
               content: (
                 <>
                   <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-nour"
                     variants={childVariants}
                   >
                     WELCOME TO{" "}
@@ -245,14 +240,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-bold lg:font-normal"
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:!font-bold"
                     variants={textRevealVariants}
                   >
                     NOUR MAISON
                   </motion.strong>
 
                   <motion.p
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
                     variants={childVariants}
                   >
                     Where French sophistication meets the bold, vibrant flavors
@@ -263,11 +258,11 @@ const BannerSwiper = () => {
             },
             {
               image:
-                "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746457695/whdixjtugk4jqxkrue0l.webp",
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-nour"
                     variants={childVariants}
                   >
                     STEP INSIDE{" "}
@@ -277,14 +272,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-semibold lg:font-normal"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     NOUR MAISON
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
                     variants={childVariants}
                   >
                     Style Curated with Parisian Precision
@@ -294,11 +289,11 @@ const BannerSwiper = () => {
             },
             {
               image:
-                "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1746457712/v6pek7zcf253vnw59iqf.webp",
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
                     variants={childVariants}
                   >
                     Bringing French &{" "}
@@ -308,14 +303,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-semibold lg:font-normal"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     Mediterranean Cuisine
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour font-normal "
                     variants={childVariants}
                   >
                     to Milton Keynes
@@ -328,7 +323,7 @@ const BannerSwiper = () => {
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-oswald"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
                     variants={childVariants}
                   >
                     Premium Craft Drinks
@@ -338,14 +333,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-oswald font-semibold lg:font-normal"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     Blending French Flavor{" "}
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-oswald"
+                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite font-normal mt-4 tracking-wide font-nour "
                     variants={childVariants}
                   >
                     with Mediterranean Freshness
@@ -400,7 +395,7 @@ const BannerSwiper = () => {
         >
           <ScrollXImage
             src={
-              "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744567770/nkp9h9cgxyotbvip7yuq.png"
+              "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443798/nkp9h9cgxyotbvip7yuq_u3cmmi.png"
               // "/images/—Pngtree—colorful christmas balls_19731035.png"
             }
             parentStyles={{}}

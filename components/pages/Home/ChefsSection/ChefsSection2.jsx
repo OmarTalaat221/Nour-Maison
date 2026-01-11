@@ -108,7 +108,7 @@ const ChefsSection2 = () => {
         draggable="false"
         className="select-none absolute right-0 top-[100px] sm:top-[150px] md:top-[200px] w-[180px] sm:w-[250px] md:w-[300px] lg:w-[500px] drop-shadow-2xl"
         width={500}
-        src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"
+        src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443795/ocbeg0zszow5hwba7l4z_hyrfsl.webp"
         alt="Branch"
         style={{
           x: branchRightX,
@@ -123,7 +123,7 @@ const ChefsSection2 = () => {
         draggable="false"
         className="select-none absolute !rotate-180 !top-[200px] sm:top-[150px] md:!top-[260px] left-0 w-[180px] sm:w-[250px] md:w-[300px] lg:w-[600px] drop-shadow-2xl"
         width={500}
-        src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745924807/ocbeg0zszow5hwba7l4z.webp"
+        src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443795/ocbeg0zszow5hwba7l4z_hyrfsl.webp"
         alt="Branch"
         style={{
           x: branchLeftX,

@@ -8,9 +8,7 @@ const BottomBg = ({className}) => {
       style={{
         backgroundRepeat: "repeat",
         backgroundImage:
-        // fir white
-          // 'url("https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737635848/jxj9tvksspjfnqhkyh3b.png")',
-          'url("https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1744473032/wn20xgn68uheamin5wqr.png")',
+          'url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/wn20xgn68uheamin5wqr_chy7cr.png")',
           
       }}
     ></div>

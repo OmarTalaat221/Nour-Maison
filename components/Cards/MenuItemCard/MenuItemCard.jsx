@@ -22,7 +22,7 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
     //       <div
     //         data-fancybox='gallery'
     //         href={
-    //           "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png"
+    //           "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg"
     //         }
     //         onClick={() => setIsCardOpened(true)}
     //         layout="true"
@@ -31,7 +31,7 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
     //         <img
     //           loading="lazy"
     //           className='w-full cursor-pointer hover:scale-125 hover:skew-x-6 transition h-full object-cover'
-    //           src='https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1738503818/tmjcpxo74oepftikcfle.png'
+    //           src='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg'
     //           alt=''
     //         />
     //       </div>
@@ -60,7 +60,6 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
     //   </div>
     // </Fragment>
     <Fragment>
-      {/* <img src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1744820868/ncqfwszizvfgwb2saajx.png" className="w-full h-8" alt="" /> */}
       <Tilt
         perspective={5000}
         glareEnable={true}
@@ -76,7 +75,7 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
             draggable={"false"}
             src={
               item.image ||
-              "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+              "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
             }
             alt={item.name}
             className="rounded-2xl object-cover  w-[120px] h-[120px] md:w-full md:h-full select-none "
@@ -117,7 +116,6 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
     </div> */}
         </div>
       </Tilt>
-      {/* <img src="https://res.cloudinary.com/dbzn1y8rt/image/upload/v1744820868/ncqfwszizvfgwb2saajx.png" className="w-full h-8 rotate-180" alt="" /> */}
     </Fragment>
   );
 };

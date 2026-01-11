@@ -27,7 +27,7 @@ export const metadata = {
       "A playful, healthy and delicious kids menu at Nour Maison Café – mini mains, pancakes, waffles, nuggets, juices and more for your little foodies.",
     type: "website",
     // 👉 Replace with your real production URL
-    url: "https://example.com/kids-menu",
+    url: "https://www.nourmaison.co.uk/kids-menu",
     siteName: "Nour Maison Café",
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata = {
     images: ["/images/kids.png"],
   },
   alternates: {
-    canonical: "https://example.com/kids-menu", // 👈 استبدلها بالدومين الفعلي
+    canonical: "https://www.nourmaison.co.uk/kids-menu", // 👈 استبدلها بالدومين الفعلي
   },
 };
 
@@ -173,7 +173,7 @@ const KidsMenu = () => {
             />
             <img
               className="w-[100px] md:w-[200px] ms-auto md:mx-auto"
-              src="https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1737983251/y3replc9wmlnvwb7kjvo.png"
+              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
               alt="Nour Maison kids menu badge"
               loading="lazy"
             />

@@ -22,13 +22,13 @@ const MenuClient = () => {
   const swiperRef = React.useRef(null);
 
   const menus = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739278626/tbpe1yisrbrlihmupbni.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739278610/t94wcew9ssug8vpdtvbs.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535317/tbpe1yisrbrlihmupbni_zhsyma.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535314/t94wcew9ssug8vpdtvbs_qopg0g.jpg",
   ];
 
   const menus2 = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1739278655/jpuklhijc9vofwlhiz4m.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1747138639/jegfgxa8lkbzf4y3cb9k.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535308/jegfgxa8lkbzf4y3cb9k_vhwzdt.jpg",
   ]
 
 

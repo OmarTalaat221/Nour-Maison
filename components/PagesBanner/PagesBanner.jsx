@@ -32,9 +32,9 @@ import { detectMediaType } from "../../lib/functions";
 
 const PagesBanner = ({
   images = [
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745920584/f76djjyilyjfpzpjmryl.webp",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/f_auto,q_auto/v1745924580/eo5sxlh0gym8drgtc32j.jpg",
-    "https://res.cloudinary.com/dbzn1y8rt/image/upload/v1745920585/iqlug0rihz8i8rgl12oz.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447627/eo5sxlh0gym8drgtc32j_qiznnz.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
   ],
   title,
   slogan,
