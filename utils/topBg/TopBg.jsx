@@ -9,7 +9,9 @@ const TopBg = () => {
         backgroundRepeat: "repeat",
         backgroundImage:
         // for white
-          'url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/wn20xgn68uheamin5wqr_chy7cr.png")',
+          // 'url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/wn20xgn68uheamin5wqr_chy7cr.png")',
+          'url("/images/2.png")',
+          
       }}
     ></div>
   );

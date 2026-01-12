@@ -19,7 +19,7 @@ const Filter = ({setActiveGenre, activeGenre, setFiltered, popular}) => {
     setFiltered(filtered);
   }, [activeGenre]);
   return (
-    <div className='flex'>
+    <div className='flex relative z-0'>
       <div className='filter-container mx-auto flex gap-2'>
         <button
           className={cx(

@@ -22,7 +22,7 @@ const BlogSwiper = ({ data }) => {
           <h5 className="text-5xl ms-3 font-tangerine text-center md:text-start">
             Blogs
           </h5>
-          <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-lato">
+          <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-seasons">
             Nour Maison Moments{" "}
             <Link
               href="blog"

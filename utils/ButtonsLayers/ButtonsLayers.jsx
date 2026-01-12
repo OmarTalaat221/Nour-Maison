@@ -4,7 +4,7 @@ import Link from "next/link";
 const ButtonsLayers = ({ text, onClick, href }) => {
   return (
     <Link href={href} className="cta !text-[17px] md:!text-[20px] !w-fit !text-white hover:!text-white hover:no-underline no-underline " >
-      <span className="span">{text}</span>
+      <span className="span font-seasons tracking-wider">{text}</span>
       <span className="second">
         <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1">
           <g

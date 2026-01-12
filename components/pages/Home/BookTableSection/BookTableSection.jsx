@@ -47,9 +47,9 @@ const BookTableSection = () => {
               textShadow: "6px 4px 0 #493207 ",
             }}
             data-aos="zoom-in"
-            className=" text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-tajawal text-center w-full lg:w-[1000px] text-[#f3ae40] "
+            className=" text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-seasons text-center w-full lg:w-[1000px] text-[#f3ae40] "
           >
-            {"Pull Up A Chair. Take A Seat &  Come Join Us"
+            {"Pull Up A Chair. Take A Seat And  Come Join Us"
               .split("")
               .map((letter, index) => {
                 return (
@@ -79,7 +79,7 @@ const BookTableSection = () => {
                   pathLength={100}
                 />
               </svg>
-              <Link href={"booking"} className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-pacifico">
+              <Link href={"booking"} className="txt-upload uppercase font-seasons !text-white no-underline hover:no-underline  text-3xl">
                 Book A Table
               </Link>
             </button>

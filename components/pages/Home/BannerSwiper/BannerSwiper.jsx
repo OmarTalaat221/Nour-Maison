@@ -93,7 +93,8 @@ const BannerSwiper = () => {
           alt="Hero Image"
           fetchPriority="high"
           src={
-            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+            // "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+            "/images/BUNNER NOUR.png"
           }
         />
       </div>
@@ -125,9 +126,9 @@ const BannerSwiper = () => {
           autoplay={{ delay: 4000 }} // Auto-slide every 3 seconds (optional)
           className=" home_swiper  mx-auto"
         >
-          <div id="container-stars">
+          {/* <div id="container-stars">
             <div id="stars"></div>
-          </div>
+          </div> */}
           {[
             // This banner is for cristmas menu
             // {
@@ -136,7 +137,7 @@ const BannerSwiper = () => {
             //   content: (
             //     <div className="relative">
             //       <motion.h1
-            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
+            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
             //         variants={childVariants}
             //       >
             //         Christmas 2026 at Nour Maison
@@ -146,14 +147,14 @@ const BannerSwiper = () => {
             //         style={{
             //           textShadow: "0 0 12px #5B562D",
             //         }}
-            //         className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:!font-bold"
+            //         className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:!font-bold"
             //         variants={textRevealVariants}
             //       >
             //         A Pistachio Wonderland
             //       </motion.strong>
 
             //       <motion.p
-            //         className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
+            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- "
             //         variants={childVariants}
             //       >
             //         Where the season glows in soft green magic.{" "}
@@ -168,7 +169,7 @@ const BannerSwiper = () => {
             //           </svg>
             //           <Link
             //             href={"/christmas-menu"}
-            //             className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-nour"
+            //             className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-seasons"
             //           >
             //             Christmas Menu
             //           </Link>
@@ -177,12 +178,45 @@ const BannerSwiper = () => {
             //     </div>
             //   ),
             // },
+         
+            {
+              image:
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
+              content: (
+                <>
+                  <motion.h1
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-seasons"
+                    variants={childVariants}
+                  >
+                    WELCOME TO{" "}
+                  </motion.h1>
+
+                  <motion.strong
+                    style={{
+                      textShadow: "0 0 12px #5B562D",
+                    }}
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:!font-bold"
+                    variants={textRevealVariants}
+                  >
+                    NOUR MAISON
+                  </motion.strong>
+
+                  <motion.p
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-tajawal "
+                    variants={childVariants}
+                  >
+                    Where French sophistication meets the bold, vibrant flavors
+                    of the Middle East
+                  </motion.p>
+                </>
+              ),
+            },
             {
               image: "/images/nnour polaraid pics_1_11zon.webp",
               content: (
                 <div className="relative">
                   <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
                     variants={childVariants}
                   >
                     Experience our new
@@ -192,14 +226,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl !font-nour font-bold lg:!font-bold"
+                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:!text-8xl !font-bold !font-seasons "
                     variants={textRevealVariants}
                   >
                     Roast Dinner Menu
                   </motion.strong>
 
                   <motion.p
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- "
                     variants={childVariants}
                   >
                     A halal roast where Arabic spice meets French finesse.
@@ -215,7 +249,7 @@ const BannerSwiper = () => {
                       </svg>
                       <Link
                         href={"/christmas-menu"}
-                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-nour"
+                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-seasons"
                       >
                         Roast Dinner Menu
                       </Link>
@@ -226,43 +260,11 @@ const BannerSwiper = () => {
             },
             {
               image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
-              content: (
-                <>
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-nour"
-                    variants={childVariants}
-                  >
-                    WELCOME TO{" "}
-                  </motion.h1>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:!font-bold"
-                    variants={textRevealVariants}
-                  >
-                    NOUR MAISON
-                  </motion.strong>
-
-                  <motion.p
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
-                    variants={childVariants}
-                  >
-                    Where French sophistication meets the bold, vibrant flavors
-                    of the Middle East
-                  </motion.p>
-                </>
-              ),
-            },
-            {
-              image:
                 "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-nour"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-seasons"
                     variants={childVariants}
                   >
                     STEP INSIDE{" "}
@@ -272,14 +274,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     NOUR MAISON
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour "
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-tajawal "
                     variants={childVariants}
                   >
                     Style Curated with Parisian Precision
@@ -293,7 +295,7 @@ const BannerSwiper = () => {
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
                     variants={childVariants}
                   >
                     Bringing French &{" "}
@@ -303,14 +305,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     Mediterranean Cuisine
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-nour font-normal "
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- font-normal "
                     variants={childVariants}
                   >
                     to Milton Keynes
@@ -323,7 +325,7 @@ const BannerSwiper = () => {
               content: (
                 <>
                   <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-nour font-bold"
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
                     variants={childVariants}
                   >
                     Premium Craft Drinks
@@ -333,14 +335,14 @@ const BannerSwiper = () => {
                     style={{
                       textShadow: "0 0 12px #5B562D",
                     }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-nour font-bold lg:font-bold"
+                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
                     variants={textRevealVariants}
                   >
                     Blending French Flavor{" "}
                   </motion.strong>
 
                   <motion.h2
-                    className="lg:text-4xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite font-normal mt-4 tracking-wide font-nour "
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite font-normal mt-4 tracking-wide font- "
                     variants={childVariants}
                   >
                     with Mediterranean Freshness

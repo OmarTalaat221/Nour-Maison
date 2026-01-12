@@ -299,7 +299,7 @@ const Gallrey = () => {
             tabs={tabs}
           />
         </div>
-        <h3 className="text-6xl font-tangerine text-center text-logoGold mt-10 relative z-20">
+        <h3 className="text-6xl font-seasons text-center text-logoGold mt-10 relative z-20">
           {activeTab == "Gallery" ? "Our Gallery" : "Our Portfolio"}
         </h3>
 
@@ -310,9 +310,9 @@ const Gallrey = () => {
             initial={{ opacity: 0, x: "-100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            className="  w-full px-3 max-w-6xl mx-auto mt-10  relative z-30"
+            className="  w-full px-3 max-w-6xl mx-auto mt-10  relative "
           >
-            <div className="flex items-center gap-3 justify-center">
+            <div className="flex items-center z-0 gap-3 justify-center">
               <Filter
                 activeGenre={activeGenre}
                 setActiveGenre={setActiveGenre}

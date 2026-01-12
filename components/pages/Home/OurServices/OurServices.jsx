@@ -96,7 +96,7 @@ const OurServices = () => {
       </div>
       <div className="w-full  mx-auto z-10">
         <SectionTitle className={"!text-goldenOrange"}>
-          Elegance & Events: Crafting Unforgettable Moments
+          Elegance <span className="font-tajawal">&</span> Events: Crafting Unforgettable Moments
         </SectionTitle>
 
         <div className=" container  !flex flex-col  lg:flex-row h-full gap-4 relative z-20 mt-20 !px-5">
@@ -124,7 +124,7 @@ const OurServices = () => {
                   alt="valentine-bannre"
                 />
                 <div className="p-6 md:p-10 rounded-xl ">
-                  <p className="text-lg md:text-xl text-softMintGreen font-medium font-tajawal text-center md:text-left">
+                  <p className="text-lg md:text-xl text-softMintGreen font-medium font-seasons text-center md:text-left">
                     01 Event
                   </p>
                   <h3 className="text-4xl md:text-5xl font-tangerine text-goldenOrange font-bold mt-2 text-center md:text-left">
@@ -157,7 +157,7 @@ const OurServices = () => {
                   !border-[3px] border-softMintGreen/40 backdrop-blur-md backdrop-saturate-150 
                   shadow-lg ring-1 ring-white/10"
                 >
-                  <p className="text-lg md:text-xl text-softMintGreen font-medium font-tajawal text-center md:text-left">
+                  <p className="text-lg md:text-xl text-softMintGreen font-medium font-seasons text-center md:text-left">
                     {String(item.id + 1).padStart(2, "0")} Event
                   </p>
                   <h3 className="text-4xl md:text-6xl  font-tangerine text-goldenOrange font-bold mt-2 text-center md:text-left">

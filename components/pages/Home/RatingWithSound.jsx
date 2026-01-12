@@ -73,14 +73,14 @@ export default function RatingStars({
   const handleStarAnimate = (index) => {
     if (playedStars.has(index)) return;
 
-    const audio = audioRefs.current[index];
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {
-        // autoplay may be blocked
-      });
-      setPlayedStars((prev) => new Set([...prev, index]));
-    }
+    // const audio = audioRefs.current[index];
+    // if (audio) {
+    //   audio.currentTime = 0;
+    //   audio.play().catch(() => {
+    //     // autoplay may be blocked
+    //   });
+    //   setPlayedStars((prev) => new Set([...prev, index]));
+    // }
   };
 
   return (
@@ -93,14 +93,14 @@ export default function RatingStars({
       aria-label={`${label}: ${rating} out of ${max}`}
     >
       {/* Multiple audio elements - one per star */}
-      {starsArray.map((_, index) => (
+      {/* {starsArray.map((_, index) => (
         <audio
           key={`audio-${index}`}
           ref={(el) => (audioRefs.current[index] = el)}
           src="/images/preview (1).m4a"
           preload="auto"
         />
-      ))}
+      ))} */}
 
       <div className="flex items-center gap-1">
         {starsArray.map((star, index) => {
@@ -113,7 +113,7 @@ export default function RatingStars({
               variants={starVariants}
               className="relative"
               onAnimationComplete={() => handleStarAnimate(index)}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.2,
                 rotate: [0, -10, 10, -10, 0],
                 transition: { duration: 1 },
@@ -139,7 +139,7 @@ export default function RatingStars({
                     <motion.div
                       key={`sparkle-${i}`}
                       className="absolute w-1 h-1 bg-yellow-300 rounded-full"
-                      initial={{ scale: 3, opacity: 0  }}
+                      initial={{ scale: 3, opacity: 0 }}
                       animate={{
                         scale: [0, 1, 0],
                         opacity: [0, 1, 0],

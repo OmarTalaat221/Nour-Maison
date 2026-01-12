@@ -90,7 +90,7 @@ const ContactContent = () => {
 
   return (
     <section id="contact" className="py-10 ">
-      <div className="mb-[40px] text-goldenOrange text-4xl md:text-6xl font-bold font-tangerine text-center">
+      <div className="mb-[40px] text-goldenOrange text-4xl md:text-6xl font-bold font-seasons text-center">
         Need Help? Contact Us Today!
       </div>
       <div
@@ -193,9 +193,9 @@ const ContactContent = () => {
                 </button>
               </form>
             </div>
-            <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
+            <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12 font-seasons">
               <div className="flex flex-wrap">
-                <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:w-full lg:px-6 xl:w-6/12">
+                <div className="mb-12 w-full shrink-0 grow-0 font-seasons basis-auto md:w-6/12 md:px-3 lg:w-full lg:px-6 xl:w-6/12">
                   <div className="flex items-start">
                     <div className="shrink-0">
                       <div className="flex justify-center items-center rounded-md bg-pestachio2  p-4 text-white w-[60px] h-[60px] ">
@@ -206,7 +206,7 @@ const ContactContent = () => {
                       <p className="mb-2 font-bold ">For Inquiries</p>
                       <a
                         href="mailto:info@nourmaison.co.uk"
-                        className="text-sm text-neutral-500 hover:text-logoGold hover:no-underline no-underline"
+                        className="text-sm font-oswald text-neutral-500 hover:text-logoGold hover:no-underline no-underline"
                       >
                         info@nourmaison.co.uk
                       </a>
@@ -237,7 +237,7 @@ const ContactContent = () => {
                       <p className="mb-2 font-bold ">Address</p>
                       <p
                         onClick={() => handleMapClick()}
-                        className="text-sm text-neutral-500 hover:text-logoGold cursor-pointer transition"
+                        className="text-sm font-oswald text-neutral-500 hover:text-logoGold cursor-pointer transition"
                       >
                         149 Grafton Gate, Milton Keynes, MK91AE
                       </p>
@@ -267,7 +267,7 @@ const ContactContent = () => {
                     </div>
                     <div className="ml-3 grow">
                       <p className="mb-2 font-bold ">Mobile</p>
-                      <p className="text-neutral-500"> +441908772177</p>
+                      <p className="text-neutral-500 font-oswald"> +441908772177</p>
                     </div>
                   </div>
                 </div>

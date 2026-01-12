@@ -130,7 +130,7 @@ const StickyHeader = ({ open, setOpen }) => {
                         >
                           {!item?.items ? (
                             <div
-                              className=" whitespace-nowrap m-0  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] "
+                              className=" whitespace-nowrap m-0 font-seasons font-bold tracking-wider  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] "
                               onClick={() => navigate(item.path)}
                             >
                               {" "}
@@ -148,7 +148,7 @@ const StickyHeader = ({ open, setOpen }) => {
                                 <div
                                   {...props}
                                   ref={ref}
-                                  className=" whitespace-nowrap m-0  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg: xl:text-[15px] "
+                                  className=" whitespace-nowrap m-0 font-seasons font-bold tracking-wider  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg: xl:text-[15px] "
                                   // onClick={() => navigate(item.path)}
                                 >
                                   {" "}
@@ -260,7 +260,7 @@ const StickyHeader = ({ open, setOpen }) => {
               {/* <CristmasMenuButton/> */}
 
               <button
-                className="  site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
+                className="  font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
                 onClick={() => (window.location.href = "/booking")}
                 >
                 BOOK NOW

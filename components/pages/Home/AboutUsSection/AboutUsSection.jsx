@@ -121,7 +121,7 @@ const AboutUsSection = () => {
           ))}
         </Swiper>
       </div>
-      <div className="relative flex flex-col bg-bodyColor  max-h-[730px] md:!max-h-[600px] overflow-auto">
+      <div className="relative flex flex-col  max-h-[730px] md:!max-h-[600px] overflow-auto">
         <div
           className="flex items-center justify-center"
           data-aos="fade-down-left"
@@ -141,7 +141,7 @@ const AboutUsSection = () => {
             <h2
               data-aos="fade-right"
               data-aos-delay="1000"
-              className="  text-2xl md:text-5xl font-bold mb-2 md:mb-4 text-goldenOrange"
+              className="  text-2xl font-seasons md:text-5xl font-bold mb-2 md:mb-4 text-goldenOrange"
             >
               Why Choose Us
             </h2>
@@ -182,11 +182,11 @@ const AboutUsSection = () => {
                 {/* {item.value} */}
               </div>
               {item.id === 3 && (
-                <span className="text-2xl font-bold text-white font-oswald">
+                <span className="text-2xl font-bold text-white !font-seasons">
                   <RatingStars rating={4.5} max={5} />
                 </span>
               )}
-              <p className="text-white font-semibold md:text-xl font-oswald ">
+              <p className="text-white  tracking-widest md:text-xl font-seasons ">
                 {item.title}
               </p>
             </div>

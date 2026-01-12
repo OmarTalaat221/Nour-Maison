@@ -6,7 +6,7 @@ const SectionTitle = ({ children, className, noLeaves }) => {
   return noLeaves ? (
     <div
       className={cx(
-        "font-tangerine text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-softMintGreen text-center",
+        "font-seasons text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-softMintGreen text-center",
         className
       )}
     >
@@ -16,7 +16,7 @@ const SectionTitle = ({ children, className, noLeaves }) => {
     <AnimTitle data-aos="fade-down" data-aos-delay="300" className={"px-2"}>
       <div
         className={cx(
-          "font-tangerine text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-softMintGreen text-center",
+          "font-seasons text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-softMintGreen text-center",
           className
         )}
       >

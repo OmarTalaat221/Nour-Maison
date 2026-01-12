@@ -83,7 +83,7 @@ const ChefsSection = () => {
                 Gallery
               </h5>
 
-              <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-lato">
+              <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-seasons">
                 Our Master Chefs
               </h2>
             </div>

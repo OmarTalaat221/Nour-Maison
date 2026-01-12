@@ -20,31 +20,32 @@ const HomaRoastMenu = () => {
   });
 
   // ✅ Smooth the progress itself, then derive everything from it
+  // ✅ Faster response (same animation mapping/behaviors)
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 70,
-    damping: 22,
-    mass: 0.9,
+    stiffness: 220,
+    damping: 16,
+    mass: 0.45,
   });
 
   // ===== IMAGE ANIMATIONS (lighter) =====
   const rotate = useTransform(
     smoothProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [0, 12]
+    [0, 0.5, .8],
+    reduceMotion ? [0, 0, 0] : [0, 20, 32]
   );
 
   // ✅ Avoid huge scale jumps (expensive on big images)
   const scale = useTransform(
     smoothProgress,
-    [0, 0.5],
-    reduceMotion ? [1, 1] : [0.98, 1.14]
+    [0, 0.5 ,  .8],
+    reduceMotion ? [1, 1] : [0.98, 1.14 , 1.3]
   );
 
   // ===== TEXT SIDE ANIMATIONS =====
   const textY = useTransform(
     smoothProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [24, 0]
+    [0, 0.5 ,1],
+    reduceMotion ? [0, 0 , 0] : [40, 24 , 0]
   );
   const textOpacity = useTransform(smoothProgress, [0, 0.25], [0, 1]);
   const textScale = useTransform(
@@ -61,13 +62,13 @@ const HomaRoastMenu = () => {
   // ===== BRANCHES PARALLAX (lighter + fewer big moves) =====
   const branchRightX = useTransform(
     smoothProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [70, 0]
+    [0, 0.5, 1],
+    reduceMotion ? [0, 0, 0] : [100, 50 ,0]
   );
   const branchRightRotate = useTransform(
     smoothProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [4, 0]
+    [0, 0.5 , 1],
+    reduceMotion ? [0, 0] : [10, 5,  0]
   );
   const branchRightOpacity = useTransform(
     smoothProgress,
@@ -164,17 +165,17 @@ const HomaRoastMenu = () => {
             rotate: textRotate,
           }}
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-8xl font-oswald font-bold text-softMintGreen">
-            <span style={{ textShadow: "4px 5px 0px #5c5948" }}>
-              Award-Winning Café/brasserie
+          <h1 className="text-3xl sm:text-4xl lg:text-8xl font-seasons  !font-extralight text-softMintGreen">
+            <span style={{ textShadow: "1px 3px 0px #5c5948" }} className="font-bold">
+              Award <span className="font-oswald">-</span>Winning Café <span className="font-oswald">/</span>brasserie
             </span>
             <span className="block text-2xl !leading-loose text-logoGold">
               Crafted for Moments That Matter
             </span>
           </h1>
 
-          <p className="text-sm leading-relaxed text-gray-900 sm:text-base">
-            Nour Maison Brasserie has been crowned{" "}
+          <p className="text-sm leading-relaxed text-gray-600  sm:text-base ">
+            <strong>NOUR MAISON</strong> Brasserie has been crowned{" "}
             <span className="font-semibold">
               Best Café/brasserie Business / Café 2025
             </span>

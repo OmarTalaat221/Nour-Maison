@@ -261,9 +261,9 @@ const BookingConent = ({bg}) => {
               <div className="relative z-20 flex flex-col h-full">
                 <h2
                   style={{
-                    textShadow: "white 1px 3px 0px",
+                    textShadow: "white 1px 2px 0px",
                   }}
-                  className="text-3xl lg:text-5xl font-normal italic font-pacifico text-logoGold  text-shadow-xs text-center mb-6 z-10 relative"
+                  className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold  text-shadow-xs text-center mb-6 z-10 relative"
                 >
                   Your Table Awaits
                 </h2>
@@ -484,10 +484,10 @@ const BookingConent = ({bg}) => {
 
                   <header
                     style={{
-                      textShadow: "white 1px 3px 0px",
+                      textShadow: "white 1px 2px 0px",
                       // textShadow: "#613f00 1px 3px 0px",
                     }}
-                    className="text-3xl lg:text-5xl font-light italic font-pacifico text-logoGold  text-shadow-xs text-center mt-2 z-10 relative"
+                    className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold  text-shadow-xs text-center mt-2 z-10 relative"
                   >
                     Opening times
                   </header>
@@ -504,7 +504,7 @@ const BookingConent = ({bg}) => {
                       textShadow: "white 1px 3px 0px",
                       // textShadow: "#613f00 1px 3px 0px",
                     }}
-                    className=" text-5xl  mt-6 italic text-logoGold  z-10 relative font-tangerine text-center lg:text-6xl font-bold  "
+                    className=" text-5xl  mt-6 italic text-logoGold  z-10 relative font-lato text-center lg:text-6xl font-bold  "
                   >
                     Call Us Now
                   </strong>

@@ -2,19 +2,19 @@ export const reviews = [
   {
     name: "Lauren Scott-Turner",
     // date: "18 days ago",
-        tags: ["£10–20"],
-        
-        rating: 5,
-        review:
-        "Absolutely delicious breakfast at Nour Maison Brasserie in Milton Keynes. A new restaurant with a fab selection of meals and very unique. Will be going back many times! Thank you Chef Ramona and Ana!",
-        image:
-        "https://lh3.googleusercontent.com/a-/ALV-UjUQUduy265beKrNgVlFwVjQyGdqIfLe9u1DxGzSsxDaIwNoilZp=w45-h45-p-rp-mo-br100",
-      },
-      
-      {
-        name: "Aidan Hynes",
-        // date: "18 days ago",
-        tags: [ "Dine in" , "Brunch", "£10–20"],
+    tags: ["£10–20"],
+
+    rating: 5,
+    review:
+      "Absolutely delicious breakfast at Nour Maison Brasserie in Milton Keynes. A new restaurant with a fab selection of meals and very unique. Will be going back many times! Thank you Chef Ramona and Ana!",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjUQUduy265beKrNgVlFwVjQyGdqIfLe9u1DxGzSsxDaIwNoilZp=w45-h45-p-rp-mo-br100",
+  },
+
+  {
+    name: "Aidan Hynes",
+    // date: "18 days ago",
+    tags: ["Dine in", "Brunch", "£10–20"],
     rating: 5,
     review:
       "Really tasty food for good prices! The brisket was cooked to perfection - music selection is also great",

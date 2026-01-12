@@ -92,7 +92,7 @@ const AboutContent = ({}) => {
             
           </AnimTitle> */}
           <div className="flex items-center gap-4">
-            <div className="text-goldenOrange font-bold text-[50px] font-tangerine">
+            <div className="text-goldenOrange font-bold text-[50px] font-seasons">
               About Us
             </div>
             <div>

@@ -219,9 +219,9 @@ const PagesBanner = ({
         <div className="mt-auto mb-10 flex items-center gap-6 justify-center flex-col text-center">
           <h1
             data-aos="fade-up"
-            className=" text-logoGold !font-normal font-pacifico text-4xl sm:text-5xl lg:text-6xl"
+            className=" text-logoGold  font-seasons italic !font-bold text-4xl sm:text-5xl lg:text-6xl"
             style={{
-              textShadow: "1.5px 1.5px 0px white",
+              textShadow: "1px 1px 0px white",
             }}
           >
             {title ?? "All About Us"}

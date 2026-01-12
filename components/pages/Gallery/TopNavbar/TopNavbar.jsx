@@ -61,7 +61,7 @@ const Tab = ({ label, setPosition, activeTab, setActiveTab, tabRefs }) => {
           setPosition({ left: offsetLeft, width: offsetWidth, opacity: 1 });
         }
       }}
-      className={`relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase font-semibold transition md:px-5 md:py-3 md:text-base ${
+      className={`relative font-tajawal z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase font-semibold transition md:px-5 md:py-3 md:text-base ${
         activeTab === label ? "text-white hover:!text-white" : "!text-softMintGreen "
       }`}
     >

@@ -77,7 +77,7 @@ export default function NourKidsMenuHero({
           className="text-center font-tangerine text-softMintGreen text-5xl md:text-7xl  mb-4 md:mb-8 font-black"
         >
           { title || "Small Hands,"} <br />{" "}
-          <span className="text-logoGold font-oswald text-2xl ">{subTitle || "Big Appetite!"}</span>
+          <span className="text-logoGold  text-2xl font-seasons ">{subTitle || "Big Appetite!"}</span>
         </div>
         <div className="grid grid-cols-1 gap-8 items-center">
           {/* Text block (optional — keep or remove) */}
@@ -110,7 +110,7 @@ export default function NourKidsMenuHero({
 
         <Link
           href={ ctaLink ||  "/kids-menu" }
-          className=" mx-auto w-fit rounded-full hover:text-white active:text-white overflow-hidden mt-4 md:mt-8   outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white text-2xl lg:text-4xl font-pacifico  "
+          className=" mx-auto font-seasons w-fit rounded-full hover:text-white active:text-white overflow-hidden mt-4 md:mt-8   outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white text-2xl lg:text-4xl   "
         >
           {cta || "Kids Menu"}
         </Link>

@@ -180,9 +180,9 @@ const AfternoonTea = ({}) => {
 
                       <h2
                         style={{
-                          textShadow: " #EDECE8 1px 1px 0px",
+                          textShadow: " #EDECE8 2px 2px 0px",
                         }}
-                        className="  font-tangerine !font-bold text-5xl sm:!text-6xl md:!text-7xl !m-0  !p-0 text-logoGold drop-shadow-lg "
+                        className="  font-seasons !font-normal text-5xl sm:!text-6xl md:!text-7xl !m-0  !p-0 text-logoGold drop-shadow-lg "
                       >
                         Afternoon Tea
                       </h2>
@@ -246,7 +246,7 @@ const AfternoonTea = ({}) => {
                             </svg>
                             <div
                               onClick={() => setShowInqueryModal(true)}
-                              className="txt-upload !text-white no-underline hover:no-underline  text-2xl font-pacifico"
+                              className="txt-upload !text-white no-underline hover:no-underline  text-2xl font-seasons"
                             >
                               Make Inquiry
                             </div>

@@ -3,7 +3,13 @@
 import "./style.css";
 import { FaLocationDot, FaRegEnvelope } from "react-icons/fa6";
 
-import { FaInstagram, FaFacebookF, FaDoorOpen, FaTiktok, FaWhatsapp } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaDoorOpen,
+  FaTiktok,
+  FaWhatsapp,
+} from "react-icons/fa";
 import StyledBackground from "../../../utils/Styled Background/StyledBackground";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
@@ -37,8 +43,8 @@ const Footer = () => {
 
   return (
     <StyledBackground wave={true}>
-      <div className="w-full py-[50px] bg-pestachio">
-        <div className="flex justify-center w-full">
+      <div className="w-full relative py-[50px]  bg-gradient-to-b from-pestachio via-pestachio to-transparent ">
+        <div className="flex relative z-10 justify-center w-full">
           <div className="flex justify-center w-[250px] mb-6 text-center h-[250px]">
             <Image
               src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
@@ -51,7 +57,7 @@ const Footer = () => {
             />
           </div>
         </div>
-        <div className=" w-[95%] lg:w-[90%] mx-auto text-logoGold">
+        <div className=" relative z-10 w-[95%] lg:w-[90%] mx-auto text-logoGold">
           <div className="foot_cont">
             <div className="flex flex-col gap-[10px]">
               <strong className=" text-center  text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5] ">
@@ -59,34 +65,55 @@ const Footer = () => {
               </strong>
 
               <a
+                style={{
+                  textShadow: "1px 2px 2px black",
+                }}
                 href="mailto:info@nourmaison.co.uk"
-                className="flex no-underline transition hover:!text-logoGold hover:no-underline cursor-pointer justify-center items-center text-black gap-[10px]  text-[20px] font-lato font-semibold"
+                className="flex justify-center drop-shadow-2xl items-center  text-slate-100 gap-[10px]  text-[22px] font-lato font-semibold"
               >
-                <FaRegEnvelope className="text-logoGold"/>
+                <FaRegEnvelope className="text-logoGold" />
                 info@nourmaison.co.uk
               </a>
 
-              <div
+              {/* <div
+               style={{
+                textShadow:"1px 1px 5px gray"
+              }}
                 onClick={() => handleMapClick()}
-                className="flex hover:text-logoGold transition cursor-pointer  justify-center items-center text-black gap-[10px]  text-[20px] font-lato font-semibold"
+                className="flex hover:text-logoGold transition text-center cursor-pointer  justify-center items-start text-white gap-[10px]  text-[20px] font-lato font-semibold"
               >
-                <div className=" text-[18px] text-logoGold">
+                <div className=" text-[18px] text-logoGold ">
                   <FaLocationDot />
                 </div>
                 149 Grafton Gate, Milton Keynes, MK91AE
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-col gap-[10px]">
               <strong className=" text-center  text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5] ">
                 Opening hours
               </strong>
 
-              <div className="flex justify-center items-center text-black gap-[10px]  text-[20px] font-lato font-semibold">
-                <div className=" text-[18px] text-logoGold">
+              <div
+                style={{
+                  textShadow: "1px 2px 2px black",
+                }}
+                className="flex justify-center drop-shadow-2xl items-center  text-slate-100 gap-[10px]  text-[22px] font-lato font-semibold"
+              >
+                <div className=" text-[28px] text-logoGold">
                   <FaDoorOpen />
                 </div>
-                <span className=" text-[20px] m-0 p-0">Daily:</span>
+                <span className=" text-[30px] m-0 p-0 ">Daily:</span>
                 09:00 am – 10:00 pm
+              </div>
+              <div
+                style={{
+                  textShadow: "1px 2px 2px black",
+                }}
+                onClick={() => handleMapClick()}
+                className="flex justify-center drop-shadow-2xl
+                 text-center items-start  text-slate-100 gap-[10px]  text-[22px] font-lato font-semibold"
+              >
+                149 Grafton Gate, Milton Keynes, MK91AE
               </div>
             </div>
             <div className="flex flex-col gap-[10px]">
@@ -94,7 +121,12 @@ const Footer = () => {
                 Follow Our Activity
               </strong>
 
-              <strong className=" flex justify-center text-[20px] font-lato font-semibold text-black">
+              <strong
+                style={{
+                  textShadow: "1px 2px 2px black",
+                }}
+                className="flex justify-center drop-shadow-2xl items-center  text-slate-100 gap-[10px]  text-[22px] font-lato font-semibold"
+              >
                 We are in social networks
               </strong>
               <div className="flex justify-center items-center gap-[15px] relative">
@@ -141,12 +173,12 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="foot_terms font-tangerine">
+          <div className="foot_terms font-tangerine ">
             {navItems.map((item) => (
               <div
                 key={item.path}
-                className={`foot_term_ele ${
-                  pathname === item.path ? "active" : ""
+                className={`foot_term_ele fonst !text-logoGold  hover:!text-white ${
+                  pathname === item.path ? "active !text-white" : ""
                 }`}
                 onClick={() => navigate(item.path)}
               >
@@ -155,17 +187,17 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="foot_privacy">
+          <div className="foot_privacy " >
             <div className="pb-[15px]  text-[12px] flex justify-center font-[400] gap-2">
               <span
-                className="cursor-pointer"
+                className="cursor-pointer text-2xl "
                 onClick={() => navigate("/privacy-policy-2")}
               >
                 Privacy Policy
               </span>{" "}
               <span>|</span>{" "}
               <span
-                className="cursor-pointer"
+                className="cursor-pointer text-2xl"
                 onClick={() => navigate("/terms-conditions")}
               >
                 Terms & Conditions
@@ -181,6 +213,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="absolute inset-0 opacity-25">
+          <img
+            src="/images/footerbg.png"
+            className="w-full h-full object-cover"
+            alt=""
+          />
         </div>
       </div>
     </StyledBackground>

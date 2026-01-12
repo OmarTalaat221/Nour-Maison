@@ -68,8 +68,8 @@ const MenuClassic = () => {
       />
 
       <div className="text-center max-w-3xl mx-auto py-12">
-        <p className="text-goldenOrange italic text-2xl">Taste The Best</p>
-        <h2 className="text-3xl md:text-8xl font-tangerine font-bold text-softMintGreen mt-2">
+        <p className="text-goldenOrange italic text-2xl font-seasons">Taste The Best</p>
+        <h2 className="text-3xl md:text-6xl font-seasons font-bold text-softMintGreen mt-2">
           Discover Our Menu
         </h2>
         <div className="w-12 h-1 bg-softMintGreen mx-auto my-3"></div>
@@ -128,7 +128,7 @@ const MenuClassic = () => {
                 <div className="text-white  z-20 flex flex-col gap-6 items-center justify-center relative">
                   <h4
                     // data-aos="zoom-in"
-                    className="text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-tajawal text-center w-full lg:w-[1000px]"
+                    className="text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-seasons text-center w-full lg:w-[1000px]"
                   >
                     {category?.category}
                   </h4>

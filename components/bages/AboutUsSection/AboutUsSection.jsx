@@ -177,7 +177,7 @@ const AboutUsSection = () => {
                 {item.value}
               </div>
 
-              <p className="text-white font-semibold md:text-xl font-oswald ">
+              <p className=" font-seasons text-white font-semibold md:text-xl  ">
                 {item.title}
               </p>
             </div>

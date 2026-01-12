@@ -1,4 +1,3 @@
-
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -22,10 +21,10 @@ const GoogleReviews = () => {
         >
           <div className="">
             <h5 className="text-5xl ms-3 font-tangerine text-center md:text-start">
-              Blogs
+              Clients Feedbacks
             </h5>
-            <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-lato">
-              Nour Maison Moments{" "}
+            <h2 className="text-2xl font-seasons md:text-4xl font-semibold text-center md:text-start text-goldenOrange font-lato">
+              What the Buzz Is About{" "}
               <Link
                 href="blog"
                 className="text-sm font-lato !text-softMintGreen cursor-pointer hover:underline underline-offset-2"
@@ -75,7 +74,7 @@ const GoogleReviews = () => {
         >
           {reviews?.map((rev, idx) => (
             <SwiperSlide key={idx} className="py-10 !h-full">
-              <ReviewCard data={rev}  />
+              <ReviewCard data={rev} />
             </SwiperSlide>
           ))}
         </Swiper>
