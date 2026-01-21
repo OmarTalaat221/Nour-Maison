@@ -1,94 +1,110 @@
+"use client";
 
-"use client"
-
-import React, {useEffect, useRef} from "react";
-import {motion} from "framer-motion";
-import "./style.scss";
-import {FaImages} from "react-icons/fa";
-import {IoVideocam} from "react-icons/io5";
+import React, { useMemo, useRef } from "react";
+import { motion } from "framer-motion";
+import { FaImages } from "react-icons/fa";
+import { IoVideocam } from "react-icons/io5";
 import { detectMediaType } from "../../../../lib/functions";
+import "./style.scss";
 
-
-const Movie = ({item}) => {
-  useEffect(() => {
-    console.log("item", item);
-  }, [item]);
-
+const Movie = ({ item }) => {
   const videoRef = useRef(null);
 
-  const handleMouseEnter = () => videoRef.current?.play();
-  const handleMouseLeave = () => {
-    
-    videoRef.current?.pause();
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0; 
-    }
+  const type = useMemo(() => detectMediaType(item?.media_url), [item?.media_url]);
+  const isVideo = type !== "image";
+
+  const playVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    // play only if possible (some browsers block)
+    v.play().catch(() => {});
   };
+
+  const resetVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  };
+
+  // For touch devices: tap to preview video quickly
+  const handleTouchStart = () => {
+    if (isVideo) playVideo();
+  };
+  const handleTouchEnd = () => {
+    if (isVideo) resetVideo();
+  };
+
   return (
-    <motion.div
+    <motion.a
       href={item?.media_url}
-      data-fancybox='gallery'
+      data-fancybox="gallery"
       layout
-      animate={{opacity: 1}}
-      initial={{opacity: 0}}
-      exit={{opactiy: 0}}
-      className='relative w-full h-[240px] overflow-hidden rounded-xl cursor-pointer'
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 10, scale: 0.98 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
+      className="group relative block w-full h-[220px] sm:h-[240px] overflow-hidden rounded-2xl cursor-pointer border border-black/5 bg-white shadow-sm hover:shadow-md transition-shadow"
+      onMouseEnter={playVideo}
+      onMouseLeave={resetVideo}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      {detectMediaType(item?.media_url) == "image" ? (
+      {/* Media */}
+      {type === "image" ? (
         <motion.img
-          whileHover={{scale: 1.1}}
-          src={item.media_url}
-          className='w-full h-full object-cover  '
-          // alt={item.title}
+          src={item?.media_url}
+          alt={item?.descripiton || "Gallery item"}
+          className="w-full h-full object-cover"
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          loading="lazy"
         />
       ) : (
         <motion.video
+          ref={videoRef}
           src={item?.media_url}
           loop
-          ref={videoRef}
-
-          // playsInline
-          // autoPlay
-          whileHover={{scale: 1.2}}
           muted
-          initial={{opacity: 0}}
-          animate={{opacity: 1}}
-          // onMouseMove={}
-          transition={{duration: 1}}
-          className='w-full h-full object-cover  '
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
         />
       )}
 
-      <div className='absolute top-3 left-3  text-white'>
-        {detectMediaType(item.media_url) === "image" ? (
-          <FaImages className='text-xl' />
-        ) : (
-          <IoVideocam className='text-xl' />
-        )}
+      {/* Top-left pill icon (no overlay background, just a small pill) */}
+      <div className="absolute top-3 left-3 pointer-events-none">
+        <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 backdrop-blur px-3 py-1 shadow-sm">
+          {type === "image" ? (
+            <>
+              <FaImages className="text-sm text-gray-800" />
+              <span className="text-[11px] font-semibold text-gray-700">
+                Photo
+              </span>
+            </>
+          ) : (
+            <>
+              <IoVideocam className="text-sm text-gray-800" />
+              <span className="text-[11px] font-semibold text-gray-700">
+                Video
+              </span>
+            </>
+          )}
+        </div>
       </div>
-    </motion.div>
+
+      {/* Bottom-right tiny hint (clean, no background overlay) */}
+      <div className="absolute bottom-3 right-3 pointer-events-none">
+        <div className="text-[11px] font-semibold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] opacity-0 group-hover:opacity-100 transition-opacity">
+          Click to open
+        </div>
+      </div>
+    </motion.a>
   );
 };
 
 export default Movie;
-
-// const Movie = ({ movie }) => {
-//   return (
-//     <motion.div
-//       layout
-//       animate={{ opacity: 1 }}
-//       initial={{ opacity: 0 }}
-//       exit={{ opactiy: 0 }}
-//     >
-//       <img
-//         src={"https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg"}
-//         // alt={movie.title}
-//       />
-//       {/* <h2>{movie.title}</h2> */}
-//     </motion.div>
-//   );
-// };
-
-// export default Movie;

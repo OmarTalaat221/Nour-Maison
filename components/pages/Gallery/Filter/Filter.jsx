@@ -24,7 +24,7 @@ const Filter = ({setActiveGenre, activeGenre, setFiltered, popular}) => {
         <button
           className={cx(
             {" !bg-goldenOrange !text-white ": activeGenre == "all"},
-            " rounded-full mb-8 min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
+            " rounded-full  min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
           )}
           // className={activeGenre === 0 ? "active" : ""}
           onClick={() => setActiveGenre("all")}
@@ -34,7 +34,7 @@ const Filter = ({setActiveGenre, activeGenre, setFiltered, popular}) => {
         <button
           className={cx(
             {" !bg-goldenOrange !text-white ": activeGenre == "drinks"},
-            " rounded-full  mb-8 min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
+            " rounded-full  min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
           )}
           onClick={() => setActiveGenre("drinks")}
         >
@@ -43,7 +43,7 @@ const Filter = ({setActiveGenre, activeGenre, setFiltered, popular}) => {
         <button
           className={cx(
             {" !bg-goldenOrange !text-white ": activeGenre == "food"},
-            " rounded-full mb-8 min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
+            " rounded-full  min-w-[5rem] px-6 py-2 border-2 border-goldenOrange bg-white text-goldenOrange font-bold  cursor-pointer"
           )}
           onClick={() => setActiveGenre("food")}
         >

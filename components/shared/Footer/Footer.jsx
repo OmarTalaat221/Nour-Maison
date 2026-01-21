@@ -42,13 +42,14 @@ const Footer = () => {
   ];
 
   return (
-    <StyledBackground wave={true}>
-      <div className="w-full relative py-[50px]  bg-gradient-to-b from-pestachio via-pestachio to-transparent ">
-        <div className="flex relative z-10 justify-center w-full">
-          <div className="flex justify-center w-[250px] mb-6 text-center h-[250px]">
+    <div className="relative !overflow-visible">
+
+      <div className="w-full  relative py-[50px]  bg-gradient-to-b from-pestachio via-pestachio to-transparent ">
+        <div className=" grid grid-cols-3  w-[95%] lg:w-[90%] mx-auto relative z-10 justify-start ">
+          <div className="flex justify-center mx-auto w-[250px] mb-6 text-center h-[250px]">
             <Image
               src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
-              className=" object-contain !w-full !h-full"
+              className=" object-contain mx-auto !w-full !h-full"
               alt="Nour Maison Logo"
               title="NOUR MAISON"
               width={120}
@@ -56,6 +57,8 @@ const Footer = () => {
               priority // 👈 أهم حاجة هنا
             />
           </div>
+          <div></div>
+          <div></div>
         </div>
         <div className=" relative z-10 w-[95%] lg:w-[90%] mx-auto text-logoGold">
           <div className="foot_cont">
@@ -177,9 +180,8 @@ const Footer = () => {
             {navItems.map((item) => (
               <div
                 key={item.path}
-                className={`foot_term_ele fonst !text-logoGold  hover:!text-white ${
-                  pathname === item.path ? "active !text-white" : ""
-                }`}
+                className={`foot_term_ele fonst !text-logoGold  hover:!text-white ${pathname === item.path ? "active !text-white" : ""
+                  }`}
                 onClick={() => navigate(item.path)}
               >
                 {item.label}
@@ -214,16 +216,15 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        <div className="absolute inset-0 opacity-25">
-          <img
-            src="/images/footerbg.png"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
+        <img
+          src="/images/BUNNER NOUR (8).png"
+          className="   absolute right-0 !bottom-[-50px]  "
+          alt=""
+        />
       </div>
-    </StyledBackground>
+
+
+    </div>
   );
 };
 

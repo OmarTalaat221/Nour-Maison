@@ -6,7 +6,9 @@ import { useMediaQuery } from "../../../../Hooks/GeneralHooks/useMediaQueries";
 
 // Mock SectionTitle component
 const SectionTitle = ({ children, className }) => (
-  <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 ${className}`}>
+  <h2
+    className={`text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 ${className}`}
+  >
     {children}
   </h2>
 );
@@ -27,7 +29,6 @@ const ChefsSection2 = () => {
     mass: 0.9,
   };
 
-
   const smallScreans = useMediaQuery("(max-width: 768px)");
 
   // ====== GLOBAL OPACITY (for images) ======
@@ -42,67 +43,75 @@ const ChefsSection2 = () => {
   const titleOpacity = useSpring(titleOpacityRaw, springConfig);
 
   // ====== BRANCHES PARALLAX ======
-  // Right branch (slides from right → center a bit + small rotate)
   const branchRightXRaw = useTransform(scrollYProgress, [0, 0.5], [120, 0]);
   const branchRightRotateRaw = useTransform(scrollYProgress, [0, 0.5], [8, 0]);
-  const branchRightOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 1]);
+  const branchRightOpacityRaw = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.5],
+    [0, 0.6, 1]
+  );
 
   const branchRightX = useSpring(branchRightXRaw, springConfig);
   const branchRightRotate = useSpring(branchRightRotateRaw, springConfig);
   const branchRightOpacity = useSpring(branchRightOpacityRaw, springConfig);
 
-  // Left branch (slides from left → center a bit + small rotate)
   const branchLeftXRaw = useTransform(scrollYProgress, [0, 0.5], [-120, 0]);
   const branchLeftRotateRaw = useTransform(scrollYProgress, [0, 0.5], [-8, 0]);
-  const branchLeftOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 1]);
+  const branchLeftOpacityRaw = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.5],
+    [0, 0.6, 1]
+  );
 
   const branchLeftX = useSpring(branchLeftXRaw, springConfig);
   const branchLeftRotate = useSpring(branchLeftRotateRaw, springConfig);
   const branchLeftOpacity = useSpring(branchLeftOpacityRaw, springConfig);
 
-  // ====== IMAGE 5 (left) - Responsive values ======
-  const xImg5Raw = useTransform(scrollYProgress, [0, 0.40], [-500, smallScreans ? 60 : 120]);
-  const yImg5Raw = useTransform(scrollYProgress, [0, 0.40], [100, 0]);
-  const rotateImg5Raw = useTransform(scrollYProgress, [0, 0.40], [-42, 0]);
-  const scaleImg5Raw = useTransform(scrollYProgress, [0, 0.40], [0.4, 1]);
+  // ====== IMAGE 5 (LEFT) ======
+  const xImg5Raw = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    [-500, smallScreans ? -60 : -120] // ✅ left final
+  );
+  const yImg5Raw = useTransform(scrollYProgress, [0, 0.4], [100, 0]);
+  const rotateImg5Raw = useTransform(scrollYProgress, [0, 0.4], [-42, 0]);
+  const scaleImg5Raw = useTransform(scrollYProgress, [0, 0.4], [0.4, 1]);
 
   const xImg5 = useSpring(xImg5Raw, springConfig);
   const yImg5 = useSpring(yImg5Raw, springConfig);
   const rotateImg5 = useSpring(rotateImg5Raw, springConfig);
   const scaleImg5 = useSpring(scaleImg5Raw, springConfig);
 
-  // ====== IMAGE 6 (middle, from bottom) ======
-  const xImg6Raw = useTransform(scrollYProgress, [0, 0.40], [0, 0]);
-  const yImg6Raw = useTransform(scrollYProgress, [0, 0.40], [350, -80]);
-  const rotateImg6Raw = useTransform(scrollYProgress, [0, 0.40], [10, 0]);
-  const scaleImg6Raw = useTransform(scrollYProgress, [0, 0.40], [0.8, 1]);
+  // ====== IMAGE 6 (RIGHT) ======
+  // ✅ moved to right side instead of center
+  const xImg6Raw = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    [600, smallScreans ? 60 : 120] // ✅ right final
+  );
+  const yImg6Raw = useTransform(scrollYProgress, [0, 0.4], [120, 0]);
+  const rotateImg6Raw = useTransform(scrollYProgress, [0, 0.4], [28, 0]);
+  const scaleImg6Raw = useTransform(scrollYProgress, [0, 0.4], [0.75, 1]);
 
   const xImg6 = useSpring(xImg6Raw, springConfig);
   const yImg6 = useSpring(yImg6Raw, springConfig);
   const rotateImg6 = useSpring(rotateImg6Raw, springConfig);
   const scaleImg6 = useSpring(scaleImg6Raw, springConfig);
 
-  // ====== IMAGE 7 (right) ======
-  const xImg7Raw = useTransform(scrollYProgress, [0, 0.40], [600, smallScreans ? -45 : -100]);
-  const yImg7Raw = useTransform(scrollYProgress, [0, 0.40], [80, 0]);
-  const rotateImg7Raw = useTransform(scrollYProgress, [0, 0.40], [60, 0]);
-  const scaleImg7Raw = useTransform(scrollYProgress, [0, 0.40], [0.8, 1]);
-
-  const xImg7 = useSpring(xImg7Raw, springConfig);
-  const yImg7 = useSpring(yImg7Raw, springConfig);
-  const rotateImg7 = useSpring(rotateImg7Raw, springConfig);
-  const scaleImg7 = useSpring(scaleImg7Raw, springConfig);
-
-  // ====== IMAGE 8 (bottom banner) ======
-  const yImg8Raw = useTransform(scrollYProgress, [0, 0.40], [180, smallScreans ?  -250 : -350]);
-  const scaleImg8Raw = useTransform(scrollYProgress, [0, 0.40], [0.9, 1]);
+  // ====== IMAGE 8 (BOTTOM BANNER) ======
+  const yImg8Raw = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    [180, smallScreans ? -250 : -350]
+  );
+  const scaleImg8Raw = useTransform(scrollYProgress, [0, 0.4], [0.9, 1]);
 
   const yImg8 = useSpring(yImg8Raw, springConfig);
   const scaleImg8 = useSpring(scaleImg8Raw, springConfig);
 
   return (
-    <section className="relative overflow-hidden  md:py-0">
-      {/* Right branch with parallax */}
+    <section className="relative overflow-hidden md:py-0">
+      {/* Right branch */}
       <motion.img
         loading="lazy"
         draggable="false"
@@ -117,7 +126,7 @@ const ChefsSection2 = () => {
         }}
       />
 
-      {/* Left branch with parallax */}
+      {/* Left branch */}
       <motion.img
         loading="lazy"
         draggable="false"
@@ -133,14 +142,9 @@ const ChefsSection2 = () => {
       />
 
       <div className="container mx-auto max-w-6xl px-4">
-        {/* Section title with scroll-in animation */}
-        <motion.div
-          style={{
-            y: titleY,
-            opacity: titleOpacity,
-          }}
-        >
-          <SectionTitle className={"!text-amber-600  text-4xl md:!text-7xl font-tangerine"}>
+        {/* Title */}
+        <motion.div style={{ y: titleY, opacity: titleOpacity }}>
+          <SectionTitle className="!text-amber-600 text-4xl md:!text-7xl font-tangerine">
             The Faces Behind the Flavors
           </SectionTitle>
         </motion.div>
@@ -163,7 +167,7 @@ const ChefsSection2 = () => {
             }}
           />
 
-          {/* Image 6 - Center */}
+          {/* Image 6 - Right */}
           <motion.img
             src="/images/6.png"
             alt="Chef 2"
@@ -176,22 +180,9 @@ const ChefsSection2 = () => {
               opacity,
             }}
           />
-
-          {/* Image 7 - Right */}
-          <motion.img
-            src="/images/7.png"
-            alt="Chef 3"
-            className="drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[280px] lg:w-[400px] rounded-lg"
-            style={{
-              x: xImg7,
-              y: yImg7,
-              rotate: rotateImg7,
-              scale: scaleImg7,
-              opacity,
-            }}
-          />
         </div>
 
+        {/* Image 8 - Bottom banner */}
         <div className="flex justify-center mt-8 md:mt-0">
           <motion.img
             src="/images/8.png"
