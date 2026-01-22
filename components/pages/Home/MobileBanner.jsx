@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
+// import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
 
 export default function VideoBanner() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
   const textMessages = [
-    "Christmas 2026 at Nour Maison A Pistachio Wonderland",
+    // "Christmas 2026 at Nour Maison A Pistachio Wonderland",
     "Welcome to Nour Maiosn",
     "Bringing French & Mediterranean Cuisine",
     "Step Inside Nour Maison",
