@@ -22,9 +22,10 @@ const MenuClient = () => {
   const swiperRef = React.useRef(null);
 
   const menus = [
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535317/tbpe1yisrbrlihmupbni_zhsyma.jpg",
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535314/t94wcew9ssug8vpdtvbs_qopg0g.jpg",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1769095229/download_11_rjqdfc.png",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1769095234/download_12_anridi.png",
   ];
+
 
   const menus2 = [
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg",
