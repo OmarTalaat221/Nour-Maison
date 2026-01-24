@@ -42,7 +42,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="relative !overflow-visible">
+    <div className="relative !overflow-visible mt-24">
 
       <div className="w-full  relative py-[50px]  bg-gradient-to-b from-pestachio via-pestachio to-transparent ">
         <div className=" grid grid-cols-3  w-[95%] lg:w-[90%] mx-auto relative z-10 justify-start ">
