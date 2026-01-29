@@ -88,7 +88,7 @@ const Gallrey = () => {
     () => [
       { id: 1, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg", type: "drinks", descripiton: "" },
       { id: 2, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4", type: "drinks", descripiton: "" },
-      { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" },
+      // { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" }, // Hani was kicked out 😅
       { id: 4, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4", type: "drinks", descripiton: "" },
       { id: 5, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg", type: "drinks", descripiton: "" },
       { id: 6, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg", type: "drinks", descripiton: "" },
