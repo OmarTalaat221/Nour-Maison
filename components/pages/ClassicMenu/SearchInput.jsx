@@ -167,7 +167,7 @@ const SearchInput = ({ onChange, value, onAllergenChange, allergenValue }) => {
 
   return (
     <>
-      <div className={cx("!sticky top-[100px] z-30")}>
+      <div className={cx("!sticky top-[100px] z-10")}>
         <div
           className={cx("flex justify-center items-center px-2 mb-4 gap-2")}
           ref={searchInputRef}

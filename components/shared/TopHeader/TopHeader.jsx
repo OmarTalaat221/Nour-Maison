@@ -49,9 +49,9 @@ const TopHeader = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative !z-[99999999999] ">
       <header
-        className={cx(" absolute top-0 z-50 right-0 left-0 mt-6", {
+        className={cx(" absolute top-0 z-[99999999999] right-0 left-0 mt-6", {
           hidden:
             isNotFound ||
             ["/privacy-policy-2", "/terms-conditions"].includes(pathname),
