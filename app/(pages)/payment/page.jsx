@@ -244,37 +244,37 @@ const Payment = () => {
                     loading="lazy"
                     className="h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/paypal.svg"
-                    alt=""
+                    alt="paypal"
                   />
                   <img
                     loading="lazy"
                     className="hidden h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/paypal-dark.svg"
-                    alt=""
+                    alt="paypal gary"
                   />
                   <img
                     loading="lazy"
                     className="h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/visa.svg"
-                    alt=""
+                    alt="VISA"
                   />
                   <img
                     loading="lazy"
                     className="hidden h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/visa-dark.svg"
-                    alt=""
+                    alt="VISA gray"
                   />
                   <img
                     loading="lazy"
                     className="h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/mastercard.svg"
-                    alt=""
+                    alt="MasterCard"
                   />
                   <img
                     loading="lazy"
                     className="hidden h-8 w-auto "
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/mastercard-dark.svg"
-                    alt=""
+                    alt="MasterCard gray"
                   />
                 </div>
               </div>

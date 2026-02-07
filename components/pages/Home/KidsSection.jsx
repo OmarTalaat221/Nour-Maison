@@ -98,6 +98,7 @@ export default function NourKidsMenuHero({
                 playsInline
                 preload="metadata"
                 loop
+                muted
                 onLoadedData={() => setLoaded(true)}
                 />
                 </Link>

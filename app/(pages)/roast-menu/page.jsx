@@ -14,6 +14,7 @@ const title =
   "Roast Dinner Menu | Nour Maison Café – A Sunday Ritual with Arabic Flair";
 const description =
   "Discover Nour Maison Café's Roast Dinner Menu — where Arabic spice meets French finesse to reimagine the classic British roast. Halal-friendly, locally sourced ingredients, and a soulful Sunday dining ritual in Egypt.";
+  const ogImage = `${siteUrl}/images/rc.webp`; 
 
 export const metadata = {
 
@@ -53,16 +54,17 @@ export const metadata = {
     title,
     description,
     siteName: "Nour Maison Café",
-    locale: "en_US",
+    locale: "en_GB", // ✅ UK
     images: [
       {
-        url: "/images/rc.webp", // لازم يكون قابل للوصول
+        url: ogImage, // ✅ absolute
         width: 1200,
         height: 630,
         alt: "Nour Maison Café roast dinner menu board with Sunday roast dishes",
       },
     ],
   },
+
 
   twitter: {
     card: "summary_large_image",

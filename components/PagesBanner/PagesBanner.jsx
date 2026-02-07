@@ -174,8 +174,7 @@ const PagesBanner = ({
           <SwiperSlide className=" flex h-full items-center justify-center relative">
             <div className="banner_swiper h-full">
               <div className="relative h-full  !w-full">
-                {/* {detectMediaType(item) == "image" ? ( */}
-                {true ? (
+                {detectMediaType(item) == "image" ? (
                   <motion.img
                     fetchPriority="high"
                     loading="lazy"

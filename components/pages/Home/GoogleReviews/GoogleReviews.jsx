@@ -75,7 +75,7 @@ const GoogleReviews = () => {
           data-aos="fade-up"
           data-aos-delay={100}
         >
-          {reviews?.map((rev, idx) => (
+          {reviews.reverse()?.map((rev, idx) => (
             <SwiperSlide key={idx} className="py-10 !h-full">
               <ReviewCard data={rev} />
             </SwiperSlide>

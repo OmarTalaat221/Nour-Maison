@@ -94,7 +94,7 @@ const MenuClient = () => {
                         loading="lazy"
                         className="!object-contain !w-full "
                         src={item}
-                        alt=""
+                        alt={`menu gallery ${index}`}
                       />
                     </a>
                   </SwiperSlide>
@@ -161,6 +161,7 @@ const MenuClient = () => {
               {menus2.map((item, index) => {
                 return (
                   <SwiperSlide
+                    key={index}
                     href={item}
                     data-fancybox="gallery"
                     className=" !w-full overflow-hidden "
@@ -170,7 +171,7 @@ const MenuClient = () => {
                         loading="lazy"
                         className="!object-contain !w-full "
                         src={item}
-                        alt=""
+                        alt={`menu-gallery-image-${index}`}
                       />
                     </a>
                   </SwiperSlide>

@@ -8,7 +8,7 @@ import { Autoplay, EffectCreative, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-creative";
 
-const AboutUsSwiper = ({images}) => {
+const AboutUsSwiper = ({ images }) => {
   return (
     <Swiper
       style={{
@@ -29,7 +29,7 @@ const AboutUsSwiper = ({images}) => {
       loop={true}
       autoplay={{ delay: 2000 }}
       className="mySwiper3"
-      // pagination={true}
+    // pagination={true}
     >
       {images.map((img, index) => (
         <SwiperSlide
@@ -39,7 +39,7 @@ const AboutUsSwiper = ({images}) => {
           // }}
           className=""
         >
-          <img loading="lazy" className="!w-full !h-full object-cover" src={img} alt="" />
+          <img loading="lazy" className="!w-full !h-full object-cover" src={img} alt={`about-nour-maison-${index}`} />
         </SwiperSlide>
       ))}
     </Swiper>

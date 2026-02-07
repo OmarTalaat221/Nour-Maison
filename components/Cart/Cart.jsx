@@ -125,7 +125,7 @@ const Cart = ({ openCart, setOpenCart }) => {
                 <img
                   loading="lazy"
                   src="https://res.cloudinary.com/dkc5klynm/image/upload/v1737892997/NOUR--_pltc7r.png"
-                  alt=""
+                  alt="Nour maison logo white"
                   className="w-[60px]"
                 />
               )}
@@ -175,7 +175,7 @@ const Cart = ({ openCart, setOpenCart }) => {
                       // whileDrag={{scale: 0.95}}
                     >
                       <div className="prod_image">
-                        <img loading="lazy" src={prod.images[0]} alt="" />
+                        <img loading="lazy" src={prod.images[0]} alt={ `product-cart-${prod.id}` } />
                       </div>
                       <div className="prod_data flex-grow flex flex-col justify-between">
                         <h6 className="text-white  m-0 font-oswald font-normal ">
@@ -211,7 +211,7 @@ const Cart = ({ openCart, setOpenCart }) => {
                 <img
                   loading="lazy"
                   src="https://res.cloudinary.com/dkc5klynm/image/upload/v1737892997/NOUR--_pltc7r.png"
-                  alt=""
+                  alt="nour maison logo white"
                   className="w-[100px]"
                 />
                 <p className="!text-white font-tangerine text-center text-5xl">

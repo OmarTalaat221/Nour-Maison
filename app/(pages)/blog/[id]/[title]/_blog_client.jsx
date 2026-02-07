@@ -117,7 +117,7 @@ const BlogClient = ({ data, blogsData, id , title }) => {
               <img
                 className="w-full rounded-xl"
                 src={data.image}
-                alt=""
+                alt={data?.title || "blog title"}
                 />
                 </div>
               <div className="flex flex-col gap-4">
@@ -144,7 +144,7 @@ const BlogClient = ({ data, blogsData, id , title }) => {
                         <img
                           src={data?.image}
                           className="!w-full !h-full object-cover !object-center "
-                          alt=""
+                          alt={data.title}
                         />
                       </div>
                       <div className="flex flex-col gap-2 justify-center">

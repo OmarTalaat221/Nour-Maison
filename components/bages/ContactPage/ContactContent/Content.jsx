@@ -17,7 +17,7 @@ const ContactContent = () => {
   return (
     <section id="contact" className="py-10 ">
       <div className="mb-[40px] text-goldenOrange text-4xl md:text-6xl font-bold font-tangerine text-center">
-        Need Help? Contact Us Today!  
+        Need Help? Contact Us Today <span className="font-oswald">!</span>
       </div>
       <div
         id="map"

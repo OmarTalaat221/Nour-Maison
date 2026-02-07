@@ -170,7 +170,7 @@ const ShippingCart = () => {
                                 <img
                                   loading="lazy"
                                   src={prod.images[0]}
-                                  alt=""
+                                  alt={prod.name}
                                 />
                               </div>{" "}
                               <div className="prod_data flex-grow flex flex-col justify-between">

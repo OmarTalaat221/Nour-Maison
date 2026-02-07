@@ -86,7 +86,7 @@ const Framer_gallery = ({open, setOpen, start = 0, images}) => {
             src={images[imageIndex]}
             custom={direction}
             variants={variants}
-            alt=""
+            alt={`nour-image`}
             initial='enter'
             animate='center'
             exit='exit'

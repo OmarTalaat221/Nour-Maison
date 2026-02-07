@@ -2007,7 +2007,6 @@ export default function Home() {
           title="Roasted to Perfection. Crafted to Impress"
           subTitle={
             <>
-              {" "}
               Discover our signature roast lineup , bold flavors, slow{" "}
               <span className="font-lato">-</span> cooked artistry.
             </>

@@ -3,52 +3,70 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import NourKidsMenuHero from "../../../components/pages/Home/KidsSection";
 
 // ✅ SEO Metadata for Nour Maison Kids Menu
+const OG_IMAGE = "/images/kids menu .jpeg"
+// لو عندك صورة kids فعلًا على Cloudinary حطها بدل اللي فوق بنفس التحويلة
+
 export const metadata = {
-  title:
-    "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+  metadataBase: new URL("https://www.nourmaison.co.uk"),
+
+  title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
   description:
-    "Explore Nour Maison’s Kids Menu – delicious, healthy, and fun meals crafted with love for your little ones. Fresh ingredients, kid-friendly portions, and a family-friendly café experience in Egypt.",
+    "Explore Nour Maison’s Kids Menu – delicious, healthy, and fun meals crafted with love for your little ones. Fresh ingredients, kid-friendly portions, and a family-friendly café experience.",
+
   keywords: [
     "Nour Maison kids menu",
-    "kids menu Egypt",
-    "children food café",
+    "kids menu",
+    "family friendly cafe",
     "healthy kids meals",
-    "family restaurant menu",
-    "kid friendly café",
-    "Nour Maison restaurant",
-    "pistachio café menu",
-    "kids friendly restaurant in Egypt",
-    "children meals nour maison",
+    "kid friendly cafe",
+    "children meals",
+    "Milton Keynes kids menu",
+    "halal kids menu",
   ],
+
+  alternates: {
+    canonical: "https://www.nourmaison.co.uk/kids-menu",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
-    title:
-      "Nour Maison Kids Menu | Healthy & Fun Meals for Little Foodies in Egypt",
-    description:
-      "A playful, healthy and delicious kids menu at Nour Maison Café – mini mains, pancakes, waffles, nuggets, juices and more for your little foodies.",
     type: "website",
-    // 👉 Replace with your real production URL
     url: "https://www.nourmaison.co.uk/kids-menu",
     siteName: "Nour Maison Café",
+    title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+    description:
+      "A playful, healthy and delicious kids menu at Nour Maison Café – mini mains, pancakes, waffles, nuggets, juices and more for little foodies.",
+    locale: "en_GB",
     images: [
       {
-        url: "/images/kids.png",
+        url: OG_IMAGE, // ✅ absolute + 1200x630
         width: 1200,
         height: 630,
-        alt: "Nour Maison Kids Menu – happy children enjoying food",
+        alt: "Nour Maison Kids Menu",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title:
-      "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+    title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
     description:
       "Discover Nour Maison’s Kids Menu with fun, balanced meals and drinks crafted especially for kids.",
-    images: ["/images/kids.png"],
+    images: [OG_IMAGE],
   },
-  alternates: {
-    canonical: "https://www.nourmaison.co.uk/kids-menu", // 👈 استبدلها بالدومين الفعلي
-  },
+
+  category: "Menu",
 };
 
 const KidsMenu = () => {
