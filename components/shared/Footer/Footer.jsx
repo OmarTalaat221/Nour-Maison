@@ -217,9 +217,11 @@ const Footer = () => {
           </div>
         </div>
         <img
-          src="/images/BUNNER NOUR (8).png"
-          className="   absolute right-0 !bottom-[-50px]  "
-          alt=""
+          src="/images/footer-branch.png"
+          className="   absolute opacity-30 right-0 !bottom-[-50px]  "
+          alt="Decorative branch illustration"
+          loading="lazy"
+
         />
       </div>
 

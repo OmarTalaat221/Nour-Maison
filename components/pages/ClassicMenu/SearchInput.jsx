@@ -158,7 +158,6 @@ const SearchInput = ({ onChange, value, onAllergenChange, allergenValue }) => {
       setSelectedAllergens(
         selectedAllergens.filter((allergen) => allergen !== value)
       );
-
       onAllergenChange(
         selectedAllergens.filter((allergen) => allergen !== value)
       );

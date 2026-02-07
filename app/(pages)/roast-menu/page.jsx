@@ -6,8 +6,8 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
 import Script from "next/script";
 
-const siteUrl = "https://nourmaison.com"; // <-- غيّره للدومين الحقيقي
-const pathname = "/roast-dinner"; // <-- غيّره للمسار الحقيقي
+const siteUrl = "https://www.nourmaison.co.uk"; // <-- غيّره للدومين الحقيقي
+const pathname = "/roast-menu"; // <-- غيّره للمسار الحقيقي
 const url = `${siteUrl}${pathname}`;
 
 const title =
@@ -16,7 +16,6 @@ const description =
   "Discover Nour Maison Café's Roast Dinner Menu — where Arabic spice meets French finesse to reimagine the classic British roast. Halal-friendly, locally sourced ingredients, and a soulful Sunday dining ritual in Egypt.";
 
 export const metadata = {
-  metadataBase: new URL(siteUrl),
 
   title,
   description,

@@ -201,7 +201,7 @@ const structuredData = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: "Nour Maison",
-    url: "https://www.nourmaison.com",
+    url: "https://www.nourmaison.co.uk",
     logo: "https://www.nourmaison.co.uk/logo.png",
     image: [
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
@@ -215,7 +215,7 @@ const structuredData = {
       addressCountry: "GB",
     },
     servesCuisine: ["French", "Brunch", "Middle Eastern"],
-    menu: "https://www.nourmaison.com/menu",
+    menu: "https://www.nourmaison.co.uk/menu",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
