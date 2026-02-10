@@ -5,9 +5,7 @@ const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/
 export const metadata = {
 
   title: "Services And Events | Nour Maison – Private Events, Celebrations & Gatherings",
-  description:
-    "Host your next event at Nour Maison in Milton Keynes — private celebrations, birthdays, corporate gatherings, and special moments with halal-friendly French & Middle Eastern flavors.",
-
+  description: `Host birthdays or corporate events at Nour Maison Milton Keynes—halal-friendly French & Middle Eastern flavours.`,
   keywords: [
     "Nour Maison services",
     "Nour Maison events",

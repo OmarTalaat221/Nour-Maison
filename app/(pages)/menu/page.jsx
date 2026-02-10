@@ -22,7 +22,7 @@ export const metadata = {
   ],
 
   alternates: {
-    canonical: "/menu",
+    canonical: "https://www.nourmaison.co.uk/menu",
   },
 
   robots: {
@@ -39,7 +39,7 @@ export const metadata = {
 
   openGraph: {
     type: "website",
-    url: "/menu",
+    url: "https://www.nourmaison.co.uk/menu",
     siteName: "Nour Maison Cafe",
     title: "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
     description:

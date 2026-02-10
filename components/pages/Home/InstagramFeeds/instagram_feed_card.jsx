@@ -2,6 +2,7 @@
 
 import React, { useMemo } from "react";
 import cx from "classnames";
+import Link from "next/link";
 
 const Instagram_feed_card = ({ data = {}, index = 0, ...props }) => {
   const hasText = useMemo(() => Boolean(String(data?.text || "").trim()), [data?.text]);
@@ -12,6 +13,7 @@ const Instagram_feed_card = ({ data = {}, index = 0, ...props }) => {
   };
 
   return (
+    <Link href={data?.link || "#"}>
     <button
       type="button"
       onClick={handleOpen}
@@ -60,6 +62,7 @@ const Instagram_feed_card = ({ data = {}, index = 0, ...props }) => {
         )}
       </div>
     </button>
+    </Link>
   );
 };
 

@@ -10,11 +10,9 @@ const siteUrl = "https://www.nourmaison.co.uk"; // <-- غيّره للدومين
 const pathname = "/roast-menu"; // <-- غيّره للمسار الحقيقي
 const url = `${siteUrl}${pathname}`;
 
-const title =
-  "Roast Dinner Menu | Nour Maison Café – A Sunday Ritual with Arabic Flair";
-const description =
-  "Discover Nour Maison Café's Roast Dinner Menu — where Arabic spice meets French finesse to reimagine the classic British roast. Halal-friendly, locally sourced ingredients, and a soulful Sunday dining ritual in Egypt.";
-  const ogImage = `${siteUrl}/images/rc.webp`; 
+const title = `Roast Dinner Menu | Nour Maison Café And Brasserie`
+const description = `Nour Maison Café: halal Sunday roast in Egypt—Arabic spices, French finesse, locally sourced ingredients.`
+const ogImage = `${siteUrl}/images/rc.webp`;
 
 export const metadata = {
 

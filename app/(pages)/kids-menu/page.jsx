@@ -10,9 +10,7 @@ export const metadata = {
   metadataBase: new URL("https://www.nourmaison.co.uk"),
 
   title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
-  description:
-    "Explore Nour Maison’s Kids Menu – delicious, healthy, and fun meals crafted with love for your little ones. Fresh ingredients, kid-friendly portions, and a family-friendly café experience.",
-
+  description: `Nour Maison’s Kids Menu: fresh, healthy, and fun meals for children, with kid-sized portions and a family-friendly café atmosphere.`,
   keywords: [
     "Nour Maison kids menu",
     "kids menu",

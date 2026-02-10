@@ -1,5 +1,8 @@
-import React from "react";
 import StorePage from "./_Store_Client";
+
+const SITE_URL = "https://www.nourmaison.co.uk";
+const PAGE_URL = `${SITE_URL}/store`;
+const OG_IMAGE = `${SITE_URL}/og/store.jpg`; // <- change to your real image
 
 // metadata
 export const metadata = {
@@ -60,8 +63,41 @@ export const metadata = {
     "gift a halal brunch experience",
     "shop halal gifts online UK",
   ],
+
   alternates: {
-    canonical: "https://www.nourmaison.co.uk/store",
+    canonical: PAGE_URL,
+  },
+
+  openGraph: {
+    title: "Store & Gift Cards – Nour Maison",
+    description:
+      "Shop artisanal gifts or send halal dining vouchers in Milton Keynes with Nour Maison gift cards.",
+    url: PAGE_URL,
+    siteName: "Nour Maison",
+    locale: "en_GB",
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Nour Maison Store & Gift Cards",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Store & Gift Cards – Nour Maison",
+    description:
+      "Shop artisanal gifts or send halal dining vouchers in Milton Keynes with Nour Maison gift cards.",
+    images: [OG_IMAGE],
+  },
+
+  // Optional extras (safe to keep)
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

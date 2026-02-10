@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 
   // ✅ Important constants (عدلهم حسب موقعك)
   const siteName = "Nour Maison Cafe";
-  const baseUrl = new URL("https://nourmaison.co.uk"); // ✅ الدومين الحقيقي بتاعك
+  const baseUrl = new URL("https://www.nourmaison.co.uk"); // ✅ الدومين الحقيقي بتاعك
   const canonicalPath = `/blog/${id}/${titleParam}`;   // عدّل المسار حسب روتنج موقعك
 
   try {
@@ -138,7 +138,7 @@ export async function generateMetadata({ params }) {
   } catch (e) {
     // ✅ fallback safe metadata on any error
     return {
-      metadataBase: new URL("https://nourmaison.co.uk"),
+      metadataBase: new URL("https://www.nourmaison.co.uk"),
       title: "Nour Maison Cafe Blog",
       description: "Read the latest updates and stories from Nour Maison Cafe.",
       robots: { index: false, follow: true },

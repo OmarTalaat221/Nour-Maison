@@ -13,6 +13,7 @@ import {
 import StyledBackground from "../../../utils/Styled Background/StyledBackground";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   const router = useRouter();
@@ -178,37 +179,38 @@ const Footer = () => {
           </div>
           <div className="foot_terms font-tangerine ">
             {navItems.map((item) => (
-              <div
+              <Link
+                href={item.path}
                 key={item.path}
                 className={`foot_term_ele fonst !text-logoGold  hover:!text-white ${pathname === item.path ? "active !text-white" : ""
                   }`}
-                onClick={() => navigate(item.path)}
               >
                 {item.label}
-              </div>
+              </Link>
             ))}
           </div>
 
           <div className="foot_privacy " >
             <div className="pb-[15px]  text-[12px] flex justify-center font-[400] gap-2">
-              <span
-                className="cursor-pointer text-2xl "
-                onClick={() => navigate("/privacy-policy-2")}
+              <Link
+                href={"/privacy-policy-2"}
+                className="cursor-pointer text-2xl text-goldenOrange hover:text-logoGold hover:no-underline "
               >
                 Privacy Policy
-              </span>{" "}
+              </Link>{" "}
               <span>|</span>{" "}
-              <span
-                className="cursor-pointer text-2xl"
+              <Link
+              href={"/cookie-policy-2"}
+                className="cursor-pointer text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
                 onClick={() => navigate("/terms-conditions")}
               >
                 Terms & Conditions
-              </span>
+              </Link>
             </div>
             <div className="flex flex-col gap-[2px]">
               <div className=" text-[12px] flex justify-center font-[400]">
                 Developed & Designed By{" "}
-                <span className="font-bold ml-[4px]"> Camp Coding</span>
+                <Link href={"https://www.facebook.com/campcoding/"} target="_blank" className="font-bold ml-[4px] text-[#091639] hover:scale-105 hover:text-logoGold"> Camp Coding</Link>
               </div>
               <div className=" text-[12px] flex justify-center font-[400]">
                 All Rights Reserved © Copyrights By Nour Maison Cafe

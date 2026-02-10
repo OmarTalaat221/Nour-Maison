@@ -39,7 +39,7 @@ export const metadata = {
 
   openGraph: {
     type: "website",
-    url: "https://www.nourmaison.co.uk/menu",
+    url: "https://www.nourmaison.co.uk/menu-gallery",
     siteName: "Nour Maison Cafe",
     title: "Dessert Menu | Nour Maison – Halal Sweets in Milton Keynes",
     description:
