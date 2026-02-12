@@ -6,6 +6,7 @@ import BookingConent from "../../../components/pages/Booking/BookingContent";
 const OG_IMAGE =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1770471922/96cb5bb4-29e3-410f-ad35-69dd1cbdd203.png";
 
+  
 //metadata
 export const metadata = {
   title: "Book a Table | NOUR MAISON Restaurant & Café",
