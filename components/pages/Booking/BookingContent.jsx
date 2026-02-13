@@ -93,42 +93,30 @@ const BookingConent = ({bg}) => {
     // this code is for sunday's party 🥳
     //from 2 pm to 10 pm
 
-    const nowAllowdTimes = [
+    const valentineBlockedTimes = [
+      "11:00 AM",
+      "11:15 AM",
+      "11:30 AM",
+      "11:45 AM",
+      "12:00 PM",
+      "12:15 PM",
+      "12:30 PM",
+      "12:45 PM",
+      "01:00 PM",
+      "01:15 PM",
+      "01:30 PM",
+      "01:45 PM",
       "02:00 PM",
       "02:15 PM",
       "02:30 PM",
       "02:45 PM",
-      "03:00 PM",
-      "03:15 PM",
-      "03:30 PM",
-      "03:45 PM",
-      "04:00 PM",
-      "04:15 PM",
-      "04:30 PM",
-      "04:45 PM",
-      "05:00 PM",
-      "05:15 PM",
-      "05:30 PM",
-      "05:45 PM",
-      "06:00 PM",
-      "06:15 PM",
-      "06:30 PM",
-      "06:45 PM",
-      "07:00 PM",
-      "07:15 PM",
-      "07:30 PM",
-      "07:45 PM",
-      "08:00 PM",
-      "08:15 PM",
-      "08:30 PM",
-      "08:45 PM",
-      "09:00 PM",
-      "09:15 PM",
-      "09:30 PM",
     ];
+    
+    
+
     if (
-      dataset.date === "2025-06-29" &&
-      nowAllowdTimes.includes(dataset.time)
+      dataset.date === "2026-02-14" &&
+      valentineBlockedTimes.includes(dataset.time)
     ) {
       setBusyModal(true);
       return;
@@ -554,13 +542,10 @@ const BookingConent = ({bg}) => {
           message={
             <>
               <p className="text-lg text-slate-600">
-                We’re currently experiencing limited availability due to a
-                private party event on Sunday.{" "}
+              Due to Valentine’s Day, we’re fully booked between 11:00 AM and 03:00 PM.
               </p>
               <p className="text-lg text-slate-600 mt-5">
-                We kindly ask that you make a booking
-                <span className="text-logoGold"> Tomorrow</span>. We’ll be happy
-                to assist you then.
+              Please choose a time outside this window to continue your booking.
               </p>
               <p className="text-lg text-black">
                 Thank you for your patience and understanding.
