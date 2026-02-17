@@ -200,7 +200,7 @@ const Footer = () => {
               </Link>{" "}
               <span>|</span>{" "}
               <Link
-              href={"/cookie-policy-2"}
+              href={"/terms-conditions"}
                 className="cursor-pointer text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
                 onClick={() => navigate("/terms-conditions")}
               >
