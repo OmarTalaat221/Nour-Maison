@@ -404,8 +404,7 @@ const RamadanIftarMenuPage = () => {
         id="ramadan-iftar-menu"
         className="w-full relative py-20 sm:py-28 md:py-36 mt-[-80px] sm:mt-[-100px] md:mt-[-120px] z-10 overflow-hidden"
         style={{
-          background:
-            "url('https://res.cloudinary.com/dkc5klynm/image/upload/v1771510442/Pattern_fia8ft.webp')",
+          background: "url('/images/rd bg paper texture.webp')",
           backgroundSize: "cover",
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",

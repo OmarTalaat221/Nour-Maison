@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-// import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
 
 export default function VideoBanner() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
   const textMessages = [
-    // "Christmas 2026 at Nour Maison A Pistachio Wonderland",
-    "Welcome to Nour Maiosn",
+    "Welcome to Nour Maison",
     "Bringing French & Mediterranean Cuisine",
     "Step Inside Nour Maison",
     "Dream. Build. Launch.",
@@ -40,7 +38,7 @@ export default function VideoBanner() {
         className="absolute inset-0 w-full h-full object-cover opacity-70"
       >
         <source
-          src="/images/At Nour Maison, every mood has a flavour 👌🏻Whether you’re into classic comfort or bold new tas.mp4"
+          src="/images/At Nour Maison, every mood has a flavour 👌🏻Whether you're into classic comfort or bold new tas.mp4"
           type="video/mp4"
         />
       </video>
@@ -74,7 +72,7 @@ export default function VideoBanner() {
                 : "opacity-0 -translate-y-8 scale-95"
             }`}
           >
-            <span className="bg-gradient-to-r from-softMintGreen  via-pestachio2 to-sageGreen bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-softMintGreen via-pestachio2 to-sageGreen bg-clip-text text-transparent animate-gradient">
               {textMessages[currentTextIndex]}
             </span>
           </h1>
@@ -101,17 +99,46 @@ export default function VideoBanner() {
           >
             About Us
           </Link>
-          <Link
-            href="/about-us"
-            className="!rounded-full overflow-hidden drop-shadow-2xl shadow-2xl"
-          >
-          
-          
-            {/* <CristmasMenuButton /> */}
-          </Link>
         </div>
 
-        {/* Floating Elements */}
+        {/* ✅ Ramadan Iftar Button */}
+        <div className="mt-6">
+          <Link
+            href="/ramadan-iftar-menu-milton-keynes"
+            className="ramadan-btn group relative inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-goldenOrange to-[#e5a93d] rounded-full font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(221,153,51,0.5)] border border-white/20"
+          >
+            {/* NEW Badge */}
+            <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-white text-goldenOrange text-[10px] sm:text-xs font-bold rounded-full shadow-lg animate-pulse">
+              NEW
+            </span>
+
+            {/* Crescent Moon Icon */}
+            <svg
+              className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:rotate-12"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+            </svg>
+
+            {/* Button Text */}
+            <span className="relative z-10 text-sm sm:text-base">
+              Ramadan Iftar Menu
+            </span>
+
+            {/* Star Icon */}
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-125"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700" />
+          </Link>
+        </div>
       </div>
 
       {/* Progress Indicator */}
@@ -157,6 +184,35 @@ export default function VideoBanner() {
         .animate-gradient {
           background-size: 200% auto;
           animation: gradient 3s ease infinite;
+        }
+
+        /* ✅ Ramadan Button Shimmer */
+        .ramadan-btn::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          animation: ramadanShimmer 2.5s infinite;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        @keyframes ramadanShimmer {
+          0% {
+            left: -100%;
+          }
+          60%,
+          100% {
+            left: 100%;
+          }
         }
       `}</style>
     </div>
