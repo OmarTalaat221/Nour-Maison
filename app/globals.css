@@ -129,7 +129,8 @@
 }
 
 .button-border-anime:focus .txt-upload::after {
-  animation: 0.66666s anim step-end forwards,
+  animation:
+    0.66666s anim step-end forwards,
     1.33333s 0.6666s anim2 linear infinite alternate;
 }
 
@@ -196,7 +197,7 @@ body {
   background-image: url("./../public/images/background.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover ;
+  background-size: cover;
   background-attachment: fixed;
 }
 
@@ -476,4 +477,35 @@ input[type="number"] {
   object-fit: cover;
   z-index: 1;
   background-color: #313131 ba;
+}
+
+/* Lantern Animations */
+@keyframes lanternSwing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes lanternSwingSlow {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.lantern-swing {
+  animation: lanternSwing 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.lantern-swing-slow {
+  animation: lanternSwingSlow 5s ease-in-out infinite;
+  transform-origin: top center;
 }

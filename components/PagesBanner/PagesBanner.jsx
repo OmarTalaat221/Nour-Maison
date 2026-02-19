@@ -111,7 +111,7 @@ const PagesBanner = ({
   return (
     <div className="!bg-fixed h-[500px]  md:h-[600px] relative ">
       <Swiper
-        modules={[Navigation, EffectFade, Pagination, Autoplay, Parallax]}
+        modules={[Navigation, EffectFade, Pagination, Parallax, Autoplay]}
         effect="fade"
         centeredSlides={true}
         parallax={true} // Enable parallax effect

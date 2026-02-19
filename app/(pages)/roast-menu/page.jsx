@@ -10,12 +10,11 @@ const siteUrl = "https://www.nourmaison.co.uk"; // <-- غيّره للدومين
 const pathname = "/roast-menu"; // <-- غيّره للمسار الحقيقي
 const url = `${siteUrl}${pathname}`;
 
-const title = `Roast Dinner Menu | Nour Maison Café And Brasserie`
-const description = `Nour Maison Café: halal Sunday roast in Egypt—Arabic spices, French finesse, locally sourced ingredients.`
+const title = `Roast Dinner Menu | Nour Maison Café And Brasserie`;
+const description = `Nour Maison Café: halal Sunday roast in Egypt—Arabic spices, French finesse, locally sourced ingredients.`;
 const ogImage = `${siteUrl}/images/rc.webp`;
 
 export const metadata = {
-
   title,
   description,
 
@@ -62,7 +61,6 @@ export const metadata = {
       },
     ],
   },
-
 
   twitter: {
     card: "summary_large_image",
@@ -119,10 +117,10 @@ const RoastDinnerMenuPage = () => {
       <PagesBanner
         bottomBg={false}
         images={[
-          "/images/download (1).jfif",
-          "/images/download (2).jfif",
-          "/images/download (3).jfif",
-          "/images/download (4).jfif",
+          "/images/download-_1_.jpg",
+          "/images/download-_2_.jpg",
+          "/images/download-_3_.jpg",
+          "/images/download-_4_.jpg",
         ]}
         slogan={
           <div className="text-lg md:text-2xl xl:text-3xl">

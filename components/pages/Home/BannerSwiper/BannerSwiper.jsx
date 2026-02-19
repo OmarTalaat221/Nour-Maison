@@ -101,7 +101,7 @@ const BannerSwiper = () => {
 
       <div className="w-full h-full  relative ">
         <Swiper
-          modules={[EffectCoverflow, Navigation, Autoplay]}
+          modules={[EffectCoverflow, Navigation]}
           effect="coverflow"
           coverflowEffect={{
             // rotate: 30, // Rotation angle
@@ -179,6 +179,56 @@ const BannerSwiper = () => {
             //   ),
             // },
 
+            // ✅ سلايد رمضان الجديد 🌙
+            {
+              image: "/images/nnour polaraid pics_1_11zon.webp", // ← نفس ستايل الروست أو غيرها لصورة رمضان polaroid
+              content: (
+                <div className="relative">
+                  <motion.h1
+                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
+                    variants={childVariants}
+                  >
+                    Ramadan 2026 at Nour Maison
+                  </motion.h1>
+
+                  <motion.strong
+                    style={{
+                      textShadow: "0 0 12px #5B562D",
+                    }}
+                    className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
+                    variants={textRevealVariants}
+                  >
+                    Iftar Menu
+                  </motion.strong>
+
+                  <motion.p
+                    className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
+                    variants={childVariants}
+                  >
+                    A soulful 5-course Iftar where Middle Eastern tradition
+                    meets French elegance. Served at Maghrib.
+                  </motion.p>
+
+                  <div className="w-fit mt-6">
+                    <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg">
+                        <rect
+                          className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+                          pathLength={100}
+                        />
+                      </svg>
+                      <Link
+                        href={"/ramadan-iftar-menu-milton-keynes"}
+                        className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
+                      >
+                        Iftar Menu
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              ),
+            },
+
             {
               image:
                 "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
@@ -206,7 +256,7 @@ const BannerSwiper = () => {
                     variants={childVariants}
                   >
                     Where French sophistication meets the bold, vibrant flavors
-                    of the Middle East
+                    of the Middle East
                   </motion.p>
                 </>
               ),
@@ -351,7 +401,10 @@ const BannerSwiper = () => {
               ),
             },
           ].map((item, index) => (
-            <SwiperSlide className=" flex items-center justify-center relative">
+            <SwiperSlide
+              key={index}
+              className=" flex items-center justify-center relative"
+            >
               <div className="banner_swiper min-h-lvh">
                 <div className="relative flex items-center  !w-full !h-full">
                   {/* <div className='absolute inset-0 bg-black bg-opacity-[.3]'></div> */}

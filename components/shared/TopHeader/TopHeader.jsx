@@ -25,6 +25,12 @@ const TopHeader = () => {
         { id: 2, name: "Menu Gallery ", path: "/menu-gallery" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        {
+          id: 5,
+          name: "Ramadan Iftar Menu ",
+          path: "/ramadan-iftar-menu-milton-keynes",
+          new: true,
+        },
         // { id: 5, name: "Christmas Menu ", path: "/christmas-menu", new: true },
       ],
     },
@@ -63,7 +69,7 @@ const TopHeader = () => {
               <Link
                 href="/"
                 className="block text-teal-600 cursor-pointer"
-              // onClick={() => navigate("/")}
+                // onClick={() => navigate("/")}
               >
                 <span className="sr-only ">Home</span>
                 <Image
@@ -92,10 +98,10 @@ const TopHeader = () => {
                             href={item.path}
                             className={cx(
                               "group relative no-underline hover:no-underline inline-flex items-center px-1 py-2 !font-seasons font-semibold tracking-[0.25em] text-white " +
-                              "text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] " +
-                              "transition-all duration-300 ease-out " +
-                              "hover:-translate-y-[2px] hover:tracking-[0.32em] hover:text-white " +
-                              "active:translate-y-0",
+                                "text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] " +
+                                "transition-all duration-300 ease-out " +
+                                "hover:-translate-y-[2px] hover:tracking-[0.32em] hover:text-white " +
+                                "active:translate-y-0",
                               { "!text-goldenOrange": pathname == item?.path }
                             )}
                           >
@@ -115,13 +121,15 @@ const TopHeader = () => {
                             <span
                               className={cx(
                                 "pointer-events-none absolute left-1/2 bottom-1 h-[2px] w-0 -translate-x-1/2 rounded-full " +
-                                "bg-gradient-to-r from-transparent via-white/90 to-transparent " +
-                                "transition-all duration-300 group-hover:w-[120%]",
-                                { "via-[#D59A3B] w-[120%]": pathname == item?.path } // optional golden when active
+                                  "bg-gradient-to-r from-transparent via-white/90 to-transparent " +
+                                  "transition-all duration-300 group-hover:w-[120%]",
+                                {
+                                  "via-[#D59A3B] w-[120%]":
+                                    pathname == item?.path,
+                                } // optional golden when active
                               )}
                             />
                           </Link>
-
                         ) : (
                           <Dropdown
                             renderToggle={(props, ref) => (
@@ -130,12 +138,14 @@ const TopHeader = () => {
                                 ref={ref}
                                 className={cx(
                                   "group relative inline-flex items-center gap-2 px-1 py-2 cursor-pointer " +
-                                  "!font-seasons font-semibold tracking-[0.25em] text-white " +
-                                  "text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] " +
-                                  "transition-all duration-300 ease-out " +
-                                  "hover:-translate-y-[2px] hover:tracking-[0.32em] hover:text-white",
+                                    "!font-seasons font-semibold tracking-[0.25em] text-white " +
+                                    "text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] " +
+                                    "transition-all duration-300 ease-out " +
+                                    "hover:-translate-y-[2px] hover:tracking-[0.32em] hover:text-white",
                                   {
-                                    "!text-goldenOrange": pathname == "/menu" || pathname == "/menu-gallery",
+                                    "!text-goldenOrange":
+                                      pathname == "/menu" ||
+                                      pathname == "/menu-gallery",
                                   }
                                 )}
                               >
@@ -158,15 +168,19 @@ const TopHeader = () => {
                                 {/* underline */}
                                 <span className="pointer-events-none absolute left-1/2 bottom-1 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-white/90 to-transparent transition-all duration-300 group-hover:w-[120%]" />
                               </div>
-
                             )}
                           >
                             {item.items.map((subItem) => (
-                              <Dropdown.Item key={subItem.id} className="relative !p-0">
+                              <Dropdown.Item
+                                key={subItem.id}
+                                className="relative !p-0"
+                              >
                                 <Link
                                   href={subItem.path}
-                                  className={"group flex items-center justify-between gap-4 px-4 py-3 text-black no-underline hover:no-underline " +
-                                    "transition-all duration-200 hover:bg-black/5"}
+                                  className={
+                                    "group flex items-center justify-between gap-4 px-4 py-3 text-black no-underline hover:no-underline " +
+                                    "transition-all duration-200 hover:bg-black/5"
+                                  }
                                 >
                                   <span className="transition-transform duration-200 group-hover:translate-x-1">
                                     {subItem.name}
@@ -179,7 +193,6 @@ const TopHeader = () => {
                                   )}
                                 </Link>
                               </Dropdown.Item>
-
                             ))}
                           </Dropdown>
                         )}
@@ -192,9 +205,7 @@ const TopHeader = () => {
             <div className="hidden lg:flex  gap-3">
               {/* <CristmasMenuButton /> */}
               <Link href={"/booking"}>
-                <AnimButton
-                  text={"BOOK NOW"}
-                />
+                <AnimButton text={"BOOK NOW"} />
               </Link>
             </div>
           </div>

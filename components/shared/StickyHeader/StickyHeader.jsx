@@ -48,6 +48,12 @@ const StickyHeader = ({ open, setOpen }) => {
         { id: 2, name: "Menu Gallery ", path: "menu" },
         { id: 3, name: "Kids Menu ", path: "/kids-menu" },
         { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        {
+          id: 5,
+          name: "Ramadan Iftar Menu ",
+          path: "/ramadan-iftar-menu-milton-keynes",
+          new: true,
+        },
         // { id: 5, name: "Christmas Menu ", path: "/christmas-menu" , new:true },
       ],
     },
@@ -163,7 +169,6 @@ const StickyHeader = ({ open, setOpen }) => {
                                   onClick={() => navigate(subItem.path)}
                                   className="relative"
                                 >
-                               
                                   {subItem.name}
                                   {subItem?.new && (
                                     <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
@@ -255,17 +260,16 @@ const StickyHeader = ({ open, setOpen }) => {
                 </nav>
               </div>
 
-               <div className=" hidden lg:flex gap-3">
+              <div className=" hidden lg:flex gap-3">
+                {/* <CristmasMenuButton/> */}
 
-              {/* <CristmasMenuButton/> */}
-
-              <button
-                className="  font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
-                onClick={() => (window.location.href = "/booking")}
+                <button
+                  className="  font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
+                  onClick={() => (window.location.href = "/booking")}
                 >
-                BOOK NOW
-              </button>
-                </div>       
+                  BOOK NOW
+                </button>
+              </div>
             </div>
           </div>
         </header>

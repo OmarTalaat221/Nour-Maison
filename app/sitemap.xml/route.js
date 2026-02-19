@@ -19,6 +19,7 @@ export async function GET() {
     "/gallery",
     "/kids-menu",
     "/roast-menu",
+    "/ramadan-iftar-menu-milton-keynes",
     // "/christmas-menu",
     "/booking",
     "/store",
@@ -45,8 +46,8 @@ export async function GET() {
         (blog) => `
         <url>
           <loc>${baseUrl}/blog/${blog.id}/${slugify(
-          blog?.keywords || blog.title
-        )}</loc>
+            blog?.keywords || blog.title
+          )}</loc>
 <lastmod>${
           blog.updated_at
             ? new Date(blog.updated_at).toISOString()
