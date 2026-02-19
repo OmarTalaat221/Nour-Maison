@@ -13,6 +13,13 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 10, name: "MENU GALLERY", path: "/menu-gallery", type: "navigate" },
     { id: 10, name: "KIDS MENU", path: "/kids-menu", type: "navigate" },
     // { id: 10, name: "CHRISTMAS MENU", path: "/christmas-menu", type: "navigate" , new:true },
+    {
+      id: 10,
+      name: "RAMADAN MENU",
+      path: "/ramadan-iftar-menu-milton-keynes",
+      type: "navigate",
+      new: true,
+    },
     { id: 4, name: "GALLERY", path: "/gallery", type: "navigate" },
     { id: 11, name: "OUR EVENTS", path: "/services", type: "navigate" },
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
@@ -93,11 +100,11 @@ const Sidebar = ({ open, setOpen }) => {
                         }}
                         className="relative"
                       >
-                          {item.new && (
-                            <span className="absolute -top-0 -right-2 bg-logoGold text-white px-2 py-1 rounded-full text-sm">
-                              NEW
-                            </span>
-                          )}
+                        {item.new && (
+                          <span className="absolute -top-0 -right-2 bg-logoGold text-white px-2 py-1 rounded-full text-sm">
+                            NEW
+                          </span>
+                        )}
                         <motion.div
                           className="text-white text-center cursor-pointer transition hover:text-white/75 whitespace-nowrap"
                           onClick={() => {

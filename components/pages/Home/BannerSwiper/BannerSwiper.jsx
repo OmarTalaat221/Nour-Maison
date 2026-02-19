@@ -90,7 +90,7 @@ const BannerSwiper = () => {
           height="900"
           key={activeIndex}
           className=" opacity-1 lg:opacity-1  !h-screen  !object-fill !w-screen    "
-          alt="Hero Image"
+          alt="Nour Maison restaurant Milton Keynes - French Middle Eastern fusion dining"
           fetchPriority="high"
           src={
             // "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
@@ -101,7 +101,7 @@ const BannerSwiper = () => {
 
       <div className="w-full h-full  relative ">
         <Swiper
-          modules={[EffectCoverflow, Navigation]}
+          modules={[EffectCoverflow, Navigation, Autoplay]}
           effect="coverflow"
           coverflowEffect={{
             // rotate: 30, // Rotation angle
@@ -134,6 +134,7 @@ const BannerSwiper = () => {
             // {
             //   image:
             //     "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
+            //   alt: "Christmas Menu 2026 at Nour Maison Milton Keynes",
             //   content: (
             //     <div className="relative">
             //       <motion.h1
@@ -183,6 +184,7 @@ const BannerSwiper = () => {
             {
               image:
                 "https://res.cloudinary.com/dkc5klynm/image/upload/v1771514629/ramadan-iftar-milton-keynes_1_hpgpls.webp",
+              alt: "Ramadan Iftar Menu Milton Keynes 2026 - Nour Maison halal iftar dining experience",
               content: (
                 <div className="relative">
                   <motion.h1
@@ -233,6 +235,7 @@ const BannerSwiper = () => {
             {
               image:
                 "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
+              alt: "Welcome to Nour Maison - French Middle Eastern fusion restaurant Milton Keynes",
               content: (
                 <>
                   <motion.h1
@@ -264,6 +267,7 @@ const BannerSwiper = () => {
             },
             {
               image: "/images/nnour polaraid pics_1_11zon.webp",
+              alt: "Halal Roast Dinner Menu Milton Keynes - Nour Maison Sunday roast with Arabic spices",
               content: (
                 <div className="relative">
                   <motion.h1
@@ -312,6 +316,7 @@ const BannerSwiper = () => {
             {
               image:
                 "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
+              alt: "Nour Maison restaurant interior - Parisian style halal restaurant Milton Keynes",
               content: (
                 <>
                   <motion.main
@@ -343,6 +348,7 @@ const BannerSwiper = () => {
             {
               image:
                 "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
+              alt: "French Mediterranean cuisine Milton Keynes - Nour Maison halal fine dining",
               content: (
                 <>
                   <motion.main
@@ -373,6 +379,7 @@ const BannerSwiper = () => {
             },
             {
               image: "/images/BUNNER NOUR (1).png",
+              alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
               content: (
                 <>
                   <motion.main
@@ -437,7 +444,7 @@ const BannerSwiper = () => {
                       loading="lazy"
                       className="absolute  top-1/2 -translate-y-1/2 right-20 !w-[100px] !h-[100px] lg:!w-[500px] lg:!h-[500px]  !object-contain  "
                       src={item?.image}
-                      alt="banner image"
+                      alt={item?.alt}
                     />
                   </div>
                 </div>

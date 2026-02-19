@@ -1,4 +1,4 @@
-// app/(whatever)/ramadan-iftar-menu-milton-keynes/page.tsx
+// app/(whatever)/ramadan-iftar-menu-milton-keynes/page.jsx
 
 import React from "react";
 import Image from "next/image";

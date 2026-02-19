@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
-import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
+
 const TopHeader = () => {
   const { isNotFound } = useNotFound();
 
@@ -31,47 +31,37 @@ const TopHeader = () => {
           path: "/ramadan-iftar-menu-milton-keynes",
           new: true,
         },
-        // { id: 5, name: "Christmas Menu ", path: "/christmas-menu", new: true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
-    // {id: 3, name: "GIFT CARDS", path: "/gift-cards", type: "navigate"},
     { id: 4, name: "GALLERY", path: "/gallery", type: "navigate" },
     { id: 5, name: "OUR EVENTS", path: "/services", type: "navigate" },
     { id: 6, name: "ABOUT US", path: "/about-us", type: "link" },
-    // {id: 6, name: "RESERVATION", path: "/", type: "navigate"},
-    // {id: 7, name: "PORTFOLIO", path: "/portfolio", type: "navigate"},
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
-    // { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
-    // { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
 
   const pathname = usePathname();
-
   const router = useRouter();
+
   const navigate = (path) => {
     router.push(path);
   };
 
   return (
-    <div className="relative !z-[99999999999] ">
+    <div className="relative z-[999999]">
       <header
-        className={cx(" absolute top-0 z-[99999999999] right-0 left-0 mt-6", {
+        className={cx("absolute top-0 z-[999999] right-0 left-0 mt-6", {
           hidden:
             isNotFound ||
             ["/privacy-policy-2", "/terms-conditions"].includes(pathname),
         })}
       >
-        <div className="  ">
-          <div className="flex  items-center justify-between px-10  ">
-            <div className=" md:flex md:items-center md:gap-12 ">
-              <Link
-                href="/"
-                className="block text-teal-600 cursor-pointer"
-                // onClick={() => navigate("/")}
-              >
-                <span className="sr-only ">Home</span>
+        <div>
+          <div className="flex items-center justify-between px-10">
+            <div className="md:flex md:items-center md:gap-12">
+              <Link href="/" className="block text-teal-600 cursor-pointer">
+                <span className="sr-only">Home</span>
                 <Image
                   style={{
                     filter: "drop-shadow(4px 2px 2px rgba(63, 63, 63, 0.63)",
@@ -82,14 +72,14 @@ const TopHeader = () => {
                   title="NOUR MAISON"
                   width={100}
                   height={100}
-                  className="w-[70px] sm:!w-[70px] md:!w-[80px] lg:!w-[100px]  "
+                  className="w-[70px] sm:!w-[70px] md:!w-[80px] lg:!w-[100px]"
                 />
               </Link>
             </div>
 
-            <div className="lg:flex md:items-center md:gap-12 hidden min-h-full   ">
+            <div className="lg:flex md:items-center md:gap-12 hidden min-h-full">
               <nav aria-label="Global" className="hidden lg:block">
-                <ul className="flex items-center gap-3  lg:gap-6  text-sm">
+                <ul className="flex items-center gap-3 lg:gap-6 text-sm">
                   {navItems.map((item, index) => {
                     return (
                       <li key={index} className={""}>
@@ -105,7 +95,6 @@ const TopHeader = () => {
                               { "!text-goldenOrange": pathname == item?.path }
                             )}
                           >
-                            {/* soft glow behind text */}
                             <span
                               className="pointer-events-none absolute inset-0 -z-10 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"
                               style={{
@@ -113,11 +102,7 @@ const TopHeader = () => {
                                   "radial-gradient(closest-side, rgba(255,180,70,0.35), transparent 70%)",
                               }}
                             />
-
-                            {/* text */}
                             <span className="relative">{item.name}</span>
-
-                            {/* animated underline */}
                             <span
                               className={cx(
                                 "pointer-events-none absolute left-1/2 bottom-1 h-[2px] w-0 -translate-x-1/2 rounded-full " +
@@ -126,7 +111,7 @@ const TopHeader = () => {
                                 {
                                   "via-[#D59A3B] w-[120%]":
                                     pathname == item?.path,
-                                } // optional golden when active
+                                }
                               )}
                             />
                           </Link>
@@ -149,7 +134,6 @@ const TopHeader = () => {
                                   }
                                 )}
                               >
-                                {/* glow */}
                                 <span
                                   className="pointer-events-none absolute inset-0 -z-10 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"
                                   style={{
@@ -157,15 +141,10 @@ const TopHeader = () => {
                                       "radial-gradient(closest-side, rgba(255,180,70,0.35), transparent 70%)",
                                   }}
                                 />
-
                                 <span className="relative">{item.name}</span>
-
-                                {/* tiny chevron */}
                                 <span className="relative origin-center text-white/80 transition-transform duration-300 group-hover:rotate-180">
                                   ▾
                                 </span>
-
-                                {/* underline */}
                                 <span className="pointer-events-none absolute left-1/2 bottom-1 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-white/90 to-transparent transition-all duration-300 group-hover:w-[120%]" />
                               </div>
                             )}
@@ -202,8 +181,8 @@ const TopHeader = () => {
                 </ul>
               </nav>
             </div>
-            <div className="hidden lg:flex  gap-3">
-              {/* <CristmasMenuButton /> */}
+
+            <div className="hidden lg:flex gap-3">
               <Link href={"/booking"}>
                 <AnimButton text={"BOOK NOW"} />
               </Link>
