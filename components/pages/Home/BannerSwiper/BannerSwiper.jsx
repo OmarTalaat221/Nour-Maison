@@ -182,7 +182,7 @@ const BannerSwiper = () => {
             // ✅ سلايد رمضان الجديد 🌙
             {
               image:
-                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771514052/ramadan-iftar-milton-keynes_smypwh.webp",
+                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771514629/ramadan-iftar-milton-keynes_1_hpgpls.webp",
               content: (
                 <div className="relative">
                   <motion.h1
