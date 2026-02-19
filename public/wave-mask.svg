@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="none">
+  <!-- White = visible, Black = hidden -->
+  <rect width="1200" height="200" fill="black"/>
+  <path
+    d="M0,0 H1200 V120
+       C1050,170 900,70 750,120
+       C600,170 450,70 300,120
+       C150,170 75,95 0,130
+       Z"
+    fill="white"
+  />
+</svg>

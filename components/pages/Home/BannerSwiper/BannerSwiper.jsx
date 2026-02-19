@@ -181,7 +181,8 @@ const BannerSwiper = () => {
 
             // ✅ سلايد رمضان الجديد 🌙
             {
-              image: "/images/nnour polaraid pics_1_11zon.webp", // ← نفس ستايل الروست أو غيرها لصورة رمضان polaroid
+              image:
+                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771514052/ramadan-iftar-milton-keynes_smypwh.webp",
               content: (
                 <div className="relative">
                   <motion.h1

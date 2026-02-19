@@ -3,18 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import BottomBg from "../../../utils/bottomBg/BottomBg";
 import Script from "next/script";
-import { Metadata } from "next";
+import "./style.css";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/ramadan-iftar-menu-milton-keynes";
 const url = `${siteUrl}${pathname}`;
 
 const title =
-  "Ramadan Iftar Menu Milton Keynes – 5 Course £35 | Halal | Nour Maison";
+  "Best Iftar Menu Milton Keynes 2025 | 5-Course Halal £35 | Nour Maison";
 const description =
-  "Join us at Nour Maison in Milton Keynes for our special Ramadan Iftar Menu – a 5-course halal dining experience for £35 per person. Served at Maghrib with family offers, kids eat free, and traditional Ramadan drinks. Book your table today.";
+  "Looking for the best Iftar in Milton Keynes? Book your Ramadan table at Nour Maison for a premium 5-course halal Iftar menu at £35. Family offers: 10% off for 4+, kids under 10 eat free. Served at Maghrib daily.";
 const ogImage = `${siteUrl}/images/ramadan-iftar-menu.jpeg`;
 
 export const metadata = {
@@ -27,7 +26,9 @@ export const metadata = {
   },
 
   keywords: [
+    "Best Iftar Milton Keynes",
     "Best Iftar menu in Milton Keynes",
+    "Iftar near me",
     "Halal Iftar near me Milton Keynes",
     "Family Iftar Milton Keynes",
     "Halal Iftar Restaurant Milton Keynes",
@@ -42,6 +43,10 @@ export const metadata = {
     "Halal restaurant Milton Keynes",
     "Ramadan 2025 Milton Keynes",
     "Middle Eastern restaurant MK",
+    "Where to break fast Milton Keynes",
+    "Iftar deals Milton Keynes",
+    "Ramadan special menu MK",
+    "Best Ramadan restaurant Milton Keynes",
   ],
 
   authors: [{ name: "Nour Maison Café" }],
@@ -63,7 +68,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url,
-    title,
+    title: "Best Iftar Menu Milton Keynes 2025 | Nour Maison",
     description,
     siteName: "Nour Maison Café",
     locale: "en_GB",
@@ -72,7 +77,7 @@ export const metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Nour Maison Ramadan Iftar Menu – 5 Course Halal Dining Experience in Milton Keynes",
+        alt: "Best Ramadan Iftar Menu Milton Keynes 2025 – 5 Course Halal Dining at Nour Maison",
         type: "image/jpeg",
       },
     ],
@@ -80,7 +85,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title,
+    title: "Best Iftar Menu Milton Keynes 2025 | Nour Maison",
     description,
     images: [ogImage],
     creator: "@NourMaisonCafe",
@@ -88,55 +93,70 @@ export const metadata = {
   },
 
   category: "Restaurant",
+
+  other: {
+    "geo.region": "GB-MKY",
+    "geo.placename": "Milton Keynes",
+    "geo.position": "52.0406;-0.7594",
+    ICBM: "52.0406, -0.7594",
+  },
 };
 
 const RamadanIftarMenuPage = () => {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Menu",
-        "@id": `${url}#menu`,
-        name: "Nour Maison Ramadan Iftar Menu",
-        description,
-        url,
-        inLanguage: "en-GB",
-        mainEntityOfPage: url,
-        offers: {
-          "@type": "Offer",
-          price: "35.00",
-          priceCurrency: "GBP",
-          description: "5-course Iftar menu per person",
-          availability: "https://schema.org/InStock",
-          validFrom: "2025-02-28",
-          validThrough: "2025-03-30",
+  const jsonLd = [
+    // ✅ Schema 1: WebPage + Restaurant + Offer
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url: url,
+      name: "Ramadan Iftar Menu in Milton Keynes | Nour Maison",
+      description: description,
+      inLanguage: "en-GB",
+      datePublished: "2025-01-15",
+      dateModified: new Date().toISOString().split("T")[0],
+
+      potentialAction: {
+        "@type": "ReserveAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteUrl}/booking`,
+          actionPlatform: [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform",
+          ],
         },
-        hasMenuSection: [
-          {
-            "@type": "MenuSection",
-            name: "Iftar Menu",
-            description:
-              "5-course halal Iftar experience with Middle Eastern and French fusion",
-          },
-        ],
+        result: {
+          "@type": "FoodEstablishmentReservation",
+          name: "Book a Ramadan Iftar Table",
+        },
       },
-      {
-        "@type": "Restaurant",
-        "@id": `${siteUrl}#restaurant`,
-        name: "Nour Maison Café",
+
+      isPartOf: {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: "Nour Maison",
         url: siteUrl,
+      },
+
+      about: {
+        "@type": "Restaurant",
+        "@id": `${siteUrl}/#restaurant`,
+        name: "Nour Maison",
+        url: siteUrl,
+        telephone: "+44-1908-772177",
+        image:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
         logo: `${siteUrl}/images/logo.png`,
-        image: ogImage,
-        description:
-          "Halal French-Middle Eastern fusion restaurant in Milton Keynes",
         servesCuisine: ["French", "Middle Eastern", "Fusion", "Halal"],
         priceRange: "££",
+        acceptsReservations: true,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Your Street Address Here",
+          streetAddress: "149 Grafton Gate",
           addressLocality: "Milton Keynes",
           addressRegion: "Buckinghamshire",
-          postalCode: "MK postcode",
+          postalCode: "MK9 1AE",
           addressCountry: "GB",
         },
         geo: {
@@ -144,58 +164,64 @@ const RamadanIftarMenuPage = () => {
           latitude: "52.0406",
           longitude: "-0.7594",
         },
-        hasMenu: {
-          "@id": `${url}#menu`,
-        },
-        acceptsReservations: "True",
-        paymentAccepted: "Cash, Credit Card, Debit Card",
-        currenciesAccepted: "GBP",
-      },
-      {
-        "@type": "FoodEvent",
-        "@id": `${url}#event`,
-        name: "Ramadan Iftar at Nour Maison",
-        description:
-          "Celebrate Ramadan with our exclusive 5-course Iftar menu served at Maghrib. Family-friendly with special offers including 10% off for families of four and kids under 10 eat free.",
-        url,
-        image: ogImage,
-        startDate: "2025-02-28",
-        endDate: "2025-03-30",
-        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-        eventStatus: "https://schema.org/EventScheduled",
-        location: {
-          "@id": `${siteUrl}#restaurant`,
-        },
-        organizer: {
-          "@id": `${siteUrl}#restaurant`,
-        },
-        offers: [
+        openingHoursSpecification: [
           {
-            "@type": "Offer",
-            name: "5-Course Iftar Menu",
-            price: "35.00",
-            priceCurrency: "GBP",
-            availability: "https://schema.org/InStock",
-            validFrom: "2025-02-28",
-            validThrough: "2025-03-30",
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
+            opens: "10:00",
+            closes: "22:00",
           },
           {
-            "@type": "Offer",
-            name: "Family Discount",
-            description: "10% off for families of four",
-            discount: "10%",
-          },
-          {
-            "@type": "Offer",
-            name: "Kids Eat Free",
-            description: "Children under 10 eat free",
-            price: "0",
-            priceCurrency: "GBP",
-            eligibleCustomerType: "https://schema.org/Child",
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Friday", "Saturday"],
+            opens: "10:00",
+            closes: "23:00",
           },
         ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "132",
+        },
+        sameAs: [
+          "https://www.instagram.com/nourmaison",
+          "https://www.facebook.com/nourmaison",
+        ],
       },
-      {
+
+      mainEntity: {
+        "@type": "Offer",
+        "@id": `${url}#offer`,
+        name: "Ramadan Iftar Menu – 5 Course Meal",
+        url: url,
+        price: "35",
+        priceCurrency: "GBP",
+        availability: "https://schema.org/InStock",
+        validFrom: "2025-02-28",
+        validThrough: "2025-03-30",
+        category: "Ramadan Iftar",
+        eligibleRegion: "GB",
+        offeredBy: {
+          "@type": "Restaurant",
+          "@id": `${siteUrl}/#restaurant`,
+        },
+        description:
+          "A curated 5-course halal iftar served at Maghrib. On arrival: Medjoul dates, seasonal fresh fruits, and a Ramadan special drink (Qamar Al-Deen, Tamarind, or Rose Lemonade). 10% off for families of 4+ and kids under 10 eat free.",
+        itemOffered: {
+          "@type": "FoodService",
+          name: "Halal Ramadan Iftar Experience",
+          provider: {
+            "@type": "Restaurant",
+            "@id": `${siteUrl}/#restaurant`,
+          },
+          areaServed: {
+            "@type": "City",
+            name: "Milton Keynes",
+          },
+        },
+      },
+
+      breadcrumb: {
         "@type": "BreadcrumbList",
         itemListElement: [
           {
@@ -207,23 +233,152 @@ const RamadanIftarMenuPage = () => {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Ramadan Iftar Menu",
+            name: "Ramadan Iftar Menu Milton Keynes",
             item: url,
           },
         ],
       },
-    ],
-  };
+    },
+
+    // ✅ Schema 2: FAQPage
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Where can I find the best Ramadan iftar in Milton Keynes?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Nour Maison offers a premium Ramadan iftar experience in Milton Keynes with a curated 5-course halal menu for £35 per person, served at Maghrib, blending Middle Eastern warmth with French finesse.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How much does the Ramadan iftar menu cost?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The 5-course Ramadan iftar menu is £35 per person. Families of 4 or more receive 10% off, and children under 10 eat free.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is the Ramadan iftar menu halal?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Nour Maison is a fully halal restaurant and our Ramadan iftar menu is 100% halal certified.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do I need to book for iftar?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Booking is strongly recommended, especially for weekends and large groups, as Ramadan iftar tables fill quickly. Book online at nourmaison.co.uk/booking",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What time is iftar served?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Iftar is served daily at Maghrib time throughout Ramadan 2025 (February 28th - March 30th).",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What is included in the iftar menu?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The 5-course iftar includes: On arrival - Medjoul dates, seasonal fruits, and Ramadan drinks (Qamar Al-Deen, Tamarind, or Rose Lemonade). Followed by Harira soup, artisan starters, signature mains with Middle Eastern and French fusion, and traditional Ramadan desserts.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Are there any family offers for iftar?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes! Families of 4 or more receive 10% discount on the total bill, and children under 10 years old eat completely free.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where is Nour Maison located?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Nour Maison is located at 149 Grafton Gate, Milton Keynes, MK9 1AE. We're easily accessible with nearby parking available.",
+          },
+        },
+      ],
+    },
+
+    // ✅ Schema 3: FoodEvent
+    {
+      "@context": "https://schema.org",
+      "@type": "FoodEvent",
+      "@id": `${url}#event`,
+      name: "Ramadan Iftar 2025 at Nour Maison Milton Keynes",
+      description:
+        "Join us for the best Ramadan Iftar experience in Milton Keynes. 5-course halal menu served at Maghrib for £35 per person with family discounts.",
+      url: url,
+      image: ogImage,
+      startDate: "2025-02-28",
+      endDate: "2025-03-30",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      location: {
+        "@type": "Restaurant",
+        "@id": `${siteUrl}/#restaurant`,
+      },
+      organizer: {
+        "@type": "Restaurant",
+        name: "Nour Maison",
+        url: siteUrl,
+      },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "5-Course Iftar Menu",
+          price: "35.00",
+          priceCurrency: "GBP",
+          availability: "https://schema.org/InStock",
+          validFrom: "2025-02-28",
+          validThrough: "2025-03-30",
+          url: `${siteUrl}/booking`,
+        },
+        {
+          "@type": "Offer",
+          name: "Family Discount (4+)",
+          description: "10% off for families of four or more",
+          eligibleQuantity: {
+            "@type": "QuantitativeValue",
+            minValue: 4,
+          },
+        },
+        {
+          "@type": "Offer",
+          name: "Kids Eat Free",
+          description: "Children under 10 eat free",
+          price: "0",
+          priceCurrency: "GBP",
+        },
+      ],
+    },
+  ];
 
   return (
     <div>
       {/* ✅ Structured Data */}
-      <Script
-        id="ramadan-iftar-menu-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd.map((schema, index) => (
+        <Script
+          key={index}
+          id={`ramadan-schema-${index}`}
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
 
       {/* ✅ Banner Section */}
       <PagesBanner
@@ -236,13 +391,11 @@ const RamadanIftarMenuPage = () => {
         ]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">
-            Celebrate Ramadan at Nour Maison in Milton Keynes with our exclusive
-            5-course Iftar menu. Served at Maghrib, our carefully curated halal
-            dining experience brings together Middle Eastern and French
-            flavours.
+            Join us at Nour Maison for a luxurious halal iftar blending Middle
+            Eastern soul with modern French cuisine.
           </div>
         }
-        title={"The Best Ramadan Iftar Menu in Milton Keynes"}
+        title={"Break your fast in elegance this Ramadan at Nour Maison"}
         scrollTo={"ramadan-iftar-menu"}
       />
 
@@ -252,44 +405,23 @@ const RamadanIftarMenuPage = () => {
         className="w-full relative py-20 sm:py-28 md:py-36 mt-[-80px] sm:mt-[-100px] md:mt-[-120px] z-10 overflow-hidden"
         style={{
           background:
-            "url('https://res.cloudinary.com/dkc5klynm/image/upload/v1771436785/Pattern_aiinwd.png')",
+            "url('https://res.cloudinary.com/dkc5klynm/image/upload/v1771510442/Pattern_fia8ft.webp')",
           backgroundSize: "cover",
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
         }}
         aria-labelledby="ramadan-menu-heading"
       >
-        {/* ✅ الفوانيس - 3 فوانيس على اليمين - مخفية على الموبايل الصغير */}
-        <div className="hidden sm:block absolute top-0 right-0 sm:right-2 md:right-4 lg:right-8 xl:right-16 z-20 pointer-events-none">
-          <div className="lantern-swing">
-            <Image
-              src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771439647/ramadan_lanterns_transparent_verzal.png"
-              alt=""
-              aria-hidden="true"
-              width={200}
-              height={400}
-              className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[220px] 2xl:w-[250px] h-auto"
-            />
-          </div>
-        </div>
+        {/* ✅ Wave Anchor Strip */}
+        <div
+          className="wave-strip absolute inset-x-0 top-0 z-30 pointer-events-none"
+          style={{
+            backgroundImage:
+              "url('https://res.cloudinary.com/dkc5klynm/image/upload/v1771510442/Pattern_fia8ft.webp')",
+          }}
+        />
 
-        {/* ✅ فانوس واحد على الشمال - مخفي على الموبايل الصغير */}
-        <div className="hidden sm:block absolute top-0 left-0 sm:left-2 md:left-4 lg:left-8 xl:left-16 z-20 pointer-events-none">
-          <div className="lantern-swing-slow">
-            <Image
-              src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771439116/lantern1_transparent_m6zkl2.png"
-              alt=""
-              aria-hidden="true"
-              width={150}
-              height={350}
-              className="w-[70px] sm:w-[80px] md:w-[100px] lg:w-[130px] xl:w-[160px] 2xl:w-[180px] h-auto"
-            />
-          </div>
-        </div>
-
-        <BottomBg />
-
-        {/* ✅ Visible Heading & Description */}
+        {/* ✅ Heading & Description */}
         <header className="w-full max-w-[90%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 sm:px-4 md:px-6 text-center mb-8 sm:mb-10 md:mb-14 relative z-10">
           <h1
             id="ramadan-menu-heading"
@@ -299,7 +431,7 @@ const RamadanIftarMenuPage = () => {
                 "3px 3px 6px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.5)",
             }}
           >
-            The Best Ramadan Iftar Menu
+            A Blessed Ramadan Iftar
             <span
               className="block mt-1 sm:mt-2 text-goldenOrange"
               style={{
@@ -338,8 +470,8 @@ const RamadanIftarMenuPage = () => {
         {/* ✅ Menu Image */}
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-5xl mx-auto relative px-2 sm:px-4 z-10">
           <Image
-            src="/images/22 (1).png"
-            alt="Nour Maison Ramadan Iftar Menu – 5 Course Halal Dining Experience in Milton Keynes featuring Harira soup, Medjool dates, artisan starters, signature mains, and Ramadan desserts"
+            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771510919/22_vkxlyt.webp"
+            alt="Best Ramadan Iftar Menu Milton Keynes 2025 - 5 Course Halal Dining Experience at Nour Maison"
             width={1400}
             height={1800}
             className="w-full h-auto rounded-2xl sm:rounded-3xl relative"
@@ -348,72 +480,103 @@ const RamadanIftarMenuPage = () => {
           />
         </div>
 
-        {/* ✅ Additional Info Cards */}
+        {/* ✅ Offer Cards with Shimmer */}
         <section
           className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-2 sm:px-4 mt-8 sm:mt-12 md:mt-16 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 relative z-10"
-          aria-label="Iftar menu offers"
+          aria-label="Iftar menu offers and pricing"
         >
           {/* Price Card */}
-          <article className="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-xl border-2 border-goldenOrange/40 hover:border-goldenOrange transition-all duration-300">
+          <article className="shimmer bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-lg hover:bg-opacity-30 transition-all duration-300">
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
               £35
             </div>
-            <p className="font-playfair text-gray-800 text-xs sm:text-sm md:text-lg font-medium">
+            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               per person
             </p>
-            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-gray-600 mt-1 hidden sm:block">
+            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               5-course Iftar experience
             </p>
           </article>
 
           {/* Family Offer Card */}
-          <article className="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-xl border-2 border-goldenOrange/40 hover:border-goldenOrange transition-all duration-300">
+          <article className="shimmer bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-lg hover:bg-opacity-30 transition-all duration-300">
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
-              10%
+              10<span className="font-nour">%</span>
             </div>
-            <p className="font-playfair text-gray-800 text-xs sm:text-sm md:text-lg font-medium">
+            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               Family Discount
             </p>
-            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-gray-600 mt-1 hidden sm:block">
+            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               For families of four
             </p>
           </article>
 
           {/* Kids Free Card */}
-          <article className="bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-xl border-2 border-goldenOrange/40 hover:border-goldenOrange transition-all duration-300">
+          <article className="shimmer bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center shadow-lg hover:bg-opacity-30 transition-all duration-300">
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
               FREE
             </div>
-            <p className="font-playfair text-gray-800 text-xs sm:text-sm md:text-lg font-medium">
+            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               Kids Eat Free
             </p>
-            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-gray-600 mt-1 hidden sm:block">
+            <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               Children under 10
             </p>
           </article>
         </section>
 
-        {/* ✅ CTA Button */}
-        <div className="w-full text-center mt-8 sm:mt-12 md:mt-16 relative z-10 px-4">
-          <a
-            href="https://www.nourmaison.co.uk/book-table"
-            className="inline-block bg-goldenOrange hover:bg-goldenOrange/90 text-white font-nour text-base sm:text-lg md:text-xl px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            Book Your Iftar Table
-          </a>
-        </div>
+        {/* ✅ CTA Section */}
+        <section className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 sm:px-4 mt-10 sm:mt-14 md:mt-20 relative z-10">
+          <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 text-center border border-goldenOrange/30 shadow-2xl">
+            <h2
+              className="font-seasons text-goldenOrange text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 sm:mb-4 md:mb-5 leading-snug"
+              style={{
+                textShadow: "2px 2px 4px rgba(0,0,0,0.6)",
+              }}
+            >
+              Looking for the best iftar in Milton Keynes?
+            </h2>
 
-        {/* ✅ SEO Support Text (sr-only) */}
-        <section className="sr-only" aria-label="Ramadan Iftar menu details">
-          <h2>Best Iftar Menu in Milton Keynes</h2>
+            <p className="font-playfair text-dairyCream text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed md:leading-loose max-w-3xl mx-auto">
+              Book your Ramadan table at{" "}
+              <span className="font-nour text-goldenOrange font-semibold">
+                Nour Maison
+              </span>{" "}
+              and enjoy a{" "}
+              <span className="text-white font-medium">
+                premium halal iftar experience
+              </span>{" "}
+              with family and friends this Ramadan.
+            </p>
+
+            {/* ✅ CTA Button with Shimmer */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8 mb-6 sm:mb-8">
+              <a
+                href="https://www.nourmaison.co.uk/booking"
+                className="shimmer-btn inline-block bg-goldenOrange hover:bg-goldenOrange/90 text-white hover:text-white hover:no-underline font-nour text-base sm:text-lg md:text-xl px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                aria-label="Book your Iftar table at Nour Maison Milton Keynes"
+              >
+                Book Your Iftar Table
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ✅ SEO Hidden Content */}
+        <section
+          className="sr-only"
+          aria-label="Ramadan Iftar menu details and FAQs"
+        >
+          <h2>Best Iftar Menu in Milton Keynes 2025</h2>
           <p>
             Looking for the best Iftar menu in Milton Keynes? Nour Maison offers
             a premium 5-course halal Iftar dining experience for just £35 per
-            person. Our Ramadan menu is served at Maghrib time and includes
+            person. Our Ramadan 2025 menu is served at Maghrib time and includes
             traditional Harira soup, Medjool dates, artisan starters, signature
             mains with Middle Eastern and French fusion flavours, and indulgent
             Ramadan desserts.
           </p>
+
           <h2>Family Iftar Offers Milton Keynes</h2>
           <p>
             We welcome families and groups with special offers: 10% discount for
@@ -421,6 +584,7 @@ const RamadanIftarMenuPage = () => {
             drinks included. Book your table today for the best halal Iftar
             restaurant near you in Milton Keynes.
           </p>
+
           <h2>Halal Ramadan Restaurant MK</h2>
           <p>
             Nour Maison is the perfect halal Ramadan restaurant in MK for family
@@ -429,12 +593,66 @@ const RamadanIftarMenuPage = () => {
             techniques with Middle Eastern flavours to create a unique halal
             dining experience in Milton Keynes.
           </p>
+
           <h2>Ramadan 2025 Iftar Milton Keynes</h2>
           <p>
             Join us for Ramadan 2025 at Nour Maison Café. Our special Iftar menu
-            is available throughout the holy month, served daily at Maghrib
-            time. Perfect for breaking fast with family and friends in a warm,
-            welcoming atmosphere.
+            is available throughout the holy month from February 28th to March
+            30th, served daily at Maghrib time. Perfect for breaking fast with
+            family and friends in a warm, welcoming atmosphere.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+
+          <h3>What is the best Iftar restaurant in Milton Keynes?</h3>
+          <p>
+            Nour Maison is widely regarded as the best Iftar restaurant in
+            Milton Keynes, offering a premium 5-course halal menu for £35 per
+            person.
+          </p>
+
+          <h3>How much does Iftar cost at Nour Maison?</h3>
+          <p>
+            Our 5-course Iftar menu is £35 per person. We offer 10% discount for
+            families of four or more, and children under 10 eat free.
+          </p>
+
+          <h3>What time is Iftar served?</h3>
+          <p>Iftar is served at Maghrib time daily throughout Ramadan 2025.</p>
+
+          <h3>Is Nour Maison halal?</h3>
+          <p>Yes, Nour Maison is a fully halal restaurant.</p>
+
+          <h3>Do I need to book for Iftar?</h3>
+          <p>
+            Yes, we recommend booking in advance especially for large groups.
+          </p>
+
+          <h3>What is included in the Iftar menu?</h3>
+          <p>
+            On arrival: Medjoul dates, seasonal fruits, and Ramadan drinks.
+            Followed by Harira soup, artisan starters, signature mains, and
+            Ramadan desserts.
+          </p>
+
+          <h2>Iftar Near Me Milton Keynes</h2>
+          <p>
+            Searching for Iftar near me in Milton Keynes? Nour Maison is your
+            best choice for premium halal Iftar dining at 149 Grafton Gate,
+            Milton Keynes, MK9 1AE.
+          </p>
+
+          <h2>Where to Break Fast in Milton Keynes</h2>
+          <p>
+            Looking for where to break fast in Milton Keynes this Ramadan? Nour
+            Maison provides an elegant setting for Iftar with authentic Middle
+            Eastern dishes prepared with French culinary expertise.
+          </p>
+
+          <h2>Contact Information</h2>
+          <p>
+            Address: 149 Grafton Gate, Milton Keynes, MK9 1AE. Phone:
+            +44-1908-772177. Book online at nourmaison.co.uk/booking
           </p>
         </section>
       </main>
