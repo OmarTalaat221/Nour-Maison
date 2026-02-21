@@ -46,7 +46,7 @@ const TopHeader = () => {
   ];
 
   // الصفحات اللي مش عايز فيها Header
-  const hiddenPages = ["/privacy-policy-2", "/terms-conditions", "/checkout"];
+  const hiddenPages = ["/privacy-policy-2", "/terms-conditions"];
 
   if (isNotFound || hiddenPages.includes(pathname)) {
     return null;
