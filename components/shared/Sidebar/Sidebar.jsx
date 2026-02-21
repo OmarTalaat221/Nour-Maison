@@ -45,7 +45,7 @@ const Sidebar = ({ open, setOpen }) => {
       {open && (
         <motion.div
           className={cx(
-            "side_bar w-[100vw] fixed inset-0 z-[9999] h-[100vh] rounded-lg",
+            "side_bar w-[100vw] fixed inset-0 z-[99999999] h-[100vh] rounded-lg",
             open && "open"
           )}
           initial={{ y: "-100%" }} // Slide from top to bottom
@@ -55,7 +55,7 @@ const Sidebar = ({ open, setOpen }) => {
         >
           <motion.div
             className={cx(
-              "h-[100vh] content w-[100%] shadow-lg bg-white p-10 py-20 rounded-lg",
+              "h-[100vh] content w-[100%] shadow-lg bg-white p-10 py-20",
               {
                 open: open,
               }

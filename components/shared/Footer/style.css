@@ -83,6 +83,52 @@
   background: #0866ff !important;
 }
 
+/* ✅ Shimmer Effect for Payment Cards */
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmerCard 3s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shimmer-card:nth-child(1)::before {
+  animation-delay: 0s;
+}
+
+.shimmer-card:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+
+.shimmer-card:nth-child(3)::before {
+  animation-delay: 0.8s;
+}
+
+@keyframes shimmerCard {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
   /* Your styles here */

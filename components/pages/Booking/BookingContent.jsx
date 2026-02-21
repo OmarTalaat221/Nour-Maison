@@ -13,7 +13,7 @@ import AlleadyReservedModal from "./AlleadyReservedModal";
 import BusyModal from "./BusyModal";
 import createChatForBooking from "../../../lib/createChatForBooking";
 
-const BookingConent = ({bg}) => {
+const BookingConent = ({ bg }) => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
@@ -88,8 +88,6 @@ const BookingConent = ({bg}) => {
     dataset.seats = bookingData.seats.value;
     dataset.time = bookingData.time.value;
 
-    
-
     // this code is for sunday's party 🥳
     //from 2 pm to 10 pm
 
@@ -111,8 +109,6 @@ const BookingConent = ({bg}) => {
       "02:30 PM",
       "02:45 PM",
     ];
-    
-    
 
     if (
       dataset.date === "2026-02-14" &&
@@ -148,9 +144,6 @@ const BookingConent = ({bg}) => {
       toast.error("Enter time of booking", toastStyles);
       return;
     }
-
-    
-    
 
     dispatch(addBooking(dataset)).then(async (res) => {
       if (res.payload.message == "You have a reservation in this time") {
@@ -201,7 +194,7 @@ const BookingConent = ({bg}) => {
     <main>
       <header>
         <h1 className=" px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
-          <b>Book a Table </b> at <stroug>Nour Maison</stroug> –{" "}
+          <b>Book a Table </b> at <strong>Nour Maison</strong> –{" "}
           <strong>Halal French</strong> & Middle Eastern Dining
         </h1>
       </header>
@@ -214,7 +207,7 @@ const BookingConent = ({bg}) => {
           backgroundSize: "cover",
           backgroundImage: `
         linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-        url(${ bg ||"https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
+        url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
       `,
         }}
       >
@@ -520,8 +513,6 @@ const BookingConent = ({bg}) => {
                     MK9 1AE, United Kingdom
                   </address>
                 </div>
-
-               
               </Tilt>
             </div>
           </div>
@@ -542,10 +533,12 @@ const BookingConent = ({bg}) => {
           message={
             <>
               <p className="text-lg text-slate-600">
-              Due to Valentine’s Day, we’re fully booked between 11:00 AM and 03:00 PM.
+                Due to Valentine’s Day, we’re fully booked between 11:00 AM and
+                03:00 PM.
               </p>
               <p className="text-lg text-slate-600 mt-5">
-              Please choose a time outside this window to continue your booking.
+                Please choose a time outside this window to continue your
+                booking.
               </p>
               <p className="text-lg text-black">
                 Thank you for your patience and understanding.

@@ -20,7 +20,8 @@ const FEATURES = [
   {
     icon: PiChefHatLight,
     title: "Skilled Chefs",
-    description: "Experienced chefs craft every dish with expertise and passion.",
+    description:
+      "Experienced chefs craft every dish with expertise and passion.",
   },
   {
     icon: LuLeafyGreen,
@@ -30,7 +31,8 @@ const FEATURES = [
   {
     icon: BiHealth,
     title: "Healthy Food",
-    description: "Nutritious meals made with wholesome ingredients for balanced living.",
+    description:
+      "Nutritious meals made with wholesome ingredients for balanced living.",
   },
 ];
 
@@ -50,7 +52,6 @@ export default function AboutContent() {
     () => [
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/465984384_1590238098232979_2569484348972359367_n_lndhof_aewybh.jpg",
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452495/466253647_534065926272992_1731520913535440885_n_lccww5_g53xx5.jpg",
-      // ✅ FIX: كان مكتوب hhttps
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452494/download_tflo0m_xsvqce.jpg",
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452497/download_b1l96d_hdflbq.jpg",
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/download_cmgnkv_llygqn.jpg",
@@ -80,10 +81,7 @@ export default function AboutContent() {
   };
 
   return (
-    <section
-      id="about"
-      className="relative w-screen overflow-hidden  bg-blck "
-    >
+    <section id="about" className="relative w-screen overflow-hidden bg-blck">
       {/* Background: cinematic gradients + subtle texture */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-48 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#ffb84d]/20 blur-[80px]" />
@@ -121,7 +119,9 @@ export default function AboutContent() {
                 className="h-11 w-11 drop-shadow"
               />
               <div className="text-sm /70">
-                <strong className="/90 !font-extrabold font-seasons">Nour Maison</strong>{" "}
+                <strong className="/90 !font-extrabold font-seasons">
+                  Nour Maison
+                </strong>{" "}
                 · East meets West · Warm hospitality
               </div>
             </div>
@@ -135,17 +135,28 @@ export default function AboutContent() {
               viewport={{ once: true, amount: 0.35 }}
               className="space-y-6"
             >
-              <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-logoGold/50 bg-white/5 px-4 py-2">
+              <motion.div
+                variants={fadeUp}
+                custom={0}
+                className="inline-flex items-center gap-2 rounded-full border border-logoGold/50 bg-white/5 px-4 py-2"
+              >
                 <span className="h-2 w-2 rounded-full bg-[#f59e0b]" />
                 <span className="text-xs sm:text-sm /80">
                   French sophistication · Middle East flavours
                 </span>
               </motion.div>
 
-              <motion.div variants={fadeUp} custom={1} className="flex items-center justify-between gap-4">
+              <motion.div
+                variants={fadeUp}
+                custom={1}
+                className="flex items-center justify-between gap-4"
+              >
                 <div>
                   <h2 className="text-4xl font-seasons text-softMintGreen sm:text-5xl font-bold tracking-tight">
-                    About <strong className="text-logoGold s!font-bold">Nour Maison</strong>
+                    About{" "}
+                    <strong className="text-logoGold s!font-bold">
+                      Nour Maison
+                    </strong>
                   </h2>
                   <p className="mt-2 /70">
                     A house of warmth, tradition, and modern culinary craft.
@@ -170,30 +181,56 @@ export default function AboutContent() {
                 </motion.button>
               </motion.div>
 
-              <motion.div variants={fadeUp} custom={2} className="space-y-4 text-whiteGray text-[15.5px] sm:text-[17px] leading-7 /80">
+              <motion.div
+                variants={fadeUp}
+                custom={2}
+                className="space-y-4 text-whiteGray text-[15.5px] sm:text-[17px] leading-7 /80"
+              >
                 <p>
-                  Welcome to <strong className=" !font-bold font-seasons text-logoGold">Nour Maison</strong>, where French sophistication
-                  meets the bold, vibrant flavours of the Middle East. Inspired by the founder’s daughter,
-                  <strong className=" font-extrabold font-seasons text-logoGold"> “Nour”</strong> — symbolizing light and warmth — and
-                  <strong className=" font-extrabold font-seasons text-logoGold"> “Maison”</strong> meaning house in French, our cafe is a
-                  welcoming space that feels like home.
+                  Welcome to{" "}
+                  <strong className=" !font-bold font-seasons text-logoGold">
+                    Nour Maison
+                  </strong>
+                  , where French sophistication meets the bold, vibrant flavours
+                  of the Middle East. Inspired by the founder's daughter,
+                  <strong className=" font-extrabold font-seasons text-logoGold">
+                    {" "}
+                    "Nour"
+                  </strong>{" "}
+                  — symbolizing light and warmth — and
+                  <strong className=" font-extrabold font-seasons text-logoGold">
+                    {" "}
+                    "Maison"
+                  </strong>{" "}
+                  meaning house in French, our cafe is a welcoming space that
+                  feels like home.
                 </p>
 
                 <p>
-                  Founded by <strong className=" font-semibold font-seasons text-goldenOrange">Chef Mo G</strong>, with over a decade of
-                  experience across Turkish, Mediterranean, and French cuisine, every plate reflects a refined harmony
-                  of East and West.
+                  Founded by{" "}
+                  <strong className=" font-semibold font-seasons text-goldenOrange">
+                    Chef Mo G
+                  </strong>
+                  , with over a decade of experience across Turkish,
+                  Mediterranean, and French cuisine, every plate reflects a
+                  refined harmony of East and West.
                 </p>
 
                 <p>
-                  From breakfast classics to elevated brunch twists — house-smoked meats, buttery stuffed croissants,
-                  fusion salads, signature smashed burgers, and comforting Moroccan tagines — each dish is built for
-                  sharing, warmth, and unforgettable flavor.
+                  From breakfast classics to elevated brunch twists —
+                  house-smoked meats, buttery stuffed croissants, fusion salads,
+                  signature smashed burgers, and comforting Moroccan tagines —
+                  each dish is built for sharing, warmth, and unforgettable
+                  flavor.
                 </p>
               </motion.div>
 
               {/* CTA row */}
-              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center gap-3 pt-2">
+              <motion.div
+                variants={fadeUp}
+                custom={3}
+                className="flex flex-wrap items-center gap-3 pt-2"
+              >
                 <button
                   onClick={openVideo}
                   className="rounded-0 font-seasons bg-softMintGreen text-white px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition"
@@ -207,6 +244,14 @@ export default function AboutContent() {
                   Explore menu
                 </a>
               </motion.div>
+
+              {/* ✅ Legal Entity Name - نفس ستايل Contact */}
+              <div className="md:w-[100%] mt-12">
+                <p className="text-left text-sm text-goldenOrange">
+                  This website is owned and operated by{" "}
+                  <strong className="text-goldenOrange">NOUR MAISON LTD</strong>
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>

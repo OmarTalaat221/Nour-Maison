@@ -3,8 +3,8 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import AboutContent from "../../../components/pages/AboutPage/AboutContent/AboutContent";
 import FeaturesSections from "../../../components/pages/Home/FeaturesSections/FeaturesSections";
 
-
-const OG_IMAGE = "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/vlcxgm3mwg0nm5bfxqtp_uec67t.webp";
+const OG_IMAGE =
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/vlcxgm3mwg0nm5bfxqtp_uec67t.webp";
 
 export const metadata = {
   title: "About Us | Nour Maison – Halal Dining in Milton Keynes​",
@@ -76,7 +76,7 @@ export const metadata = {
     locale: "en_GB",
     title: "About Us | Nour Maison – Halal Dining in Milton Keynes",
     description:
-      "Discover the story of Nour Maison — a halal French–Middle Eastern café by Chef Mo G in Milton Keynes.",
+      "Learn about Nour Maison (NOUR MAISON LTD) — a halal French-Middle Eastern café by Chef Mo G in Milton Keynes, blending family tradition with bold Mediterranean flavors.",
     images: [
       {
         url: OG_IMAGE,
@@ -91,7 +91,10 @@ export const metadata = {
 const AboutUsPage = () => {
   return (
     <div className="">
-      <PagesBanner scrollTo={"about"} images={["https://camp-coding.tech/nour_maison/Nour-opening-1.mp4"]} />
+      <PagesBanner
+        scrollTo={"about"}
+        images={["https://camp-coding.tech/nour_maison/Nour-opening-1.mp4"]}
+      />
       <AboutContent />
       {/* <FeaturesSections /> */}
     </div>

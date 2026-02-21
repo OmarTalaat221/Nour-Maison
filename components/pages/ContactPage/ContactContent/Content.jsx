@@ -9,10 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../../../features/contactSlice";
 import toast from "react-hot-toast";
 import { Loader } from "rsuite";
-import PlaneOverlaySuccess from './../../../PaperPlaneSuccess/PaperPlaneSuccess';
+import PlaneOverlaySuccess from "./../../../PaperPlaneSuccess/PaperPlaneSuccess";
 
 const ContactContent = () => {
-  const [successModal , setSuccessModal] = useState(false)
+  const [successModal, setSuccessModal] = useState(false);
   const contactLoading = useSelector((state) => state.contact.loading);
 
   const handleMapClick = () => {
@@ -62,7 +62,7 @@ const ContactContent = () => {
   };
 
   const handleAddContact = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!contactData.name) {
       toast.error("Enter the name", toastStyles);
@@ -81,7 +81,7 @@ const ContactContent = () => {
       if (res.payload.status == "success") {
         toast.success("Your Message Created Successfully", toastStyles);
         // empty form
-        setSuccessModal(true)
+        setSuccessModal(true);
         handleEmptyData();
       }
       // toast.success(res.payload.message);
@@ -91,7 +91,7 @@ const ContactContent = () => {
   return (
     <section id="contact" className="py-10 ">
       <div className="mb-[40px] text-goldenOrange text-4xl md:text-6xl font-bold font-seasons text-center">
-        Need Help? Contact Us Today!
+        Need Help? Contact Us Today <span className="font-nour">!</span>
       </div>
       <div
         id="map"
@@ -129,7 +129,7 @@ const ContactContent = () => {
         <div className="block md:rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  md:py-16 md:px-12   md:-mt-[100px] backdrop-blur-[30px] border border-gray-300">
           <div className="flex flex-wrap">
             <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-              <form onSubmit={(e)=> handleAddContact(e)}>
+              <form onSubmit={(e) => handleAddContact(e)}>
                 <div className="relative mb-6" data-te-input-wrapper-init="">
                   <input
                     value={contactData?.name}
@@ -183,13 +183,7 @@ const ContactContent = () => {
                   type="submit"
                   className="mb-6  w-full rounded bg-pestachio2 text-[] text-white px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal   lg:mb-0"
                 >
-                  {
-                    contactLoading ? 
-                    
-                    <Loader />               
-                    :
-                  "Send"
-                  }
+                  {contactLoading ? <Loader /> : "Send"}
                 </button>
               </form>
             </div>
@@ -267,7 +261,10 @@ const ContactContent = () => {
                     </div>
                     <div className="ml-3 grow">
                       <p className="mb-2 font-bold ">Mobile</p>
-                      <p className="text-neutral-500 font-oswald"> +441908772177</p>
+                      <p className="text-neutral-500 font-oswald">
+                        {" "}
+                        +441908772177
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -318,13 +315,21 @@ const ContactContent = () => {
                 </div>
               </div>
             </div>
+            <div className="md:w-[70%] m-auto mt-8">
+              <p className="text-center text-sm text-goldenOrange">
+                This website is owned and operated by{" "}
+                <strong className="text-goldenOrange">NOUR MAISON LTD</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    
-    <PlaneOverlaySuccess showOverlay={successModal} setShowOverlay={setSuccessModal}  text="Your message has been sent and we will respond to you via email soon."  />
 
-
+      <PlaneOverlaySuccess
+        showOverlay={successModal}
+        setShowOverlay={setSuccessModal}
+        text="Your message has been sent and we will respond to you via email soon."
+      />
     </section>
   );
 };

@@ -27,6 +27,7 @@ import StickyHeaderComponent from "../components/shared/StickyHeader/StickyHeade
 import { menu_1 } from "./(pages)/data/menuData";
 import { NotFoundProvider } from "./context/NoutFoundContext";
 import Head from "next/head";
+import { HeaderProvider } from "./context/HeaderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -232,27 +233,44 @@ const structuredData = {
   }),
 };
 
-
-
-
 const theSeasons = localFont({
   variable: "--font-the-seasons",
   src: [
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-lt.otf", weight: "300", style: "normal" },
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-ltit.otf", weight: "300", style: "italic" },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-lt.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-ltit.otf",
+      weight: "300",
+      style: "italic",
+    },
 
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-reg.otf", weight: "400", style: "normal" },
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-it.otf", weight: "400", style: "italic" },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-reg.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-it.otf",
+      weight: "400",
+      style: "italic",
+    },
 
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-bd.otf", weight: "700", style: "normal" },
-    { path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-bdit.otf", weight: "700", style: "italic" },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-bd.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/the_seasons/Fontspring-DEMO-theseasons-bdit.otf",
+      weight: "700",
+      style: "italic",
+    },
   ],
   display: "swap",
 });
-
-
-
-
 
 export default function RootLayout({ children }) {
   return (
@@ -307,9 +325,11 @@ export default function RootLayout({ children }) {
         </Script>
         {/* End Google Analytics */}
         <NotFoundProvider>
-          <TopHeader />
-          <StickyHeaderComponent />
-          <PageTransition>{children}</PageTransition>
+          <HeaderProvider>
+            <TopHeader />
+            <StickyHeaderComponent />
+            <PageTransition>{children}</PageTransition>
+          </HeaderProvider>
           <Footer />
           <AOSAnimation />
         </NotFoundProvider>

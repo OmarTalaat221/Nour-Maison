@@ -355,7 +355,7 @@ const BannerSwiper = () => {
                     className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
                     variants={childVariants}
                   >
-                    Bringing French &{" "}
+                    Bringing French <span className="font-nour">&</span>{" "}
                   </motion.main>
 
                   <motion.strong
