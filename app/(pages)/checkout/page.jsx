@@ -2,7 +2,7 @@
 
 import React, { Suspense } from "react";
 import Script from "next/script";
-import CheckoutPageClient from "./CheckoutPageClient";
+import CheckoutPageClient from "./_components/CheckoutPageClient";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/checkout";
