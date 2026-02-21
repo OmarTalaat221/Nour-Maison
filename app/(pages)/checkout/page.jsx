@@ -1,8 +1,8 @@
 // app/checkout/page.jsx
 
-import React from "react";
+import React, { Suspense } from "react";
 import Script from "next/script";
-import CheckoutPageClient from "./_components/CheckoutPageClient";
+import CheckoutPageClient from "./CheckoutPageClient";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/checkout";
@@ -32,7 +32,6 @@ export const metadata = {
     "safe online payment",
   ],
 
-  // ✅ Important: No indexing for checkout pages
   robots: {
     index: false,
     follow: false,
@@ -82,9 +81,26 @@ export const metadata = {
   },
 };
 
+// ✅ Viewport منفصل (حل الـ warning)
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+// ✅ Loading Component
+const CheckoutLoading = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin w-10 h-10 border-4 border-softMintGreen border-t-transparent rounded-full mx-auto mb-4"></div>
+      <p className="text-softMintGreen font-oswald text-lg">
+        Loading checkout...
+      </p>
+    </div>
+  </div>
+);
+
 const CheckoutPage = () => {
   const jsonLd = [
-    // ✅ Schema 1: CheckoutPage
     {
       "@context": "https://schema.org",
       "@type": "CheckoutPage",
@@ -93,7 +109,6 @@ const CheckoutPage = () => {
       name: "Secure Checkout - NOUR MAISON",
       description: description,
       inLanguage: "en-GB",
-
       provider: {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
@@ -110,40 +125,9 @@ const CheckoutPage = () => {
           postalCode: "MK9 1AE",
           addressCountry: "GB",
         },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: "52.0406",
-          longitude: "-0.7594",
-        },
-        sameAs: [
-          "https://www.instagram.com/nourmaisonuk",
-          "https://www.facebook.com/nourmaisonuk",
-        ],
       },
-
       paymentAccepted: ["Visa", "Mastercard", "American Express"],
-
-      potentialAction: {
-        "@type": "PayAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: url,
-          actionPlatform: [
-            "http://schema.org/DesktopWebPlatform",
-            "http://schema.org/MobileWebPlatform",
-          ],
-        },
-      },
-
-      isPartOf: {
-        "@type": "WebSite",
-        "@id": `${siteUrl}/#website`,
-        name: "NOUR MAISON",
-        url: siteUrl,
-      },
     },
-
-    // ✅ Schema 2: BreadcrumbList
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -163,34 +147,6 @@ const CheckoutPage = () => {
         },
       ],
     },
-
-    // ✅ Schema 3: WebPage
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": `${url}#webpage`,
-      url: url,
-      name: "Secure Checkout - NOUR MAISON",
-      description: description,
-      inLanguage: "en-GB",
-      datePublished: "2025-01-22",
-      dateModified: new Date().toISOString().split("T")[0],
-
-      publisher: {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-      },
-
-      mainEntity: {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-      },
-
-      breadcrumb: {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-      },
-    },
   ];
 
   return (
@@ -206,8 +162,9 @@ const CheckoutPage = () => {
         />
       ))}
 
-      {/* ✅ Client Component */}
-      <CheckoutPageClient />
+      <Suspense fallback={<CheckoutLoading />}>
+        <CheckoutPageClient />
+      </Suspense>
     </>
   );
 };
