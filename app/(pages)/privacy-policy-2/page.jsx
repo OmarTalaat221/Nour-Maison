@@ -5,7 +5,7 @@ import Script from "next/script";
 import PrivacyPolicyClient from "./_components/PrivacyPolicyClient";
 
 const siteUrl = "https://www.nourmaison.co.uk";
-const pathname = "/privacy-policy";
+const pathname = "/privacy-policy-2";
 const url = `${siteUrl}${pathname}`;
 
 const title =
