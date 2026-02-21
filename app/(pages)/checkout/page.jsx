@@ -8,7 +8,7 @@ const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/checkout";
 const url = `${siteUrl}${pathname}`;
 
-const title = "Secure Checkout - NOUR MAISON | Safe Online Payment";
+const title = "NOUR MAISON | Safe Online Payment";
 const description =
   "Complete your secure payment for NOUR MAISON gift cards and products. We accept Visa, Mastercard, and American Express. Fast, safe, and encrypted checkout process.";
 

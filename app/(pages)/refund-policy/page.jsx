@@ -1,17 +1,17 @@
-// app/terms-and-conditions/page.jsx
+// app/refund-policy/page.jsx
 
 import React from "react";
 import Script from "next/script";
-import TermsAndConditionsClient from "./_components/TermsAndConditionsClient";
+import RefundPolicyClient from "./_components/RefundPolicyClient";
 
 const siteUrl = "https://www.nourmaison.co.uk";
-const pathname = "/terms-and-conditions";
+const pathname = "/refund-policy";
 const url = `${siteUrl}${pathname}`;
 
 const title =
-  "Terms & Conditions | NOUR MAISON LTD - Nour Maison Café and Brasserie";
+  "Refund Policy | NOUR MAISON LTD - Nour Maison Café and Brasserie";
 const description =
-  "Terms and Conditions for NOUR MAISON LTD trading as Nour Maison Café and Brasserie. Read our policies on reservations, orders, payments, and services.";
+  "Refund Policy for NOUR MAISON LTD trading as Nour Maison Café and Brasserie. Learn about our refund process, eligibility, and how to request a refund. Full refund if order not delivered.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,16 +19,16 @@ export const metadata = {
   description,
 
   keywords: [
-    "NOUR MAISON terms and conditions",
+    "NOUR MAISON refund policy",
+    "refund policy UK restaurant",
     "NOUR MAISON LTD",
-    "Nour Maison Café terms",
-    "restaurant terms UK",
-    "Milton Keynes restaurant policy",
-    "café terms and conditions",
-    "online ordering terms",
-    "reservation policy",
-    "payment terms restaurant",
-    "halal restaurant terms",
+    "Nour Maison Café refund",
+    "Milton Keynes restaurant refund",
+    "online order refund",
+    "food delivery refund",
+    "restaurant refund policy UK",
+    "order not delivered refund",
+    "café refund policy",
   ],
 
   robots: {
@@ -51,7 +51,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url,
-    title: "Terms & Conditions | NOUR MAISON LTD",
+    title: "Refund Policy | NOUR MAISON LTD",
     description,
     siteName: "NOUR MAISON",
     locale: "en_GB",
@@ -60,14 +60,14 @@ export const metadata = {
         url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
-        alt: "NOUR MAISON Terms & Conditions",
+        alt: "NOUR MAISON Refund Policy",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Terms & Conditions | NOUR MAISON LTD",
+    title: "Refund Policy | NOUR MAISON LTD",
     description,
     images: [`${siteUrl}/logo.png`],
     creator: "@NourMaisonCafe",
@@ -89,14 +89,14 @@ export const viewport = {
   initialScale: 1,
 };
 
-const TermsAndConditionsPage = () => {
+const RefundPolicyPage = () => {
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "@id": `${url}#webpage`,
       url: url,
-      name: "Terms & Conditions",
+      name: "Refund Policy",
       description: description,
       inLanguage: "en-GB",
       isPartOf: {
@@ -134,6 +134,11 @@ const TermsAndConditionsPage = () => {
           availableLanguage: ["English", "Arabic"],
         },
       },
+      mainEntity: {
+        "@type": "WebPageElement",
+        name: "Refund Policy",
+        text: "Full refund within 5-10 business days if order not delivered",
+      },
     },
     {
       "@context": "https://schema.org",
@@ -149,7 +154,7 @@ const TermsAndConditionsPage = () => {
         {
           "@type": "ListItem",
           position: 2,
-          name: "Terms & Conditions",
+          name: "Refund Policy",
           item: url,
         },
       ],
@@ -161,16 +166,16 @@ const TermsAndConditionsPage = () => {
       {jsonLd.map((schema, index) => (
         <Script
           key={index}
-          id={`terms-schema-${index}`}
+          id={`refund-policy-schema-${index}`}
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
 
-      <TermsAndConditionsClient />
+      <RefundPolicyClient />
     </>
   );
 };
 
-export default TermsAndConditionsPage;
+export default RefundPolicyPage;

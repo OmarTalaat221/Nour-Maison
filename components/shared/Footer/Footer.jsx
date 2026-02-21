@@ -234,7 +234,7 @@ const Footer = () => {
               <span className="text-xl sm:text-2xl">|</span>{" "}
               {/* ✅ لينك جديد للـ Refund Policy */}
               <Link
-                href={"/terms-conditions#refund-policy"}
+                href={"/refund-policy"}
                 className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
               >
                 Refund Policy

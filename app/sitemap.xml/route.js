@@ -25,6 +25,7 @@ export async function GET() {
     "/store",
     "/terms-conditions",
     "/privacy-policy-2",
+    "/refund-policy",
     "/services",
   ];
 

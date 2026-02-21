@@ -80,7 +80,11 @@ const StickyHeader = ({ open, setOpen }) => {
           checked={open}
           green={
             (isVisible && !open) ||
-            (["/privacy-policy-2", "/terms-conditions"].includes(pathname) &&
+            ([
+              "/privacy-policy-2",
+              "/terms-conditions",
+              "/refund-policy",
+            ].includes(pathname) &&
               !open)
           }
           onChange={(e) => setOpen(e.target.checked)}
@@ -92,9 +96,11 @@ const StickyHeader = ({ open, setOpen }) => {
             "fixed bg-white transition-all -top-full  z-30 right-0 left-0",
             {
               "!top-0": isVisible,
-              "!static": ["/privacy-policy-2", "/terms-conditions"].includes(
-                pathname
-              ),
+              "!static": [
+                "/privacy-policy-2",
+                "/terms-conditions",
+                "/refund-policy",
+              ].includes(pathname),
             }
           )}
         >
