@@ -15,7 +15,6 @@ import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import FancyboxElement from "../../../utils/FancyBox/FancyBox";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
-
 const MenuClient = () => {
   const slider = React.useRef(null);
 
@@ -26,17 +25,21 @@ const MenuClient = () => {
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1769095234/download_12_anridi.png",
   ];
 
-
   const menus2 = [
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg",
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535308/jegfgxa8lkbzf4y3cb9k_vhwzdt.jpg",
-  ]
-
-
+  ];
 
   return (
     <div>
-      <PagesBanner title={"Menu Gallery"} slogan={" "} scrollTo={"booking"} />
+      <PagesBanner
+        images={[
+          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4",
+        ]}
+        title={"Menu Gallery"}
+        slogan={" "}
+        scrollTo={"booking"}
+      />
 
       <div className="relative">
         <FancyboxElement

@@ -20,6 +20,7 @@ import TopBg from "./../../../../utils/topBg/TopBg";
 import CounterUp from "../../../elements/CounterUp";
 import BottomBg from "../../../../utils/bottomBg/BottomBg";
 import RatingStars from "../RatingWithSound";
+import AboutUsSectionVideo from "../AboutUsSectionVideo/AboutUsSectionVideo";
 
 const AboutUsSection = () => {
   const swiperRef = useRef(null);
@@ -47,7 +48,6 @@ const AboutUsSection = () => {
     { id: 3, title: "Our Rating", value: 4.7, bg: "bg-sageGreen" },
   ];
 
-
   const images = [
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg",
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/l2vsemfnzxd9rvtck24a_jzeww6.jpg",
@@ -62,9 +62,16 @@ const AboutUsSection = () => {
       className="grid lg:grid  grid-cols-1 lg:grid-cols-2 relative overflow-hidden"
       ref={ref}
     >
-      {/* swiper here */}
+      {/* Video Section (replaced Swiper) */}
+      <div className="w-full" data-aos="fade-down-right">
+        <AboutUsSectionVideo
+          videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4"
+          poster={images[0]}
+        />
+      </div>
 
-      <div className="w-full " data-aos="fade-down-right">
+      {/* Original Swiper - Commented Out */}
+      {/* <div className="w-full " data-aos="fade-down-right">
         <Swiper
           className=" !max-h-[600px] hs-full relative"
           // className='  hs-full relative'
@@ -120,7 +127,8 @@ const AboutUsSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </div> */}
+
       <div className="relative flex flex-col  max-h-[730px] md:!max-h-[600px] overflow-auto">
         <div
           className="flex items-center justify-center"
@@ -151,9 +159,9 @@ const AboutUsSection = () => {
               data-aos-delay="800 "
             >
               Welcome to Nour Maison, where French sophistication meets the
-              bold, vibrant flavors of the Middle East. This isn’t just a
-              restaurant — it’s a reflection of family, tradition, and heartfelt
-              hospitality. Inspired by the founder’s daughter, Nour —
+              bold, vibrant flavors of the Middle East. This isn't just a
+              restaurant — it's a reflection of family, tradition, and heartfelt
+              hospitality. Inspired by the founder's daughter, Nour —
               symbolizing light and warmth — and combined with 'Maison,' meaning
               'house' in French, our café is a warm, welcoming space that feels
               like home

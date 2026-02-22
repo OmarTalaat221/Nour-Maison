@@ -1,10 +1,9 @@
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import OurServices from "../../../components/pages/Home/OurServices/OurServices";
 import HappyMoments from "../../../components/pages/HappyMoments/HappyMoments";
-const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/ga4mdhcqwbr2sqhdc7os_1_eahl9l.webp`
+const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/ga4mdhcqwbr2sqhdc7os_1_eahl9l.webp`;
 export const metadata = {
-
-  title: "Services And Events | Nour Maison – Private Events, Celebrations & Gatherings",
+  title: "Services for Private Events & Gatherings | Nour Maison",
   description: `Host birthdays or corporate events at Nour Maison Milton Keynes—halal-friendly French & Middle Eastern flavours.`,
   keywords: [
     "Nour Maison services",
@@ -111,19 +110,6 @@ export const metadata = {
 };
 
 const page = () => {
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div>
       <PagesBanner

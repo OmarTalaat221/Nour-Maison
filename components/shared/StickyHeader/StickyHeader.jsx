@@ -17,10 +17,7 @@ const StickyHeader = ({ open, setOpen }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        window.scrollY > 200
-        // ["/privacy-policy-2", "/terms-conditions"].includes(pathname)
-      ) {
+      if (window.scrollY > 200) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -28,10 +25,10 @@ const StickyHeader = ({ open, setOpen }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ✅ Navigate function
   const navigate = (path) => {
     router.push(path);
   };
@@ -45,29 +42,32 @@ const StickyHeader = ({ open, setOpen }) => {
       type: "navigate",
       items: [
         { id: 1, name: "Menu Classic", path: "/menu" },
-        { id: 2, name: "Menu Gallery ", path: "menu" },
-        { id: 3, name: "Kids Menu ", path: "/kids-menu" },
-        { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        { id: 2, name: "Menu Gallery", path: "/menu-gallery" },
+        { id: 3, name: "Kids Menu", path: "/kids-menu" },
+        { id: 4, name: "Roast Menu", path: "/roast-menu" },
         {
           id: 5,
-          name: "Ramadan Iftar Menu ",
+          name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
           new: true,
         },
-        // { id: 5, name: "Christmas Menu ", path: "/christmas-menu" , new:true },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
-    // {id: 3, name: "GIFT CARDS", path: "/gift-cards", type: "navigate"},
     { id: 4, name: "GALLERY", path: "/gallery", type: "navigate" },
     { id: 11, name: "OUR EVENTS", path: "/services", type: "navigate" },
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
-    // {id: 6, name: "RESERVATION", path: "/", type: "navigate"},
-    // {id: 7, name: "PORTFOLIO", path: "/portfolio", type: "navigate"},
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
-    // { id: 6, name: "STORE & GIFT CARDS", path: "/store", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
+
+  // ✅ Check if menu is active
+  const isMenuActive =
+    pathname === "/menu" ||
+    pathname === "/menu-gallery" ||
+    pathname === "/kids-menu" ||
+    pathname === "/roast-menu" ||
+    pathname === "/ramadan-iftar-menu-milton-keynes";
 
   return (
     <>
@@ -90,10 +90,10 @@ const StickyHeader = ({ open, setOpen }) => {
           onChange={(e) => setOpen(e.target.checked)}
         />
       </div>
-      <div className=" site_header relative z-30">
+      <div className="site_header relative z-30">
         <header
           className={cx(
-            "fixed bg-white transition-all -top-full  z-30 right-0 left-0",
+            "fixed bg-white transition-all -top-full z-30 right-0 left-0",
             {
               "!top-0": isVisible,
               "!static": [
@@ -109,9 +109,9 @@ const StickyHeader = ({ open, setOpen }) => {
             <BranchesImage variant={"top-left"} className={"w-[100px]"} />
           </div>
 
-          <div className="  relative ">
-            <div className="flex  items-center justify-between site_header_content  lg:px-[100px] xl:px-[150px]  py-2 shadow-lg  ">
-              <div className=" md:flex md:items-center md:gap-12 cursor-pointer ">
+          <div className="relative">
+            <div className="flex items-center justify-between site_header_content lg:px-[100px] xl:px-[150px] py-2 shadow-lg">
+              <div className="md:flex md:items-center md:gap-12 cursor-pointer">
                 <div
                   className="block cursor-pointer text-teal-600 cursor-pointer"
                   onClick={() => navigate("/")}
@@ -121,36 +121,38 @@ const StickyHeader = ({ open, setOpen }) => {
                     loading="lazy"
                     src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
                     alt="Nour Maison Logo"
-                    className="  w-[60px] md:w-[70px] mdd:!w-[60px]"
+                    className="w-[60px] md:w-[70px] mdd:!w-[60px]"
                     title="NOUR MAISON"
                   />
                 </div>
               </div>
 
-              <div className=" hidden site_header_content_navs md:items-center md:gap-12 ">
+              <div className="hidden site_header_content_navs md:items-center md:gap-12">
                 <nav aria-label="Global" className="hidden md:block">
                   <ul className="flex m-0 items-center gap-6 text-sm">
                     {navItems.map((item, index) => {
                       return (
                         <li
                           key={index}
-                          className={cx(
-                            pathname == item?.path
-                              ? "text-goldenOrange"
-                              : "text-softMintGreen"
-                          )}
+                          className={cx({
+                            "text-goldenOrange":
+                              pathname === item?.path ||
+                              (item.items && isMenuActive),
+                            "text-softMintGreen":
+                              pathname !== item?.path &&
+                              !(item.items && isMenuActive),
+                          })}
                         >
                           {!item?.items ? (
                             <div
-                              className=" whitespace-nowrap m-0 font-seasons font-bold tracking-wider  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] "
+                              className="whitespace-nowrap m-0 font-seasons font-bold tracking-wider transition relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)]"
                               onClick={() => navigate(item.path)}
                             >
-                              {" "}
-                              {item.name}{" "}
+                              {item.name}
                               <span
                                 className={cx(
-                                  "w-0 whitespace-nowrap m-0  leading-none group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange  transition-all duration-300",
-                                  { "!w-full": pathname == item.path }
+                                  "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300",
+                                  { "!w-full": pathname === item.path }
                                 )}
                               ></span>
                             </div>
@@ -160,20 +162,35 @@ const StickyHeader = ({ open, setOpen }) => {
                                 <div
                                   {...props}
                                   ref={ref}
-                                  className=" whitespace-nowrap m-0 font-seasons font-bold tracking-wider  transition  relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg: xl:text-[15px] "
-                                  // onClick={() => navigate(item.path)}
+                                  className={cx(
+                                    "whitespace-nowrap m-0 font-seasons font-bold tracking-wider transition relative group cursor-pointer hover:text-goldenOrange text-[calc(5px+0.65vw)] lg: xl:text-[15px]",
+                                    {
+                                      "text-goldenOrange": isMenuActive,
+                                    }
+                                  )}
                                 >
-                                  {" "}
-                                  {item.name}{" "}
-                                  <span className="w-0 whitespace-nowrap m-0  leading-none group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange  transition-all duration-300"></span>
+                                  {item.name}
+                                  <span
+                                    className={cx(
+                                      "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300",
+                                      { "!w-full": isMenuActive }
+                                    )}
+                                  ></span>
                                 </div>
                               )}
                             >
                               {item.items.map((subItem) => (
                                 <Dropdown.Item
                                   key={subItem.id}
-                                  onClick={() => navigate(subItem.path)}
-                                  className="relative"
+                                  // ✅ الحل: استخدام onSelect بدل onClick
+                                  onSelect={() => navigate(subItem.path)}
+                                  className={cx(
+                                    "relative transition-all duration-200 hover:!bg-logoGold/10 hover:!text-logoGold",
+                                    {
+                                      "!text-logoGold !bg-logoGold/5 !font-bold":
+                                        pathname === subItem.path,
+                                    }
+                                  )}
                                 >
                                   {subItem.name}
                                   {subItem?.new && (
@@ -188,89 +205,13 @@ const StickyHeader = ({ open, setOpen }) => {
                         </li>
                       );
                     })}
-                    {/* <li>
-                    <a
-                      className=' text-softMintGreen transition  relative group cursor-pointer hover:text-goldenOrange text-[15px] '
-                      onClick={() => navigate("/about-us")}
-                    >
-                      {" "}
-                      MENU{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className=' text-softMintGreen transition  relative group cursor-pointer hover:text-goldenOrange text-[15px] '
-                      onClick={() => navigate("/booking")}
-                    >
-                      {" "}
-                      BOOKING{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className=' text-softMintGreen transition  relative group cursor-pointer hover:text-goldenOrange text-[15px] '
-                      onClick={() => navigate("/gift-cards")}
-                    >
-                      {" "}
-                      GIFT CARDS{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className='relative group text-softMintGreen transition   group cursor-pointer hover:text-goldenOrange text-[15px] '
-                      onClick={() => navigate("/gallery")}
-                    >
-                      {" "}
-                      GALLERY{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className=' text-softMintGreen transition  relative group cursor-pointer hover:text-goldenOrange text-[15px] '
-                      onClick={() => navigate("/about-us")}
-                    >
-                      {" "}
-                      ABOUT US{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className='text-softMintGreen transition cursor-pointer hover:text-goldenOrange text-[15px]  !capitaze relative group '
-                      onClick={() => navigate("/portfolio")}
-                    >
-                      {" "}
-                      PORTFOLIO{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className='text-softMintGreen transition cursor-pointer hover:text-goldenOrange text-[15px]  relative group'
-                      onClick={() => navigate("/contact-us")}
-                    >
-                      {" "}
-                      CONTACT US{" "}
-                      <span className='w-0 group-hover:w-full absolute bottom-[-10px] left-0 h-[3px] bg-goldenOrange transition-all duration-300'></span>
-                    </a>
-                  </li> */}
                   </ul>
                 </nav>
               </div>
 
-              <div className=" hidden lg:flex gap-3">
-                {/* <CristmasMenuButton/> */}
-
+              <div className="hidden lg:flex gap-3">
                 <button
-                  className="  font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap  bg-logoGold text-white hidden  "
+                  className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white hidden"
                   onClick={() => (window.location.href = "/booking")}
                 >
                   BOOK NOW

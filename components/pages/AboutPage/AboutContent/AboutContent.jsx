@@ -8,7 +8,7 @@ import { PiChefHatLight } from "react-icons/pi";
 import { LuLeafyGreen } from "react-icons/lu";
 
 import AboutVideo from "./../AboutVideo/AboutVideo";
-import AboutUsSwiper from "./../AboutUsSwiper";
+import AboutUsVideo from "./../AboutUsVideo";
 
 const FEATURES = [
   {
@@ -95,18 +95,25 @@ export default function AboutContent() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         {/* HERO / FIRST BLOCK */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Sticky Swiper */}
-          <div className="lg:col-span-6 lg:sticky lg:top-[110px]">
+          {/* Sticky Video (replaced Swiper) */}
+          <div className="lg:col-span-6 lg:sticky lg:top-[110px] h-full">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] h-full"
             >
               {/* glow border */}
               <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10" />
-              <AboutUsSwiper images={images} />
+
+              {/* Video Component (replaced AboutUsSwiper) */}
+              {/* <AboutUsSwiper images={images} /> */}
+              <AboutUsVideo
+                videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4"
+                poster={images[0]}
+              />
+
               {/* bottom fade */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#07110a] to-transparent" />
             </motion.div>
@@ -318,7 +325,7 @@ export default function AboutContent() {
             </motion.div>
           </div>
 
-          {/* Sticky Swiper 2 */}
+          {/* Sticky Video 2 (replaced Swiper 2) */}
           <div className="lg:col-span-6 order-1 lg:order-2 lg:sticky lg:top-[110px] h-full">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -328,7 +335,14 @@ export default function AboutContent() {
               className="relative rounded-3xl overflow-hidden border h-full border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
             >
               <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10" />
-              <AboutUsSwiper images={images2} />
+
+              {/* Video Component (replaced AboutUsSwiper) */}
+              {/* <AboutUsSwiper images={images2} /> */}
+              <AboutUsVideo
+                videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4"
+                poster={images2[0]}
+              />
+
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#07110a] to-transparent" />
             </motion.div>
           </div>

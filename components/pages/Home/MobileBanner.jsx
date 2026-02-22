@@ -1,4 +1,5 @@
 "use client";
+// At Nour Maison, every mood has a flavour 👌🏻Whether you're into classic comfort or bold new tas
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -37,10 +38,7 @@ export default function VideoBanner() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-70"
       >
-        <source
-          src="/images/At Nour Maison, every mood has a flavour 👌🏻Whether you're into classic comfort or bold new tas.mp4"
-          type="video/mp4"
-        />
+        <source src="/images/nour-maison-banner.mp4" type="video/mp4" />
       </video>
 
       {/* Gradient Overlay */}

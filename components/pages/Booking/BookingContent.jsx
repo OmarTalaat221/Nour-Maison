@@ -12,13 +12,21 @@ import PaperPlaneSuccess from "../../PaperPlaneSuccess/PaperPlaneSuccess";
 import AlleadyReservedModal from "./AlleadyReservedModal";
 import BusyModal from "./BusyModal";
 import createChatForBooking from "../../../lib/createChatForBooking";
+import axios from "axios";
+import { conifgs } from "../../../config";
 
 const BookingConent = ({ bg }) => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
   const [busyModal, setBusyModal] = useState(false);
+  const [busyModalContent, setBusyModalContent] = useState({
+    title: "",
+    message: "",
+  });
   const [chatId, setChatid] = useState("");
+  const [dateLoading, setDateLoading] = useState(false);
+  const [lockedTimesData, setLockedTimesData] = useState(null);
   const [bookingData, setBookingData] = useState({
     name: "",
     email: "",
@@ -29,6 +37,7 @@ const BookingConent = ({ bg }) => {
     date: "",
     phone: "",
   });
+
   const personsData = [
     "1 Person",
     "2 Persons",
@@ -46,7 +55,8 @@ const BookingConent = ({ bg }) => {
       label: index + 9 + " Persons",
       value: parseInt(index + 9),
     }));
-  const [type, setType] = useState("normal"); // normal || party
+
+  const [type, setType] = useState("normal");
   const [isSpecialOrder, setIsSpecialOrder] = useState(false);
 
   const timeSlots = Array.from({ length: 12.5 * 4 + 1 }, (_, i) => {
@@ -65,6 +75,7 @@ const BookingConent = ({ bg }) => {
         .padStart(2, "0")} ${period}`,
     };
   });
+
   const dispatch = useDispatch();
 
   const toastStyles = {
@@ -83,41 +94,85 @@ const BookingConent = ({ bg }) => {
     },
   };
 
+  // دالة لتحويل الوقت من 24 ساعة إلى 12 ساعة
+  const convertTo12Hour = (time24) => {
+    const [hours, minutes] = time24.split(":").map(Number);
+    const period = hours >= 12 ? "PM" : "AM";
+    const hours12 = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
+    return `${hours12.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")} ${period}`;
+  };
+
+  // دالة للتحقق من التاريخ
+  const checkBookingDateTime = async (selectedDate) => {
+    setDateLoading(true);
+    setLockedTimesData(null);
+
+    try {
+      const response = await axios.post(
+        `${conifgs.BASE_URL}/user/check_booking_date_time.php`,
+        {
+          date: selectedDate,
+        }
+      );
+
+      if (response?.data?.status === "success" && response?.data?.message) {
+        setLockedTimesData(response?.data?.message);
+      } else {
+        setLockedTimesData(null);
+      }
+    } catch (error) {
+      console.error("Error checking booking date:", error);
+      setLockedTimesData(null);
+    } finally {
+      setDateLoading(false);
+    }
+  };
+
+  // دالة للتحقق إذا كان الوقت محجوز
+  const isTimeLocked = (timeValue) => {
+    if (!lockedTimesData || !lockedTimesData.times_locked) return false;
+
+    const lockedTimes = lockedTimesData.times_locked.map((t) =>
+      convertTo12Hour(t.time)
+    );
+
+    return lockedTimes.includes(timeValue);
+  };
+
+  // دالة معالجة اختيار الوقت - بدون تحقق، فقط تحديث القيمة
+  const handleTimeSelect = (selectedTime) => {
+    setBookingData((prev) => ({
+      ...prev,
+      time: selectedTime,
+    }));
+  };
+
+  // دالة معالجة اختيار التاريخ
+  const handleDateChange = async (e) => {
+    const { name, value } = e.target;
+
+    // Reset time when date changes
+    setBookingData((prev) => ({
+      ...prev,
+      [name]: value,
+      time: "", // Reset time selection
+    }));
+
+    if (value) {
+      await checkBookingDateTime(value);
+    } else {
+      setLockedTimesData(null);
+    }
+  };
+
   const createBooking = async () => {
     const dataset = { ...bookingData };
-    dataset.seats = bookingData.seats.value;
-    dataset.time = bookingData.time.value;
+    dataset.seats = bookingData?.seats?.value;
+    dataset.time = bookingData?.time?.value;
 
-    // this code is for sunday's party 🥳
-    //from 2 pm to 10 pm
-
-    const valentineBlockedTimes = [
-      "11:00 AM",
-      "11:15 AM",
-      "11:30 AM",
-      "11:45 AM",
-      "12:00 PM",
-      "12:15 PM",
-      "12:30 PM",
-      "12:45 PM",
-      "01:00 PM",
-      "01:15 PM",
-      "01:30 PM",
-      "01:45 PM",
-      "02:00 PM",
-      "02:15 PM",
-      "02:30 PM",
-      "02:45 PM",
-    ];
-
-    if (
-      dataset.date === "2026-02-14" &&
-      valentineBlockedTimes.includes(dataset.time)
-    ) {
-      setBusyModal(true);
-      return;
-    }
-
+    // Validation أولاً
     if (!dataset.name) {
       toast.error("Enter the name", toastStyles);
       return;
@@ -133,7 +188,7 @@ const BookingConent = ({ bg }) => {
       return;
     }
     if (!dataset.date) {
-      toast.error("Enter the  date", toastStyles);
+      toast.error("Enter the date", toastStyles);
       return;
     }
     if (!dataset.seats) {
@@ -142,6 +197,18 @@ const BookingConent = ({ bg }) => {
     }
     if (!dataset.time) {
       toast.error("Enter time of booking", toastStyles);
+      return;
+    }
+
+    // التحقق من الوقت المحجوز بعد الـ validation
+    if (isTimeLocked(dataset.time)) {
+      setBusyModalContent({
+        title: "Time Not Available",
+        message: (
+          <div dangerouslySetInnerHTML={{ __html: lockedTimesData.message }} />
+        ),
+      });
+      setBusyModal(true);
       return;
     }
 
@@ -170,10 +237,11 @@ const BookingConent = ({ bg }) => {
           date: "",
           phone: "",
         });
+        setLockedTimesData(null);
       }
-      // toast.success(res.payload.message);
     });
   };
+
   const getBookingData = (e) => {
     const { name, value } = e.target;
     setBookingData({
@@ -190,7 +258,6 @@ const BookingConent = ({ bg }) => {
   };
 
   return (
-    // make title here
     <main>
       <header>
         <h1 className=" px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
@@ -281,42 +348,39 @@ const BookingConent = ({ bg }) => {
                     label="Phone Number"
                     required
                   />
-                  <CustomInput
-                    isGlass
-                    type="date"
-                    name="date"
-                    value={bookingData.date}
-                    onChange={getBookingData}
-                    min={new Date().toISOString().split("T")[0]}
-                    label="Booking Date"
-                    required
-                  />
+                  <div className="relative">
+                    <CustomInput
+                      isGlass
+                      type="date"
+                      name="date"
+                      value={bookingData.date}
+                      onChange={handleDateChange}
+                      min={new Date().toISOString().split("T")[0]}
+                      label="Booking Date"
+                      required
+                    />
+                    {dateLoading && (
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <Loader size="xs" />
+                      </div>
+                    )}
+                  </div>
                   <CustomSelect
                     isGlass
                     placeholder="Time"
                     data={timeSlots}
                     name="time"
                     value={bookingData?.time}
-                    onChange={(e) => {
-                      // getBookingData({
-                      //   target: { label: e.name, value: e.value },
-                      // });
-                      setBookingData((prev) => ({
-                        ...prev,
-                        time: e,
-                      }));
-                    }}
+                    onChange={handleTimeSelect}
                     label="Booking Time"
                     required
+                    disabled={dateLoading}
                   />
                   <CustomSelect
                     isGlass
                     placeholder="Seats"
                     name="seats"
                     onChange={(e) => {
-                      // getBookingData({
-                      //   target: { label: e.name, value: e.value },
-                      // });
                       setBookingData((prev) => ({
                         ...prev,
                         seats: e,
@@ -385,7 +449,6 @@ const BookingConent = ({ bg }) => {
                   {type == "normal"
                     ? "More than 8 persons? "
                     : "Less than 8 persons? "}
-                  {/* Can't see your party size?{" "} */}
                   <b
                     onClick={() =>
                       setType((prev) => (prev == "normal" ? "party" : "normal"))
@@ -403,7 +466,6 @@ const BookingConent = ({ bg }) => {
                     </div>
                   ) : (
                     <div className="flex justify-center items-center">
-                      {/* <AnimButton2 text={"Book Now"} /> */}
                       <button
                         onClick={createBooking}
                         className="button-border-anime hover:!bg-[#1a1a1a] !w-44 md:!w-60 h-[3rem] md:!h-[4rem] flex items-center justify-center"
@@ -431,17 +493,7 @@ const BookingConent = ({ bg }) => {
             </div>
             <div
               className=" order-2 lg:order-1 w-full h-full  relative lg:px-4 "
-              style={
-                // {
-                //   backgroundImage:
-                //   backgroundPosition: "center",
-                //   backgroundSize: "",
-                //   backgroundRepeat: "no-repeat",
-
-                //   zIndex: "-1",
-                // }
-                {}
-              }
+              style={{}}
             >
               <Tilt
                 className="background-stripes parallax-effect-glare-scale h-full w-full"
@@ -459,14 +511,9 @@ const BookingConent = ({ bg }) => {
                 >
                   <div className="absolute inset-0 rounded-3xl border  opacity-40 pointer-events-none"></div>
 
-                  {/* <h2 className=" lg:text-xl  italic  z-10 relative font-tangerine text-center !text-5xl font-bold  ">
-                  Check Availability
-                </h2> */}
-
                   <header
                     style={{
                       textShadow: "white 1px 2px 0px",
-                      // textShadow: "#613f00 1px 3px 0px",
                     }}
                     className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold  text-shadow-xs text-center mt-2 z-10 relative"
                   >
@@ -483,7 +530,6 @@ const BookingConent = ({ bg }) => {
                   <strong
                     style={{
                       textShadow: "white 1px 3px 0px",
-                      // textShadow: "#613f00 1px 3px 0px",
                     }}
                     className=" text-5xl  mt-6 italic text-logoGold  z-10 relative font-lato text-center lg:text-6xl font-bold  "
                   >
@@ -493,7 +539,6 @@ const BookingConent = ({ bg }) => {
                     href="tel:+441908772177"
                     style={{
                       textShadow: "white 0px 2px 0px",
-                      // textShadow: "#613f00 1px 3px 0px",
                     }}
                     className=" text-3xl lg:text-4xl text-center font-lato !text-logoGold hover:!text-logoGold no-underline hover:no-underline hover:scale-105 transition mt-1 z-10 relative"
                   >
@@ -504,7 +549,6 @@ const BookingConent = ({ bg }) => {
                     onClick={() => handleShowMap()}
                     style={{
                       textShadow: "white 0px 2px 2px",
-                      // textShadow: "#613f00 1px 3px 0px",
                     }}
                     className="mt-6 not-italic cursor-pointer hover:scale-110 transition text-center text-logoGold lg:text-3xl font-oswald fobnt-semibold  leading-relaxed z-10 relative"
                   >
@@ -529,22 +573,8 @@ const BookingConent = ({ bg }) => {
         />
 
         <BusyModal
-          title="Limited Availability Notice"
-          message={
-            <>
-              <p className="text-lg text-slate-600">
-                Due to Valentine’s Day, we’re fully booked between 11:00 AM and
-                03:00 PM.
-              </p>
-              <p className="text-lg text-slate-600 mt-5">
-                Please choose a time outside this window to continue your
-                booking.
-              </p>
-              <p className="text-lg text-black">
-                Thank you for your patience and understanding.
-              </p>
-            </>
-          }
+          title={busyModalContent.title || "Limited Availability Notice"}
+          message={busyModalContent.message}
           open={busyModal}
           setOpen={setBusyModal}
         />

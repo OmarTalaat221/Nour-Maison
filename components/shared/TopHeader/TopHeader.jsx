@@ -26,12 +26,12 @@ const TopHeader = () => {
       type: "navigate",
       items: [
         { id: 1, name: "Menu Classic", path: "/menu" },
-        { id: 2, name: "Menu Gallery ", path: "/menu-gallery" },
-        { id: 3, name: "Kids Menu ", path: "/kids-menu" },
-        { id: 4, name: "Roast Menu ", path: "/roast-menu" },
+        { id: 2, name: "Menu Gallery", path: "/menu-gallery" },
+        { id: 3, name: "Kids Menu", path: "/kids-menu" },
+        { id: 4, name: "Roast Menu", path: "/roast-menu" },
         {
           id: 5,
-          name: "Ramadan Iftar Menu ",
+          name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
           new: true,
         },
@@ -55,6 +55,19 @@ const TopHeader = () => {
   if (isNotFound || hiddenPages.includes(pathname)) {
     return null;
   }
+
+  // ✅ Navigate function
+  const handleNavigate = (path) => {
+    router.push(path);
+  };
+
+  // ✅ Check if menu is active
+  const isMenuActive =
+    pathname === "/menu" ||
+    pathname === "/menu-gallery" ||
+    pathname === "/kids-menu" ||
+    pathname === "/roast-menu" ||
+    pathname === "/ramadan-iftar-menu-milton-keynes";
 
   return (
     <div className="relative z-[999999]">
@@ -168,13 +181,9 @@ const TopHeader = () => {
                                     "text-white hover:text-logoGold":
                                       headerWithBg,
                                     "!text-goldenOrange":
-                                      (pathname === "/menu" ||
-                                        pathname === "/menu-gallery") &&
-                                      !headerWithBg,
+                                      isMenuActive && !headerWithBg,
                                     "!text-logoGold":
-                                      (pathname === "/menu" ||
-                                        pathname === "/menu-gallery") &&
-                                      headerWithBg,
+                                      isMenuActive && headerWithBg,
                                   }
                                 )}
                               >
@@ -216,24 +225,22 @@ const TopHeader = () => {
                             {item.items.map((subItem) => (
                               <Dropdown.Item
                                 key={subItem.id}
-                                className="relative !p-0"
-                              >
-                                <Link
-                                  href={subItem.path}
-                                  className={
-                                    "group flex items-center justify-between gap-4 px-4 py-3 text-black no-underline hover:no-underline " +
-                                    "transition-all duration-200 hover:bg-black/5"
+                                // ✅ الحل: استخدام onClick مباشرة مع router.push
+                                onSelect={() => handleNavigate(subItem.path)}
+                                className={cx(
+                                  "relative transition-all duration-200 hover:!bg-logoGold/10 hover:!text-logoGold",
+                                  {
+                                    "!text-logoGold !bg-logoGold/5 !font-bold":
+                                      pathname === subItem.path,
                                   }
-                                >
-                                  <span className="transition-transform duration-200 group-hover:translate-x-1">
-                                    {subItem.name}
+                                )}
+                              >
+                                {subItem.name}
+                                {subItem?.new && (
+                                  <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
+                                    New
                                   </span>
-                                  {subItem?.new && (
-                                    <span className="bg-logoGold text-white px-2 py-0.5 rounded-md text-[10px] tracking-wide">
-                                      NEW
-                                    </span>
-                                  )}
-                                </Link>
+                                )}
                               </Dropdown.Item>
                             ))}
                           </Dropdown>

@@ -62,13 +62,18 @@ const MenuClassic = () => {
   return (
     <div className=" !overflow-visible">
       <PagesBanner
+        images={[
+          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4",
+        ]}
         title={"Menu Classic"}
         slogan={<p className="text-center"></p>}
         scrollTo={"contact"}
       />
 
       <div className="text-center max-w-3xl mx-auto py-12">
-        <p className="text-goldenOrange italic text-2xl font-seasons">Taste The Best</p>
+        <p className="text-goldenOrange italic text-2xl font-seasons">
+          Taste The Best
+        </p>
         <h2 className="text-3xl md:text-6xl font-seasons font-bold text-softMintGreen mt-2">
           Discover Our Menu
         </h2>

@@ -6,7 +6,7 @@ import MenuClassic from "./_ClientMenuClassic";
 export const metadata = {
   metadataBase: new URL("https://www.nourmaison.co.uk/"), // ✅ عدّل للدومين الحقيقي لو مختلف
 
-  title: "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
+  title: "Halal French & Middle Eastern Brunch Menu | Nour Maison",
   description:
     "Explore the Nour Maison menu: French & Middle Eastern halal brunch, elegant pancakes, premium coffee, and cozy breakfast options in Milton Keynes.",
 
@@ -41,7 +41,8 @@ export const metadata = {
     type: "website",
     url: "https://www.nourmaison.co.uk/menu",
     siteName: "Nour Maison Cafe",
-    title: "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
+    title:
+      "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
     description:
       "Explore the Nour Maison menu: French & Middle Eastern halal brunch, elegant pancakes, premium coffee, and cozy breakfast options in Milton Keynes.",
     locale: "en_GB",
@@ -57,18 +58,19 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
+    title:
+      "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
     description:
       "Explore the Nour Maison menu: French & Middle Eastern halal brunch, elegant pancakes, premium coffee, and cozy breakfast options in Milton Keynes.",
-    images: ["https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp"],
+    images: [
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
+    ],
     // site: "@nourmaisonuk",    // لو عندك
     // creator: "@nourmaisonuk", // لو عندك
   },
 
   // Optional but nice
   category: "Menu",
-
-
 };
 
 const Page = () => {

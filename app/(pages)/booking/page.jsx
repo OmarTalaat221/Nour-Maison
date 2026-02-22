@@ -6,7 +6,6 @@ import BookingConent from "../../../components/pages/Booking/BookingContent";
 const OG_IMAGE =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1770471922/96cb5bb4-29e3-410f-ad35-69dd1cbdd203.png";
 
-  
 //metadata
 export const metadata = {
   title: "Book a Table | NOUR MAISON Restaurant & Café",
@@ -42,7 +41,8 @@ export const metadata = {
     canonical: "https://www.nourmaison.co.uk/booking",
   },
   openGraph: {
-    title: "Book a Table | Nour Maison – Halal French & Middle Eastern Restaurant",
+    title:
+      "Book a Table | Nour Maison – Halal French & Middle Eastern Restaurant",
     description:
       "Reserve your spot at Nour Maison, Milton Keynes. Enjoy elegant halal dining with a unique blend of French & Middle Eastern flavors.",
     url: "https://www.nourmaison.co.uk/booking",
@@ -76,9 +76,7 @@ export default async function BookingPage() {
           slogan={"Reserve your seat, taste the extraordinary."}
           scrollTo={"booking"}
           images={[
-            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg",
-            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
-            "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
+            "https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4",
           ]}
         />
 

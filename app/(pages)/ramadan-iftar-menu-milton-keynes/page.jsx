@@ -384,6 +384,7 @@ const RamadanIftarMenuPage = () => {
       <PagesBanner
         bottomBg={false}
         images={[
+          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771755775/nour-2-2026_eqrfpf.mp4",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434323/HKE09820_1_e43fwl.webp",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434499/HKE09789_itafrw.webp",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434496/HKE09816_e7ojrs.webp",

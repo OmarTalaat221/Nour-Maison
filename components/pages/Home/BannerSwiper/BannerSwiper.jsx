@@ -378,7 +378,8 @@ const BannerSwiper = () => {
               ),
             },
             {
-              image: "/images/BUNNER NOUR (1).png",
+              image:
+                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771758752/BUNNER_NOUR_1_cq1k64.webp",
               alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
               content: (
                 <>
