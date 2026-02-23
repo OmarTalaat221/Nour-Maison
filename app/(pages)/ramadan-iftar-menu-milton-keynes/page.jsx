@@ -11,7 +11,7 @@ const pathname = "/ramadan-iftar-menu-milton-keynes";
 const url = `${siteUrl}${pathname}`;
 
 const title =
-  "Best Iftar Menu Milton Keynes 2025 | 5-Course Halal £35 | Nour Maison";
+  "Best Iftar Menu Milton Keynes 2026 | 5-Course Halal £35 | Nour Maison";
 const description =
   "Looking for the best Iftar in Milton Keynes? Book your Ramadan table at Nour Maison for a premium 5-course halal Iftar menu at £35. Family offers: 10% off for 4+, kids under 10 eat free. Served at Maghrib daily.";
 const ogImage = `${siteUrl}/images/ramadan-iftar-menu.jpeg`;
@@ -41,7 +41,7 @@ export const metadata = {
     "Ramadan dining Milton Keynes",
     "5 course Iftar menu UK",
     "Halal restaurant Milton Keynes",
-    "Ramadan 2025 Milton Keynes",
+    "Ramadan 2026 Milton Keynes",
     "Middle Eastern restaurant MK",
     "Where to break fast Milton Keynes",
     "Iftar deals Milton Keynes",
@@ -68,7 +68,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url,
-    title: "Best Iftar Menu Milton Keynes 2025 | Nour Maison",
+    title: "Best Iftar Menu Milton Keynes 2026 | Nour Maison",
     description,
     siteName: "Nour Maison Café",
     locale: "en_GB",
@@ -77,7 +77,7 @@ export const metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Best Ramadan Iftar Menu Milton Keynes 2025 – 5 Course Halal Dining at Nour Maison",
+        alt: "Best Ramadan Iftar Menu Milton Keynes 2026 – 5 Course Halal Dining at Nour Maison",
         type: "image/jpeg",
       },
     ],
@@ -85,7 +85,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Best Iftar Menu Milton Keynes 2025 | Nour Maison",
+    title: "Best Iftar Menu Milton Keynes 2026 | Nour Maison",
     description,
     images: [ogImage],
     creator: "@NourMaisonCafe",
@@ -113,7 +113,7 @@ const RamadanIftarMenuPage = () => {
       name: "Ramadan Iftar Menu in Milton Keynes | Nour Maison",
       description: description,
       inLanguage: "en-GB",
-      datePublished: "2025-01-15",
+      datePublished: "2026-01-15",
       dateModified: new Date().toISOString().split("T")[0],
 
       potentialAction: {
@@ -197,8 +197,6 @@ const RamadanIftarMenuPage = () => {
         price: "35",
         priceCurrency: "GBP",
         availability: "https://schema.org/InStock",
-        validFrom: "2025-02-28",
-        validThrough: "2025-03-30",
         category: "Ramadan Iftar",
         eligibleRegion: "GB",
         offeredBy: {
@@ -283,7 +281,7 @@ const RamadanIftarMenuPage = () => {
           name: "What time is iftar served?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Iftar is served daily at Maghrib time throughout Ramadan 2025 (February 28th - March 30th).",
+            text: "Iftar is served daily at Maghrib time throughout Ramadan 2026 (February 28th - March 30th).",
           },
         },
         {
@@ -318,13 +316,12 @@ const RamadanIftarMenuPage = () => {
       "@context": "https://schema.org",
       "@type": "FoodEvent",
       "@id": `${url}#event`,
-      name: "Ramadan Iftar 2025 at Nour Maison Milton Keynes",
+      name: "Ramadan Iftar 2026 at Nour Maison Milton Keynes",
       description:
         "Join us for the best Ramadan Iftar experience in Milton Keynes. 5-course halal menu served at Maghrib for £35 per person with family discounts.",
       url: url,
       image: ogImage,
-      startDate: "2025-02-28",
-      endDate: "2025-03-30",
+
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       eventStatus: "https://schema.org/EventScheduled",
       location: {
@@ -343,8 +340,8 @@ const RamadanIftarMenuPage = () => {
           price: "35.00",
           priceCurrency: "GBP",
           availability: "https://schema.org/InStock",
-          validFrom: "2025-02-28",
-          validThrough: "2025-03-30",
+          validFrom: "2026-02-28",
+          validThrough: "2026-03-30",
           url: `${siteUrl}/booking`,
         },
         {
@@ -384,7 +381,7 @@ const RamadanIftarMenuPage = () => {
       <PagesBanner
         bottomBg={false}
         images={[
-          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771755775/nour-2-2026_eqrfpf.mp4",
+          // "https://res.cloudinary.com/dkc5klynm/video/upload/v1771755775/nour-2-2026_eqrfpf.mp4",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434323/HKE09820_1_e43fwl.webp",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434499/HKE09789_itafrw.webp",
           "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434496/HKE09816_e7ojrs.webp",
@@ -471,7 +468,7 @@ const RamadanIftarMenuPage = () => {
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-5xl mx-auto relative px-2 sm:px-4 z-10">
           <Image
             src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771510919/22_vkxlyt.webp"
-            alt="Best Ramadan Iftar Menu Milton Keynes 2025 - 5 Course Halal Dining Experience at Nour Maison"
+            alt="Best Ramadan Iftar Menu Milton Keynes 2026 - 5 Course Halal Dining Experience at Nour Maison"
             width={1400}
             height={1800}
             className="w-full h-auto rounded-2xl sm:rounded-3xl relative"
@@ -567,11 +564,11 @@ const RamadanIftarMenuPage = () => {
           className="sr-only"
           aria-label="Ramadan Iftar menu details and FAQs"
         >
-          <h2>Best Iftar Menu in Milton Keynes 2025</h2>
+          <h2>Best Iftar Menu in Milton Keynes 2026</h2>
           <p>
             Looking for the best Iftar menu in Milton Keynes? Nour Maison offers
             a premium 5-course halal Iftar dining experience for just £35 per
-            person. Our Ramadan 2025 menu is served at Maghrib time and includes
+            person. Our Ramadan 2026 menu is served at Maghrib time and includes
             traditional Harira soup, Medjool dates, artisan starters, signature
             mains with Middle Eastern and French fusion flavours, and indulgent
             Ramadan desserts.
@@ -594,9 +591,9 @@ const RamadanIftarMenuPage = () => {
             dining experience in Milton Keynes.
           </p>
 
-          <h2>Ramadan 2025 Iftar Milton Keynes</h2>
+          <h2>Ramadan 2026 Iftar Milton Keynes</h2>
           <p>
-            Join us for Ramadan 2025 at Nour Maison Café. Our special Iftar menu
+            Join us for Ramadan 2026 at Nour Maison Café. Our special Iftar menu
             is available throughout the holy month from February 28th to March
             30th, served daily at Maghrib time. Perfect for breaking fast with
             family and friends in a warm, welcoming atmosphere.
@@ -618,7 +615,7 @@ const RamadanIftarMenuPage = () => {
           </p>
 
           <h3>What time is Iftar served?</h3>
-          <p>Iftar is served at Maghrib time daily throughout Ramadan 2025.</p>
+          <p>Iftar is served at Maghrib time daily throughout Ramadan 2026.</p>
 
           <h3>Is Nour Maison halal?</h3>
           <p>Yes, Nour Maison is a fully halal restaurant.</p>

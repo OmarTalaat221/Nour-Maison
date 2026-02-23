@@ -30,22 +30,37 @@ const Footer = () => {
     );
   };
 
-  const navItems = [
+  // ✅ الصفحات الرئيسية
+  const mainNavItems = [
     { label: "Home", path: "/" },
+    { label: "Booking", path: "/booking" },
+    { label: "Gallery", path: "/gallery" },
+    { label: "Our Events", path: "/services" },
+    { label: "About Us", path: "/about-us" },
+    { label: "Contact Us", path: "/contact-us" },
+    { label: "Blogs", path: "/blog" },
+    { label: "All Blogs", path: "/all-blogs" },
+    // { label: "Store & Gift Cards", path: "/store" },
+  ];
+
+  // ✅ صفحات المنيوز
+  const menuNavItems = [
     { label: "Menu Classic", path: "/menu" },
     { label: "Menu Gallery", path: "/menu-gallery" },
-    { label: "Booking", path: "/booking" },
-    { label: "GALLERY", path: "/gallery" },
-    { label: "About US", path: "/about-us" },
-    { label: "Contact US", path: "/contact-us" },
-    { label: "Store & Gift Cards", path: "/store" },
-    { label: "Blogs", path: "/blog" },
+    { label: "Kids Menu", path: "/kids-menu" },
+    { label: "Roast Menu", path: "/roast-menu" },
+    { label: "Afternoon Tea", path: "/afternoon-tea-menu" },
+    {
+      label: "Ramadan Iftar",
+      path: "/ramadan-iftar-menu-milton-keynes",
+      new: true,
+    },
   ];
 
   return (
     <div className="relative !overflow-visible mt-24">
       <div className="w-full relative py-[50px] bg-gradient-to-b from-pestachio via-pestachio to-transparent">
-        {/* ✅ تم التغيير: هندلة الريسبونسف للوجو */}
+        {/* ✅ Logo Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 w-[95%] lg:w-[90%] mx-auto relative z-10 justify-start">
           <div className="flex justify-center mx-auto w-[180px] sm:w-[250px] mb-6 text-center h-[180px] sm:h-[250px]">
             <Image
@@ -63,7 +78,7 @@ const Footer = () => {
         </div>
 
         <div className="relative z-10 w-[95%] lg:w-[90%] mx-auto text-logoGold">
-          {/* ✅ تم التغيير: هندلة الريسبونسف للـ foot_cont */}
+          {/* ✅ Contact Info Section */}
           <div className="foot_cont grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
             {/* Contact Info */}
             <div className="flex flex-col gap-[10px]">
@@ -171,7 +186,7 @@ const Footer = () => {
                 </a>
               </div>
 
-              {/* ✅ تم التغيير: لوجوهات الكروت حسب متطلبات Dojo Payment Gateway */}
+              {/* Payment Cards */}
               <div className="flex flex-col items-center gap-2 mt-4">
                 <p
                   style={{ textShadow: "1px 2px 2px black" }}
@@ -179,19 +194,17 @@ const Footer = () => {
                 >
                   We Accept
                 </p>
-                <div className=" shimmer-card flex justify-center items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
+                <div className="shimmer-card flex justify-center items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
                   <img
                     src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771669946/Visa_Brandmark_Blue_RGB_2021_jsipcx.png"
                     alt="Visa"
                     className="w-[50px] h-[32px] object-contain"
                   />
-
                   <img
                     src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771669935/ma_symbol_opt_73_2x_xadjas.png"
                     alt="Mastercard"
                     className="w-[50px] h-[32px] object-contain"
                   />
-
                   <img
                     src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771670021/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80_rrtz7i.png"
                     alt="American Express"
@@ -202,8 +215,9 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* ✅ قسم الصفحات الرئيسية - Quick Links */}
           <div className="foot_terms font-tangerine">
-            {navItems.map((item) => (
+            {mainNavItems.map((item) => (
               <Link
                 href={item.path}
                 key={item.path}
@@ -216,6 +230,27 @@ const Footer = () => {
             ))}
           </div>
 
+          {/* ✅ قسم المنيوز - Our Menus */}
+          <div className="foot_terms font-tangerine">
+            {menuNavItems.map((item) => (
+              <Link
+                href={item.path}
+                key={item.path}
+                className={`foot_term_ele fonst !text-logoGold hover:!text-white relative ${
+                  pathname === item.path ? "active !text-white" : ""
+                }`}
+              >
+                {item.label}
+                {item.new && (
+                  <span className="absolute -top-2 -right-1 bg-red-500 text-white text-[8px] px-1 py-0.5 rounded-full font-sans font-bold">
+                    NEW
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
+
+          {/* ✅ Privacy & Terms Section */}
           <div className="foot_privacy mt-4">
             <div className="pb-[15px] text-[12px] flex justify-center font-[400] gap-2 flex-wrap px-4">
               <Link
@@ -232,7 +267,6 @@ const Footer = () => {
                 Terms & Conditions
               </Link>{" "}
               <span className="text-xl sm:text-2xl">|</span>{" "}
-              {/* ✅ لينك جديد للـ Refund Policy */}
               <Link
                 href={"/refund-policy"}
                 className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"

@@ -30,22 +30,22 @@ const HomaRoastMenu = () => {
   // ===== IMAGE ANIMATIONS (lighter) =====
   const rotate = useTransform(
     smoothProgress,
-    [0, 0.5, .8],
+    [0, 0.5, 0.8],
     reduceMotion ? [0, 0, 0] : [0, 20, 32]
   );
 
   // ✅ Avoid huge scale jumps (expensive on big images)
   const scale = useTransform(
     smoothProgress,
-    [0, 0.5 ,  .8],
-    reduceMotion ? [1, 1] : [0.98, 1.14 , 1.3]
+    [0, 0.5, 0.8],
+    reduceMotion ? [1, 1] : [0.98, 1.14, 1.3]
   );
 
   // ===== TEXT SIDE ANIMATIONS =====
   const textY = useTransform(
     smoothProgress,
-    [0, 0.5 ,1],
-    reduceMotion ? [0, 0 , 0] : [40, 24 , 0]
+    [0, 0.5, 1],
+    reduceMotion ? [0, 0, 0] : [40, 24, 0]
   );
   const textOpacity = useTransform(smoothProgress, [0, 0.25], [0, 1]);
   const textScale = useTransform(
@@ -63,12 +63,12 @@ const HomaRoastMenu = () => {
   const branchRightX = useTransform(
     smoothProgress,
     [0, 0.5, 1],
-    reduceMotion ? [0, 0, 0] : [100, 50 ,0]
+    reduceMotion ? [0, 0, 0] : [100, 50, 0]
   );
   const branchRightRotate = useTransform(
     smoothProgress,
-    [0, 0.5 , 1],
-    reduceMotion ? [0, 0] : [10, 5,  0]
+    [0, 0.5, 1],
+    reduceMotion ? [0, 0] : [10, 5, 0]
   );
   const branchRightOpacity = useTransform(
     smoothProgress,
@@ -166,8 +166,12 @@ const HomaRoastMenu = () => {
           }}
         >
           <h1 className="text-3xl sm:text-4xl lg:text-8xl font-seasons  !font-extralight text-softMintGreen">
-            <span style={{ textShadow: "1px 3px 0px #5c5948" }} className="font-bold">
-              Award <span className="font-oswald">-</span>Winning Café <span className="font-oswald">/</span>brasserie
+            <span
+              style={{ textShadow: "1px 3px 0px #5c5948" }}
+              className="font-bold"
+            >
+              Award <span className="font-oswald">-</span>Winning Café{" "}
+              <span className="font-oswald">/</span>brasserie
             </span>
             <span className="block text-2xl !leading-loose text-logoGold">
               Crafted for Moments That Matter

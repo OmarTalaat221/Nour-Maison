@@ -27,6 +27,7 @@ export async function GET() {
     "/privacy-policy-2",
     "/refund-policy",
     "/services",
+    "/afternoon-tea-menu",
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

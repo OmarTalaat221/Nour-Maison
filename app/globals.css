@@ -428,6 +428,10 @@ input[type="number"] {
   }
 }
 
+a:hover {
+  text-decoration: none !important;
+}
+
 .fixed-bg {
   padding: 120px 0;
   position: relative;
@@ -477,35 +481,4 @@ input[type="number"] {
   object-fit: cover;
   z-index: 1;
   background-color: #313131 ba;
-}
-
-/* Lantern Animations */
-@keyframes lanternSwing {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
-}
-
-@keyframes lanternSwingSlow {
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
-  50% {
-    transform: rotate(2deg);
-  }
-}
-
-.lantern-swing {
-  animation: lanternSwing 4s ease-in-out infinite;
-  transform-origin: top center;
-}
-
-.lantern-swing-slow {
-  animation: lanternSwingSlow 5s ease-in-out infinite;
-  transform-origin: top center;
 }

@@ -1,5 +1,9 @@
 import React from "react";
 import BlogCard from "./../../../components/Cards/blogCard/blogCard";
+import "./style.css";
+import PagesBanner from "../../../components/PagesBanner/PagesBanner";
+import Link from "next/link";
+import slugify from "../../../lib/slugify";
 
 export const metadata = {
   title: "NOUR MAISON - BLOGS",
@@ -74,9 +78,6 @@ export const metadata = {
     canonical: "https://www.nourmaison.co.uk/blog",
   },
 };
-import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import Link from "next/link";
-import slugify from "../../../lib/slugify";
 
 const page = async () => {
   const res = await fetch(
@@ -97,16 +98,29 @@ const page = async () => {
 
       <div
         id="blogs"
-        className="container grid grid-cols-1   md:grid-cols-2 lg:grid-cols-3 gap-10 !mb-10 !mt-20"
+        className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 !mb-10 !mt-20"
       >
         {data?.message?.map((post, idx) => (
           <Link
-            href={`blog/${post.id.toString()}/${slugify( post?.keywords || post?.title )}`}
+            href={`blog/${post.id.toString()}/${slugify(post?.keywords || post?.title)}`}
             className="no-underline hover:no-underline"
+            key={idx}
           >
-            <BlogCard post={post} key={idx} />
+            <BlogCard post={post} />
           </Link>
         ))}
+      </div>
+
+      {/* ✅ View All Blogs Button - محسن للـ SEO */}
+      <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8 mb-10">
+        <Link
+          href="/all-blogs"
+          className="shimmer-btn no-underline inline-block bg-softMintGreen hover:bg-sageGreen text-white hover:text-white hover:no-underline font-oswald uppercase tracking-wider text-sm sm:text-base md:text-lg px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          aria-label="View all blog articles at Nour Maison - Halal dining, lifestyle and inspiration"
+          title="Explore All Nour Maison Blog Articles"
+        >
+          View All Blogs
+        </Link>
       </div>
     </>
   );

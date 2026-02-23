@@ -26,7 +26,7 @@ const MenuClient = () => {
   ];
 
   const menus2 = [
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg",
+    // "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg",
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535308/jegfgxa8lkbzf4y3cb9k_vhwzdt.jpg",
   ];
 

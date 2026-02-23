@@ -29,8 +29,9 @@ const TopHeader = () => {
         { id: 2, name: "Menu Gallery", path: "/menu-gallery" },
         { id: 3, name: "Kids Menu", path: "/kids-menu" },
         { id: 4, name: "Roast Menu", path: "/roast-menu" },
+        { id: 5, name: "Afternoon Tea Menu", path: "/afternoon-tea-menu" },
         {
-          id: 5,
+          id: 6,
           name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
           new: true,
