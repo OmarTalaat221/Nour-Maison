@@ -31,7 +31,8 @@ const MenuClient = () => {
   ];
 
   return (
-    <div>
+    // أضف overflow-x-hidden هنا
+    <div className="overflow-x-hidden max-w-full">
       <PagesBanner
         images={[
           "https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4",
@@ -41,7 +42,8 @@ const MenuClient = () => {
         scrollTo={"booking"}
       />
 
-      <div className="relative">
+      {/* أضف overflow-hidden هنا كمان */}
+      <div className="relative overflow-hidden">
         <FancyboxElement
           options={{
             Carousel: {
@@ -115,7 +117,9 @@ const MenuClient = () => {
           </div>
         </FancyboxElement>
       </div>
-      <div className="relative mt-20">
+
+      {/* أضف overflow-hidden هنا كمان */}
+      <div className="relative mt-20 overflow-hidden">
         {/* <AnimTitle data-aos='fade-down' data-aos-delay='300'>
           <div className=' font-tangerine text-6xl font-extrabold text-softMintGreen text-center  '>
           Dessert Menu
@@ -138,7 +142,9 @@ const MenuClient = () => {
           <div className="" data-aos="fade-right" data-aos-delay="500">
             <BranchesImage variant={"top-left"} className={" w-[] top-6 "} />
           </div>
-          <div className=" flex flex-row mt-10    mx-auto w-full max-w-6xl visible relative z-20  ">
+
+          {/* السوايبر القديم للـ menus2 - فيه صورة واحدة بس فمش محتاجينه */}
+          {/* <div className=" flex flex-row mt-10    mx-auto w-full max-w-6xl visible relative z-20  ">
             <div className="flex h-full my-auto">
               <button
                 className=" !relative !z-[9999999999] custom-prev h-auto !bg-white shadow-lg   !cursor-pointer text-xl !p-3 my-auto    hover:!bg-softMintGreen  transition-all duration-500 rounded-full  text-softMintGreen "
@@ -190,6 +196,22 @@ const MenuClient = () => {
                 <FaChevronRight className="text-2xl" />
               </button>
             </div>
+          </div> */}
+
+          {/* صورة عادية بدل السوايبر - لأن فيه صورة واحدة بس */}
+          <div className="flex justify-center mt-10 mx-auto w-full max-w-4xl px-4 relative z-20">
+            <a
+              href={menus2[0]}
+              data-fancybox="gallery2"
+              className="overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                loading="lazy"
+                className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
+                src={menus2[0]}
+                alt="Dessert Menu"
+              />
+            </a>
           </div>
         </FancyboxElement>
       </div>
