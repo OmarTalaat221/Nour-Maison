@@ -28,6 +28,7 @@ export async function GET() {
     "/refund-policy",
     "/services",
     "/afternoon-tea-menu",
+    "/all-blogs",
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
