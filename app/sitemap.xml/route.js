@@ -23,7 +23,7 @@ export async function GET() {
     // "/christmas-menu",
     "/booking",
     "/store",
-    "/terms-conditions",
+    "/terms-and-conditions",
     "/privacy-policy-2",
     "/refund-policy",
     "/services",

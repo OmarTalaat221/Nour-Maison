@@ -447,14 +447,14 @@ const CheckoutPageClient = () => {
                   <p className="text-xs text-center text-whiteGray">
                     By proceeding, you agree to our{" "}
                     <Link
-                      href="/terms-conditions"
+                      href="/terms-and-conditions"
                       className="text-softMintGreen hover:text-logoGold"
                     >
                       Terms & Conditions
                     </Link>{" "}
                     and{" "}
                     <Link
-                      href="/terms-conditions#refund-policy"
+                      href="/terms-and-conditions#refund-policy"
                       className="text-softMintGreen hover:text-logoGold"
                     >
                       Refund Policy

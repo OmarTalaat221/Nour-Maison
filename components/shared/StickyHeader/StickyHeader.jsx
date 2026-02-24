@@ -84,7 +84,7 @@ const StickyHeader = ({ open, setOpen }) => {
             (isVisible && !open) ||
             ([
               "/privacy-policy-2",
-              "/terms-conditions",
+              "/terms-and-conditions",
               "/refund-policy",
             ].includes(pathname) &&
               !open)
@@ -100,7 +100,7 @@ const StickyHeader = ({ open, setOpen }) => {
               "!top-0": isVisible,
               "!static": [
                 "/privacy-policy-2",
-                "/terms-conditions",
+                "/terms-and-conditions",
                 "/refund-policy",
               ].includes(pathname),
             }

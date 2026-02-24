@@ -96,34 +96,56 @@ const OurServices = () => {
       </div>
       <div className="w-full  mx-auto z-10">
         <SectionTitle className={"!text-goldenOrange"}>
-          Elegance <span className="font-tajawal">&</span> Events: Crafting Unforgettable Moments
+          Elegance <span className="font-tajawal">&</span> Events: Crafting
+          Unforgettable Moments
         </SectionTitle>
 
         <div className=" container  !flex flex-col  lg:flex-row h-full gap-4 relative z-20 mt-20 !px-5">
           <Tilt
-            className="background-stripes parallax-effect-glare-scale  "
+            className="background-stripes parallax-effect-glare-scale"
             perspective={5000}
             glareEnable={!isMobile}
             tiltEnable={!isMobile}
             glareMaxOpacity={0.45}
             scale={1.02}
           >
-            <div className="relative w-full lg:!w-[400px]">
+            <div className="relative w-full lg:!w-[400px] h-full">
               <div
                 onClick={() => setSelectedService(afternoonTea)}
-                className="relative z-20 mx-auto   hover:shadow-2xl transition-shadow duration-300 
- h-full w-full rounded-xl bg-gradient-to-br from-dairyCream/25 to-dairyCream/80 
- !border-[3px] border-softMintGreen/40 backdrop-blur-md backdrop-saturate-150 
- shadow-lg ring-1 ring-white/10"
+                className="relative z-20 mx-auto hover:shadow-2xl transition-shadow duration-300 
+        h-full w-full rounded-xl bg-gradient-to-br from-dairyCream/25 to-dairyCream/80 
+        !border-[3px] border-softMintGreen/40 backdrop-blur-md backdrop-saturate-150 
+        shadow-lg ring-1 ring-white/10"
               >
-                <img
-                  loading="lazy"
+                {/* Video container - 500px on desktop, responsive on mobile */}
+                <div
+                  className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-t-xl"
                   style={{ boxShadow: "-20px -20px 0 0 #599066" }}
-                  className=" rounded-tr-[10px]  shadow-2xl w-full h-full rounded-  object-cover mx-auto"
-                  src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/xvt7iw6wqrjw2ifcsxyk_dd0dap.jpg"
-                  alt="valentine-bannre"
-                />
-                <div className="p-6 md:p-10 rounded-xl ">
+                >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover rounded-tr-[10px]"
+                  >
+                    <source
+                      src="https://res.cloudinary.com/dkc5klynm/video/upload/v1771769055/afternoon_tea_section_menu_goocyq.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+
+                {/* Old image - commented out */}
+                {/* <img
+        loading="lazy"
+        style={{ boxShadow: "-20px -20px 0 0 #599066" }}
+        className=" rounded-tr-[10px]  shadow-2xl w-full h-full rounded-  object-cover mx-auto"
+        src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451829/xvt7iw6wqrjw2ifcsxyk_dd0dap.jpg"
+        alt="valentine-bannre"
+      /> */}
+
+                <div className="p-6 md:p-10 rounded-xl">
                   <p className="text-lg md:text-xl text-softMintGreen font-medium font-seasons text-center md:text-left">
                     01 Event
                   </p>

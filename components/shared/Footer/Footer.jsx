@@ -261,7 +261,7 @@ const Footer = () => {
               </Link>{" "}
               <span className="text-xl sm:text-2xl">|</span>{" "}
               <Link
-                href={"/terms-conditions"}
+                href={"/terms-and-conditions"}
                 className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
               >
                 Terms & Conditions

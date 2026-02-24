@@ -49,7 +49,7 @@ const TopHeader = () => {
   // الصفحات اللي مش عايز فيها Header
   const hiddenPages = [
     "/privacy-policy-2",
-    "/terms-conditions",
+    "/terms-and-conditions",
     "/refund-policy",
   ];
 
