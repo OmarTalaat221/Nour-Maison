@@ -155,7 +155,7 @@ const ChefsSection2 = () => {
         >
           {/* Image 5 - Left */}
           <motion.img
-            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771758730/5_ftc11d.webp"
+            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771758741/6_b6tvcm.webp"
             alt="Chef 1"
             className="drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[280px] lg:w-[400px] rounded-lg"
             style={{
