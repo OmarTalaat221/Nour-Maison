@@ -54,10 +54,18 @@ const AfternoonTea = ({}) => {
     damping: 20,
   });
 
+  // ✅ الصور - ممكن تضيف عليهم
   const images = [
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/ysw9lhrajjolqksohoce_kywsw0.jpg",
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg",
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bxalmi3bmvqrkry8htpq_vw0vmi.jpg",
+
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771933844/1_eiy1ry.webp",
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936973/7_noazsf.webp",
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937910/15_nk6kk7.webp",
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771938084/17_df3hfo.webp",
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937367/10_lcutqg.webp",
+    "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936326/2_cew0ri.webp",
   ];
 
   const afternoonTea = {
@@ -190,7 +198,7 @@ const AfternoonTea = ({}) => {
                         </p>
                       </div>
 
-                      {/* Make Inquiry Button */}
+                      {/* Book Now Button */}
                       <div
                         className="mt-3 sm:mt-4"
                         data-aos="fade-up"
@@ -218,34 +226,67 @@ const AfternoonTea = ({}) => {
                         </Link>
                       </div>
 
-                      {/* ✅ 3 Image Cards - تبقى داخل الكارد دائماً */}
+                      {/* ✅ Swiper Gallery */}
                       <div
                         className="mt-4 sm:mt-6"
                         data-aos="fade-up"
                         data-aos-delay={600}
                       >
-                        <div className="grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+                        <Swiper
+                          modules={[Autoplay]}
+                          spaceBetween={8}
+                          slidesPerView={3}
+                          loop={true}
+                          autoplay={{
+                            delay: 2000,
+                            disableOnInteraction: false,
+                          }}
+                          speed={800}
+                          breakpoints={{
+                            0: {
+                              slidesPerView: 2,
+                              spaceBetween: 6,
+                            },
+                            480: {
+                              slidesPerView: 3,
+                              spaceBetween: 8,
+                            },
+                            640: {
+                              slidesPerView: 3,
+                              spaceBetween: 10,
+                            },
+                            768: {
+                              slidesPerView: 3,
+                              spaceBetween: 12,
+                            },
+                            1024: {
+                              slidesPerView: 3,
+                              spaceBetween: 16,
+                            },
+                          }}
+                          className="afternoon-tea-gallery-swiper"
+                        >
                           {images.map((img, index) => (
-                            <div
-                              key={index}
-                              className="relative overflow-hidden rounded-md sm:rounded-lg md:rounded-xl shadow-md sm:shadow-lg 
-                                transition-all duration-300 hover:scale-105 hover:shadow-xl
-                                cursor-pointer group"
-                            >
-                              {/* aspect-square يخلي كل الكاردات نفس الشكل */}
-                              <div className="aspect-square w-full">
-                                <img
-                                  loading="lazy"
-                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                  src={img}
-                                  alt={`Afternoon Tea Gallery - ${index + 1}`}
-                                />
+                            <SwiperSlide key={index}>
+                              <div
+                                className="relative overflow-hidden rounded-md sm:rounded-lg md:rounded-xl shadow-md sm:shadow-lg 
+                                  transition-all duration-300 hover:scale-105 hover:shadow-xl
+                                  cursor-pointer group"
+                              >
+                                <div className="aspect-square w-full">
+                                  <img
+                                    loading="lazy"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src={img}
+                                    alt={`Afternoon Tea Gallery - ${index + 1}`}
+                                  />
+                                </div>
+                                {/* Overlay on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                               </div>
-                              {/* Overlay on hover */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            </div>
+                            </SwiperSlide>
                           ))}
-                        </div>
+                        </Swiper>
                       </div>
                     </section>
                   </div>

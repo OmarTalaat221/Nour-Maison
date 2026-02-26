@@ -29,6 +29,7 @@ export async function GET() {
     "/services",
     "/afternoon-tea-menu",
     "/all-blogs",
+    "/afternoon-tea-booking",
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

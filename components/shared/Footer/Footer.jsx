@@ -1,3 +1,4 @@
+// components/Footer/Footer.jsx
 "use client";
 
 import "./style.css";
@@ -30,7 +31,6 @@ const Footer = () => {
     );
   };
 
-  // ✅ الصفحات الرئيسية
   const mainNavItems = [
     { label: "Home", path: "/" },
     { label: "Booking", path: "/booking" },
@@ -40,10 +40,8 @@ const Footer = () => {
     { label: "Contact Us", path: "/contact-us" },
     { label: "Blogs", path: "/blog" },
     { label: "All Blogs", path: "/all-blogs" },
-    // { label: "Store & Gift Cards", path: "/store" },
   ];
 
-  // ✅ صفحات المنيوز
   const menuNavItems = [
     { label: "Menu Classic", path: "/menu" },
     { label: "Menu Gallery", path: "/menu-gallery" },
@@ -58,42 +56,40 @@ const Footer = () => {
   ];
 
   return (
-    <div className="relative !overflow-visible mt-24">
-      <div className="w-full relative py-[50px] bg-gradient-to-b from-pestachio via-pestachio to-transparent">
-        {/* ✅ Logo Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 w-[95%] lg:w-[90%] mx-auto relative z-10 justify-start">
-          <div className="flex justify-center mx-auto w-[180px] sm:w-[250px] mb-6 text-center h-[180px] sm:h-[250px]">
-            <Image
-              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
-              className="object-contain mx-auto !w-full !h-full"
-              alt="Nour Maison Logo"
-              title="NOUR MAISON"
-              width={120}
-              height={120}
-              priority
-            />
+    <div className="relative !overflow-visible mt-12 sm:mt-16 md:mt-20 lg:mt-24">
+      <div className="w-full relative py-8 sm:py-10 md:py-12 lg:py-[50px] bg-gradient-to-b from-pestachio via-pestachio to-transparent">
+        {/* Logo Section */}
+        <div className="w-[95%] lg:w-[90%] mx-auto relative z-10">
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="w-[120px] h-[120px] xs:w-[140px] xs:h-[140px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]">
+              <Image
+                src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+                className="object-contain w-full h-full"
+                alt="Nour Maison Logo"
+                title="NOUR MAISON"
+                width={250}
+                height={250}
+                priority
+              />
+            </div>
           </div>
-          <div></div>
-          <div></div>
         </div>
 
         <div className="relative z-10 w-[95%] lg:w-[90%] mx-auto text-logoGold">
-          {/* ✅ Contact Info Section */}
-          <div className="foot_cont grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
+          {/* Contact Info Section - استخدام CSS class فقط */}
+          <div className="foot_cont">
             {/* Contact Info */}
-            <div className="flex flex-col gap-[10px]">
-              <strong className="text-center text-[40px] sm:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <strong className="text-center text-3xl xs:text-4xl sm:text-[42px] md:text-[46px] lg:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
                 Contact Info
               </strong>
 
               <a
-                style={{
-                  textShadow: "1px 2px 2px black",
-                }}
+                style={{ textShadow: "1px 2px 2px black" }}
                 href="mailto:info@nourmaison.co.uk"
-                className="flex justify-center drop-shadow-2xl items-center text-slate-100 gap-[10px] text-[18px] sm:text-[22px] font-lato font-semibold flex-wrap"
+                className="flex justify-center items-center text-slate-100 gap-2 text-sm xs:text-base sm:text-lg md:text-xl lg:text-[22px] font-lato font-semibold flex-wrap"
               >
-                <FaRegEnvelope className="text-logoGold" />
+                <FaRegEnvelope className="text-logoGold text-base sm:text-lg md:text-xl" />
                 <span className="break-all sm:break-normal">
                   info@nourmaison.co.uk
                 </span>
@@ -101,128 +97,127 @@ const Footer = () => {
             </div>
 
             {/* Opening hours */}
-            <div className="flex flex-col gap-[10px]">
-              <strong className="text-center text-[40px] sm:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <strong className="text-center text-3xl xs:text-4xl sm:text-[42px] md:text-[46px] lg:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
                 Opening hours
               </strong>
 
               <div
-                style={{
-                  textShadow: "1px 2px 2px black",
-                }}
-                className="flex justify-center drop-shadow-2xl items-center text-slate-100 gap-[10px] text-[18px] sm:text-[22px] font-lato font-semibold flex-wrap"
+                style={{ textShadow: "1px 2px 2px black" }}
+                className="flex justify-center items-center text-slate-100 gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg md:text-xl lg:text-[22px] font-lato font-semibold flex-wrap"
               >
-                <div className="text-[24px] sm:text-[28px] text-logoGold">
-                  <FaDoorOpen />
-                </div>
-                <span className="text-[24px] sm:text-[30px] m-0 p-0">
+                <FaDoorOpen className="text-xl xs:text-2xl sm:text-[26px] md:text-[28px] text-logoGold" />
+                <span className="text-lg xs:text-xl sm:text-2xl md:text-[28px] lg:text-[30px]">
                   Daily:
                 </span>
-                09:00 am – 10:00 pm
+                <span>09:00 am – 10:00 pm</span>
               </div>
+
               <div
-                style={{
-                  textShadow: "1px 2px 2px black",
-                }}
-                onClick={() => handleMapClick()}
-                className="flex justify-center drop-shadow-2xl text-center items-start text-slate-100 gap-[10px] text-[16px] sm:text-[22px] font-lato font-semibold cursor-pointer px-4"
+                style={{ textShadow: "1px 2px 2px black" }}
+                onClick={handleMapClick}
+                className="flex justify-center text-center text-slate-100 text-xs xs:text-sm sm:text-base md:text-lg lg:text-[22px] font-lato font-semibold cursor-pointer px-2 sm:px-4 hover:text-logoGold transition-colors"
               >
                 149 Grafton Gate, Milton Keynes, MK91AE
               </div>
             </div>
 
             {/* Follow Our Activity */}
-            <div className="flex flex-col gap-[10px] md:col-span-2 lg:col-span-1">
-              <strong className="text-center text-[40px] sm:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <strong className="text-center text-3xl xs:text-4xl sm:text-[42px] md:text-[46px] lg:text-[50px] font-bold font-tangerine drop-shadow-[0_1px_2px_#b5b5b5]">
                 Follow Our Activity
               </strong>
 
               <strong
-                style={{
-                  textShadow: "1px 2px 2px black",
-                }}
-                className="flex justify-center drop-shadow-2xl items-center text-slate-100 gap-[10px] text-[18px] sm:text-[22px] font-lato font-semibold"
+                style={{ textShadow: "1px 2px 2px black" }}
+                className="flex justify-center items-center text-slate-100 gap-2 text-sm xs:text-base sm:text-lg md:text-xl lg:text-[22px] font-lato font-semibold"
               >
                 We are in social networks
               </strong>
 
-              <div className="flex justify-center items-center gap-[15px] relative flex-wrap">
+              <div className="flex justify-center items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 flex-wrap">
                 <a
                   href="https://www.facebook.com/nourmaisonuk"
                   title="facebook"
                   target="_blank"
-                  className="social_button face flex items-center justify-center !bg-logoGold !text-white"
+                  rel="noopener noreferrer"
+                  className="social_button face"
                 >
                   <FaFacebookF />
-                  <span className="hidden">Facebook</span>
+                  <span className="sr-only">Facebook</span>
                 </a>
 
                 <a
                   href="https://www.instagram.com/nourmaisonuk/"
                   title="instagram"
                   target="_blank"
-                  className="social_button insta !bg-logoGold !text-white flex items-center justify-center"
+                  rel="noopener noreferrer"
+                  className="social_button insta"
                 >
                   <FaInstagram />
-                  <span className="hidden">Instagram</span>
+                  <span className="sr-only">Instagram</span>
                 </a>
+
                 <a
                   href="https://www.tiktok.com/@nourmaisonuk?lang=en"
                   title="tiktok"
                   target="_blank"
-                  className="social_button tiktok !bg-logoGold !text-white flex items-center justify-center"
+                  rel="noopener noreferrer"
+                  className="social_button tiktok"
                 >
                   <FaTiktok />
-                  <span className="hidden">Tiktok</span>
+                  <span className="sr-only">Tiktok</span>
                 </a>
+
                 <a
                   href="https://wa.me/441908772177"
                   title="whatsapp"
                   target="_blank"
-                  className="social_button whatsapp !bg-logoGold !text-white flex items-center justify-center"
+                  rel="noopener noreferrer"
+                  className="social_button whatsapp"
                 >
                   <FaWhatsapp />
-                  <span className="hidden">Whatsapp</span>
+                  <span className="sr-only">Whatsapp</span>
                 </a>
               </div>
 
               {/* Payment Cards */}
-              <div className="flex flex-col items-center gap-2 mt-4">
+              <div className="flex flex-col items-center gap-1.5 sm:gap-2 mt-3 sm:mt-4">
                 <p
                   style={{ textShadow: "1px 2px 2px black" }}
-                  className="text-slate-100 text-[16px] sm:text-[18px] font-lato font-semibold"
+                  className="text-slate-100 text-sm sm:text-base md:text-lg font-lato font-semibold"
                 >
                   We Accept
                 </p>
-                <div className="shimmer-card flex justify-center items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
+                <div className="shimmer-card flex justify-center items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-1.5 sm:py-2">
                   <img
                     src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101653/Visa_Brandmark_Blue_RGB_2021_jsipcx_pklgmh.png"
                     alt="Visa"
-                    className="w-[50px] h-[32px] object-contain"
+                    className="w-8 xs:w-9 sm:w-10 md:w-12 h-5 xs:h-6 sm:h-7 md:h-8 object-contain"
                   />
                   <img
                     src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101682/ma_symbol_opt_73_2x_xadjas_zexy1k.png"
                     alt="Mastercard"
-                    className="w-[50px] h-[32px] object-contain"
+                    className="w-8 xs:w-9 sm:w-10 md:w-12 h-5 xs:h-6 sm:h-7 md:h-8 object-contain"
                   />
                   <img
                     src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101644/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80_rrtz7i_lvizo3.png"
                     alt="American Express"
-                    className="w-[50px] h-[32px] object-contain"
+                    className="w-8 xs:w-9 sm:w-10 md:w-12 h-5 xs:h-6 sm:h-7 md:h-8 object-contain"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ✅ قسم الصفحات الرئيسية - Quick Links */}
+          {/* Quick Links */}
           <div className="foot_terms font-tangerine">
             {mainNavItems.map((item) => (
               <Link
                 href={item.path}
                 key={item.path}
-                className={`foot_term_ele fonst !text-logoGold hover:!text-white ${
-                  pathname === item.path ? "active !text-white" : ""
+                className={`foot_term_ele ${
+                  pathname === item.path ? "active" : ""
                 }`}
               >
                 {item.label}
@@ -230,19 +225,19 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* ✅ قسم المنيوز - Our Menus */}
+          {/* Menu Links */}
           <div className="foot_terms font-tangerine">
             {menuNavItems.map((item) => (
               <Link
                 href={item.path}
                 key={item.path}
-                className={`foot_term_ele fonst !text-logoGold hover:!text-white relative ${
-                  pathname === item.path ? "active !text-white" : ""
+                className={`foot_term_ele relative ${
+                  pathname === item.path ? "active" : ""
                 }`}
               >
                 {item.label}
                 {item.new && (
-                  <span className="absolute -top-2 -right-1 bg-red-500 text-white text-[8px] px-1 py-0.5 rounded-full font-sans font-bold">
+                  <span className="absolute -top-1 -right-1 xs:-top-1.5 xs:-right-0.5 sm:-top-2 sm:-right-1 bg-red-500 text-white text-[6px] xs:text-[7px] sm:text-[8px] px-1 py-0.5 rounded-full font-sans font-bold animate-pulse">
                     NEW
                   </span>
                 )}
@@ -250,60 +245,65 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* ✅ Privacy & Terms Section */}
-          <div className="foot_privacy mt-4">
-            <div className="pb-[15px] text-[12px] flex justify-center font-[400] gap-2 flex-wrap px-4">
+          {/* Privacy & Terms Section */}
+          <div className="mt-3 sm:mt-4">
+            <div className="pb-3 sm:pb-4 flex justify-center gap-1 xs:gap-1.5 sm:gap-2 flex-wrap px-2 sm:px-4">
               <Link
-                href={"/privacy-policy-2"}
-                className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
+                href="/privacy-policy-2"
+                className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline transition-colors"
               >
                 Privacy Policy
-              </Link>{" "}
-              <span className="text-xl sm:text-2xl">|</span>{" "}
+              </Link>
+              <span className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-white">
+                |
+              </span>
               <Link
-                href={"/terms-and-conditions"}
-                className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
+                href="/terms-and-conditions"
+                className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline transition-colors"
               >
                 Terms & Conditions
-              </Link>{" "}
-              <span className="text-xl sm:text-2xl">|</span>{" "}
+              </Link>
+              <span className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-white">
+                |
+              </span>
               <Link
-                href={"/refund-policy"}
-                className="cursor-pointer text-xl sm:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline"
+                href="/refund-policy"
+                className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-goldenOrange hover:text-logoGold hover:no-underline transition-colors"
               >
                 Refund Policy
               </Link>
             </div>
 
-            <div className="flex flex-col gap-[4px]">
-              <div className="text-[11px] sm:text-[13px] flex flex-wrap justify-center font-[500] text-softMintGreen mb-1 px-4 text-center">
+            <div className="flex flex-col gap-1">
+              <p className="text-[10px] xs:text-[11px] sm:text-xs md:text-sm text-center text-softMintGreen px-2">
                 This website is owned and operated by{" "}
-                <strong className="ml-1 text-logoGold">NOUR MAISON LTD</strong>
-              </div>
+                <strong className="text-logoGold">NOUR MAISON LTD</strong>
+              </p>
 
-              <div className="text-[11px] sm:text-[12px] flex flex-wrap justify-center font-[400] px-4 text-center">
+              <p className="text-[9px] xs:text-[10px] sm:text-[11px] md:text-xs text-center px-2">
                 Developed & Designed By{" "}
                 <Link
-                  href={"https://www.facebook.com/campcoding/"}
+                  href="https://www.facebook.com/campcoding/"
                   target="_blank"
-                  className="font-bold ml-[4px] text-[#091639] hover:scale-105 hover:text-logoGold"
+                  rel="noopener noreferrer"
+                  className="font-bold text-[#091639] hover:text-logoGold transition-colors"
                 >
                   Camp Coding
                 </Link>
-              </div>
+              </p>
 
-              <div className="text-[11px] sm:text-[12px] flex flex-wrap justify-center font-[400] text-center px-4">
+              <p className="text-[9px] xs:text-[10px] sm:text-[11px] md:text-xs text-center px-2">
                 © {new Date().getFullYear()} NOUR MAISON LTD. All Rights
                 Reserved.
-              </div>
+              </p>
             </div>
           </div>
         </div>
 
         <img
           src="/images/footer-branch.png"
-          className="absolute opacity-30 right-0 !bottom-[-50px] hidden sm:block"
-          alt="Decorative branch illustration"
+          className="absolute opacity-30 right-0 bottom-[-50px] hidden lg:block w-[180px] xl:w-[220px]"
+          alt="Decorative branch"
           loading="lazy"
         />
       </div>

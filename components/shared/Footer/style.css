@@ -1,3 +1,5 @@
+/* style.css */
+
 .foot_cont {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5,53 +7,52 @@
   align-items: start;
   border-bottom: 2px solid #fff;
   padding-bottom: 20px;
+  gap: 20px;
 }
 
 .social_button {
-  width: 50px;
-  background: #fff;
-  transition: 0.3s ease-in-out !important;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  background: theme("colors.logoGold");
+  transition: 0.3s ease-in-out;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
-  color: #599066;
+  font-size: 18px;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .social_button:hover {
-  background: #e2e2e2;
-  color: #fff;
+  transform: scale(1.1);
 }
+
 .foot_terms {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   overflow: auto;
   color: white;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bolder;
-  padding-bottom: 15px;
 }
 
 .foot_term_ele {
   border-right: 1.5px solid #fff;
-  padding-inline: 20px;
+  padding-inline: 12px;
   transition: 0.3s;
   white-space: nowrap;
   cursor: pointer;
-  /* border-radius: 10px; */
-  color: black;
-  font-size: 30px;
+  color: theme("colors.logoGold");
+  font-size: 22px;
 }
 
 .foot_term_ele:hover {
   background: theme("colors.goldenOrange");
   color: white;
-  transition: 0.3s;
 }
 
 .foot_term_ele:last-child {
@@ -83,7 +84,11 @@
   background: #0866ff !important;
 }
 
-/* ✅ Shimmer Effect for Payment Cards */
+.whatsapp:hover {
+  background: #25d366 !important;
+}
+
+/* Shimmer Effect */
 .shimmer-card {
   position: relative;
   overflow: hidden;
@@ -107,18 +112,6 @@
   pointer-events: none;
 }
 
-.shimmer-card:nth-child(1)::before {
-  animation-delay: 0s;
-}
-
-.shimmer-card:nth-child(2)::before {
-  animation-delay: 0.4s;
-}
-
-.shimmer-card:nth-child(3)::before {
-  animation-delay: 0.8s;
-}
-
 @keyframes shimmerCard {
   0% {
     left: -100%;
@@ -129,30 +122,39 @@
   }
 }
 
+/* =============== RESPONSIVE =============== */
+
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
-  /* Your styles here */
   .foot_cont {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    border-bottom: 2px solid #fff;
-    padding-bottom: 20px;
-    gap: 40px;
-  }
-  .foot_terms {
-    overflow: auto;
-    justify-content: start;
-    scroll-snap-type: x mandatory;
-  }
-  .foot_term_ele {
-    scroll-snap-align: start;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 16px;
   }
 
-  .foot_terms:hover {
-    background: transparent;
+  .social_button {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
   }
+
+  .foot_terms {
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .foot_terms::-webkit-scrollbar {
     display: none;
+  }
+
+  .foot_term_ele {
+    scroll-snap-align: start;
+    font-size: 18px;
+    padding-inline: 10px;
   }
 
   .foot_term_ele:hover {
@@ -161,75 +163,121 @@
   }
 }
 
-/* Small devices (tablets, 576px and up) */
+/* Small devices (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  /* Your styles here */
-
   .foot_cont {
-    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 16px;
+  }
 
-    grid-template-columns: repeat(1, 1fr);
-    border-bottom: 2px solid #fff;
-    padding-bottom: 20px;
-    gap: 40px;
+  .social_button {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
   }
+
   .foot_terms {
-    overflow: auto;
-    justify-content: start;
+    justify-content: flex-start;
     scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+
+  .foot_terms::-webkit-scrollbar {
+    display: none;
+  }
+
   .foot_term_ele {
     scroll-snap-align: start;
+    font-size: 20px;
+    padding-inline: 12px;
   }
 
   .foot_term_ele:hover {
     background: transparent;
     color: white;
   }
-  .foot_terms::-webkit-scrollbar {
-    display: none;
-  }
 }
 
-/* Medium devices (desktops, 768px and up) */
+/* Medium devices (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  /* Your styles here */
   .foot_cont {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    border-bottom: 2px solid #fff;
-    padding-bottom: 20px;
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding-bottom: 18px;
   }
+
+  /* Make the third item span full width and center it */
+  .foot_cont > div:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .social_button {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
   .foot_terms {
-    overflow: auto;
-    justify-content: start;
+    justify-content: flex-start;
     scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+
+  .foot_terms::-webkit-scrollbar {
+    display: none;
+  }
+
   .foot_term_ele {
     scroll-snap-align: start;
+    font-size: 22px;
+    padding-inline: 14px;
   }
 
   .foot_term_ele:hover {
     background: transparent;
     color: white;
   }
-  .foot_terms::-webkit-scrollbar {
-    display: none;
+}
+
+/* Large devices (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .foot_cont {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .social_button {
+    width: 46px;
+    height: 46px;
+    font-size: 19px;
+  }
+
+  .foot_term_ele {
+    font-size: 24px;
+    padding-inline: 16px;
   }
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Your styles here */
-}
+/* Extra large devices (1200px and up) */
+@media (min-width: 1200px) {
+  .foot_cont {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
 
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) and (max-width: 1399.98px) {
-  /* Your styles here */
-}
+  .social_button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
 
-/* Extra extra large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-  /* Your styles here */
+  .foot_term_ele {
+    font-size: 28px;
+    padding-inline: 20px;
+  }
 }
