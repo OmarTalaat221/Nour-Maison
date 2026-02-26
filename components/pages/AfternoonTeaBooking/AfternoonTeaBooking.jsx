@@ -1,6 +1,7 @@
 // components/pages/AfternoonTeaBooking/AfternoonTeaBookingContent.jsx
 "use client";
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Loader, Toggle } from "rsuite";
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
@@ -28,6 +29,11 @@ const AfternoonTeaBookingContent = ({ bg }) => {
   const [chatId, setChatid] = useState("");
   const [dateLoading, setDateLoading] = useState(false);
   const [lockedTimesData, setLockedTimesData] = useState(null);
+
+  // ✅ Get source from URL params
+  const searchParams = useSearchParams();
+  const source = searchParams.get("source") || "website";
+
   const [bookingData, setBookingData] = useState({
     name: "",
     email: "",
@@ -167,6 +173,9 @@ const AfternoonTeaBookingContent = ({ bg }) => {
     dataset.seats = bookingData?.seats?.value;
     dataset.time = bookingData?.time?.value;
 
+    // ✅ إضافة الـ source للـ request
+    dataset.source = source;
+
     // Validation
     if (!dataset.name) {
       toast.error("Enter the name", toastStyles);
@@ -282,7 +291,7 @@ const AfternoonTeaBookingContent = ({ bg }) => {
           backgroundSize: "cover",
           backgroundImage: `
             linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-            url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
+            url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bxalmi3bmvqrkry8htpq_vw0vmi.jpg"})
           `,
         }}
       >
@@ -490,7 +499,7 @@ const AfternoonTeaBookingContent = ({ bg }) => {
                           />
                         </svg>
                         <strong className="txt-upload font-tangerine text-4xl md:text-5xl font-bold !text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]">
-                          Book Tea
+                          Book Now
                         </strong>
                       </button>
                     </div>

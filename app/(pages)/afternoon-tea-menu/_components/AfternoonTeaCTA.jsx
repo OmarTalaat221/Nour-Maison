@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import FramerModal from "../../../../components/InqueryModal";
+import Link from "next/link";
 // import FramerModal from "./";
 
 const AfternoonTeaCTA = () => {
@@ -41,14 +42,21 @@ const AfternoonTeaCTA = () => {
           </p>
 
           {/* ✅ CTA Button - Opens Modal */}
+
           <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="shimmer-btn inline-block bg-softMintGreen hover:bg-sageGreen text-white hover:text-white font-oswald uppercase tracking-wider text-sm sm:text-base md:text-lg px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              aria-label="Book your Afternoon Tea table at Nour Maison Milton Keynes"
+            <Link
+              href="/afternoon-tea-booking"
+              aria-label="Book Afternoon Tea at Nour Maison"
+              title="Book Afternoon Tea - £29.95 per person"
             >
-              Book Your Table
-            </button>
+              <button
+                // onClick={() => setIsModalOpen(true)}
+                className="shimmer-btn inline-block bg-softMintGreen hover:bg-sageGreen text-white hover:text-white font-oswald uppercase tracking-wider text-sm sm:text-base md:text-lg px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                aria-label="Book your Afternoon Tea table at Nour Maison Milton Keynes"
+              >
+                Book Your Table
+              </button>
+            </Link>
           </div>
         </div>
       </section>

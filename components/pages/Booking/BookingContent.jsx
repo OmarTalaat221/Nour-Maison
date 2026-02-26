@@ -1,5 +1,7 @@
+// components/pages/Booking/BookingContent.jsx
 "use client";
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Col, Grid, Loader, Row, Toggle } from "rsuite";
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
@@ -27,6 +29,11 @@ const BookingConent = ({ bg }) => {
   const [chatId, setChatid] = useState("");
   const [dateLoading, setDateLoading] = useState(false);
   const [lockedTimesData, setLockedTimesData] = useState(null);
+
+  // ✅ Get source from URL params
+  const searchParams = useSearchParams();
+  const source = searchParams.get("source") || "website";
+
   const [bookingData, setBookingData] = useState({
     name: "",
     email: "",
@@ -94,7 +101,6 @@ const BookingConent = ({ bg }) => {
     },
   };
 
-  // دالة لتحويل الوقت من 24 ساعة إلى 12 ساعة
   const convertTo12Hour = (time24) => {
     const [hours, minutes] = time24.split(":").map(Number);
     const period = hours >= 12 ? "PM" : "AM";
@@ -104,7 +110,6 @@ const BookingConent = ({ bg }) => {
       .padStart(2, "0")} ${period}`;
   };
 
-  // دالة للتحقق من التاريخ
   const checkBookingDateTime = async (selectedDate) => {
     setDateLoading(true);
     setLockedTimesData(null);
@@ -130,7 +135,6 @@ const BookingConent = ({ bg }) => {
     }
   };
 
-  // دالة للتحقق إذا كان الوقت محجوز
   const isTimeLocked = (timeValue) => {
     if (!lockedTimesData || !lockedTimesData.times_locked) return false;
 
@@ -141,7 +145,6 @@ const BookingConent = ({ bg }) => {
     return lockedTimes.includes(timeValue);
   };
 
-  // دالة معالجة اختيار الوقت - بدون تحقق، فقط تحديث القيمة
   const handleTimeSelect = (selectedTime) => {
     setBookingData((prev) => ({
       ...prev,
@@ -149,15 +152,13 @@ const BookingConent = ({ bg }) => {
     }));
   };
 
-  // دالة معالجة اختيار التاريخ
   const handleDateChange = async (e) => {
     const { name, value } = e.target;
 
-    // Reset time when date changes
     setBookingData((prev) => ({
       ...prev,
       [name]: value,
-      time: "", // Reset time selection
+      time: "",
     }));
 
     if (value) {
@@ -172,7 +173,10 @@ const BookingConent = ({ bg }) => {
     dataset.seats = bookingData?.seats?.value;
     dataset.time = bookingData?.time?.value;
 
-    // Validation أولاً
+    // ✅ إضافة الـ source للـ request
+    dataset.source = source;
+
+    // Validation
     if (!dataset.name) {
       toast.error("Enter the name", toastStyles);
       return;
@@ -200,7 +204,6 @@ const BookingConent = ({ bg }) => {
       return;
     }
 
-    // التحقق من الوقت المحجوز بعد الـ validation
     if (isTimeLocked(dataset.time)) {
       setBusyModalContent({
         title: "Time Not Available",
@@ -260,7 +263,7 @@ const BookingConent = ({ bg }) => {
   return (
     <main>
       <header>
-        <h1 className=" px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
+        <h1 className="px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
           <b>Book a Table </b> at <strong>Nour Maison</strong> –{" "}
           <strong>Halal French</strong> & Middle Eastern Dining
         </h1>
@@ -268,14 +271,14 @@ const BookingConent = ({ bg }) => {
 
       <div
         id="booking"
-        className="relative md:backdrop:mx-5 lg:mx-10 rounded-3xl border-2 border-softMintGreen  md:p-2 mt-6 overflow-hidden shadow-2xl"
+        className="relative md:backdrop:mx-5 lg:mx-10 rounded-3xl border-2 border-softMintGreen md:p-2 mt-6 overflow-hidden shadow-2xl"
         style={{
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundImage: `
-        linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-        url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
-      `,
+            linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+            url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
+          `,
         }}
       >
         <div
@@ -292,30 +295,28 @@ const BookingConent = ({ bg }) => {
         <div className="" data-aos="fade-right" data-aos-delay="500">
           <BranchesImage
             variant={"top-left"}
-            className={" w-[] top-6 scale-150  "}
+            className={" w-[] top-6 scale-150 "}
           />
         </div>
 
-        <div className="  lg:max-w-[1000px] xl:max-w-[1200px]  relative mx-auto   my-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] relative gap-5 lg:gap-0  ">
+        <div className="lg:max-w-[1000px] xl:max-w-[1200px] relative mx-auto my-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] relative gap-5 lg:gap-0">
             <div
-              className=" order-1 lg:order-2  mx-4 lg:mx-0  relative z-20 flex flex-col gap-4 
-          
-          backdrop-blur-md bg-white/20 p-5 lg:p-8 rounded-3xl shadow-lg border-2 border-white/50 text-green-900
-        bg-gray-900 bg-clip-padding backdrop-filter  bg-opacity-20  
-          bg-gradient-to-br from-white/10 via-white/20 to-white/5
-          "
+              className="order-1 lg:order-2 mx-4 lg:mx-0 relative z-20 flex flex-col gap-4 
+                backdrop-blur-md bg-white/20 p-5 lg:p-8 rounded-3xl shadow-lg border-2 border-white/50 text-green-900
+                bg-gray-900 bg-clip-padding backdrop-filter bg-opacity-20  
+                bg-gradient-to-br from-white/10 via-white/20 to-white/5"
             >
               <div className="relative z-20 flex flex-col h-full">
                 <h2
                   style={{
                     textShadow: "white 1px 2px 0px",
                   }}
-                  className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold  text-shadow-xs text-center mb-6 z-10 relative"
+                  className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold text-shadow-xs text-center mb-6 z-10 relative"
                 >
                   Your Table Awaits
                 </h2>
-                <p className=" mb-3 text-center lg:text-start text-lg lg:text-lg !font-normal leading-tight  text-white font-inter">
+                <p className="mb-3 text-center lg:text-start text-lg lg:text-lg !font-normal leading-tight text-white font-inter">
                   You can book your table online easily in just a couple of
                   minutes. We take reservations for lunch, just check the
                   availability of your table.
@@ -445,7 +446,7 @@ const BookingConent = ({ bg }) => {
                     />
                   </div>
                 )}
-                <p className="my-3 text-green-900 ">
+                <p className="my-3 text-green-900">
                   {type == "normal"
                     ? "More than 8 persons? "
                     : "Less than 8 persons? "}
@@ -459,7 +460,7 @@ const BookingConent = ({ bg }) => {
                   </b>
                 </p>
 
-                <div className="mt-4 ">
+                <div className="mt-4">
                   {bookingStateLoading ? (
                     <div className="flex items-center justify-center">
                       <Loader color="#CA842C" />
@@ -491,10 +492,7 @@ const BookingConent = ({ bg }) => {
                 </div>
               </div>
             </div>
-            <div
-              className=" order-2 lg:order-1 w-full h-full  relative lg:px-4 "
-              style={{}}
-            >
+            <div className="order-2 lg:order-1 w-full h-full relative lg:px-4">
               <Tilt
                 className="background-stripes parallax-effect-glare-scale h-full w-full"
                 perspective={5000}
@@ -503,27 +501,26 @@ const BookingConent = ({ bg }) => {
                 scale={1.02}
               >
                 <div
-                  className=" mx-4 lg:mx-0 h-full relative flex flex-col gap-4 
-          
-          backdrop-blur-sm bg-white/20 p-8 rounded-3xl shadow-lg border-2 border-white text-green-900
-          bg-gray-900 bg-clip-padding backdrop-filter  bg-opacity-20  
-          bg-gradient-to-br from-white/10 via-white/20 to-white/5"
+                  className="mx-4 lg:mx-0 h-full relative flex flex-col gap-4 
+                    backdrop-blur-sm bg-white/20 p-8 rounded-3xl shadow-lg border-2 border-white text-green-900
+                    bg-gray-900 bg-clip-padding backdrop-filter bg-opacity-20  
+                    bg-gradient-to-br from-white/10 via-white/20 to-white/5"
                 >
-                  <div className="absolute inset-0 rounded-3xl border  opacity-40 pointer-events-none"></div>
+                  <div className="absolute inset-0 rounded-3xl border opacity-40 pointer-events-none"></div>
 
                   <header
                     style={{
                       textShadow: "white 1px 2px 0px",
                     }}
-                    className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold  text-shadow-xs text-center mt-2 z-10 relative"
+                    className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold text-shadow-xs text-center mt-2 z-10 relative"
                   >
                     Opening times
                   </header>
 
-                  <p className=" text-2xl lg:text-3xl font-sans text-center text-white   mt-4 z-10 relative">
+                  <p className="text-2xl lg:text-3xl font-sans text-center text-white mt-4 z-10 relative">
                     Daily:
                   </p>
-                  <p className=" text-2xl lg:text-3xl text-center font-medium text-white mt-1 z-10 relative">
+                  <p className="text-2xl lg:text-3xl text-center font-medium text-white mt-1 z-10 relative">
                     09:00 AM – 10:00 PM
                   </p>
 
@@ -531,7 +528,7 @@ const BookingConent = ({ bg }) => {
                     style={{
                       textShadow: "white 1px 3px 0px",
                     }}
-                    className=" text-5xl  mt-6 italic text-logoGold  z-10 relative font-lato text-center lg:text-6xl font-bold  "
+                    className="text-5xl mt-6 italic text-logoGold z-10 relative font-lato text-center lg:text-6xl font-bold"
                   >
                     Call Us Now
                   </strong>
@@ -540,7 +537,7 @@ const BookingConent = ({ bg }) => {
                     style={{
                       textShadow: "white 0px 2px 0px",
                     }}
-                    className=" text-3xl lg:text-4xl text-center font-lato !text-logoGold hover:!text-logoGold no-underline hover:no-underline hover:scale-105 transition mt-1 z-10 relative"
+                    className="text-3xl lg:text-4xl text-center font-lato !text-logoGold hover:!text-logoGold no-underline hover:no-underline hover:scale-105 transition mt-1 z-10 relative"
                   >
                     +44 1908 772177
                   </a>
@@ -550,7 +547,7 @@ const BookingConent = ({ bg }) => {
                     style={{
                       textShadow: "white 0px 2px 2px",
                     }}
-                    className="mt-6 not-italic cursor-pointer hover:scale-110 transition text-center text-logoGold lg:text-3xl font-oswald fobnt-semibold  leading-relaxed z-10 relative"
+                    className="mt-6 not-italic cursor-pointer hover:scale-110 transition text-center text-logoGold lg:text-3xl font-oswald font-semibold leading-relaxed z-10 relative"
                   >
                     149 Grafton Gate, Milton Keynes
                     <br />
