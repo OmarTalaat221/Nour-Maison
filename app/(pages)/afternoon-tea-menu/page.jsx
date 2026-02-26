@@ -349,7 +349,7 @@ export default function AfternoonTeaMenuPage() {
       <PagesBanner
         bottomBg={true}
         images={[
-          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771769055/afternoon_tea_section_menu_goocyq.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101467/afternoon_tea_section_menu_goocyq_balo8f.mp4",
         ]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">

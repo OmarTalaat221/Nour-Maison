@@ -44,9 +44,7 @@ const ReelSlide = ({ item, index, isMuted, toggleMute, setVideoRef }) => {
                    shadow-sm w-10 h-10 hover:bg-white transition cursor-pointer"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
-        <span className="text-lg leading-none">
-          {isMuted ? "🔇" : "🔊"}
-        </span>
+        <span className="text-lg leading-none">{isMuted ? "🔇" : "🔊"}</span>
       </button>
 
       {/* Label pill */}
@@ -79,45 +77,434 @@ const Gallrey = () => {
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+      [arr[currentIndex], arr[randomIndex]] = [
+        arr[randomIndex],
+        arr[currentIndex],
+      ];
     }
     return arr;
   }
 
   const medias = useMemo(
     () => [
-      { id: 1, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg", type: "drinks", descripiton: "" },
-      { id: 2, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4", type: "drinks", descripiton: "" },
+      {
+        id: 1,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 2,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4",
+        type: "drinks",
+        descripiton: "",
+      },
       // { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" }, // Hani was kicked out 😅
-      { id: 4, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4", type: "drinks", descripiton: "" },
-      { id: 5, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg", type: "drinks", descripiton: "" },
-      { id: 6, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg", type: "drinks", descripiton: "" },
-      { id: 7, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448115/gylzsw4bkzut4wwteqqh_humy6h.jpg", type: "drinks", descripiton: "" },
-      { id: 8, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448131/xgdljvsjasrf969yugaa_jhxw8w.jpg", type: "drinks", descripiton: "" },
-      { id: 9, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448121/qao703vvgwlbsogiv5cw_wjhvgp.jpg", type: "drinks", descripiton: "" },
-      { id: 10, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/zivckxpxoj7eoz3k0fbg_asox1j.jpg", type: "food", descripiton: "" },
-      { id: 11, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448118/mitkyzcyqpgraudf4mzo_ytgfkx.jpg", type: "food", descripiton: "" },
-      { id: 12, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448129/va3spn6weremalxijnim_j50w9s.jpg", type: "food", descripiton: "" },
-      { id: 13, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hekcsbfgdyg9d6pup5ft_ceblkf.jpg", type: "food", descripiton: "" },
-      { id: 14, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448116/lrejrej4vkgm6pwz4pji_bflzxl.jpg", type: "food", descripiton: "" },
-      { id: 15, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hcond6tzxbabx0ce4aku_g4z6r2.jpg", type: "food", descripiton: "" },
-      { id: 16, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/xmx5t5xm3uxrjf6ihcdt_upfix4.jpg", type: "food", descripiton: "" },
-      { id: 17, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448120/ozwomw2ybv9bkx2fkbxf_r4ziut.jpg", type: "food", descripiton: "" },
-      { id: 18, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/geo9wdmyu4pnh7c7mr9q_lypzi7.jpg", type: "food", descripiton: "" },
-      { id: 19, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448123/r6vdvndpnx7cvr5dntjd_tir57j.jpg", type: "food", descripiton: "" },
-      { id: 20, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448125/ujwwyfjsuybmzd2swakw_tus5pp.jpg", type: "food", descripiton: "" },
-      { id: 21, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448110/em1myinhecewatd7a5ih_hecxyp.jpg", type: "food", descripiton: "" },
-      { id: 22, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448108/b3u713dp7cpcwiidqpie_b9ej1h.jpg", type: "food", descripiton: "" },
-      { id: 23, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/a60azsrb6y4zzrdki2t6_at2eoq.jpg", type: "food", descripiton: "" },
-      { id: 24, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448114/ldwesrionjbuwffp0cw7_ivexgx.jpg", type: "food", descripiton: "" },
-      { id: 25, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448126/uk23x8ahosnejilqkjdq_j9uqm1.jpg", type: "food", descripiton: "" },
-      { id: 26, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448117/maqykxobznkum8ygukbv_htaziu.jpg", type: "food", descripiton: "" },
-      { id: 27, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/ahgneikwijzkfi1z3vih_snz6jg.jpg", type: "food", descripiton: "" },
-      { id: 28, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449259/osygbhyemxoc2vbe7xx5_iaiz3j.webp", type: "food", descripiton: "" },
-      { id: 29, media_url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449500/rq65qikrbefpqmhsbfnt_g6megq.webp", type: "food", descripiton: "" },
-    ],      
+      {
+        id: 4,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 5,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 6,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 7,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448115/gylzsw4bkzut4wwteqqh_humy6h.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 8,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448131/xgdljvsjasrf969yugaa_jhxw8w.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 9,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448121/qao703vvgwlbsogiv5cw_wjhvgp.jpg",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 10,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/zivckxpxoj7eoz3k0fbg_asox1j.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 11,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448118/mitkyzcyqpgraudf4mzo_ytgfkx.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 12,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448129/va3spn6weremalxijnim_j50w9s.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 13,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hekcsbfgdyg9d6pup5ft_ceblkf.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 14,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448116/lrejrej4vkgm6pwz4pji_bflzxl.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 15,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448113/hcond6tzxbabx0ce4aku_g4z6r2.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 16,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448132/xmx5t5xm3uxrjf6ihcdt_upfix4.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 17,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448120/ozwomw2ybv9bkx2fkbxf_r4ziut.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 18,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/geo9wdmyu4pnh7c7mr9q_lypzi7.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 19,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448123/r6vdvndpnx7cvr5dntjd_tir57j.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 20,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448125/ujwwyfjsuybmzd2swakw_tus5pp.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 21,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448110/em1myinhecewatd7a5ih_hecxyp.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 22,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448108/b3u713dp7cpcwiidqpie_b9ej1h.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 23,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/a60azsrb6y4zzrdki2t6_at2eoq.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 24,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448114/ldwesrionjbuwffp0cw7_ivexgx.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 25,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448126/uk23x8ahosnejilqkjdq_j9uqm1.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 26,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448117/maqykxobznkum8ygukbv_htaziu.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 27,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/ahgneikwijzkfi1z3vih_snz6jg.jpg",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 28,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449259/osygbhyemxoc2vbe7xx5_iaiz3j.webp",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 29,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449500/rq65qikrbefpqmhsbfnt_g6megq.webp",
+        type: "food",
+        descripiton: "",
+      },
+    ],
     []
   );
+  // const medias = useMemo(
+  //   () => [
+  //     {
+  //       id: 1,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771933844/1_eiy1ry.webp",
+  //       type: "food",
+  //       descripiton: "Smoked Salmon Croissant – Nour Maison Milton Keynes",
+  //     },
+  //     {
+  //       id: 2,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936326/2_cew0ri.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Beautifully plated breakfast at Nour Maison, featuring fresh fruit, pancakes with a drizzle of syrup, and a colorful iced drink alongside a delicate tea set. Perfect for a luxurious brunch experience in Milton Keynes",
+  //     },
+  //     // { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" }, // Hani was kicked out 😅
+  //     {
+  //       id: 4,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936536/4_aywult.webp",
+  //       type: "drinks",
+  //       descripiton:
+  //         "Refreshing iced beverage at Nour Maison in Milton Keynes, featuring a vibrant gradient of colors and topped with crushed ice, paired beautifully with fresh floral accents and a delicious dish.",
+  //     },
+  //     {
+  //       id: 5,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936732/5_ij8kfu.webp",
+  //       type: "drinks",
+  //       descripiton:
+  //         "Smooth iced coffee at Nour Maison, featuring a beautifully layered design with creamy caramel tones, complemented by fresh floral decorations and a delicious dish in the foreground.",
+  //     },
+  //     {
+  //       id: 6,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936837/6_klfki9.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Delicious open sesame bagel at Nour Maison, topped with fresh avocado, figs, strawberries, and cream cheese, garnished with edible flowers and nuts, creating a vibrant and wholesome dish.",
+  //     },
+  //     {
+  //       id: 7,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771936973/7_noazsf.webp",
+  //       type: "drinks",
+  //       descripiton:
+  //         "Elegant tea set at Nour Maison, featuring a floral teapot and cup, paired with a beautifully plated dish, creating a luxurious dining experience with a touch of floral beauty.",
+  //     },
+  //     {
+  //       id: 8,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937138/8_q65sbc.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Vibrant and fresh fruit dish at Nour Maison, beautifully garnished with figs, strawberries, and kiwi, paired with a delicate tea set, iced coffee, and floral accents, creating a luxurious brunch experience.",
+  //     },
+  //     {
+  //       id: 9,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937262/9_eyfmi9.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Exquisite brunch at Nour Maison, featuring a variety of dishes including a vibrant fruit-topped bagel, grilled chicken salad with fresh greens, and a delicate tea set, surrounded by beautiful floral accents.",
+  //     },
+  //     {
+  //       id: 10,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937367/10_lcutqg.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "An elegant brunch spread at Nour Maison, featuring a fresh croissant salad with grilled chicken, a fruit-topped bagel with cream cheese, and a creamy fig dessert, accompanied by iced coffee and a tea set, with floral accents completing the scene.",
+  //     },
+  //     {
+  //       id: 11,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937421/11_exz7fa.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Delicious open sesame bagel at Nour Maison, topped with fresh avocado, strawberries, figs, and edible flowers, served with cream cheese and nuts for a wholesome and vibrant brunch.",
+  //     },
+  //     {
+  //       id: 12,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937503/12_amimy7.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Close-up of a vibrant open sesame bagel at Nour Maison, topped with fresh avocado, strawberries, figs, and edible flowers, garnished with cream cheese and crushed nuts for a wholesome and colorful brunch dish.",
+  //     },
+  //     {
+  //       id: 13,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937616/13_lywprn.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Close-up of luxurious pancakes at Nour Maison, topped with fresh figs, raspberries, and edible flowers, drizzled with a creamy sauce for a decadent brunch experience.",
+  //     },
+  //     {
+  //       id: 14,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937682/14_krnsp0.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "A plate of decadent pancakes at Nour Maison, topped with fresh figs, raspberries, edible flowers, and drizzled with creamy sauce, with the Nour Maison sign softly blurred in the background.",
+  //     },
+  //     {
+  //       id: 15,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771937910/15_nk6kk7.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "A beautifully plated croissant dish at Nour Maison, filled with smoked salmon, cream cheese, and fresh greens, garnished with edible flowers and served with a colorful beetroot sauce drizzle.",
+  //     },
+  //     {
+  //       id: 16,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771938084/17_df3hfo.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "A gourmet croissant at Nour Maison, filled with smoked salmon, fresh cream cheese, and greens, garnished with edible flowers and served with a vibrant beetroot sauce.",
+  //     },
+  //     {
+  //       id: 17,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771938279/19_dqyajw.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "A savory croissant at Nour Maison, filled with smoked salmon, fresh greens, red onions, and capers, served with a vibrant beetroot sauce and accompanied by a refreshing iced beverage.",
+  //     },
+  //     {
+  //       id: 18,
+  //       media_url:
+  //         "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1771938352/18_rgrmqt.webp",
+  //       type: "food",
+  //       descripiton:
+  //         "Savory croissant at Nour Maison, filled with smoked salmon, fresh onions, greens, and capers, served on a vibrant beetroot sauce, garnished with edible flowers for an elegant brunch.",
+  //     },
+  //     // {
+  //     //   id: 19,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448123/r6vdvndpnx7cvr5dntjd_tir57j.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 20,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448125/ujwwyfjsuybmzd2swakw_tus5pp.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 21,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448110/em1myinhecewatd7a5ih_hecxyp.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 22,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448108/b3u713dp7cpcwiidqpie_b9ej1h.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 23,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/a60azsrb6y4zzrdki2t6_at2eoq.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 24,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448114/ldwesrionjbuwffp0cw7_ivexgx.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 25,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448126/uk23x8ahosnejilqkjdq_j9uqm1.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 26,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448117/maqykxobznkum8ygukbv_htaziu.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 27,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448107/ahgneikwijzkfi1z3vih_snz6jg.jpg",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 28,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449259/osygbhyemxoc2vbe7xx5_iaiz3j.webp",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //     // {
+  //     //   id: 29,
+  //     //   media_url:
+  //     //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767449500/rq65qikrbefpqmhsbfnt_g6megq.webp",
+  //     //   type: "food",
+  //     //   descripiton: "",
+  //     // },
+  //   ],
+  //   []
+  // );
 
   useEffect(() => {
     const shuffled = shuffleArray(medias);
@@ -142,14 +529,14 @@ const Gallrey = () => {
     [medias]
   );
 
-  console.log("videosOnly", videosOnly)
+  console.log("videosOnly", videosOnly);
 
   // ---------- Video Logic ----------
   const videoRefs = useRef([]);
   // Track mute state: { [index]: boolean }
   const [mutedByIndex, setMutedByIndex] = useState({});
 
-  const isMuted = (idx) => (mutedByIndex[idx] ?? true);
+  const isMuted = (idx) => mutedByIndex[idx] ?? true;
 
   const toggleReelMute = (idx) => {
     setMutedByIndex((prev) => {
@@ -172,7 +559,7 @@ const Gallrey = () => {
       v.pause();
       try {
         v.currentTime = 0;
-      } catch { }
+      } catch {}
     });
   };
 
@@ -214,7 +601,8 @@ const Gallrey = () => {
               {activeTab === "Gallery" ? "Our Gallery" : "Our Portfolio"}
             </h3>
             <p className="max-w-2xl text-gray-600 font-lato text-sm sm:text-base">
-              Explore our best captures—fresh food, signature drinks, and the ambience.
+              Explore our best captures—fresh food, signature drinks, and the
+              ambience.
             </p>
           </motion.div>
         </div>
@@ -225,7 +613,11 @@ const Gallrey = () => {
             <div className="">
               <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
                 <div className="w-full lg:w-auto flex justify-center lg:justify-start">
-                  <TopNavbar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />
+                  <TopNavbar
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                    tabs={tabs}
+                  />
                 </div>
                 {activeTab === "Gallery" ? (
                   <div className="w-full lg:w-auto flex justify-center lg:justify-end">
@@ -254,17 +646,21 @@ const Gallrey = () => {
               className="mt-8"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
                 {/* LEFT: Images */}
                 <div className="lg:col-span-8 order-2 lg:order-1">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-xl font-seasons text-logoGold">Photos</h4>
+                    <h4 className="text-xl font-seasons text-logoGold">
+                      Photos
+                    </h4>
                     <span className="text-sm text-gray-500 font-lato">
                       {imagesOnly.length} items
                     </span>
                   </div>
                   <FancyboxElement options={{ Carousel: { infinite: false } }}>
-                    <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <motion.div
+                      layout
+                      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"
+                    >
                       <AnimatePresence>
                         {imagesOnly.map((movie) => (
                           <motion.div
@@ -289,7 +685,9 @@ const Gallrey = () => {
                 {/* RIGHT: Videos (Reels) */}
                 <div className="lg:col-span-4 sticky top-0 order-1 lg:order-2">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-xl font-seasons text-logoGold">Reels</h4>
+                    <h4 className="text-xl font-seasons text-logoGold">
+                      Reels
+                    </h4>
                     <span className="text-sm text-gray-500 font-lato">
                       {videosOnly.length} videos
                     </span>
@@ -312,7 +710,9 @@ const Gallrey = () => {
                           }}
                           onSlideChange={(sw) => {
                             pauseAllVideos();
-                            requestAnimationFrame(() => playIndex(sw.activeIndex));
+                            requestAnimationFrame(() =>
+                              playIndex(sw.activeIndex)
+                            );
                           }}
                         >
                           {videosOnly.map((vid, idx) => (
@@ -326,7 +726,9 @@ const Gallrey = () => {
                                 index={idx}
                                 isMuted={isMuted(idx)}
                                 toggleMute={toggleReelMute}
-                                setVideoRef={(el) => (videoRefs.current[idx] = el)}
+                                setVideoRef={(el) =>
+                                  (videoRefs.current[idx] = el)
+                                }
                               />
                             </SwiperSlide>
                           ))}
@@ -343,7 +745,9 @@ const Gallrey = () => {
             </motion.div>
           </div>
 
-          <div style={{ display: activeTab === "Portfolio" ? "block" : "none" }}>
+          <div
+            style={{ display: activeTab === "Portfolio" ? "block" : "none" }}
+          >
             <motion.div className="mt-8">
               <div className="rounded-2xl border border-black/5 bg-white shadow-sm p-3 sm:p-5">
                 <Portfolio2 />

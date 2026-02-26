@@ -76,7 +76,7 @@ export default async function BookingPage() {
           slogan={"Reserve your seat, taste the extraordinary."}
           scrollTo={"booking"}
           images={[
-            "https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4",
+            "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
           ]}
         />
 

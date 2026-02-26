@@ -183,7 +183,7 @@ const BannerSwiper = () => {
             // ✅ سلايد رمضان الجديد 🌙
             {
               image:
-                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771514629/ramadan-iftar-milton-keynes_1_hpgpls.webp",
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101696/ramadan-iftar-milton-keynes_1_hpgpls_ohrth3.webp",
               alt: "Ramadan Iftar Menu Milton Keynes 2026 - Nour Maison halal iftar dining experience",
               content: (
                 <div className="relative">
@@ -379,7 +379,7 @@ const BannerSwiper = () => {
             },
             {
               image:
-                "https://res.cloudinary.com/dkc5klynm/image/upload/v1771758752/BUNNER_NOUR_1_cq1k64.webp",
+                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
               alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
               content: (
                 <>

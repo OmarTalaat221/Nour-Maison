@@ -130,7 +130,7 @@ const OurServices = () => {
                     className="w-full h-full object-cover rounded-tr-[10px]"
                   >
                     <source
-                      src="https://res.cloudinary.com/dkc5klynm/video/upload/v1771769055/afternoon_tea_section_menu_goocyq.mp4"
+                      src="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101467/afternoon_tea_section_menu_goocyq_balo8f.mp4"
                       type="video/mp4"
                     />
                   </video>

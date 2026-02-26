@@ -15,13 +15,13 @@ const ChefsSection = () => {
     {
       name: "Mo G",
       image:
-        "https://res.cloudinary.com/dkc5klynm/image/upload/v1771758720/8_z4ctfl.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101624/8_z4ctfl_uw4kmy.webp",
       position: "Chef Owner",
     },
     {
       name: "Cristina",
       image:
-        "https://res.cloudinary.com/dkc5klynm/image/upload/v1771758741/6_b6tvcm.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101591/6_b6tvcm_vuoexf.webp",
       position: " Chef",
     },
     {
@@ -33,7 +33,7 @@ const ChefsSection = () => {
     {
       name: "Ramona",
       image:
-        "https://res.cloudinary.com/dkc5klynm/image/upload/v1771758730/5_ftc11d.webp",
+        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101613/5_ftc11d_roq4cv.webp",
       position: " Chef",
     },
   ];

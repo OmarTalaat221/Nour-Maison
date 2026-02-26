@@ -155,7 +155,7 @@ const ChefsSection2 = () => {
         >
           {/* Image 5 - Left */}
           <motion.img
-            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771758741/6_b6tvcm.webp"
+            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101591/6_b6tvcm_vuoexf.webp"
             alt="Chef 1"
             className="drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[280px] lg:w-[400px] rounded-lg"
             style={{
@@ -169,7 +169,7 @@ const ChefsSection2 = () => {
 
           {/* Image 6 - Right */}
           <motion.img
-            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771758730/5_ftc11d.webp"
+            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101613/5_ftc11d_roq4cv.webp"
             alt="Chef 2"
             className="drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[280px] lg:w-[400px] rounded-lg"
             style={{
@@ -185,7 +185,7 @@ const ChefsSection2 = () => {
         {/* Image 8 - Bottom banner */}
         <div className="flex justify-center mt-8 md:mt-0">
           <motion.img
-            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771758720/8_z4ctfl.webp"
+            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101624/8_z4ctfl_uw4kmy.webp"
             alt="Restaurant banner"
             className="drop-shadow-2xl w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] rounded-lg"
             style={{

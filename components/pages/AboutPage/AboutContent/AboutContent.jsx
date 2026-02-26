@@ -110,7 +110,7 @@ export default function AboutContent() {
               {/* Video Component (replaced AboutUsSwiper) */}
               {/* <AboutUsSwiper images={images} /> */}
               <AboutUsVideo
-                videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4"
+                videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4"
                 poster={images[0]}
               />
 
@@ -339,7 +339,7 @@ export default function AboutContent() {
               {/* Video Component (replaced AboutUsSwiper) */}
               {/* <AboutUsSwiper images={images2} /> */}
               <AboutUsVideo
-                videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4"
+                videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101497/menu-gallery_menu-classic_jwdmr0_ntk29z.mp4"
                 poster={images2[0]}
               />
 

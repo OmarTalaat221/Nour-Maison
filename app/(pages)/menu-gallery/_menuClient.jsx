@@ -35,7 +35,7 @@ const MenuClient = () => {
     <div className="overflow-x-hidden max-w-full">
       <PagesBanner
         images={[
-          "https://res.cloudinary.com/dkc5klynm/video/upload/v1771762025/menu-gallery_menu-classic_jwdmr0.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101497/menu-gallery_menu-classic_jwdmr0_ntk29z.mp4",
         ]}
         title={"Menu Gallery"}
         slogan={" "}

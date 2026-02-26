@@ -196,17 +196,17 @@ const Footer = () => {
                 </p>
                 <div className="shimmer-card flex justify-center items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
                   <img
-                    src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771669946/Visa_Brandmark_Blue_RGB_2021_jsipcx.png"
+                    src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101653/Visa_Brandmark_Blue_RGB_2021_jsipcx_pklgmh.png"
                     alt="Visa"
                     className="w-[50px] h-[32px] object-contain"
                   />
                   <img
-                    src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771669935/ma_symbol_opt_73_2x_xadjas.png"
+                    src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101682/ma_symbol_opt_73_2x_xadjas_zexy1k.png"
                     alt="Mastercard"
                     className="w-[50px] h-[32px] object-contain"
                   />
                   <img
-                    src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771670021/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80_rrtz7i.png"
+                    src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101644/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80_rrtz7i_lvizo3.png"
                     alt="American Express"
                     className="w-[50px] h-[32px] object-contain"
                   />

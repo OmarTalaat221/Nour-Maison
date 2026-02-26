@@ -382,10 +382,10 @@ const RamadanIftarMenuPage = () => {
         bottomBg={false}
         images={[
           // "https://res.cloudinary.com/dkc5klynm/video/upload/v1771755775/nour-2-2026_eqrfpf.mp4",
-          "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434323/HKE09820_1_e43fwl.webp",
-          "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434499/HKE09789_itafrw.webp",
-          "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434496/HKE09816_e7ojrs.webp",
-          "https://res.cloudinary.com/dkc5klynm/image/upload/v1771434831/HKE09822_1_khyolt.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101803/HKE09820_1_e43fwl_wpiqnz.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101744/HKE09789_itafrw_ilimoh.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101789/HKE09816_e7ojrs_zug2bx.webp",
+          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101734/HKE09822_1_khyolt_fgavcl.webp",
         ]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">
@@ -414,7 +414,7 @@ const RamadanIftarMenuPage = () => {
           className="wave-strip absolute inset-x-0 top-0 z-30 pointer-events-none"
           style={{
             backgroundImage:
-              "url('https://res.cloudinary.com/dkc5klynm/image/upload/v1771510442/Pattern_fia8ft.webp')",
+              "url('https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101720/Pattern_fia8ft_nc0n26.webp')",
           }}
         />
 
@@ -467,7 +467,7 @@ const RamadanIftarMenuPage = () => {
         {/* ✅ Menu Image */}
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-5xl mx-auto relative px-2 sm:px-4 z-10">
           <Image
-            src="https://res.cloudinary.com/dkc5klynm/image/upload/v1771510919/22_vkxlyt.webp"
+            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101710/22_vkxlyt_tynwyr.webp"
             alt="Best Ramadan Iftar Menu Milton Keynes 2026 - 5 Course Halal Dining Experience at Nour Maison"
             width={1400}
             height={1800}

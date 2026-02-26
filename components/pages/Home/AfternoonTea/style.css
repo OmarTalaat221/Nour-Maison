@@ -8,7 +8,7 @@
   margin: auto;
 }
 
-.afternoon-swiper-container{
+.afternoon-swiper-container {
   max-height: calc(100vh - 100px);
 }
 
@@ -33,47 +33,53 @@
   background-color: #599066;
 }
 
-
-  
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
-  /* Your styles here */
   .about_content_page {
     grid-template-columns: repeat(1, 1fr);
     width: 90%;
-  } 
+    padding-inline: 15px;
+    gap: 20px;
+  }
 }
 
 /* Small devices (tablets, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  /* Your styles here */
   .about_content_page {
     grid-template-columns: repeat(1, 1fr);
     width: 90%;
-  }  
-
+    padding-inline: 20px;
+    gap: 30px;
+  }
 }
 
 /* Medium devices (desktops, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  /* Your styles here */
   .about_content_page {
     grid-template-columns: 45% 55%;
     width: 90%;
-  } 
+    padding-inline: 30px;
+    gap: 40px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Your styles here */
+  .about_content_page {
+    padding-inline: 40px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) and (max-width: 1399.98px) {
-  /* Your styles here */
+  .about_content_page {
+    padding-inline: 50px;
+  }
 }
 
 /* Extra extra large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-  /* Your styles here */
+  .about_content_page {
+    padding-inline: 60px;
+  }
 }

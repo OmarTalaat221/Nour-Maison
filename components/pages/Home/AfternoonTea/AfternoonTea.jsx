@@ -16,6 +16,7 @@ import FramerModal from "../../../InqueryModal";
 import toast from "react-hot-toast";
 import PaperPlaneSuccess from "../../../PaperPlaneSuccess/PaperPlaneSuccess";
 import AfternoonTeaVideo from "../AfternoonTeaVideo/AfternoonTeaVideo";
+import Link from "next/link";
 
 const AfternoonTea = ({}) => {
   const [showInqueryModal, setShowInqueryModal] = useState(false);
@@ -24,7 +25,6 @@ const AfternoonTea = ({}) => {
   const { scrollYProgress } = useScroll();
   const mobileScreen = useMediaQuery("(max-width: 768px)");
 
-  // Stronger perspective feel with wider rotation ranges
   const rotateX = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -41,7 +41,6 @@ const AfternoonTea = ({}) => {
     mobileScreen ? [1, 1] : [0.95, 1]
   );
 
-  // Spring smoothing for elegant animation
   const smoothRotateX = useSpring(rotateX, {
     stiffness: 90,
     damping: 18,
@@ -73,7 +72,7 @@ const AfternoonTea = ({}) => {
   return (
     <section>
       <div
-        className="relative md:backdrop:mx-5 mt-6 overflow-hidden"
+        className="relative mx-2 sm:mx-3 md:mx-4 lg:mx-5 mt-4 sm:mt-5 md:mt-6 overflow-hidden"
         style={{
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -86,210 +85,169 @@ const AfternoonTea = ({}) => {
         <TopBg />
         <BottomBg />
         <div
-          className="sticky top-14"
+          className="sticky top-14 hidden sm:block"
           data-aos="fade-left"
           data-aos-delay="300"
         >
           <BranchesImage
             variant={"top-right"}
             width={700}
-            className={" opacity-65 right-[-30px] scale-150 origin-right "}
+            className="opacity-65 right-[-30px] scale-100 sm:scale-125 lg:scale-150 origin-right"
           />
         </div>
-        <div className="" data-aos="fade-right" data-aos-delay="500">
+        <div
+          className="hidden sm:block"
+          data-aos="fade-right"
+          data-aos-delay="500"
+        >
           <BranchesImage
             variant={"top-left"}
-            className={" w-[] top-6 scale-150  "}
+            className="top-6 scale-100 sm:scale-125 lg:scale-150"
           />
         </div>
-        <div style={{ perspective: "1200px" }} className="my-10">
+        <div
+          style={{ perspective: "1200px" }}
+          className="my-6 sm:my-8 md:my-10"
+        >
           <motion.div
             style={{
               rotateX: smoothRotateX,
-              // rotateY: smoothRotateY,
               scale: smoothScale,
             }}
             id="afternoon-tea-content"
-            className="lg:max-w-[1000px] xl:max-w-[1200px] relative mx-auto my-10"
+            className="w-[95%] sm:w-[92%] md:w-[90%] lg:max-w-[1000px] xl:max-w-[1200px] relative mx-auto my-6 sm:my-8 md:my-10"
           >
-            <div className="shadow-xl rounded-[32px] overflow-hidden mx-auto">
+            <div className="shadow-xl rounded-2xl sm:rounded-3xl overflow-hidden mx-auto">
               {/* Product Information */}
               <section className="product-infomation">
                 <div
-                  className="flex flex-col md:flex-row md:h-[calc(100vh-100px)] h-full
+                  className="flex flex-col lg:flex-row
                     order-1 lg:order-2 lg:mx-0 relative z-20 
-                    backdrop-blur-md bg-white/20 rounded-[32px] overflow-hidden shadow-lg border-2 border-white/50 text-green-900
+                    backdrop-blur-md bg-white/20 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-white/30 sm:border-2 sm:border-white/50 text-green-900
                    bg-clip-padding backdrop-filter bg-opacity-20  
                     bg-gradient-to-br from-white/10 via-white/20 to-white/5"
                 >
-                  {/* Left: Video (replaced Swiper) */}
-                  <div className="w-full md:w-1/2 h-[300px] sm:h-[350px] md:h-full p-5 sm:p-6 md:p-8 lg:p-10 !px-4 sm:!px-5">
-                    {/* ✅ NEW: Video Component */}
-                    <AfternoonTeaVideo
-                      videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771769055/afternoon_tea_section_menu_goocyq.mp4"
-                      poster="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg"
-                    />
-
-                    {/*                    <Swiper
-                      style={{
-                        borderRadius: "12px ",
-                      }}
-                      grabCursor={true}
-                      effect={"creative"}
-                      creativeEffect={{
-                        prev: {
-                          shadow: true,
-                          translate: ["-20%", 0, -1],
-                        },
-                        next: {
-                          translate: ["100%", 0, 0],
-                        },
-                      }}
-                      modules={[EffectCreative, Autoplay, Pagination]}
-                      loop={true}
-                      autoplay={{ delay: 2000 }}
-                      className="mySwiper3 shadow-2xl"
-                    >
-                      {images.map((img, index) => (
-                        <SwiperSlide
-                          key={index}
-                          className="h-full"
-                        >
-                          <img
-                            loading="lazy"
-                            className="w-full h-full object-cover"
-                            src={img}
-                            alt={"afternoon tee  - " + index + 1}
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    */}
+                  {/* Left: Video */}
+                  <div className="w-full lg:w-1/2 p-3 xs:p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 flex">
+                    <div className="w-full aspect-[4/3] md:aspect-auto md:h-full">
+                      <AfternoonTeaVideo
+                        videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101467/afternoon_tea_section_menu_goocyq_balo8f.mp4"
+                        poster="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg"
+                      />
+                    </div>
                   </div>
 
                   {/* Right: Content */}
-                  <div className="w-full md:w-1/2 flex flex-col">
-                    <div className="p-5 sm:p-6 md:p-8 lg:p-10 !px-4 sm:!px-5 flex-1">
-                      {/* Title */}
-                      <h2
-                        style={{
-                          textShadow: " #EDECE8 2px 2px 0px",
-                        }}
-                        className="font-seasons !font-normal text-4xl sm:text-5xl md:!text-6xl lg:!text-7xl !m-0 !p-0 text-logoGold drop-shadow-lg"
-                      >
-                        Afternoon Tea
-                      </h2>
-                      <br />
+                  <div className="w-full lg:w-1/2 flex flex-col p-3 xs:p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10">
+                    {/* Title */}
+                    <h2
+                      style={{
+                        textShadow: "#EDECE8 2px 2px 0px",
+                      }}
+                      className="font-seasons !font-normal text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:!text-6xl xl:!text-7xl !m-0 !p-0 text-logoGold drop-shadow-lg"
+                    >
+                      Afternoon Tea
+                    </h2>
 
-                      {/* Accordion Content */}
-                      <section className="accordion">
-                        <ul className="text-white">
-                          <p
-                            className="!text-[14px] sm:!text-[15px] md:text-[16px] mb-4 sm:mb-5 md:mb-6 ps-2 sm:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold"
-                            data-aos="fade-left"
-                            data-aos-delay="800"
-                          >
-                            Book your Afternoon Tea here at Nour Maison – £29.95
-                            per person with Unlimited Tea Included.
-                          </p>
-                          <p
-                            className="!text-[14px] sm:!text-[15px] md:text-[16px] mb-4 sm:mb-5 md:mb-6 ps-2 sm:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold"
-                            data-aos="fade-left"
-                            data-aos-delay="800"
-                          >
-                            At Nour Maison, we believe food is a bridge between
-                            cultures – a language of love and warmth. Our
-                            afternoon tea is a unique fusion of French
-                            pâtisserie elegance and the soulful, time-honored
-                            flavors of the Middle East.
-                          </p>
-                          <p
-                            className="!text-[14px] sm:!text-[15px] md:text-[16px] mb-4 sm:mb-5 md:mb-6 ps-2 sm:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold hidden sm:block"
-                            data-aos="fade-left"
-                            data-aos-delay="800"
-                          >
-                            Each bite is a celebration of two worlds, inviting
-                            you to savor the comfort of home with the thrill of
-                            new discovery.
-                          </p>
-                          <p
-                            className="!text-[14px] sm:!text-[15px] md:text-[16px] mb-4 sm:mb-5 md:mb-6 ps-2 sm:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold hidden md:block"
-                            data-aos="fade-left"
-                            data-aos-delay="800"
-                          >
-                            Join us for an experience that tastes like adventure
-                            and feels like love.
-                          </p>
-                        </ul>
-
-                        {/* Make Inquiry Button */}
-                        <div
-                          className="mt-4 sm:mt-6"
-                          data-aos="fade-up"
-                          data-aos-delay={400}
+                    {/* Content */}
+                    <section className="accordion mt-3 sm:mt-4 md:mt-6 flex-1 flex flex-col">
+                      <div className="text-white flex-1">
+                        <p
+                          className="text-xs xs:text-sm sm:text-[14px] md:text-[15px] lg:text-base mb-2 xs:mb-3 sm:mb-4 ps-1 sm:ps-2 md:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold"
+                          data-aos="fade-left"
+                          data-aos-delay="800"
                         >
-                          <button className="button-border-anime !w-40 sm:!w-44 md:!w-52 lg:!w-60 !h-[3rem] sm:!h-[3.5rem] md:!h-[4rem]">
-                            <svg xmlns="http://www.w3.org/2000/svg">
+                          Book your Afternoon Tea here at Nour Maison – £29.95
+                          per person with Unlimited Tea Included.
+                        </p>
+                        <p
+                          className="text-xs xs:text-sm sm:text-[14px] md:text-[15px] lg:text-base mb-2 xs:mb-3 sm:mb-4 ps-1 sm:ps-2 md:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold"
+                          data-aos="fade-left"
+                          data-aos-delay="800"
+                        >
+                          At Nour Maison, we believe food is a bridge between
+                          cultures – a language of love and warmth. Our
+                          afternoon tea is a unique fusion of French pâtisserie
+                          elegance and the soulful, time-honored flavors of the
+                          Middle East.
+                        </p>
+                        <p
+                          className="text-xs xs:text-sm sm:text-[14px] md:text-[15px] lg:text-base mb-2 xs:mb-3 sm:mb-4 ps-1 sm:ps-2 md:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold hidden sm:block"
+                          data-aos="fade-left"
+                          data-aos-delay="800"
+                        >
+                          Each bite is a celebration of two worlds, inviting you
+                          to savor the comfort of home with the thrill of new
+                          discovery.
+                        </p>
+                        <p
+                          className="text-xs sm:text-[14px] md:text-[15px] lg:text-base mb-2 sm:mb-4 ps-1 sm:ps-2 md:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold hidden lg:block"
+                          data-aos="fade-left"
+                          data-aos-delay="800"
+                        >
+                          Join us for an experience that tastes like adventure
+                          and feels like love.
+                        </p>
+                      </div>
+
+                      {/* Make Inquiry Button */}
+                      <div
+                        className="mt-3 sm:mt-4"
+                        data-aos="fade-up"
+                        data-aos-delay={400}
+                      >
+                        <Link
+                          href="/afternoon-tea-booking"
+                          aria-label="Book Afternoon Tea at Nour Maison"
+                          title="Book Afternoon Tea - £29.95 per person"
+                        >
+                          <button className="button-border-anime !w-32 xs:!w-36 sm:!w-40 md:!w-44 lg:!w-52 xl:!w-60 !h-10 xs:!h-11 sm:!h-12 md:!h-14 lg:!h-16">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              aria-hidden="true"
+                            >
                               <rect
-                                className="border-anime !w-40 sm:!w-44 md:!w-52 lg:!w-60 !h-[3rem] sm:!h-[3.5rem] md:!h-[4rem] !stroke-[3px] sm:!stroke-[4px] !stroke-[#c16d2d]"
+                                className="border-anime !w-32 xs:!w-36 sm:!w-40 md:!w-44 lg:!w-52 xl:!w-60 !h-10 xs:!h-11 sm:!h-12 md:!h-14 lg:!h-16 !stroke-2 sm:!stroke-[3px] md:!stroke-[4px] !stroke-[#c16d2d]"
                                 pathLength={100}
                               />
                             </svg>
-                            <div
-                              onClick={() => setShowInqueryModal(true)}
-                              className="txt-upload !text-white no-underline hover:no-underline text-lg sm:text-xl md:text-2xl font-seasons"
-                            >
-                              Make Inquiry
-                            </div>
+                            <span className="txt-upload !text-white no-underline hover:no-underline text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-seasons">
+                              Book Now
+                            </span>
                           </button>
-                        </div>
+                        </Link>
+                      </div>
 
-                        {/* ✅ NEW: Small Swiper below Make Inquiry button */}
-                        <div
-                          className="mt-6 sm:mt-8 md:mt-10"
-                          data-aos="fade-up"
-                          data-aos-delay={600}
-                        >
-                          <Swiper
-                            style={{
-                              borderRadius: "12px",
-                            }}
-                            grabCursor={true}
-                            effect={"creative"}
-                            creativeEffect={{
-                              prev: {
-                                shadow: true,
-                                translate: ["-20%", 0, -1],
-                              },
-                              next: {
-                                translate: ["100%", 0, 0],
-                              },
-                            }}
-                            modules={[EffectCreative, Autoplay]}
-                            loop={true}
-                            autoplay={{
-                              delay: 3000,
-                              disableOnInteraction: false,
-                            }}
-                            className="afternoon-tea-mini-swiper shadow-xl"
-                          >
-                            {images.map((img, index) => (
-                              <SwiperSlide
-                                key={index}
-                                className="!h-[120px] sm:!h-[140px] md:!h-[160px] lg:!h-[180px]"
-                              >
+                      {/* ✅ 3 Image Cards - تبقى داخل الكارد دائماً */}
+                      <div
+                        className="mt-4 sm:mt-6"
+                        data-aos="fade-up"
+                        data-aos-delay={600}
+                      >
+                        <div className="grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-3 md:gap-4">
+                          {images.map((img, index) => (
+                            <div
+                              key={index}
+                              className="relative overflow-hidden rounded-md sm:rounded-lg md:rounded-xl shadow-md sm:shadow-lg 
+                                transition-all duration-300 hover:scale-105 hover:shadow-xl
+                                cursor-pointer group"
+                            >
+                              {/* aspect-square يخلي كل الكاردات نفس الشكل */}
+                              <div className="aspect-square w-full">
                                 <img
                                   loading="lazy"
-                                  className="w-full h-full object-cover rounded-xl"
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                   src={img}
                                   alt={`Afternoon Tea Gallery - ${index + 1}`}
                                 />
-                              </SwiperSlide>
-                            ))}
-                          </Swiper>
+                              </div>
+                              {/* Overlay on hover */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                          ))}
                         </div>
-                      </section>
-                    </div>
+                      </div>
+                    </section>
                   </div>
                 </div>
               </section>

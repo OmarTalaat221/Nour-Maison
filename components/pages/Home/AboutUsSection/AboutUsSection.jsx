@@ -65,7 +65,7 @@ const AboutUsSection = () => {
       {/* Video Section (replaced Swiper) */}
       <div className="w-full" data-aos="fade-down-right">
         <AboutUsSectionVideo
-          videoSrc="https://res.cloudinary.com/dkc5klynm/video/upload/v1771759801/booking-home-about_info_ulolyx.mp4"
+          videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4"
           poster={images[0]}
         />
       </div>
