@@ -2,15 +2,14 @@ import StorePage from "./_Store_Client";
 
 const SITE_URL = "https://www.nourmaison.co.uk";
 const PAGE_URL = `${SITE_URL}/store`;
-const OG_IMAGE = `${SITE_URL}/og/store.jpg`; // <- change to your real image
+const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png`; // <- change to your real image
 
 // metadata
 export const metadata = {
-  title: "Store & Gift Cards – Nour Maison | Artisan Gifts & Dining Vouchers",
+  title: "Gift Cards & Artisan Store | Nour Maison Milton Keynes",
 
   description:
-    "Explore our store and gift card options at Nour Maison. Shop artisanal products or gift a fine dining experience in Milton Keynes with our elegant halal vouchers.",
-
+    "Buy elegant halal restaurant gift cards or shop artisan food and luxury gift boxes at Nour Maison in Milton Keynes. Perfect for birthdays, anniversaries & corporate gifts.",
   keywords: [
     // General
     "Nour Maison store",

@@ -13,7 +13,7 @@ const pathname = "/afternoon-tea-menu";
 const url = `${siteUrl}${pathname}`;
 
 // ✅ SEO Optimized
-const title = "Best Afternoon Tea in Milton Keynes | Halal | Nour Maison Café";
+const title = "Best Afternoon Tea in Milton Keynes | Nour Maison Café";
 const description =
   "Looking for the best afternoon tea in Milton Keynes? Nour Maison offers a refined halal afternoon tea menu — French patisserie meets Middle Eastern flavours. Sweet treats, savoury bites & unlimited premium tea for £29.95. Book now!";
 

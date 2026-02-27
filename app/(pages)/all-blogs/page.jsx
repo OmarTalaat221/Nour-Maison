@@ -13,7 +13,7 @@ const url = `${siteUrl}${pathname}`;
 const title =
   "Halal Restaurant Blog Milton Keynes | Nour Maison Café & Brasserie";
 const description =
-  "Explore halal dining guides, afternoon tea tips, breakfast & brunch ideas, and special occasion inspiration at Nour Maison Milton Keynes. Your guide to fine halal dining in MK.";
+  "Discover halal dining guides, brunch inspiration, afternoon tea tips and fine dining insights from Nour Maison, Milton Keynes. Explore the latest articles.";
 const ogImage =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png";
 
@@ -307,6 +307,9 @@ export default async function AllBlogsPage() {
 
       {/* ✅ Banner Section */}
       <PagesBanner
+        images={[
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+        ]}
         bottomBg={true}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">

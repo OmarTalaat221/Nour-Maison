@@ -195,17 +195,17 @@ export default function AboutContent() {
               >
                 <p>
                   Welcome to{" "}
-                  <strong className=" !font-bold font-seasons text-logoGold">
+                  <strong className=" !font-bold font-lato text-logoGold">
                     Nour Maison
                   </strong>
                   , where French sophistication meets the bold, vibrant flavours
                   of the Middle East. Inspired by the founder's daughter,
-                  <strong className=" font-extrabold font-seasons text-logoGold">
+                  <strong className=" font-extrabold font-lato text-logoGold">
                     {" "}
                     "Nour"
                   </strong>{" "}
                   — symbolizing light and warmth — and
-                  <strong className=" font-extrabold font-seasons text-logoGold">
+                  <strong className=" font-extrabold font-lato text-logoGold">
                     {" "}
                     "Maison"
                   </strong>{" "}
@@ -245,7 +245,7 @@ export default function AboutContent() {
                   Watch our story
                 </button>
                 <a
-                  href="#menu"
+                  href="/menu"
                   className="border font-seasons border-logoGold bg-white/5 text-logoGold px-5 py-2.5 text-sm font-semibold  hover:bg-white/10 transition"
                 >
                   Explore menu

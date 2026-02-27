@@ -174,24 +174,17 @@ function generateStructuredMenu(menuItems) {
         description:
           item.description ?? "Best " + item.name + " in Milton Keynes",
 
-        itemReviewed: {
-          "@type": "Product",
-          name: item.name,
-          image: item?.image ?? "https://www.nourmaison.co.uk/logo.png",
-          description:
-            item.description ?? "Best " + item.name + " in Milton Keynes",
-          offers: {
-            "@type": "Offer",
-            price: item.price.toFixed(2),
-            priceCurrency: "GBP",
-            availability: "InStock",
-            priceValidUntil: "2025-12-31",
-          },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: Math.random() * (5 - 4) + 4,
-            reviewCount: Math.floor(Math.random() * 1000) + 1,
-          },
+        offers: {
+          "@type": "Offer",
+          price: item.price.toFixed(2),
+          priceCurrency: "GBP",
+          availability: "https://schema.org/InStock",
+          priceValidUntil: "2026-12-31",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: Math.random() * (5 - 4) + 4,
+          reviewCount: Math.floor(Math.random() * 1000) + 1,
         },
       })),
   };

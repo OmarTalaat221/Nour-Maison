@@ -11,8 +11,7 @@ const url = `${siteUrl}${pathname}`;
 const title =
   "Privacy Policy | NOUR MAISON LTD - Nour Maison Café and Brasserie";
 const description =
-  "Privacy Policy for NOUR MAISON LTD trading as Nour Maison Café and Brasserie. Learn how we collect, use, and protect your personal information in compliance with UK data protection laws.";
-
+  "Read the Privacy Policy of Nour Maison Café & Brasserie in Milton Keynes. Learn how we collect, process and protect your personal data in accordance with UK GDPR regulations.";
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title,

@@ -10,10 +10,11 @@ const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/ramadan-iftar-menu-milton-keynes";
 const url = `${siteUrl}${pathname}`;
 
-const title =
-  "Best Iftar Menu Milton Keynes 2026 | 5-Course Halal £35 | Nour Maison";
+const title = "Ramadan Iftar Menu Milton Keynes 2026 | 5-Course Halal £35";
+
 const description =
-  "Looking for the best Iftar in Milton Keynes? Book your Ramadan table at Nour Maison for a premium 5-course halal Iftar menu at £35. Family offers: 10% off for 4+, kids under 10 eat free. Served at Maghrib daily.";
+  "Enjoy a 5-course halal Ramadan Iftar at Nour Maison, Milton Keynes for £35. Served at Maghrib daily with 10% family discount and kids under 10 eat free. Book now.";
+
 const ogImage = `${siteUrl}/images/ramadan-iftar-menu.jpeg`;
 
 export const metadata = {

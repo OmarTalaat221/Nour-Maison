@@ -4,6 +4,11 @@ import BreadCrumbs from "../../../../utils/BreadCrumbs/BreadCrumbs";
 
 const TermsAndConditions = () => {
   const content = `
+
+    
+  <h1 style="box-sizing: border-box; margin: 30px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 600; color: rgb(74, 74, 74);">
+    NOUR MAISON LTD - Terms & Conditions
+  </h1>
 <p style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Jost; font-style: normal; font-weight: 400; color: rgb(74, 74, 74); letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 14px;"><strong style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; font-style: inherit; font-weight: 600; font-size: 14px;">Last Updated: 10-Nov-2024</strong></p>
 
 <p style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; font-style: normal; font-weight: 400; color: rgb(74, 74, 74); letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 14px;">Welcome to Nour Maison Café and Brasserie, operated by <strong>NOUR MAISON LTD</strong> ("we," "us," or "our"). By accessing our website, visiting our café, or using our services, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.</p>
@@ -122,7 +127,7 @@ const TermsAndConditions = () => {
 
       <div className="content ">
         <div
-          className="!font-oswald p-5 md:p-20"
+          className="!font-oswald p-5 md:px-10"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>

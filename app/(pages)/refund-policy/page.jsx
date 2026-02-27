@@ -11,8 +11,7 @@ const url = `${siteUrl}${pathname}`;
 const title =
   "Refund Policy | NOUR MAISON LTD - Nour Maison Café and Brasserie";
 const description =
-  "Refund Policy for NOUR MAISON LTD trading as Nour Maison Café and Brasserie. Learn about our refund process, eligibility, and how to request a refund. Full refund if order not delivered.";
-
+  "NOUR MAISON LTD refund policy – full refund if order not delivered. Learn eligibility, request process & customer-friendly service in Milton Keynes.";
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title,

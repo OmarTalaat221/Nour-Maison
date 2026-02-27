@@ -75,7 +75,6 @@ export const metadata = {
   category: "Contact",
 };
 
-
 const Contact = () => {
   return (
     <>
@@ -83,6 +82,9 @@ const Contact = () => {
         title={"Contact US"}
         slogan={"Reach Us Anytime, Anywhere!"}
         scrollTo={"contact"}
+        images={[
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+        ]}
       />
 
       <ContactContent />

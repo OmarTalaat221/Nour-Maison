@@ -18,7 +18,7 @@ const HeavyComponent = dynamic(
 const StorePage = () => {
   const [selectedData, setSelectedData] = useState(null);
   const [openCart, setOpenCart] = useState(false);
-  const [activeTab, setActiveTab] = useState("Store");
+  const [activeTab, setActiveTab] = useState("Gift Cards");
   const tabs = ["Store", "Gift Cards"];
 
   const products = [
@@ -102,14 +102,16 @@ const StorePage = () => {
     },
   ];
 
-  
   return (
     <div>
       {/* <Cart openCart={openCart} setOpenCart={setOpenCart} /> */}
       <PagesBanner
         slogan={false}
         title={`Maison Market – Simple and elegant`}
-        scrollTo={"booking"}
+        // scrollTo={"booking"}
+        images={[
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+        ]}
       />
 
       <div className="flex items-center gap-3 justify-center mt-9">
@@ -126,12 +128,10 @@ const StorePage = () => {
         />
       </div>
 
-     
-
       <div style={{ display: activeTab === "Store" ? "block" : "none" }}>
-      <div className="my-10 text-4xl md:text-6xl text-center font-bold text-goldenOrange font-tangerine">
-        Feels like a carefully chosen selection from the store.
-      </div>
+        <div className="my-10 text-4xl md:text-6xl text-center font-bold text-goldenOrange font-tangerine">
+          Feels like a carefully chosen selection from the store.
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 container w-[90%] mx-auto ">
           {products.map((prod, index) => {
             return (

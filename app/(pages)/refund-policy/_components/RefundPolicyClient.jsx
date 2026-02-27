@@ -7,13 +7,13 @@ import BreadCrumbs from "../../../../utils/BreadCrumbs/BreadCrumbs";
 
 const RefundPolicyClient = () => {
   const content = `
+  
+  <h1 style="box-sizing: border-box; margin: 30px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 600; color: rgb(74, 74, 74);">
+    NOUR MAISON LTD - Refund Policy
+  </h1>
 <p style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Jost; font-style: normal; font-weight: 400; color: rgb(74, 74, 74); letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 14px;"><strong style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; font-style: inherit; font-weight: 600; font-size: 14px;">Last Updated: 10-Nov-2024</strong></p>
 
 <p style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; font-style: normal; font-weight: 400; color: rgb(74, 74, 74); letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 14px;">At <strong>NOUR MAISON LTD</strong> (trading as Nour Maison Café and Brasserie), we are committed to ensuring your complete satisfaction. This Refund Policy clearly explains when and how you may be entitled to a refund.</p>
-
-<h2 style="box-sizing: border-box; margin: 30px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 600; color: rgb(74, 74, 74);">
-  Refund Policy
-</h2>
 
 <p style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; outline: 0px; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; font-style: normal; font-weight: 400; color: rgb(74, 74, 74); letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 14px;">1.<span>&nbsp;</span><strong style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-variant: inherit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; font-family: inherit; font-style: inherit; font-weight: 600; font-size: 14px;">When You Are Entitled to a Refund</strong><br style="box-sizing: border-box;">You are entitled to a full refund if your order does not arrive or is not delivered to you. If you have paid for an order and it was not received, you will receive a full refund within <strong>5-10 business days</strong> to your original payment method.</p>
 
@@ -58,7 +58,7 @@ const RefundPolicyClient = () => {
 
       <div className="content ">
         <div
-          className="!font-oswald p-5 md:p-20  "
+          className="!font-oswald p-5 md:px-10"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>

@@ -10,7 +10,10 @@ import "./style.scss";
 const Movie = ({ item }) => {
   const videoRef = useRef(null);
 
-  const type = useMemo(() => detectMediaType(item?.media_url), [item?.media_url]);
+  const type = useMemo(
+    () => detectMediaType(item?.media_url),
+    [item?.media_url]
+  );
   const isVideo = type !== "image";
 
   const playVideo = () => {

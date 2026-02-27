@@ -94,6 +94,9 @@ const page = async () => {
         title={"Blogs"}
         slogan={"Nour Maison Moments"}
         scrollTo={"blogs"}
+        images={[
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+        ]}
       />
 
       <div

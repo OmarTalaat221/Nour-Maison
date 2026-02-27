@@ -40,6 +40,7 @@ const Footer = () => {
     { label: "Contact Us", path: "/contact-us" },
     { label: "Blogs", path: "/blog" },
     { label: "All Blogs", path: "/all-blogs" },
+    { label: "Store & Gift Cards", path: "/store" },
   ];
 
   const menuNavItems = [
@@ -63,7 +64,7 @@ const Footer = () => {
           <div className="flex justify-center mb-4 sm:mb-6">
             <div className="w-[120px] h-[120px] xs:w-[140px] xs:h-[140px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px]">
               <Image
-                src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+                src="/images/light-logo.gif"
                 className="object-contain w-full h-full"
                 alt="Nour Maison Logo"
                 title="NOUR MAISON"
@@ -113,13 +114,18 @@ const Footer = () => {
                 <span>09:00 am – 10:00 pm</span>
               </div>
 
-              <div
-                style={{ textShadow: "1px 2px 2px black" }}
-                onClick={handleMapClick}
-                className="flex justify-center text-center text-slate-100 text-xs xs:text-sm sm:text-base md:text-lg lg:text-[22px] font-lato font-semibold cursor-pointer px-2 sm:px-4 hover:text-logoGold transition-colors"
+              <Link
+                href="https://www.google.com/maps/dir/?api=1&destination=149+Grafton+Gate,+Milton+Keynes+MK9+1AE"
+                target="_blank"
               >
-                149 Grafton Gate, Milton Keynes, MK91AE
-              </div>
+                <div
+                  style={{ textShadow: "1px 2px 2px black" }}
+                  // onClick={handleMapClick}
+                  className="flex justify-center text-center text-slate-100 text-xs xs:text-sm sm:text-base md:text-lg lg:text-[22px] font-lato font-semibold cursor-pointer px-2 sm:px-4 hover:text-logoGold transition-colors"
+                >
+                  149 Grafton Gate, Milton Keynes, MK91AE
+                </div>
+              </Link>
             </div>
 
             {/* Follow Our Activity */}
