@@ -1,6 +1,6 @@
 // components/pages/AfternoonTeaBooking/AfternoonTeaBookingContent.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Loader, Toggle } from "rsuite";
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
@@ -17,7 +17,8 @@ import createChatForBooking from "../../../lib/createChatForBooking";
 import axios from "axios";
 import { conifgs } from "../../../config";
 
-const AfternoonTeaBookingContent = ({ bg }) => {
+// Separate component that uses useSearchParams
+const BookingForm = ({ bg }) => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
@@ -605,6 +606,21 @@ const AfternoonTeaBookingContent = ({ bg }) => {
         />
       </div>
     </main>
+  );
+};
+
+// Main component wrapped in Suspense
+const AfternoonTeaBookingContent = ({ bg }) => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <Loader size="lg" />
+        </div>
+      }
+    >
+      <BookingForm bg={bg} />
+    </Suspense>
   );
 };
 

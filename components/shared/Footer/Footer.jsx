@@ -34,6 +34,7 @@ const Footer = () => {
   const mainNavItems = [
     { label: "Home", path: "/" },
     { label: "Booking", path: "/booking" },
+    { label: "Afternoon Booking", path: "/afternoon-tea-booking" },
     { label: "Gallery", path: "/gallery" },
     { label: "Our Events", path: "/services" },
     { label: "About Us", path: "/about-us" },
