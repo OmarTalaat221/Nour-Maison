@@ -1,6 +1,6 @@
 // components/pages/Booking/BookingContent.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Col, Grid, Loader, Row, Toggle } from "rsuite";
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
@@ -17,7 +17,8 @@ import createChatForBooking from "../../../lib/createChatForBooking";
 import axios from "axios";
 import { conifgs } from "../../../config";
 
-const BookingConent = ({ bg }) => {
+// Inner component that uses useSearchParams
+const BookingForm = ({ bg }) => {
   const bookingStateLoading = useSelector((state) => state.booking.loading);
   const [showOverlay, setShowOverlay] = useState(false);
   const [allreadyReservedModal, setAllreadyReservedModal] = useState(false);
@@ -577,6 +578,21 @@ const BookingConent = ({ bg }) => {
         />
       </div>
     </main>
+  );
+};
+
+// Main component wrapped in Suspense
+const BookingConent = ({ bg }) => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-[400px]">
+          <Loader size="lg" />
+        </div>
+      }
+    >
+      <BookingForm bg={bg} />
+    </Suspense>
   );
 };
 
