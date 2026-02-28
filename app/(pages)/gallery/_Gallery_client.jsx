@@ -101,7 +101,6 @@ const Gallrey = () => {
   //       type: "drinks",
   //       descripiton: "",
   //     },
-  //     // { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" }, // Hani was kicked out 😅
   //     {
   //       id: 4,
   //       media_url:
@@ -109,6 +108,7 @@ const Gallrey = () => {
   //       type: "drinks",
   //       descripiton: "",
   //     },
+  //     // { id: 3, media_url: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4", type: "drinks", descripiton: "" }, // Hani was kicked out 😅
   //     {
   //       id: 5,
   //       media_url:
@@ -545,6 +545,28 @@ const Gallrey = () => {
         descripiton:
           "An assortment of desserts including a fig tart with pistachios, a crème brûlée tart with a chocolate stick, and a raspberry tart with cream, all served on green triangular",
       },
+
+      {
+        id: 34,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 35,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4",
+        type: "drinks",
+        descripiton: "",
+      },
+      // {
+      //   id: 36,
+      //   media_url:
+      //     "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448180/rw7mjpgfye1ke6a6wmvr_u30fz9.mp4",
+      //   type: "drinks",
+      //   descripiton: "",
+      // }, // Hani was kicked out 😅
     ],
     []
   );
