@@ -497,14 +497,14 @@ const Gallrey = () => {
         descripiton:
           "bottle being poured into a glass, with a floral background adding a vibrant touch to the setting. The liquid appears to be a refreshing beverage, possibly a juice or sparkling drink.",
       },
-      {
-        id: 28,
-        media_url:
-          "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1772011703/48_svnet4.jpg",
-        type: "food",
-        descripiton:
-          "bowl with a dark liquid (likely coffee or tea) topped with a dollop of butter, possibly indicative of a specific style of drink or preparation. The overall aesthetic with the green bowl and the placement of the spoon gives a clean and simple vibe to the presentation.",
-      },
+      // {
+      //   id: 28,
+      //   media_url:
+      //     "https://res.cloudinary.com/dwwmvxxqh/image/upload/v1772011703/48_svnet4.jpg",
+      //   type: "food",
+      //   descripiton:
+      //     "bowl with a dark liquid (likely coffee or tea) topped with a dollop of butter, possibly indicative of a specific style of drink or preparation. The overall aesthetic with the green bowl and the placement of the spoon gives a clean and simple vibe to the presentation.",
+      // },
       {
         id: 29,
         media_url:
@@ -549,14 +549,21 @@ const Gallrey = () => {
       {
         id: 34,
         media_url:
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448183/ofln6neksu02dynedeax_ig1kbt.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1773747924/nour_maison_reel_a0funq.mp4",
         type: "drinks",
         descripiton: "",
       },
       {
         id: 35,
         media_url:
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1767448188/ooaf1ruia6doeip4qwdg_raay8j.mp4",
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1773748936/nour_maison_reel2_of9wy8.mp4",
+        type: "drinks",
+        descripiton: "",
+      },
+      {
+        id: 36,
+        media_url:
+          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1773749216/nour_maison_reel3_gt2ltz.mp4",
         type: "drinks",
         descripiton: "",
       },
@@ -570,16 +577,11 @@ const Gallrey = () => {
     ],
     []
   );
-  const hasInitialized = useRef(false);
-
   useEffect(() => {
-    if (hasInitialized.current) return;
-    hasInitialized.current = true;
-
     const shuffled = shuffleArray(medias);
     setPopularMovies(shuffled);
     setFiltered(shuffled);
-  }, [medias]);
+  }, []); // خلي الـ dependency array فاضي
 
   const bannerImages = useMemo(
     () => [
@@ -597,8 +599,6 @@ const Gallrey = () => {
     () => medias.filter((x) => detectMediaType(x?.media_url) !== "image"),
     [medias]
   );
-
-  console.log("videosOnly", videosOnly);
 
   // ---------- Video Logic ----------
   const videoRefs = useRef([]);

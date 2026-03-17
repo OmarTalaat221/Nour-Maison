@@ -10,6 +10,8 @@ import ChefsSection2 from "../../components/pages/Home/ChefsSection/ChefsSection
 import HomaRoastMenu from "../../components/pages/Home/HomaRoastMenu";
 // import EntryDesign from './../../components/bages/HomePage/EntryDesign/EntryDesign';
 import GoogleReviews from "./../../components/pages/Home/GoogleReviews/GoogleReviews";
+import Annerversary from "../../components/pages/Home/Anneversary";
+import Celebration from "../../components/pages/Home/Celebration";
 
 export const metadata = {
   title: "Nour Maison | Halal French & middle eastern Café Restaurant",
@@ -1985,6 +1987,8 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Header section containing video and banner elements */}
+
+      <Celebration />
       <header className="">
         <div className=" md:hidden">
           <VideoBanner />

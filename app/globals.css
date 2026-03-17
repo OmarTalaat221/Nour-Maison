@@ -432,6 +432,43 @@ a:hover {
   text-decoration: none !important;
   color: unset !important;
 }
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.global-shimmer-btn {
+  position: relative;
+  overflow: hidden;
+  /* تفعيل GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.global-shimmer-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.5s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  /* GPU acceleration */
+  will-change: transform;
+}
 
 .fixed-bg {
   padding: 120px 0;
