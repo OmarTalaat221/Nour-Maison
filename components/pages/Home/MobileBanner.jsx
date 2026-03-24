@@ -100,8 +100,7 @@ export default function VideoBanner() {
         </div>
 
         {/* ✅ Ramadan Iftar Button */}
-        <div className="mt-8 relative">
-          {/* NEW Badge */}
+        {/* <div className="mt-8 relative">
           <span className="absolute -top-3 -right-3 z-20 px-3 py-1 bg-white text-goldenOrange text-xs font-bold rounded-full shadow-lg animate-bounce">
             NEW
           </span>
@@ -110,18 +109,15 @@ export default function VideoBanner() {
             href="/ramadan-iftar-menu-milton-keynes"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-12 sm:py-5 bg-gradient-to-r from-goldenOrange to-[#e5a93d] rounded-full font-semibold text-white no-underline hover:no-underline hover:text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(221,153,51,0.6)] border-2 border-white/30"
           >
-            {/* ✅ Shimmer Effect - div بدل ::before */}
             <div className="absolute inset-0 -translate-x-full animate-[shimmer_2.5s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent z-[5] pointer-events-none" />
 
-            {/* Crescent Moon Icon */}
             <span className="relative z-10 text-xl sm:text-2xl">🌙</span>
 
-            {/* Button Text */}
+    
             <span className="relative z-10 text-sm sm:text-lg font-bold tracking-wide">
               Ramadan Iftar Menu
             </span>
 
-            {/* ✅ SVG Ramadan Decoration - Right */}
             <svg
               className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 h-[78%] sm:h-[82%] w-auto opacity-25 sm:opacity-30 pointer-events-none z-0"
               xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +210,7 @@ export default function VideoBanner() {
               </g>
             </svg>
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Progress Indicator */}

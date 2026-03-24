@@ -181,107 +181,107 @@ const BannerSwiper = () => {
             // },
             // ✅ سلايد العيد الجديد
 
-            {
-              image:
-                "https://camp-coding.tech/nour_maison/site_images/BUNNER%20NOUR%20(12)--.webp", // غيرها لصورة العيد لو عندك
-              alt: "Eid Mubarak 2026 - Celebrate Eid at Nour Maison Milton Keynes halal restaurant",
-              content: (
-                <div className="relative">
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
-                    variants={childVariants}
-                  >
-                    Celebrate with Us
-                  </motion.h1>
+            // {
+            //   image:
+            //     "https://camp-coding.tech/nour_maison/site_images/BUNNER%20NOUR%20(12)--.webp", // غيرها لصورة العيد لو عندك
+            //   alt: "Eid Mubarak 2026 - Celebrate Eid at Nour Maison Milton Keynes halal restaurant",
+            //   content: (
+            //     <div className="relative">
+            //       <motion.h1
+            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
+            //         variants={childVariants}
+            //       >
+            //         Celebrate with Us
+            //       </motion.h1>
 
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
-                    variants={textRevealVariants}
-                  >
-                    Eid Mubarak
-                  </motion.strong>
+            //       <motion.strong
+            //         style={{
+            //           textShadow: "0 0 12px #5B562D",
+            //         }}
+            //         className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
+            //         variants={textRevealVariants}
+            //       >
+            //         Eid Mubarak
+            //       </motion.strong>
 
-                  <motion.p
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
-                    variants={childVariants}
-                  >
-                    Celebrate Eid in style with exquisite halal cuisine, crafted
-                    with love and served in the heart of Milton Keynes.
-                  </motion.p>
+            //       <motion.p
+            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
+            //         variants={childVariants}
+            //       >
+            //         Celebrate Eid in style with exquisite halal cuisine, crafted
+            //         with love and served in the heart of Milton Keynes.
+            //       </motion.p>
 
-                  <div className="w-fit mt-6">
-                    <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
-                      <svg xmlns="http://www.w3.org/2000/svg">
-                        <rect
-                          className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-                          pathLength={100}
-                        />
-                      </svg>
-                      <Link
-                        href={"/booking"}
-                        className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
-                      >
-                        Book Now
-                      </Link>
-                    </button>
-                  </div>
-                </div>
-              ),
-            },
+            //       <div className="w-fit mt-6">
+            //         <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
+            //           <svg xmlns="http://www.w3.org/2000/svg">
+            //             <rect
+            //               className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+            //               pathLength={100}
+            //             />
+            //           </svg>
+            //           <Link
+            //             href={"/booking"}
+            //             className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
+            //           >
+            //             Book Now
+            //           </Link>
+            //         </button>
+            //       </div>
+            //     </div>
+            //   ),
+            // },
             // ✅ سلايد رمضان الجديد 🌙
-            {
-              image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101696/ramadan-iftar-milton-keynes_1_hpgpls_ohrth3.webp",
-              alt: "Ramadan Iftar Menu Milton Keynes 2026 - Nour Maison halal iftar dining experience",
-              content: (
-                <div className="relative">
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
-                    variants={childVariants}
-                  >
-                    Ramadan 2026 at Nour Maison
-                  </motion.h1>
+            // {
+            //   image:
+            //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101696/ramadan-iftar-milton-keynes_1_hpgpls_ohrth3.webp",
+            //   alt: "Ramadan Iftar Menu Milton Keynes 2026 - Nour Maison halal iftar dining experience",
+            //   content: (
+            //     <div className="relative">
+            //       <motion.h1
+            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
+            //         variants={childVariants}
+            //       >
+            //         Ramadan 2026 at Nour Maison
+            //       </motion.h1>
 
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
-                    variants={textRevealVariants}
-                  >
-                    Iftar Menu
-                  </motion.strong>
+            //       <motion.strong
+            //         style={{
+            //           textShadow: "0 0 12px #5B562D",
+            //         }}
+            //         className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
+            //         variants={textRevealVariants}
+            //       >
+            //         Iftar Menu
+            //       </motion.strong>
 
-                  <motion.p
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
-                    variants={childVariants}
-                  >
-                    A soulful 5-course Iftar where Middle Eastern tradition
-                    meets French elegance. Served at Maghrib.
-                  </motion.p>
+            //       <motion.p
+            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
+            //         variants={childVariants}
+            //       >
+            //         A soulful 5-course Iftar where Middle Eastern tradition
+            //         meets French elegance. Served at Maghrib.
+            //       </motion.p>
 
-                  <div className="w-fit mt-6">
-                    <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
-                      <svg xmlns="http://www.w3.org/2000/svg">
-                        <rect
-                          className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-                          pathLength={100}
-                        />
-                      </svg>
-                      <Link
-                        href={"/ramadan-iftar-menu-milton-keynes"}
-                        className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
-                      >
-                        Iftar Menu
-                      </Link>
-                    </button>
-                  </div>
-                </div>
-              ),
-            },
+            //       <div className="w-fit mt-6">
+            //         <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
+            //           <svg xmlns="http://www.w3.org/2000/svg">
+            //             <rect
+            //               className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
+            //               pathLength={100}
+            //             />
+            //           </svg>
+            //           <Link
+            //             href={"/ramadan-iftar-menu-milton-keynes"}
+            //             className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
+            //           >
+            //             Iftar Menu
+            //           </Link>
+            //         </button>
+            //       </div>
+            //     </div>
+            //   ),
+            // },
 
             {
               image:

@@ -1988,7 +1988,7 @@ export default function Home() {
     <div className="overflow-hidden">
       {/* Header section containing video and banner elements */}
 
-      <Celebration />
+      {/* <Celebration /> */}
       <header className="">
         <div className=" md:hidden">
           <VideoBanner />
