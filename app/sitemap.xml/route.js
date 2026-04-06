@@ -44,7 +44,7 @@ export async function GET() {
         <url>
           <loc>${baseUrl}${page}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>weekly</changefreq>
+          <changefreq>daily</changefreq>
           <priority>${page === "" ? "1.0" : "0.8"}</priority>
         </url>`
       )
@@ -56,7 +56,7 @@ export async function GET() {
         <url>
           <loc>${baseUrl}/blog/${blog.id}/${slugify(blog?.keywords || blog.title)}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
+          <changefreq>daily</changefreq>
           <priority>0.6</priority>
         </url>`
       )
