@@ -5,7 +5,7 @@ import slugify from "../../lib/slugify";
 export async function GET() {
   const baseUrl = "https://www.nourmaison.co.uk";
   const response = await fetch(
-    "https://camp-coding.tech/nour_maison/user/user/get_custom_blogs_data.php"
+    "https://camp-coding.tech/nour_maison/user/get_custom_blogs_data.php"
   );
   const blogs = await response.json();
 
