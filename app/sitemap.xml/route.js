@@ -58,7 +58,7 @@ export async function GET() {
           <loc>${blog.link}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
           <changefreq>daily</changefreq>
-          <priority>0.6</priority>
+          <priority>0.7</priority>
         </url>`
       )
       .join("")}
