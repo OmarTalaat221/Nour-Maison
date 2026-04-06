@@ -54,7 +54,7 @@ export async function GET() {
       .map(
         (blog) => `
         <url>
-          <loc>${baseUrl}/blog/${blog.id}/${slugify(blog?.keywords || blog.title)}</loc>
+          <loc>${blog.link}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.6</priority>
