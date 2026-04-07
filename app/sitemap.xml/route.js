@@ -36,6 +36,7 @@ export async function GET() {
       "/afternoon-tea-booking",
     ];
 
+    
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${staticPages
@@ -44,7 +45,7 @@ export async function GET() {
         <url>
           <loc>${baseUrl}${page}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>weekly</changefreq>
+          <changefreq>daily</changefreq>
           <priority>${page === "" ? "1.0" : "0.8"}</priority>
         </url>`
       )
@@ -54,10 +55,10 @@ export async function GET() {
       .map(
         (blog) => `
         <url>
-          <loc>${baseUrl}/blog/${blog.id}/${slugify(blog?.keywords || blog.title)}</loc>
+          <loc>${blog.link}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.6</priority>
+          <changefreq>daily</changefreq>
+          <priority>0.7</priority>
         </url>`
       )
       .join("")}
