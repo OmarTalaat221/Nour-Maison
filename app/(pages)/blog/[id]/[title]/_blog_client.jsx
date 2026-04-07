@@ -1,6 +1,6 @@
 "use client";
 
-import React , {useEffect} from "react";
+import React, { useEffect } from "react";
 import BottomBg from "../../../../../utils/bottomBg/BottomBg";
 import {
   FaEnvelope,
@@ -14,25 +14,23 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import handleShare from "../../../../../lib/ShareLink";
 import { formatDate } from "../../../../../Hooks/dateFormats";
-import { Link as ScrollLink } from 'react-scroll';
+import { Link as ScrollLink } from "react-scroll";
 import ScrollToBottomButton from "../../../../../utils/ScrollToBottomButton/ScrollToBottomButton";
 import slugify from "../../../../../lib/slugify";
 
-const BlogClient = ({ data, blogsData, id , title }) => {
-
+const BlogClient = ({ data, blogsData, id, title }) => {
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    
-    console.log( "data"  , data)    
+    console.log("data", data);
 
-    if (  ![slugify(data?.title) , slugify(data?.keywords)].includes(title)) {
-      router.replace(`/blog/${id}/${slugify(data?.keywords) || slugify(data?.title) }`);
+    if (![slugify(data?.title), slugify(data?.keywords)].includes(title)) {
+      router.replace(
+        `/blog/${id}/${slugify(data?.keywords) || slugify(data?.title)}`
+      );
     }
   }, [pathname]);
-
-
 
   return (
     <>
@@ -61,22 +59,24 @@ const BlogClient = ({ data, blogsData, id , title }) => {
             <a href="" className="text-white hover:text-white">
               <FaEnvelope className="w-8 h-8 p-1 transition hover:bg-gray-400/80 rounded-sm" />
             </a>
-            <a href="" 
-              onClick={e=>{
-                e.preventDefault()
-                const baseURL = typeof window !== "undefined" ? window.location.origin : "";
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                const baseURL =
+                  typeof window !== "undefined" ? window.location.origin : "";
                 const fullURL = `${baseURL}${pathname}`;
-                handleShare(fullURL)
+                handleShare(fullURL);
               }}
-            
-            className="text-white hover:text-white">
+              className="text-white hover:text-white"
+            >
               <FaShare className="w-8 h-8 p-1 transition hover:bg-gray-400/80 rounded-sm" />
             </a>
           </div>
-        <ScrollLink
+          <ScrollLink
             href="/"
             style={{ textDecoration: "none" }}
-            to={ "blog"|| "none"}
+            to={"blog" || "none"}
             smooth={true}
             duration={500}
             spy={true}
@@ -90,8 +90,6 @@ const BlogClient = ({ data, blogsData, id , title }) => {
           </ScrollLink>
         </div>
 
-
-
         <BottomBg />
       </div>
 
@@ -100,41 +98,38 @@ const BlogClient = ({ data, blogsData, id , title }) => {
           <div className="lg:flex lg:-mx-6">
             <div className="lg:w-[70%] lg:px-6">
               <div className="relative">
-              <div className=" tracking-wide absolute bottom-5 right-3 font-pacifico text-sm text-white bg-black/25 p-2 rounded">
-                    {
-
-                      (()=>{
-                          try{
-                            return formatDate(new Date(data.date))
-                          }catch(e){
-                              return ""
-                          }
-                      })()
-
-
+                <div className=" tracking-wide absolute bottom-5 right-3 font-pacifico text-sm text-white bg-black/25 p-2 rounded">
+                  {(() => {
+                    try {
+                      return formatDate(new Date(data.date));
+                    } catch (e) {
+                      return "";
                     }
-                  </div>
-              <img
-                className="w-full rounded-xl"
-                src={data.image}
-                alt={data?.title || "blog title"}
-                />
+                  })()}
                 </div>
+                <img
+                  className="w-full rounded-xl"
+                  src={data.image}
+                  alt={data?.title || "blog title"}
+                />
+              </div>
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col md:flex-row items-center justify-between">
                   <h3 className=" order-2 md:order-1  md:text-4xl font-lato  text-softMintGreen mt-4  font-semibold leading-tight  dark:text-white">
                     {data?.title}
                   </h3>
-                
                 </div>
 
-                <p className="" dangerouslySetInnerHTML={{ __html: data.content }} />
+                <div
+                  className=""
+                  dangerouslySetInnerHTML={{ __html: data.content }}
+                />
               </div>
             </div>
             <div className="mt-8 pb-4 flex flex-col gap-4 lg:w-[30%] lg:mt-0 lg:px-6 sticky top-[100px] overflow-auto h-[calc(100vh-100px)]">
               {blogsData.map((data, index) => (
                 <Link
-                  href={`/blog/${data.id.toString()}/${slugify( data?.keywords || data?.title)}`}
+                  href={`/blog/${data.id.toString()}/${slugify(data?.keywords || data?.title)}`}
                   key={index}
                   className="no-underline hover:no-underline"
                 >
