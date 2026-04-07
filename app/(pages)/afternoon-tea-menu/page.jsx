@@ -177,11 +177,7 @@ export default function AfternoonTeaMenuPage() {
             closes: "23:00",
           },
         ],
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "132",
-        },
+
         sameAs: [
           "https://www.instagram.com/nourmaison",
           "https://www.facebook.com/nourmaison",
@@ -323,11 +319,6 @@ export default function AfternoonTeaMenuPage() {
           "@type": "Restaurant",
           name: "Nour Maison Café",
         },
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "132",
       },
     },
   ];

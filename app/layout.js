@@ -181,11 +181,6 @@ function generateStructuredMenu(menuItems) {
           availability: "https://schema.org/InStock",
           priceValidUntil: "2026-12-31",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: Math.random() * (5 - 4) + 4,
-          reviewCount: Math.floor(Math.random() * 1000) + 1,
-        },
       })),
   };
 }
@@ -210,11 +205,6 @@ const structuredData = {
     },
     servesCuisine: ["French", "Brunch", "Middle Eastern"],
     menu: "https://www.nourmaison.co.uk/menu",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "132",
-    },
     priceRange: "$$",
     telephone: "+44-1908-772177",
     openingHours: "Mo-Su 09:00-22:00",

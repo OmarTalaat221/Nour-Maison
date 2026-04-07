@@ -184,11 +184,6 @@ export default async function AllBlogsPage() {
             closes: "23:00",
           },
         ],
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "132",
-        },
         sameAs: [
           "https://www.instagram.com/nourmaison",
           "https://www.facebook.com/nourmaison",
