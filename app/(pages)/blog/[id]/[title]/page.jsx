@@ -2,7 +2,6 @@
 import React from "react";
 import BlogClient from "./_blog_client";
 import { notFound } from "next/navigation";
-import slugify from "../../../../../lib/slugify";
 
 // Fallback Metadata Function
 function getFallbackMetadata(baseUrl, canonicalPath) {
@@ -15,10 +14,67 @@ function getFallbackMetadata(baseUrl, canonicalPath) {
   };
 }
 
-// Safe string escape
 function safeString(str) {
-  if (!str) return "";
-  return str.replace(/[’‘'"]/g, "'").trim();
+  if (str == null || str === "") return "";
+  const s = typeof str === "string" ? str : String(str);
+  return s.replace(/[’‘'"]/g, "'").trim();
+}
+
+const DEFAULT_KEYWORD_PARTS = ["blog", "nour maison", "cafe"];
+
+function blogKeywordsMetadata(keywords) {
+  const fallback = DEFAULT_KEYWORD_PARTS.map((k) => safeString(k));
+  if (keywords == null || keywords === "") return fallback;
+  if (Array.isArray(keywords)) {
+    const out = keywords
+      .map((k) =>
+        safeString(k == null ? "" : typeof k === "string" ? k : String(k))
+      )
+      .filter(Boolean);
+    return out.length ? out : fallback;
+  }
+  if (typeof keywords === "string") {
+    const out = keywords
+      .split(",")
+      .map((k) => safeString(k))
+      .filter(Boolean);
+    return out.length ? out : fallback;
+  }
+  const one = safeString(String(keywords));
+  return one ? [one] : fallback;
+}
+
+function authorDisplayName(blog, siteName) {
+  const a = blog?.author;
+  if (a == null || a === "") return siteName;
+  if (typeof a === "string") return safeString(a) || siteName;
+  if (typeof a === "object" && a?.name != null)
+    return safeString(String(a.name)) || siteName;
+  return siteName;
+}
+
+function articleTagsMetadata(tags) {
+  if (tags == null || tags === "") return {};
+  if (Array.isArray(tags)) {
+    const flat = tags
+      .map((x) =>
+        x == null ? "" : typeof x === "string" ? safeString(x) : String(x)
+      )
+      .filter(Boolean);
+    return flat.length ? { "article:tag": flat } : {};
+  }
+  if (typeof tags === "string" || typeof tags === "number")
+    return { "article:tag": safeString(String(tags)) };
+  return {};
+}
+
+function articleSectionMetadata(section) {
+  if (section == null || section === "") return {};
+  if (typeof section === "string")
+    return { "article:section": safeString(section) };
+  if (typeof section === "object" && section?.name != null)
+    return { "article:section": safeString(String(section.name)) };
+  return {};
 }
 
 // Generate Metadata
@@ -68,11 +124,7 @@ export async function generateMetadata({ params }) {
     const description =
       safeString(blog?.description) ||
       "Read the latest updates and stories from Nour Maison Cafe.";
-    const keywords = Array.isArray(blog?.keywords)
-      ? blog.keywords.map((k) => safeString(k))
-      : (blog?.keywords || "blog, nour maison, cafe")
-          .split(",")
-          .map((k) => safeString(k));
+    const keywords = blogKeywordsMetadata(blog?.keywords);
 
     const imageUrl = blog?.image?.startsWith("http")
       ? blog.image
@@ -111,15 +163,18 @@ export async function generateMetadata({ params }) {
         description,
         images: [imageUrl],
       },
-      authors: blog?.author ? [{ name: blog.author }] : [{ name: siteName }],
-      creator: blog?.author || siteName,
+      authors: [{ name: authorDisplayName(blog, siteName) }],
+      creator: authorDisplayName(blog, siteName),
       publisher: siteName,
-      category: blog?.category || "Blog",
+      category:
+        typeof blog?.category === "string"
+          ? safeString(blog.category) || "Blog"
+          : "Blog",
       other: {
         ...(publishedTime ? { "article:published_time": publishedTime } : {}),
         ...(modifiedTime ? { "article:modified_time": modifiedTime } : {}),
-        ...(blog?.section ? { "article:section": blog.section } : {}),
-        ...(blog?.tags ? { "article:tag": blog.tags } : {}),
+        ...articleSectionMetadata(blog?.section),
+        ...articleTagsMetadata(blog?.tags),
       },
     };
   } catch (error) {

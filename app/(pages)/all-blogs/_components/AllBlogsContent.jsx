@@ -12,7 +12,9 @@ const AllBlogsContent = () => {
 
   // ✅ Filter blogs based on search
   const filteredBlogs = blogs.filter((blog) =>
-    blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+    String(blog?.title ?? "")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   // ✅ Animation variants
