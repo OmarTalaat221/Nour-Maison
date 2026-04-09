@@ -10,7 +10,6 @@ export async function GET() {
       "https://camp-coding.tech/nour_maison/user/get_custom_blogs_data.php"
     );
     const data = await response.json();
-
     // Extract blogs array from the response
     const blogs = data?.message?.blogs || [];
 
