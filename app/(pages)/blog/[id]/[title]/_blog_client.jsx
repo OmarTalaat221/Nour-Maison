@@ -15,7 +15,7 @@ import handleShare from "../../../../../lib/ShareLink";
 import { formatDate } from "../../../../../Hooks/dateFormats";
 import { Link as ScrollLink } from "react-scroll";
 import ScrollToBottomButton from "../../../../../utils/ScrollToBottomButton/ScrollToBottomButton";
-import slugify from "../../../../../lib/slugify";
+import slugify, { slugFromBlogLink } from "../../../../../lib/slugify";
 
 const BlogClient = ({ data, blogsData = [], id, title }) => {
   const router = useRouter();
@@ -33,13 +33,16 @@ const BlogClient = ({ data, blogsData = [], id, title }) => {
     if (!isClient || !data?.title) return;
 
     try {
+      const apiSlug = slugFromBlogLink(data?.link, id);
       const sluggedTitle = slugify(data?.title) || "";
       const sluggedKeywords = slugify(data?.keywords) || "";
 
-      const validSlugs = [sluggedTitle, sluggedKeywords].filter(Boolean);
+      const validSlugs = [apiSlug, sluggedTitle, sluggedKeywords].filter(
+        Boolean
+      );
 
       if (validSlugs.length > 0 && !validSlugs.includes(title)) {
-        const newSlug = sluggedKeywords || sluggedTitle;
+        const newSlug = apiSlug || sluggedKeywords || sluggedTitle;
         if (newSlug) {
           router.replace(`/blog/${id}/${newSlug}`);
         }
