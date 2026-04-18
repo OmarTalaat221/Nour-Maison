@@ -4,6 +4,7 @@ import "./style.css";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import Link from "next/link";
 import slugify from "../../../lib/slugify";
+import BlogPagination from "../../../components/BlogPagination/BlogPagination";
 
 export const metadata = {
   title: "NOUR MAISON - BLOGS",
@@ -11,7 +12,6 @@ export const metadata = {
     "Discover inspiring articles, tips, and insights on lifestyle, design, and more at NOUR MAISON Blogs. Explore fresh ideas to elevate your everyday living.",
 
   keywords: [
-    // Brand-specific
     "Nour Maison blog",
     "Nour Maison lifestyle",
     "Nour Maison articles",
@@ -19,8 +19,6 @@ export const metadata = {
     "Nour Maison inspiration",
     "Nour Maison design blog",
     "Nour Maison decor tips",
-
-    // Lifestyle & Daily Living
     "lifestyle blogs",
     "modern lifestyle blog",
     "creative living tips",
@@ -33,8 +31,6 @@ export const metadata = {
     "living well daily",
     "smart living blog",
     "lifestyle for modern homes",
-
-    // Interior Design & Home Styling
     "home inspiration",
     "interior design tips",
     "home styling blog",
@@ -48,8 +44,6 @@ export const metadata = {
     "design for everyday living",
     "home improvement tips",
     "interior styling guide",
-
-    // Blog-related Search Intent
     "daily inspiration blog",
     "inspirational articles",
     "tips and ideas blog",
@@ -63,8 +57,6 @@ export const metadata = {
     "blog for cozy living",
     "blog on interior trends",
     "read about lifestyle online",
-
-    // Optional: SEO boosters
     "design inspiration Milton Keynes",
     "UK home and lifestyle blog",
     "trending decor blog",
@@ -79,14 +71,30 @@ export const metadata = {
   },
 };
 
-const page = async () => {
+const POSTS_PER_PAGE = 9;
+
+const Page = async ({ searchParams }) => {
+  const resolvedSearchParams = await searchParams;
+  const pageParam = parseInt(resolvedSearchParams?.page || "1", 10);
+  const currentPage = !isNaN(pageParam) && pageParam > 0 ? pageParam : 1;
+
   const res = await fetch(
     "https://camp-coding.tech/nour_maison/user/get_blogs.php",
     {
       next: { revalidate: 60 },
     }
   );
+
   const data = await res.json();
+  const allPosts = data?.message || [];
+
+  const totalPosts = allPosts.length;
+  const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+
+  const startIndex = (safeCurrentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const paginatedPosts = allPosts.slice(startIndex, endIndex);
 
   return (
     <>
@@ -103,18 +111,44 @@ const page = async () => {
         id="blogs"
         className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 !mb-10 !mt-20"
       >
-        {data?.message?.map((post, idx) => (
-          <Link
-            href={`blog/${post.id.toString()}/${slugify(post?.keywords || post?.title)}`}
-            className="no-underline hover:no-underline"
-            key={idx}
-          >
-            <BlogCard post={post} />
-          </Link>
-        ))}
+        {paginatedPosts.length > 0 ? (
+          paginatedPosts.map((post) => (
+            <Link
+              href={`/blog/${post.id.toString()}/${slugify(
+                post?.keywords || post?.title
+              )}`}
+              className="no-underline hover:no-underline"
+              key={post.id}
+            >
+              <BlogCard post={post} />
+            </Link>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-10">
+            <p className="text-lg text-gray-500 font-oswald uppercase tracking-wide">
+              No blogs found.
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* ✅ View All Blogs Button - محسن للـ SEO */}
+      {totalPosts > 0 && (
+        <div className="flex items-center justify-center mb-4">
+          <p className="text-sm text-gray-500 font-oswald tracking-wide uppercase">
+            Showing {startIndex + 1} - {Math.min(endIndex, totalPosts)} of{" "}
+            {totalPosts} articles
+          </p>
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <BlogPagination
+          currentPage={safeCurrentPage}
+          totalPages={totalPages}
+          basePath="/blog"
+        />
+      )}
+
       <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8 mb-10">
         <Link
           href="/all-blogs"
@@ -129,4 +163,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;
