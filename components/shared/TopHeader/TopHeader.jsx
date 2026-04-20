@@ -34,7 +34,7 @@ const TopHeader = () => {
           id: 6,
           name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
-          new: true,
+          // new: true,
         },
       ],
     },
@@ -51,6 +51,7 @@ const TopHeader = () => {
     "/privacy-policy-2",
     "/terms-and-conditions",
     "/refund-policy",
+    // "/form",
   ];
 
   if (isNotFound || hiddenPages.includes(pathname)) {

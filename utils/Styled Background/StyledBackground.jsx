@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import cx from "classnames";
-const StyledBackground = ({wave, children, style, className, color}) => {
+const StyledBackground = ({ wave, children, style, className, color }) => {
   return (
     <div
       style={style}
@@ -29,8 +29,18 @@ const StyledBackground = ({wave, children, style, className, color}) => {
               {/* <use xlinkHref="#gentle-wave" x={48} y={5} fill="#5b913b6e" /> */}
 
               {/* <use xlinkHref="#gentle-wave" x={48} y={3} fill="#76b2546b" /> */}
-              <use xlinkHref="#gentle-wave" x={48} y={5} className="fill-pestachio2" />
-              <use xlinkHref="#gentle-wave" x={48} y={7} className="fill-pestachio" />
+              <use
+                xlinkHref="#gentle-wave"
+                x={48}
+                y={5}
+                className="fill-pestachio2"
+              />
+              <use
+                xlinkHref="#gentle-wave"
+                x={48}
+                y={7}
+                className="fill-pestachio"
+              />
               {/* <use xlinkHref="#gentle-wave" x={48} y={3} className="red" /> */}
             </g>
           </svg>

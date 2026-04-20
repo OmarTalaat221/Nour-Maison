@@ -50,7 +50,7 @@ const StickyHeader = ({ open, setOpen }) => {
           id: 6,
           name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
-          new: true,
+          // new: true,
         },
       ],
     },

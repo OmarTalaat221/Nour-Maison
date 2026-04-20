@@ -53,9 +53,14 @@ const Footer = () => {
     {
       label: "Ramadan Iftar",
       path: "/ramadan-iftar-menu-milton-keynes",
-      new: true,
+      // new: true,
     },
   ];
+
+  const hiddenPages = [];
+  if (hiddenPages.includes(pathname)) {
+    return null;
+  }
 
   return (
     <div className="relative !overflow-visible mt-12 sm:mt-16 md:mt-20 lg:mt-24">
