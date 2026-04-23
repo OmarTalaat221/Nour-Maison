@@ -228,8 +228,8 @@ const Page = async ({ params }) => {
     let allBlogsData = [];
     try {
       const allBlogsRes = await fetch(
-        "https://camp-coding.tech/nour_maison/user/get_blogs.php",
-        { next: { revalidate: 60 } }
+        "https://camp-coding.tech/nour_maison/user/get_blogsV2.php"
+        // { next: { revalidate: 60 } }
       );
       if (allBlogsRes.ok) {
         const allBlogsJson = await allBlogsRes.json();
