@@ -1,4 +1,6 @@
 .pagination-btn {
+  appearance: none;
+  -webkit-appearance: none;
   display: flex;
   align-items: center;
   justify-content: center;

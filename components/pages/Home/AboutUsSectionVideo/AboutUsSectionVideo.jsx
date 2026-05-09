@@ -62,7 +62,7 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
 
   return (
     <div
-      className="relative w-full !max-h-[600px] h-full overflow-hidden"
+      className="relative w-full md:!max-h-[780px] h-full overflow-hidden"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => isPlaying && setShowControls(false)}
     >
@@ -77,7 +77,7 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
         playsInline
         onClick={togglePlay}
         onEnded={handleVideoEnd}
-        className="w-full h-full object-cover cursor-pointer !max-h-[600px]"
+        className="w-full h-full object-cover cursor-pointer !max-h-[780px]"
       />
 
       {/* Overlay Gradient */}

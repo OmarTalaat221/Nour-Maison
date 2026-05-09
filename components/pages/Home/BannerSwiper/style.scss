@@ -1,99 +1,673 @@
-.banner_swiper {
-  height: 100%;
-  width: 100%;
+// 🎨 الألوان الجديدة
+$primary: #dd9933;
+$secondary: #b4d7af;
+$primary-dark: #b87e28;
+$white: #ffffff;
+$black: #0a0a0a;
+
+.banner-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: $black;
 }
 
-.home_swiper .swiper-pagination-bullet {
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  font-size: 14px;
-  color: white;
-  opacity: 1;
-  background: transparent;
-  margin-inline: 5px !important;
-  font-family: "Oswald", sans-serif;
-  margin-bottom: 20px !important;
-  transition: 0.2s ease;
-  border: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// ✨ Animated Gradient Background
+.animated-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba($primary, 0.12),
+    rgba($secondary, 0.08),
+    rgba($primary, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: 1;
+  pointer-events: none;
+}
 
-  @media (min-width: 640px) {
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-    margin-inline: 8px !important;
-    margin-bottom: 40px !important;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
   }
-
-  @media (min-width: 768px) {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-    margin-inline: 10px !important;
-    margin-bottom: 60px !important;
+  50% {
+    background-position: 100% 50%;
   }
-
-  @media (min-width: 1024px) {
-    width: 45px;
-    height: 45px;
-    font-size: 24px;
-    margin-inline: 15px !important;
-    margin-bottom: 40px !important;
-    border: 2px solid #599066;
-    color: #599066;
-  }
-
-  @media (min-width: 1280px) {
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    margin-inline: 20px !important;
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-.home_swiper .swiper-pagination-bullet-active {
-  color: #fff;
-  background: #599066;
-  border-color: #599066;
-}
+// ✨ Particles Effect
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 
-.home_swiper .swiper-pagination-bullet:hover {
-  color: #599066;
-}
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba($primary, 0.7);
+    border-radius: 50%;
+    top: calc(var(--i) * 5%);
+    left: calc(var(--i) * 5%);
+    animation: float 20s infinite;
+    animation-delay: calc(var(--i) * -0.5s);
+    box-shadow: 0 0 10px rgba($primary, 0.9);
 
-// Navigation arrows
-.swiper-button-next,
-.swiper-button-prev {
-  color: #fff;
-  width: 30px;
-  height: 30px;
-
-  @media (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
-
-  &::after {
-    font-size: 20px;
-
-    @media (min-width: 768px) {
-      font-size: 30px;
+    &:nth-child(4n) {
+      background: rgba($secondary, 0.6);
+      box-shadow: 0 0 10px rgba($secondary, 0.8);
     }
   }
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  color: #fff;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) scale(0);
+    opacity: 0;
+  }
 }
 
-// Hide navigation on very small screens
-@media (max-width: 480px) {
-  .swiper-button-next,
-  .swiper-button-prev {
+// 🎭 Main Swiper Styles
+.home-swiper-new {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 3;
+
+  .swiper-slide {
+    overflow: hidden;
+  }
+}
+
+// 📸 Slide Container
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// 📸 Slide Background - يدعم الصور والفيديو
+.slide-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  .slide-image,
+  video.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65) contrast(1.1);
+  }
+
+  // ✅ خصائص خاصة للفيديو
+  video.slide-image {
+    pointer-events: none;
+  }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($black, 0.75) 0%,
+      rgba($black, 0.4) 50%,
+      rgba($black, 0.85) 100%
+    );
+  }
+}
+
+// 📝 Content Styles
+.slide-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+
+  @media (min-width: 1024px) {
+    padding: 0 10%;
+  }
+}
+
+.content-wrapper {
+  max-width: 900px;
+  perspective: 1000px;
+}
+
+// 🏷️ Badge
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: $primary;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+  font-family: "Seasons", sans-serif;
+
+  @media (min-width: 768px) {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .badge-line {
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $primary, transparent);
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// 📌 Subtitle
+.slide-subtitle {
+  font-size: 18px;
+  color: $white;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: "Seasons", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba($black, 0.7);
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 28px;
+  }
+}
+
+// 🎯 Main Title
+.slide-title {
+  font-size: 40px;
+  font-weight: 900;
+  color: $primary;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-family: "Seasons", sans-serif;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 30px rgba($primary, 0.6),
+    0 0 60px rgba($primary, 0.4),
+    3px 3px 10px rgba($black, 0.8);
+
+  @media (min-width: 768px) {
+    font-size: 65px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 85px;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 95px;
+  }
+
+  .title-word {
+    display: inline-block;
+    margin-right: 18px;
+
+    @media (min-width: 768px) {
+      margin-right: 20px;
+    }
+  }
+}
+
+// 📖 Description
+.slide-description {
+  font-size: 18px;
+  color: rgba($white, 0.95);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 700px;
+  font-family: "Tajawal", sans-serif;
+  text-shadow: 2px 2px 6px rgba($black, 0.7);
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 35px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 28px;
+    margin-bottom: 38px;
+  }
+}
+
+// 🔘 CTA Button
+.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  background: transparent;
+  border: 2px solid $primary;
+  color: $white;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  overflow: hidden;
+  font-family: "Seasons", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+
+  @media (min-width: 768px) {
+    padding: 18px 48px;
+    font-size: 18px;
+    gap: 15px;
+  }
+
+  .button-text {
+    position: relative;
+    z-index: 2;
+    transition: color 0.4s ease;
+  }
+
+  .button-icon {
+    position: relative;
+    z-index: 2;
+    font-size: 22px;
+    transition: transform 0.4s ease;
+  }
+
+  .button-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, $primary, $primary-dark);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    border-color: $primary;
+    color: $white;
+    box-shadow: 0 8px 30px rgba($primary, 0.4);
+
+    .button-bg {
+      transform: translateX(0);
+    }
+
+    .button-icon {
+      transform: translateX(10px);
+    }
+  }
+}
+
+// 🎨 Decorative Elements
+.decorative-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba($primary, 0.2);
+
+    &.deco-1 {
+      width: 380px;
+      height: 380px;
+      top: -100px;
+      right: -100px;
+    }
+
+    &.deco-2 {
+      width: 280px;
+      height: 280px;
+      bottom: -50px;
+      left: -50px;
+      border-color: rgba($secondary, 0.25);
+    }
+  }
+}
+
+// 🖼️ Side Decoration (Desktop) - يدعم الصور والفيديو
+// 🖼️ Side Decoration (Desktop) - صورة كاملة بدون بوردر
+.side-decoration {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+    position: absolute;
+    right: 60px;
+    top: 35%; // ✅ مرفوع فوق
+    transform: translateY(-50%);
+    z-index: 5;
+    pointer-events: none;
+
+    .decoration-frame {
+      width: 400px;
+      height: 400px; // ✅ مقاس ثابت ومتساوي
+      overflow: hidden;
+      position: relative;
+
+      img,
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; // ✅ contain عشان تبين الصورة كاملة
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+
+      video {
+        pointer-events: none;
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    right: 80px;
+    top: 32%; // ✅ مرفوع أكتر
+
+    .decoration-frame {
+      width: 450px;
+      height: 450px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    right: 120px;
+    top: 30%;
+
+    .decoration-frame {
+      width: 500px;
+      height: 500px;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 📊 Custom Pagination - فوق كل حاجة
+.home-swiper-new .swiper-pagination {
+  position: absolute !important;
+  bottom: 30px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 50 !important;
+  width: auto !important;
+
+  @media (min-width: 768px) {
+    bottom: 40px !important;
+    gap: 18px;
+  }
+}
+
+.home-swiper-new .swiper-pagination-bullet {
+  width: auto;
+  height: auto;
+  background: transparent;
+  opacity: 1;
+  border-radius: 0;
+  margin: 0 !important;
+  position: relative;
+  cursor: pointer;
+  pointer-events: auto !important;
+
+  .bullet-number {
+    display: block;
+    color: rgba($white, 0.6);
+    font-size: 15px;
+    font-weight: 700;
+    font-family: "Oswald", sans-serif;
+    padding: 9px 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+      padding: 11px 18px;
+    }
+  }
+
+  .bullet-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      $secondary 0%,
+      $secondary 50%,
+      $secondary 100%
+    );
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px rgba($secondary, 0.6);
+    pointer-events: none;
+  }
+
+  &:hover .bullet-number {
+    color: $white;
+    transform: translateY(-3px);
+  }
+
+  &.swiper-pagination-bullet-active {
+    .bullet-number {
+      color: $secondary;
+      font-size: 20px;
+      text-shadow: 0 0 10px rgba($secondary, 0.8);
+
+      @media (min-width: 768px) {
+        font-size: 24px;
+      }
+    }
+
+    .bullet-progress {
+      width: 100%;
+      animation: progressFill 5s linear;
+    }
+  }
+}
+
+@keyframes progressFill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+// 🧭 Navigation Arrows
+.home-swiper-new .swiper-button-next,
+.home-swiper-new .swiper-button-prev {
+  width: 55px;
+  height: 55px;
+  background: rgba($primary, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: 2px solid rgba($primary, 0.5);
+  color: $white;
+  transition: all 0.3s ease;
+  z-index: 20;
+
+  @media (max-width: 768px) {
+    width: 42px;
+    height: 42px;
+  }
+
+  &::after {
+    font-size: 22px;
+    font-weight: 900;
+
+    @media (max-width: 768px) {
+      font-size: 17px;
+    }
+  }
+
+  &:hover {
+    background: rgba($primary, 0.8);
+    border-color: $primary;
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba($primary, 0.5);
+  }
+}
+
+// 📍 Scroll Indicator - مرفوع فوق
+.scroll-indicator {
+  position: absolute;
+  left: 20px;
+  bottom: 120px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    left: 30px;
+    bottom: 140px;
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (min-width: 1024px) {
+    left: 40px;
+    bottom: 160px;
+    width: 120px;
+    height: 120px;
+  }
+
+  @media (min-width: 1280px) {
+    left: 60px;
+    bottom: 180px;
+    width: 140px;
+    height: 140px;
+  }
+
+  > * {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 640px) {
     display: none;
   }
+}
+
+// 📱 Responsive Adjustments
+@media (max-width: 1024px) {
+  .side-decoration {
+    display: none !important;
+  }
+
+  .slide-content {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    .badge-line {
+      width: 20px;
+    }
+  }
+
+  .slide-description {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  .slide-title {
+    font-size: 35px;
+  }
+
+  .slide-subtitle {
+    font-size: 16px;
+  }
+
+  .slide-description {
+    font-size: 14px;
+  }
+}
+
+// ✅ SEO Hidden Text - مخفي بصرياً بس بيقرأها Screen Readers و SEO
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ✅ Performance: Will-change للأنيميشن الثقيل
+.slide-image,
+video.slide-image {
+  will-change: transform, opacity;
+}
+
+.slide-title,
+.slide-subtitle {
+  will-change: transform, opacity;
+}
+
+// ✅ تحسين الـ rendering
+.banner-wrapper {
+  contain: layout style paint;
+  transform: translateZ(0); // GPU acceleration
 }

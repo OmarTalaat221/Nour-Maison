@@ -129,7 +129,7 @@ const AboutUsSection = () => {
         </Swiper>
       </div> */}
 
-      <div className="relative flex flex-col  max-h-[730px] md:!max-h-[600px] overflow-auto">
+      <div className="relative flex flex-col  max-h-[780px] md:!max-h-[780px] overflow-auto">
         <div
           className="flex items-center justify-center"
           data-aos="fade-down-left"
@@ -154,7 +154,7 @@ const AboutUsSection = () => {
               Why Choose Us
             </h2>
             <p
-              className=" !text-[16px] text-whiteGray md:!text-[21px] mb-6 ps-3 font-lato leading-loose text-justify font-semibold "
+              className=" !text-[16px] text-whiteGray md:!text-[25px] mb-6 ps-3 font- leading-loose text-justify font-normal "
               data-aos="fade-left"
               data-aos-delay="800 "
             >

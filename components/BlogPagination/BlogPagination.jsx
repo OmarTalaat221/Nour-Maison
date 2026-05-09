@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import "./BlogPagination.css";
 
 const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
+  const router = useRouter();
+
   const getPageNumbers = () => {
     const pages = [];
     const maxVisible = 5;
@@ -46,13 +48,11 @@ const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
     return `${basePath}?page=${page}`;
   };
 
+  const handlePageChange = (page) => {
+    router.push(getPageUrl(page));
+  };
+
   const pageNumbers = getPageNumbers();
-  const prevHref =
-    currentPage === 1 ? getPageUrl(1) : getPageUrl(currentPage - 1);
-  const nextHref =
-    currentPage === totalPages
-      ? getPageUrl(totalPages)
-      : getPageUrl(currentPage + 1);
 
   return (
     <nav
@@ -60,13 +60,13 @@ const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
       aria-label="Blog pagination"
     >
       {/* Previous */}
-      <Link
-        href={prevHref}
+      <button
+        type="button"
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
         className={`pagination-btn pagination-arrow ${
           currentPage === 1 ? "disabled" : ""
         }`}
-        aria-disabled={currentPage === 1}
-        tabIndex={currentPage === 1 ? -1 : 0}
         aria-label="Previous page"
       >
         <svg
@@ -82,7 +82,7 @@ const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
         >
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
-      </Link>
+      </button>
 
       {/* Numbers */}
       {pageNumbers.map((page, index) => {
@@ -95,26 +95,27 @@ const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
         }
 
         return (
-          <Link
+          <button
             key={page}
-            href={getPageUrl(page)}
+            type="button"
+            onClick={() => currentPage !== page && handlePageChange(page)}
             className={`pagination-btn ${currentPage === page ? "active" : ""}`}
             aria-current={currentPage === page ? "page" : undefined}
             aria-label={`Page ${page}`}
           >
             {page}
-          </Link>
+          </button>
         );
       })}
 
       {/* Next */}
-      <Link
-        href={nextHref}
+      <button
+        type="button"
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
         className={`pagination-btn pagination-arrow ${
           currentPage === totalPages ? "disabled" : ""
         }`}
-        aria-disabled={currentPage === totalPages}
-        tabIndex={currentPage === totalPages ? -1 : 0}
         aria-label="Next page"
       >
         <svg
@@ -130,7 +131,7 @@ const BlogPagination = ({ currentPage, totalPages, basePath = "/blog" }) => {
         >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
-      </Link>
+      </button>
     </nav>
   );
 };

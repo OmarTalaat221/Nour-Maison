@@ -130,7 +130,8 @@ const TopHeader = () => {
                                 "active:translate-y-0",
                               {
                                 // لون النص حسب الخلفية
-                                "text-white hover:text-white": !headerWithBg,
+                                "text-white hover:!text-goldenOrange":
+                                  !headerWithBg,
                                 "text-white hover:text-logoGold": headerWithBg,
                                 // Active state
                                 "!text-goldenOrange":
@@ -147,7 +148,7 @@ const TopHeader = () => {
                               )}
                               style={{
                                 background:
-                                  "radial-gradient(closest-side, rgba(255,180,70,0.35), transparent 70%)",
+                                  "radial-gradient-side, rgba(255,180,70,0.35), transparent 70%)",
                               }}
                             />
                             <span className="relative">{item.name}</span>

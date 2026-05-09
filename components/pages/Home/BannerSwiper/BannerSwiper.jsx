@@ -1,525 +1,562 @@
 "use client";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useRef, useState, useCallback, useMemo, memo } from "react";
+import dynamic from "next/dynamic";
 import "swiper/css";
-import "swiper/css/grid";
+import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
-// import "swiper/css/navigation";
-import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import {
   Autoplay,
   Navigation,
   Pagination,
-  EffectCoverflow,
+  EffectFade,
   Parallax,
 } from "swiper/modules";
-
-import "./style.scss";
-// import SimpleParallax from "simple-parallax-js";
-import ScrollXImage from "../../../../utils/ScrollXImage/ScrollXImage";
-// import {ScreenFitText} from "../../../../utils/ScreenFitText/ScreenFitText";
-import { motion } from "framer-motion";
-// import {DrawCircleText} from "../../../../utils/DrawCircleText/DrawCircleText";
-import { useMediaQuery } from "../../../../Hooks/GeneralHooks/useMediaQueries";
-import AnimButton from "../../../../utils/AnimButton/AnimButton";
-import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import "./style.scss";
+import { detectMediaType } from "../../../../lib/functions";
 
+// ============================================
+// 🎨 ANIMATION VARIANTS - برة الكومبوننت
+// ============================================
+const SLIDE_VARIANTS = {
+  enter: (direction) => ({
+    x: direction > 0 ? 1000 : -1000,
+    opacity: 0,
+    scale: 0.8,
+    rotateY: direction > 0 ? 45 : -45,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    rotateY: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.6, 0.05, 0.01, 0.9],
+    },
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? -1000 : 1000,
+    opacity: 0,
+    scale: 0.8,
+    rotateY: direction > 0 ? -45 : 45,
+    transition: { duration: 0.6 },
+  }),
+};
+
+const TITLE_VARIANTS = {
+  hidden: { y: 80, opacity: 0, rotateX: -90 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    rotateX: 0,
+    transition: { duration: 0.8, delay: 0.2, ease: [0.6, 0.05, 0.01, 0.9] },
+  },
+};
+
+const MAIN_TITLE_VARIANTS = {
+  hidden: { scale: 0.5, opacity: 0, y: 50 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, delay: 0.4, ease: [0.6, 0.05, 0.01, 0.9] },
+  },
+};
+
+const DESCRIPTION_VARIANTS = {
+  hidden: { x: -100, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.8, delay: 0.6 },
+  },
+};
+
+const BUTTON_VARIANTS = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      delay: 0.8,
+      type: "spring",
+      stiffness: 200,
+    },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0 10px 40px rgba(221, 153, 51, 0.4)",
+    transition: { duration: 0.3 },
+  },
+};
+
+const IMAGE_VARIANTS = {
+  hidden: { scale: 1.3, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 1.2, ease: "easeOut" },
+  },
+};
+
+const SIDE_DECO_INITIAL = { x: 100, opacity: 0, rotate: 10 };
+const SIDE_DECO_ANIMATE = { x: 0, opacity: 1, rotate: 0 };
+const SIDE_DECO_TRANSITION = { duration: 1, delay: 0.5 };
+
+// ============================================
+// 📊 SLIDES DATA - برة الكومبوننت
+// ============================================
+const SLIDES_DATA = [
+  {
+    id: "slide-welcome",
+    background:
+      "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+    backgroundPoster:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+    circleImage: "/images/nnour polaraid pics_1_11zon.webp",
+    alt: "Welcome to Nour Maison - French Middle Eastern fusion restaurant Milton Keynes",
+    title: "WELCOME TO",
+    mainTitle: "NOUR MAISON",
+    description:
+      "Where French sophistication meets the bold, vibrant flavors of the Middle East",
+    hasButton: false,
+    priority: true,
+  },
+  {
+    id: "slide-roast",
+    background: "/images/nnour polaraid pics_1_11zon.webp",
+    circleImage: "/images/nnour polaraid pics_1_11zon.webp",
+    alt: "Halal Roast Dinner Menu Milton Keynes - Nour Maison Sunday roast with Arabic spices",
+    title: "Experience our new",
+    mainTitle: "Roast Dinner Menu",
+    description:
+      "A halal roast where Arabic spice meets French finesse. Crafted with soul.",
+    buttonText: "Roast Dinner Menu",
+    buttonLink: "/roast-menu",
+    hasButton: true,
+    priority: false,
+  },
+  {
+    id: "slide-interior",
+    background:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
+    circleImage:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
+    alt: "Nour Maison restaurant interior - Parisian style halal restaurant Milton Keynes",
+    title: "STEP INSIDE",
+    mainTitle: "NOUR MAISON",
+    description: "Style Curated with Parisian Precision",
+    hasButton: false,
+    priority: false,
+  },
+  {
+    id: "slide-cuisine",
+    background:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
+    circleImage:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
+    alt: "French Mediterranean cuisine Milton Keynes - Nour Maison halal fine dining",
+    title: "Bringing French &",
+    mainTitle: "Mediterranean Cuisine",
+    description: "to Milton Keynes",
+    hasButton: false,
+    priority: false,
+  },
+  {
+    id: "slide-drinks",
+    background:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
+    circleImage:
+      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
+    alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
+    title: "Premium Craft Drinks",
+    mainTitle: "Blending French Flavor",
+    description: "with Mediterranean Freshness",
+    hasButton: false,
+    priority: false,
+  },
+];
+
+// ============================================
+// ⚙️ SWIPER CONFIGS - برة الكومبوننت
+// ============================================
+const PAGINATION_CONFIG = {
+  clickable: true,
+  renderBullet: function (index, className) {
+    return `<span class="${className}" role="button" aria-label="Go to slide ${
+      index + 1
+    }" tabindex="0">
+      <span class="bullet-number">${String(index + 1).padStart(2, "0")}</span>
+      <span class="bullet-progress"></span>
+    </span>`;
+  },
+};
+
+const FADE_EFFECT_CONFIG = { crossFade: true };
+
+const AUTOPLAY_CONFIG = {
+  delay: 5000,
+  disableOnInteraction: false,
+  pauseOnMouseEnter: false,
+};
+
+const A11Y_CONFIG = {
+  prevSlideMessage: "Previous slide",
+  nextSlideMessage: "Next slide",
+  paginationBulletMessage: "Go to slide {{index}}",
+  enabled: true,
+};
+
+const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
+
+// ============================================
+// 🎬 BACKGROUND COMPONENT - Memoized
+// ============================================
+const SlideBackground = memo(({ slide, isActive }) => {
+  const mediaType = useMemo(
+    () => detectMediaType(slide.background),
+    [slide.background]
+  );
+
+  if (mediaType === "video") {
+    return (
+      <video
+        className="slide-image"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload={slide.priority ? "auto" : "metadata"}
+        poster={slide.backgroundPoster || ""}
+        aria-label={slide.alt}
+        disablePictureInPicture
+        disableRemotePlayback
+      >
+        <source src={slide.background} type="video/mp4" />
+      </video>
+    );
+  }
+
+  return (
+    <img
+      src={slide.background}
+      alt={slide.alt}
+      className="slide-image"
+      loading={slide.priority ? "eager" : "lazy"}
+      fetchPriority={slide.priority ? "high" : "low"}
+      decoding={slide.priority ? "sync" : "async"}
+      width="1920"
+      height="1080"
+    />
+  );
+});
+SlideBackground.displayName = "SlideBackground";
+
+// ============================================
+// 🖼️ CIRCLE MEDIA COMPONENT - Memoized
+// ============================================
+const CircleMedia = memo(({ slide }) => {
+  const mediaType = useMemo(
+    () => (slide.circleImage ? detectMediaType(slide.circleImage) : null),
+    [slide.circleImage]
+  );
+
+  if (!slide.circleImage) return null;
+
+  if (mediaType === "video") {
+    return (
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload={slide.priority ? "auto" : "metadata"}
+        aria-label={slide.alt}
+        disablePictureInPicture
+        disableRemotePlayback
+      >
+        <source src={slide.circleImage} type="video/mp4" />
+      </video>
+    );
+  }
+
+  return (
+    <img
+      src={slide.circleImage}
+      alt={slide.alt}
+      loading={slide.priority ? "eager" : "lazy"}
+      fetchPriority={slide.priority ? "high" : "low"}
+      decoding={slide.priority ? "sync" : "async"}
+      width="500"
+      height="500"
+    />
+  );
+});
+CircleMedia.displayName = "CircleMedia";
+
+// ============================================
+// 📝 SLIDE CONTENT COMPONENT - Memoized
+// ============================================
+const SlideContent = memo(({ slide, isActive, direction }) => {
+  // ✅ Memoize words split
+  const words = useMemo(() => slide.mainTitle.split(" "), [slide.mainTitle]);
+
+  if (!isActive) return null;
+
+  return (
+    <motion.div
+      className="content-wrapper"
+      custom={direction}
+      variants={SLIDE_VARIANTS}
+      initial="enter"
+      animate="center"
+      exit="exit"
+    >
+      <motion.h2
+        className="slide-subtitle !font-yesteryear"
+        variants={TITLE_VARIANTS}
+        initial="hidden"
+        animate="visible"
+      >
+        {slide.title}
+      </motion.h2>
+
+      <motion.h1
+        className="slide-title !font-seasons"
+        variants={MAIN_TITLE_VARIANTS}
+        initial="hidden"
+        animate="visible"
+      >
+        {words.map((word, i) => (
+          <motion.span
+            key={`${slide.id}-word-${i}`}
+            className="title-word !font-seasons"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + i * 0.1 }}
+          >
+            {word}{" "}
+          </motion.span>
+        ))}
+      </motion.h1>
+
+      <motion.p
+        className="slide-description !font-seasons"
+        variants={DESCRIPTION_VARIANTS}
+        initial="hidden"
+        animate="visible"
+      >
+        {slide.description}
+      </motion.p>
+
+      {slide.hasButton && (
+        <motion.div
+          variants={BUTTON_VARIANTS}
+          initial="hidden"
+          animate="visible"
+          whileHover="hover"
+          className="w-fit"
+        >
+          <Link
+            href={slide.buttonLink}
+            className="cta-button"
+            aria-label={`Navigate to ${slide.buttonText}`}
+            prefetch={false}
+          >
+            <span className="button-text">{slide.buttonText}</span>
+            <span className="button-icon" aria-hidden="true">
+              →
+            </span>
+            <span className="button-bg" aria-hidden="true"></span>
+          </Link>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+});
+SlideContent.displayName = "SlideContent";
+
+// ============================================
+// 🎨 PARTICLES COMPONENT - Memoized (مرة واحدة بس)
+// ============================================
+const Particles = memo(() => {
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => (
+        <div
+          key={`particle-${i}`}
+          className="particle"
+          style={{ "--i": i }}
+          aria-hidden="true"
+        />
+      )),
+    []
+  );
+
+  return (
+    <div className="particles" aria-hidden="true">
+      {particles}
+    </div>
+  );
+});
+Particles.displayName = "Particles";
+
+// ============================================
+// 🏗️ MAIN COMPONENT
+// ============================================
 const BannerSwiper = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const router = useRouter();
-  const navigate = (path) => {
-    router.push(path);
-  };
-  const handleSlideChange = (e) => {
-    setActiveIndex(e.activeIndex);
-  };
+  const [direction, setDirection] = useState(1);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.3,
+  // ✅ useCallback عشان متتعملش re-create
+  const handleSlideChange = useCallback(
+    (swiper) => {
+      const newIndex = swiper.realIndex;
+      setDirection((prev) => (newIndex > activeIndex ? 1 : -1));
+      setActiveIndex(newIndex);
+    },
+    [activeIndex]
+  );
+
+  const handleSwiperInit = useCallback((swiper) => {
+    swiperRef.current = swiper;
+  }, []);
+
+  // ✅ Memoize Schema.org data
+  const schemaData = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      name: "Nour Maison",
+      description:
+        "French Middle Eastern fusion restaurant in Milton Keynes offering halal fine dining",
+      servesCuisine: ["French", "Middle Eastern", "Mediterranean", "Halal"],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Milton Keynes",
+        addressCountry: "UK",
       },
-    },
-  };
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
-  };
-
-  const textRevealVariants = {
-    hidden: { y: "-100%", opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const scrollImageVariants = {
-    hidden: { opacity: 0, x: "-100%" },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
-  };
-
-  const pagination = {
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + "</span>";
-    },
-  };
-
-  const smallScreen = useMediaQuery("(max-width: 991px)");
+      image: SLIDES_DATA.map((slide) => {
+        const type = detectMediaType(slide.background);
+        return type === "image" ? slide.background : slide.backgroundPoster;
+      }).filter(Boolean),
+      priceRange: "$$$",
+      hasMenu: {
+        "@type": "Menu",
+        name: "Roast Dinner Menu",
+        url: "/roast-menu",
+      },
+      acceptsReservations: true,
+    }),
+    []
+  );
 
   return (
-    <div className="!bg-fixed home__ flex items-center justify-center !min-h-lvh h-screen !w-screen relative">
-      <div className="absolute inset-0">
-        <motion.img
-          width="1600"
-          height="900"
-          key={activeIndex}
-          className=" opacity-1 lg:opacity-1  !h-screen  !object-fill !w-screen    "
-          alt="Nour Maison restaurant Milton Keynes - French Middle Eastern fusion dining"
-          fetchPriority="high"
-          src={
-            // "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
-            "/images/BUNNER NOUR.png"
-          }
-        />
-      </div>
+    <section
+      className="banner-wrapper"
+      aria-label="Nour Maison Restaurant Hero Banner"
+      role="banner"
+    >
+      {/* ✅ SEO Hidden H1 */}
+      <h1 className="sr-only">
+        Nour Maison - French Middle Eastern Fusion Restaurant in Milton Keynes
+      </h1>
 
-      <div className="w-full h-full  relative ">
-        <Swiper
-          modules={[EffectCoverflow, Navigation, Autoplay]}
-          effect="coverflow"
-          coverflowEffect={{
-            // rotate: 30, // Rotation angle
-            stretch: 0, // Spacing between slides
-            depth: 100, // Perspective depth
-            modifier: 2, // Effect intensity
-            slideShadows: false, // Enable shadows
-          }}
-          navigation={true}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          // ref={swiperRef}
-          onSlideChange={handleSlideChange}
-          pagination={pagination}
-          // direction="rtl"
-          // slidesPerGroupSkip={4}
-          slidesPerView={1}
-          spaceBetween={100}
-          fadeEffect={{
-            crossFade: true, // Ensure smooth transition between slides
-          }}
-          loop={true} // Enable looping (optional)
-          autoplay={{ delay: 4000 }} // Auto-slide every 3 seconds (optional)
-          className=" home_swiper  mx-auto"
-        >
-          {/* <div id="container-stars">
-            <div id="stars"></div>
-          </div> */}
-          {[
-            // This banner is for cristmas menu
-            // {
-            //   image:
-            //     "/images/cristmas/pngtree-happy-new-year-2026-text-with-santa-hat-and-holly-christmas-png-image_17730149-removebg-preview.png",
-            //   alt: "Christmas Menu 2026 at Nour Maison Milton Keynes",
-            //   content: (
-            //     <div className="relative">
-            //       <motion.h1
-            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
-            //         variants={childVariants}
-            //       >
-            //         Christmas 2026 at Nour Maison
-            //       </motion.h1>
+      {/* ✅ Animated Background */}
+      <div className="animated-gradient" aria-hidden="true"></div>
 
-            //       <motion.strong
-            //         style={{
-            //           textShadow: "0 0 12px #5B562D",
-            //         }}
-            //         className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:!font-bold"
-            //         variants={textRevealVariants}
-            //       >
-            //         A Pistachio Wonderland
-            //       </motion.strong>
+      {/* ✅ Particles - Memoized */}
+      <Particles />
 
-            //       <motion.p
-            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- "
-            //         variants={childVariants}
-            //       >
-            //         Where the season glows in soft green magic.{" "}
-            //       </motion.p>
-            //       <div className="w-fit mt-3">
-            //         <button className="button-border-anime !w-44 md:!w-60 !h-[4rem]">
-            //           <svg xmlns="http://www.w3.org/2000/svg">
-            //             <rect
-            //               className="border-anime !w-44 md:!w-60 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-            //               pathLength={100}
-            //             />
-            //           </svg>
-            //           <Link
-            //             href={"/christmas-menu"}
-            //             className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-seasons"
-            //           >
-            //             Christmas Menu
-            //           </Link>
-            //         </button>
-            //       </div>
-            //     </div>
-            //   ),
-            // },
-            // ✅ سلايد العيد الجديد
+      <Swiper
+        modules={SWIPER_MODULES}
+        effect="fade"
+        fadeEffect={FADE_EFFECT_CONFIG}
+        navigation={true}
+        onSwiper={handleSwiperInit}
+        onSlideChange={handleSlideChange}
+        pagination={PAGINATION_CONFIG}
+        slidesPerView={1}
+        speed={1000}
+        loop={true}
+        autoplay={AUTOPLAY_CONFIG}
+        parallax={true}
+        watchSlidesProgress={true}
+        a11y={A11Y_CONFIG}
+        className="home-swiper-new"
+      >
+        {SLIDES_DATA.map((slide, index) => (
+          <SwiperSlide key={slide.id}>
+            <article className="slide-container">
+              {/* Background */}
+              <motion.div
+                className="slide-background"
+                data-swiper-parallax="-23%"
+                variants={IMAGE_VARIANTS}
+                initial="hidden"
+                animate="visible"
+              >
+                <SlideBackground
+                  slide={slide}
+                  isActive={activeIndex === index}
+                />
+                <div className="slide-overlay" aria-hidden="true"></div>
+              </motion.div>
 
-            // {
-            //   image:
-            //     "https://camp-coding.tech/nour_maison/site_images/BUNNER%20NOUR%20(12)--.webp", // غيرها لصورة العيد لو عندك
-            //   alt: "Eid Mubarak 2026 - Celebrate Eid at Nour Maison Milton Keynes halal restaurant",
-            //   content: (
-            //     <div className="relative">
-            //       <motion.h1
-            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
-            //         variants={childVariants}
-            //       >
-            //         Celebrate with Us
-            //       </motion.h1>
-
-            //       <motion.strong
-            //         style={{
-            //           textShadow: "0 0 12px #5B562D",
-            //         }}
-            //         className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
-            //         variants={textRevealVariants}
-            //       >
-            //         Eid Mubarak
-            //       </motion.strong>
-
-            //       <motion.p
-            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
-            //         variants={childVariants}
-            //       >
-            //         Celebrate Eid in style with exquisite halal cuisine, crafted
-            //         with love and served in the heart of Milton Keynes.
-            //       </motion.p>
-
-            //       <div className="w-fit mt-6">
-            //         <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
-            //           <svg xmlns="http://www.w3.org/2000/svg">
-            //             <rect
-            //               className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-            //               pathLength={100}
-            //             />
-            //           </svg>
-            //           <Link
-            //             href={"/booking"}
-            //             className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
-            //           >
-            //             Book Now
-            //           </Link>
-            //         </button>
-            //       </div>
-            //     </div>
-            //   ),
-            // },
-            // ✅ سلايد رمضان الجديد 🌙
-            // {
-            //   image:
-            //     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101696/ramadan-iftar-milton-keynes_1_hpgpls_ohrth3.webp",
-            //   alt: "Ramadan Iftar Menu Milton Keynes 2026 - Nour Maison halal iftar dining experience",
-            //   content: (
-            //     <div className="relative">
-            //       <motion.h1
-            //         className="text-white text-[20px] md:!text-[30px] text-center lg:text-start lg:text-3xl tracking-wide font-seasons font-bold"
-            //         variants={childVariants}
-            //       >
-            //         Ramadan 2026 at Nour Maison
-            //       </motion.h1>
-
-            //       <motion.strong
-            //         style={{
-            //           textShadow: "0 0 12px #5B562D",
-            //         }}
-            //         className="text-[#F1952E] text-[45px] md:!text-[100px] text-center lg:text-start lg:!text-8xl !font-bold !font-seasons"
-            //         variants={textRevealVariants}
-            //       >
-            //         Iftar Menu
-            //       </motion.strong>
-
-            //       <motion.p
-            //         className="lg:text-3xl text-[20px] md:text-[25px] text-center lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide"
-            //         variants={childVariants}
-            //       >
-            //         A soulful 5-course Iftar where Middle Eastern tradition
-            //         meets French elegance. Served at Maghrib.
-            //       </motion.p>
-
-            //       <div className="w-fit mt-6">
-            //         <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
-            //           <svg xmlns="http://www.w3.org/2000/svg">
-            //             <rect
-            //               className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-            //               pathLength={100}
-            //             />
-            //           </svg>
-            //           <Link
-            //             href={"/ramadan-iftar-menu-milton-keynes"}
-            //             className="txt-upload !text-white no-underline hover:no-underline text-3xl font-seasons"
-            //           >
-            //             Iftar Menu
-            //           </Link>
-            //         </button>
-            //       </div>
-            //     </div>
-            //   ),
-            // },
-
-            {
-              image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/tvw5ermawiyq0o5uspyg_oq8qdl.webp",
-              alt: "Welcome to Nour Maison - French Middle Eastern fusion restaurant Milton Keynes",
-              content: (
-                <>
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-seasons"
-                    variants={childVariants}
-                  >
-                    WELCOME TO{" "}
-                  </motion.h1>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:!font-bold"
-                    variants={textRevealVariants}
-                  >
-                    NOUR MAISON
-                  </motion.strong>
-
-                  <motion.p
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-tajawal "
-                    variants={childVariants}
-                  >
-                    Where French sophistication meets the bold, vibrant flavors
-                    of the Middle East
-                  </motion.p>
-                </>
-              ),
-            },
-            {
-              image: "/images/nnour polaraid pics_1_11zon.webp",
-              alt: "Halal Roast Dinner Menu Milton Keynes - Nour Maison Sunday roast with Arabic spices",
-              content: (
-                <div className="relative">
-                  <motion.h1
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
-                    variants={childVariants}
-                  >
-                    Experience our new
-                  </motion.h1>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]  text-[45px] md:!text-[100px] text-center lg:text-start   lg:!text-8xl !font-bold !font-seasons "
-                    variants={textRevealVariants}
-                  >
-                    Roast Dinner Menu
-                  </motion.strong>
-
-                  <motion.p
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- "
-                    variants={childVariants}
-                  >
-                    A halal roast where Arabic spice meets French finesse.
-                    Crafted with soul.{" "}
-                  </motion.p>
-                  <div className="w-fit mt-6">
-                    <button className="button-border-anime !w-44 md:!w-72 !h-[4rem]">
-                      <svg xmlns="http://www.w3.org/2000/svg">
-                        <rect
-                          className="border-anime !w-44 md:!w-72 !h-[4rem] !stroke-[4px] !stroke-[#c16d2d]"
-                          pathLength={100}
-                        />
-                      </svg>
-                      <Link
-                        href={"/roast-menu"}
-                        className="txt-upload !text-white no-underline hover:no-underline  text-3xl font-seasons"
-                      >
-                        Roast Dinner Menu
-                      </Link>
-                    </button>
-                  </div>
-                </div>
-              ),
-            },
-            {
-              image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
-              alt: "Nour Maison restaurant interior - Parisian style halal restaurant Milton Keynes",
-              content: (
-                <>
-                  <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-bold font-seasons"
-                    variants={childVariants}
-                  >
-                    STEP INSIDE{" "}
-                  </motion.main>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
-                    variants={textRevealVariants}
-                  >
-                    NOUR MAISON
-                  </motion.strong>
-
-                  <motion.h2
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font-tajawal "
-                    variants={childVariants}
-                  >
-                    Style Curated with Parisian Precision
-                  </motion.h2>
-                </>
-              ),
-            },
-            {
-              image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
-              alt: "French Mediterranean cuisine Milton Keynes - Nour Maison halal fine dining",
-              content: (
-                <>
-                  <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
-                    variants={childVariants}
-                  >
-                    Bringing French <span className="font-nour">&</span>{" "}
-                  </motion.main>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
-                    variants={textRevealVariants}
-                  >
-                    Mediterranean Cuisine
-                  </motion.strong>
-
-                  <motion.h2
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite mt-4 tracking-wide font- font-normal "
-                    variants={childVariants}
-                  >
-                    to Milton Keynes
-                  </motion.h2>
-                </>
-              ),
-            },
-            {
-              image:
-                "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
-              alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
-              content: (
-                <>
-                  <motion.main
-                    className="text-white text-[20px] md:!text-[30px] text-center lg:text-start  lg:text-3xl tracking-wide font-seasons font-bold"
-                    variants={childVariants}
-                  >
-                    Premium Craft Drinks
-                  </motion.main>
-
-                  <motion.strong
-                    style={{
-                      textShadow: "0 0 12px #5B562D",
-                    }}
-                    className="text-[#F1952E]    text-[45px] md:!text-[100px] text-center lg:text-start   lg:text-9xl font-seasons font-bold lg:font-bold"
-                    variants={textRevealVariants}
-                  >
-                    Blending French Flavor{" "}
-                  </motion.strong>
-
-                  <motion.h2
-                    className="lg:text-3xl text-[20px] md:text-[25px] text-center  lg:text-start lg:w-[900px] text-offWhite font-normal mt-4 tracking-wide font- "
-                    variants={childVariants}
-                  >
-                    with Mediterranean Freshness
-                  </motion.h2>
-                </>
-              ),
-            },
-          ].map((item, index) => (
-            <SwiperSlide
-              key={index}
-              className=" flex items-center justify-center relative"
-            >
-              <div className="banner_swiper min-h-lvh">
-                <div className="relative flex items-center  !w-full !h-full">
-                  {/* <div className='absolute inset-0 bg-black bg-opacity-[.3]'></div> */}
-
-                  <motion.div
-                    className="absolute  inset-0  w-[clac(100%-500px)] h-full object-cover filter  flex  "
-                    key={activeIndex} // Key forces re-mounting of the entire animated container
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    <motion.div
-                      className=" p-10 lg:px-20 h-full w-full relative z-30 flex justify-center gap-2 lg:gap-2 flex-col"
-                      variants={childVariants}
-                    >
-                      {/* <ScreenFitText className='outlined_text my-3' />
-
-                      <motion.div
-                        className='outlined_text my-3'
-                        variants={textRevealVariants}
-                      >
-                        <ScreenFitText />
-                      </motion.div> */}
-                      {item.content && item.content}
-                    </motion.div>
-                  </motion.div>
-                  <div className="overlay hidden lg:block bg-transparent">
-                    <img
-                      loading="lazy"
-                      className="absolute  top-1/2 -translate-y-1/2 right-20 !w-[100px] !h-[100px] lg:!w-[500px] lg:!h-[500px]  !object-contain  "
-                      src={item?.image}
-                      alt={item?.alt}
-                    />
-                  </div>
-                </div>
+              {/* Content */}
+              <div className="slide-content">
+                <AnimatePresence mode="wait">
+                  <SlideContent
+                    key={`content-${slide.id}-${activeIndex}`}
+                    slide={slide}
+                    isActive={activeIndex === index}
+                    direction={direction}
+                  />
+                </AnimatePresence>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <motion.div
-          className="absolute bottom-[-80px] hidden lg:block z-30"
-          variants={scrollImageVariants}
-        >
-          <ScrollXImage
-            src={
-              "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443798/nkp9h9cgxyotbvip7yuq_u3cmmi.png"
-              // "/images/—Pngtree—colorful christmas balls_19731035.png"
-            }
-            parentStyles={{}}
-            isMoveable={true}
-          />
-        </motion.div>
-      </div>
-    </div>
+
+              {/* Side Decoration */}
+              {slide.circleImage && (
+                <motion.div
+                  className="side-decoration"
+                  initial={SIDE_DECO_INITIAL}
+                  animate={SIDE_DECO_ANIMATE}
+                  transition={SIDE_DECO_TRANSITION}
+                  aria-hidden="true"
+                >
+                  <div className="decoration-frame">
+                    <CircleMedia slide={slide} />
+                  </div>
+                </motion.div>
+              )}
+            </article>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* ✅ Schema.org JSON-LD للـ SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schemaData),
+        }}
+      />
+
+      {/* ✅ Preload للسلايدات الجاية */}
+      <link
+        rel="preload"
+        as="image"
+        href={SLIDES_DATA[1]?.background}
+        fetchPriority="low"
+      />
+    </section>
   );
 };
 
-export default BannerSwiper;
+export default memo(BannerSwiper);

@@ -50,6 +50,7 @@ module.exports = {
         playfair: ["var(--font-playfair)", "cursive"],
         nour: ["var(--font-eb-garamond)", "serif"],
         seasons: ["var(--font-the-seasons)", "serif"],
+        yesteryear: ["var(--font-yesteryear)", "cursive"],
       },
     },
   },
