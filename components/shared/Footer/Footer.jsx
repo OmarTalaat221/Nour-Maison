@@ -1,9 +1,7 @@
-// components/Footer/Footer.jsx
 "use client";
 
 import "./style.css";
-import { FaLocationDot, FaRegEnvelope } from "react-icons/fa6";
-
+import { FaRegEnvelope } from "react-icons/fa6";
 import {
   FaInstagram,
   FaFacebookF,
@@ -11,10 +9,11 @@ import {
   FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
-import StyledBackground from "../../../utils/Styled Background/StyledBackground";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
+// import BranchesImage from "../BranchesImage/BranchesImage";
 
 const Footer = () => {
   const router = useRouter();
@@ -53,7 +52,6 @@ const Footer = () => {
     {
       label: "Ramadan Iftar",
       path: "/ramadan-iftar-menu-milton-keynes",
-      // new: true,
     },
   ];
 
@@ -64,7 +62,23 @@ const Footer = () => {
 
   return (
     <div className="relative !overflow-visible mt-12 sm:mt-16 md:mt-20 lg:mt-24">
-      <div className="w-full relative py-8 sm:py-10 md:py-12 lg:py-[50px] bg-gradient-to-b from-pestachio via-pestachio to-transparent">
+      <div className="w-full relative py-8 sm:py-10 md:py-12 lg:py-[50px] bg-gradient-to-b from-pestachio via-pestachio to-transparent overflow-hidden">
+        {" "}
+        {/* TOP LEFT BRANCH */}
+        {/* TOP LEFT BRANCH */}
+        <BranchesImage
+          variant="top-left"
+          image="/images/footer-branch.png"
+          className="hidden md:block z-0 opacity-25 lg:opacity-35 -top-20 -left-24 lg:-top-28 lg:-left-32 xl:-top-36 xl:-left-40 pointer-events-none"
+          imgClassName="w-[360px] md:w-[480px] lg:w-[620px] xl:w-[760px] 2xl:w-[860px]"
+        />
+        {/* TOP RIGHT BRANCH */}
+        <BranchesImage
+          variant="top-right"
+          image="/images/footer-branch.png"
+          className="hidden md:block z-0 opacity-25 lg:opacity-35 -top-20 -right-24 lg:-top-28 lg:-right-32 xl:-top-36 xl:-right-40 pointer-events-none"
+          imgClassName="w-[360px] md:w-[480px] lg:w-[620px] xl:w-[760px] 2xl:w-[860px]"
+        />
         {/* Logo Section */}
         <div className="w-[95%] lg:w-[90%] mx-auto relative z-10">
           <div className="flex justify-center mb-4 sm:mb-6">
@@ -81,9 +95,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         <div className="relative z-10 w-[95%] lg:w-[90%] mx-auto text-logoGold">
-          {/* Contact Info Section - استخدام CSS class فقط */}
+          {/* Contact Info Section */}
           <div className="foot_cont">
             {/* Contact Info */}
             <div className="flex flex-col gap-2 sm:gap-3">
@@ -126,7 +139,6 @@ const Footer = () => {
               >
                 <div
                   style={{ textShadow: "1px 2px 2px black" }}
-                  // onClick={handleMapClick}
                   className="flex justify-center text-center text-slate-100 text-xs xs:text-sm sm:text-base md:text-lg lg:text-[22px] font-lato font-semibold cursor-pointer px-2 sm:px-4 hover:text-logoGold transition-colors"
                 >
                   149 Grafton Gate, Milton Keynes, MK91AE
@@ -311,10 +323,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
+        {/* Existing Bottom Decorative Branch */}
         <img
           src="/images/footer-branch.png"
-          className="absolute opacity-30 right-0 bottom-[-50px] hidden lg:block w-[180px] xl:w-[220px]"
+          className="absolute opacity-30 right-0 bottom-[-50px] hidden lg:block w-[180px] xl:w-[220px] z-0 pointer-events-none"
           alt="Decorative branch"
           loading="lazy"
         />

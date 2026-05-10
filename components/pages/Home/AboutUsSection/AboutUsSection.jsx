@@ -149,12 +149,12 @@ const AboutUsSection = () => {
             <h2
               data-aos="fade-right"
               data-aos-delay="1000"
-              className="  text-2xl font-seasons md:text-5xl font-bold mb-2 md:mb-4 text-goldenOrange"
+              className="  text-2xl font-tangerine md:text-5xl font-bold mb-2 md:mb-4 text-whiteGray"
             >
               Why Choose Us
             </h2>
             <p
-              className=" !text-[16px] text-whiteGray md:!text-[25px] mb-6 ps-3 font- leading-loose text-justify font-normal "
+              className=" !text-[16px] text-goldenOrange md:!text-[30px] mb-6 ps-3 font-caveat leading-loose text-justify font-normal "
               data-aos="fade-left"
               data-aos-delay="800 "
             >

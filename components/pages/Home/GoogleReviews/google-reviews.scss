@@ -1,0 +1,220 @@
+$primary: #dd9933;
+$secondary: #84b067;
+$pestachio: #cce7bf;
+$whiteGray: #838383;
+$white: #ffffff;
+
+.google-reviews-section {
+  // ============================================
+  // CIRCLE HIGHLIGHT - around text
+  // ============================================
+  .circle-highlight-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 4px 12px;
+
+    .circle-svg-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 115%;
+      height: 130%;
+      pointer-events: none;
+      z-index: 0;
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+    }
+  }
+
+  // ============================================
+  // SWIPER WRAPPER WITH BACKGROUND
+  // ============================================
+  .swiper-with-bg {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // ============================================
+  // BACKGROUND NOUR MAISON IMAGE - centered
+  // ============================================
+  .reviews-bg-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    max-width: 1500px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.7;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+      width: 110%;
+      opacity: 0.35;
+    }
+
+    @media (max-width: 640px) {
+      width: 130%;
+      opacity: 0.25;
+    }
+  }
+
+  // ============================================
+  // EQUAL HEIGHT CARDS + COVERFLOW
+  // ============================================
+  .reviews-swiper {
+    padding-bottom: 60px !important;
+    padding-top: 60px !important;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+
+    .swiper-wrapper {
+      align-items: center !important; // ✅ كاردات في النص
+      transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
+    }
+
+    // ============================================
+    // GLASS CARDS - opacity based on position
+    // ============================================
+    .swiper-slide {
+      height: auto !important;
+      display: flex;
+      transition: all 0.5s ease;
+      opacity: 0.4; // ✅ default opacity للكاردات البعيدة
+      transform: scale(0.9); // ✅ صغيرة شوية
+
+      > div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    // ✅ Active slide - واضح وفي المقدمة
+    .swiper-slide-active {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+      z-index: 5;
+    }
+
+    // ✅ Slides جنب الـ active - شبه واضحة
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      opacity: 0.7;
+      transform: scale(0.95);
+      z-index: 3;
+    }
+  }
+
+  // ============================================
+  // GLASS CARD STYLE
+  // ============================================
+  .reviews-swiper .swiper-slide > div {
+    // ✅ Glassmorphism effect
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(204, 231, 191, 0.6) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  // Active card - أوضح
+  .reviews-swiper .swiper-slide-active > div {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+    border: 2px solid $primary !important;
+  }
+
+  // ============================================
+  // PAGINATION - modern pill style
+  // ============================================
+  .reviews-swiper .swiper-pagination {
+    position: absolute !important;
+    bottom: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto !important;
+    z-index: 10;
+  }
+
+  .reviews-swiper .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: $pestachio;
+    opacity: 1;
+    border-radius: 999px;
+    margin: 0 !important;
+    transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: inline-block;
+
+    &:hover {
+      background: $primary;
+      transform: scale(1.2);
+    }
+
+    &.swiper-pagination-bullet-active {
+      background: $primary;
+      width: 32px;
+      border-radius: 999px;
+    }
+  }
+
+  // ============================================
+  // DYNAMIC BULLETS
+  // ============================================
+  .reviews-swiper .swiper-pagination-bullets-dynamic {
+    .swiper-pagination-bullet {
+      transform: scale(0.8);
+
+      &-active {
+        transform: scale(1);
+      }
+
+      &-active-main {
+        transform: scale(1);
+      }
+
+      &-active-prev,
+      &-active-next {
+        transform: scale(0.85);
+      }
+
+      &-active-prev-prev,
+      &-active-next-next {
+        transform: scale(0.7);
+      }
+    }
+  }
+}

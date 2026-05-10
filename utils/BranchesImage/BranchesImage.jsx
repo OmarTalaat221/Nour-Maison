@@ -1,50 +1,49 @@
+"use client";
+
 import React from "react";
 import cx from "classnames";
 import SimpleParallax from "simple-parallax-js";
+
 const BranchesImage = ({
   variant,
   className,
+  imgClassName,
   width,
   image,
   parallax,
   ...props
 }) => {
   const position =
-    variant == "top-right"
-      ? " absolute top-0 right-0"
-      : variant == "bottom-right"
-      ? " absolute bottom-0 right-0 rotate-180"
-      : variant == "top-left"
-      ? "absolute top-0 left-0 rotate-[180deg]"
-      : variant == "center"
-      ? " top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2 "
-      : " absolute bottom-0 left-0 rotate-[-180deg]";
+    variant === "top-right"
+      ? "top-0 right-0"
+      : variant === "bottom-right"
+        ? "bottom-0 right-0 rotate-180"
+        : variant === "top-left"
+          ? "top-0 left-0 rotate-[180deg]"
+          : variant === "center"
+            ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            : "bottom-0 left-0 rotate-[-180deg]";
+
+  const imageElement = (
+    <img
+      loading="lazy"
+      draggable="false"
+      width={width || 500}
+      src={image || "/images/pngegg.png"}
+      alt="Decorative Branch"
+      className={cx(
+        "select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]",
+        imgClassName
+      )}
+    />
+  );
 
   return (
     <div className={cx("absolute", position, className)} {...props}>
       {parallax ? (
-        <div className="!h-[600px]">
-
-        <SimpleParallax  scale={1.4} orientation='up' >
-          <img
-            loading="lazy"
-            draggable='false'
-            className='select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]'
-            width={width || 500}
-            src={image || "/images/pngegg.png"}
-            alt='Branch'
-            />
-        </SimpleParallax>
-            </div>
+        <div className="h-[600px] overflow-visible">{imageElement}</div>
       ) : (
-        <img
-          loading="lazy"
-          draggable='false'
-          className='select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]'
-          width={width || 500}
-          src={image || "/images/pngegg.png"}
-          alt='Branch'
-        />
+        imageElement
       )}
     </div>
   );

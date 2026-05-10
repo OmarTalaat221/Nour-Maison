@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef, useState, useCallback, useMemo, memo } from "react";
-import dynamic from "next/dynamic";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -19,7 +18,17 @@ import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
 
 // ============================================
-// 🎨 ANIMATION VARIANTS - برة الكومبوننت
+// SHARED BACKGROUND CONFIG - same for all slides
+// ============================================
+const SHARED_BACKGROUND = {
+  src: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+  poster:
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+  alt: "Nour Maison Restaurant Background",
+};
+
+// ============================================
+// ANIMATION VARIANTS
 // ============================================
 const SLIDE_VARIANTS = {
   enter: (direction) => ({
@@ -47,61 +56,24 @@ const SLIDE_VARIANTS = {
   }),
 };
 
-const TITLE_VARIANTS = {
-  hidden: { y: 80, opacity: 0, rotateX: -90 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    rotateX: 0,
-    transition: { duration: 0.8, delay: 0.2, ease: [0.6, 0.05, 0.01, 0.9] },
+const CHAR_VARIANTS = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    scale: 0.8,
+    filter: "blur(4px)",
   },
-};
-
-const MAIN_TITLE_VARIANTS = {
-  hidden: { scale: 0.5, opacity: 0, y: 50 },
-  visible: {
-    scale: 1,
+  visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1, delay: 0.4, ease: [0.6, 0.05, 0.01, 0.9] },
-  },
-};
-
-const DESCRIPTION_VARIANTS = {
-  hidden: { x: -100, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: { duration: 0.8, delay: 0.6 },
-  },
-};
-
-const BUTTON_VARIANTS = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: {
     scale: 1,
-    opacity: 1,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.5,
-      delay: 0.8,
-      type: "spring",
-      stiffness: 200,
+      duration: 0.04,
+      delay: 0.3 + i * 0.045,
+      ease: "easeOut",
     },
-  },
-  hover: {
-    scale: 1.05,
-    boxShadow: "0 10px 40px rgba(221, 153, 51, 0.4)",
-    transition: { duration: 0.3 },
-  },
-};
-
-const IMAGE_VARIANTS = {
-  hidden: { scale: 1.3, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 1.2, ease: "easeOut" },
-  },
+  }),
 };
 
 const SIDE_DECO_INITIAL = { x: 100, opacity: 0, rotate: 10 };
@@ -109,19 +81,15 @@ const SIDE_DECO_ANIMATE = { x: 0, opacity: 1, rotate: 0 };
 const SIDE_DECO_TRANSITION = { duration: 1, delay: 0.5 };
 
 // ============================================
-// 📊 SLIDES DATA - برة الكومبوننت
+// SLIDES DATA - no background per slide anymore
 // ============================================
 const SLIDES_DATA = [
   {
     id: "slide-welcome",
-    background:
-      "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
-    backgroundPoster:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
-    circleImage: "/images/nnour polaraid pics_1_11zon.webp",
+    rightImage: "/images/banner-1.webp",
     alt: "Welcome to Nour Maison - French Middle Eastern fusion restaurant Milton Keynes",
     title: "WELCOME TO",
-    mainTitle: "NOUR MAISON",
+    mainTitle: "NOUR MAISON Restaurant",
     description:
       "Where French sophistication meets the bold, vibrant flavors of the Middle East",
     hasButton: false,
@@ -129,8 +97,7 @@ const SLIDES_DATA = [
   },
   {
     id: "slide-roast",
-    background: "/images/nnour polaraid pics_1_11zon.webp",
-    circleImage: "/images/nnour polaraid pics_1_11zon.webp",
+    rightImage: "/images/banner-2.webp",
     alt: "Halal Roast Dinner Menu Milton Keynes - Nour Maison Sunday roast with Arabic spices",
     title: "Experience our new",
     mainTitle: "Roast Dinner Menu",
@@ -143,23 +110,19 @@ const SLIDES_DATA = [
   },
   {
     id: "slide-interior",
-    background:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
-    circleImage:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/whdixjtugk4jqxkrue0l_iejjmj.webp",
+    rightImage: "/images/banner-3.webp",
+
     alt: "Nour Maison restaurant interior - Parisian style halal restaurant Milton Keynes",
     title: "STEP INSIDE",
-    mainTitle: "NOUR MAISON",
+    mainTitle: "NOUR MAISON Restaurant",
     description: "Style Curated with Parisian Precision",
     hasButton: false,
     priority: false,
   },
   {
     id: "slide-cuisine",
-    background:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
-    circleImage:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443803/v6pek7zcf253vnw59iqf_e8hdas.webp",
+    rightImage: "/images/banner-4.webp",
+
     alt: "French Mediterranean cuisine Milton Keynes - Nour Maison halal fine dining",
     title: "Bringing French &",
     mainTitle: "Mediterranean Cuisine",
@@ -169,10 +132,8 @@ const SLIDES_DATA = [
   },
   {
     id: "slide-drinks",
-    background:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
-    circleImage:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101589/BUNNER_NOUR_1_cq1k64_wq0dfh.webp",
+    rightImage: "/images/banner-5.webp",
+
     alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
     title: "Premium Craft Drinks",
     mainTitle: "Blending French Flavor",
@@ -183,7 +144,7 @@ const SLIDES_DATA = [
 ];
 
 // ============================================
-// ⚙️ SWIPER CONFIGS - برة الكومبوننت
+// SWIPER CONFIG
 // ============================================
 const PAGINATION_CONFIG = {
   clickable: true,
@@ -215,50 +176,48 @@ const A11Y_CONFIG = {
 const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
 
 // ============================================
-// 🎬 BACKGROUND COMPONENT - Memoized
+// PERSISTENT BACKGROUND - rendered once, never re-renders
 // ============================================
-const SlideBackground = memo(({ slide, isActive }) => {
-  const mediaType = useMemo(
-    () => detectMediaType(slide.background),
-    [slide.background]
-  );
-
-  if (mediaType === "video") {
-    return (
-      <video
-        className="slide-image"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload={slide.priority ? "auto" : "metadata"}
-        poster={slide.backgroundPoster || ""}
-        aria-label={slide.alt}
-        disablePictureInPicture
-        disableRemotePlayback
-      >
-        <source src={slide.background} type="video/mp4" />
-      </video>
-    );
-  }
+const PersistentBackground = memo(() => {
+  const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
 
   return (
-    <img
-      src={slide.background}
-      alt={slide.alt}
-      className="slide-image"
-      loading={slide.priority ? "eager" : "lazy"}
-      fetchPriority={slide.priority ? "high" : "low"}
-      decoding={slide.priority ? "sync" : "async"}
-      width="1920"
-      height="1080"
-    />
+    <div className="persistent-background" aria-hidden="true">
+      {mediaType === "video" ? (
+        <video
+          className="bg-media"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={SHARED_BACKGROUND.poster}
+          aria-label={SHARED_BACKGROUND.alt}
+          disablePictureInPicture
+          disableRemotePlayback
+        >
+          <source src={SHARED_BACKGROUND.src} type="video/mp4" />
+        </video>
+      ) : (
+        <img
+          src={SHARED_BACKGROUND.src}
+          alt={SHARED_BACKGROUND.alt}
+          className="bg-media"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+          width="1920"
+          height="1080"
+        />
+      )}
+      <div className="bg-overlay" aria-hidden="true"></div>
+    </div>
   );
 });
-SlideBackground.displayName = "SlideBackground";
+PersistentBackground.displayName = "PersistentBackground";
 
 // ============================================
-// 🖼️ CIRCLE MEDIA COMPONENT - Memoized
+// SIDE MEDIA COMPONENT
 // ============================================
 const CircleMedia = memo(({ slide }) => {
   const mediaType = useMemo(
@@ -300,11 +259,166 @@ const CircleMedia = memo(({ slide }) => {
 CircleMedia.displayName = "CircleMedia";
 
 // ============================================
-// 📝 SLIDE CONTENT COMPONENT - Memoized
+// RIGHT HERO IMAGE
+// ============================================
+const RightHeroImage = memo(({ slide, isActive }) => {
+  if (!slide.rightImage) return null;
+
+  return (
+    <motion.div
+      className="right-hero-image"
+      initial={{ x: "100%", opacity: 0, scale: 0.9 }}
+      animate={
+        isActive
+          ? { x: 0, opacity: 1, scale: 1 }
+          : { x: "100%", opacity: 0, scale: 0.9 }
+      }
+      transition={{
+        duration: 1,
+        delay: 0.2,
+        ease: [0.25, 0.1, 0.25, 1],
+      }}
+      aria-hidden="true"
+    >
+      <img
+        src={slide.rightImage}
+        alt={slide.alt}
+        loading={slide.priority ? "eager" : "lazy"}
+        fetchPriority={slide.priority ? "high" : "low"}
+        decoding={slide.priority ? "sync" : "async"}
+      />
+    </motion.div>
+  );
+});
+RightHeroImage.displayName = "RightHeroImage";
+
+// ============================================
+// TYPING TITLE COMPONENT
+// ============================================
+const TypingTitle = memo(({ text, slideId, isActive }) => {
+  const words = useMemo(() => {
+    let globalCharIndex = 0;
+
+    return text.split(" ").map((word, wordIndex) => {
+      const chars = word.split("").map((char, charIndex) => {
+        const currentIndex = globalCharIndex;
+        globalCharIndex += 1;
+
+        return {
+          char,
+          index: currentIndex,
+          key: `${slideId}-word-${wordIndex}-char-${charIndex}`,
+        };
+      });
+
+      return {
+        key: `${slideId}-word-${wordIndex}`,
+        chars,
+      };
+    });
+  }, [text, slideId]);
+
+  if (!isActive) return null;
+
+  return (
+    <motion.h1
+      className="slide-title typing-title !font-seasons"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2, delay: 0.1 }}
+      aria-label={text}
+    >
+      {words.map((word, wordIndex) => (
+        <span
+          key={word.key}
+          className="title-word-group"
+          aria-hidden="true"
+          style={{
+            marginRight: wordIndex < words.length - 1 ? "0.22em" : 0,
+          }}
+        >
+          {word.chars.map(({ char, index, key }) => (
+            <motion.span
+              key={key}
+              className="title-char"
+              custom={index}
+              variants={CHAR_VARIANTS}
+              initial="hidden"
+              animate="visible"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+      ))}
+    </motion.h1>
+  );
+});
+TypingTitle.displayName = "TypingTitle";
+
+// ============================================
+// SLIDE CONTENT
 // ============================================
 const SlideContent = memo(({ slide, isActive, direction }) => {
-  // ✅ Memoize words split
-  const words = useMemo(() => slide.mainTitle.split(" "), [slide.mainTitle]);
+  const typingEndTime = useMemo(() => {
+    const totalChars = slide.mainTitle.replace(/\s/g, "").length;
+    return 0.3 + totalChars * 0.045 + 0.2;
+  }, [slide.mainTitle]);
+
+  const subtitleVariants = useMemo(
+    () => ({
+      hidden: { y: -40, opacity: 0, rotateX: -60 },
+      visible: {
+        y: 0,
+        opacity: 1,
+        rotateX: 0,
+        transition: {
+          duration: 0.6,
+          delay: typingEndTime,
+          ease: [0.6, 0.05, 0.01, 0.9],
+        },
+      },
+    }),
+    [typingEndTime]
+  );
+
+  const descriptionVariants = useMemo(
+    () => ({
+      hidden: { x: -80, opacity: 0 },
+      visible: {
+        x: 0,
+        opacity: 1,
+        transition: {
+          duration: 0.7,
+          delay: typingEndTime + 0.2,
+          ease: "easeOut",
+        },
+      },
+    }),
+    [typingEndTime]
+  );
+
+  const buttonVariants = useMemo(
+    () => ({
+      hidden: { scale: 0, opacity: 0 },
+      visible: {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 0.5,
+          delay: typingEndTime + 0.4,
+          type: "spring",
+          stiffness: 200,
+        },
+      },
+      hover: {
+        scale: 1.05,
+        boxShadow: "0 10px 40px rgba(221, 153, 51, 0.4)",
+        transition: { duration: 0.3 },
+      },
+    }),
+    [typingEndTime]
+  );
 
   if (!isActive) return null;
 
@@ -319,35 +433,22 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
     >
       <motion.h2
         className="slide-subtitle !font-yesteryear"
-        variants={TITLE_VARIANTS}
+        variants={subtitleVariants}
         initial="hidden"
         animate="visible"
       >
         {slide.title}
       </motion.h2>
 
-      <motion.h1
-        className="slide-title !font-seasons"
-        variants={MAIN_TITLE_VARIANTS}
-        initial="hidden"
-        animate="visible"
-      >
-        {words.map((word, i) => (
-          <motion.span
-            key={`${slide.id}-word-${i}`}
-            className="title-word !font-seasons"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 + i * 0.1 }}
-          >
-            {word}{" "}
-          </motion.span>
-        ))}
-      </motion.h1>
+      <TypingTitle
+        text={slide.mainTitle}
+        slideId={slide.id}
+        isActive={isActive}
+      />
 
       <motion.p
         className="slide-description !font-seasons"
-        variants={DESCRIPTION_VARIANTS}
+        variants={descriptionVariants}
         initial="hidden"
         animate="visible"
       >
@@ -356,7 +457,7 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
 
       {slide.hasButton && (
         <motion.div
-          variants={BUTTON_VARIANTS}
+          variants={buttonVariants}
           initial="hidden"
           animate="visible"
           whileHover="hover"
@@ -382,7 +483,7 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
 SlideContent.displayName = "SlideContent";
 
 // ============================================
-// 🎨 PARTICLES COMPONENT - Memoized (مرة واحدة بس)
+// PARTICLES
 // ============================================
 const Particles = memo(() => {
   const particles = useMemo(
@@ -407,18 +508,17 @@ const Particles = memo(() => {
 Particles.displayName = "Particles";
 
 // ============================================
-// 🏗️ MAIN COMPONENT
+// MAIN COMPONENT
 // ============================================
 const BannerSwiper = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  // ✅ useCallback عشان متتعملش re-create
   const handleSlideChange = useCallback(
     (swiper) => {
       const newIndex = swiper.realIndex;
-      setDirection((prev) => (newIndex > activeIndex ? 1 : -1));
+      setDirection(newIndex > activeIndex ? 1 : -1);
       setActiveIndex(newIndex);
     },
     [activeIndex]
@@ -428,7 +528,6 @@ const BannerSwiper = () => {
     swiperRef.current = swiper;
   }, []);
 
-  // ✅ Memoize Schema.org data
   const schemaData = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -442,10 +541,7 @@ const BannerSwiper = () => {
         addressLocality: "Milton Keynes",
         addressCountry: "UK",
       },
-      image: SLIDES_DATA.map((slide) => {
-        const type = detectMediaType(slide.background);
-        return type === "image" ? slide.background : slide.backgroundPoster;
-      }).filter(Boolean),
+      image: [SHARED_BACKGROUND.poster],
       priceRange: "$$$",
       hasMenu: {
         "@type": "Menu",
@@ -463,15 +559,15 @@ const BannerSwiper = () => {
       aria-label="Nour Maison Restaurant Hero Banner"
       role="banner"
     >
-      {/* ✅ SEO Hidden H1 */}
       <h1 className="sr-only">
         Nour Maison - French Middle Eastern Fusion Restaurant in Milton Keynes
       </h1>
 
-      {/* ✅ Animated Background */}
+      {/* ✅ Persistent background - rendered ONCE, never changes */}
+      <PersistentBackground />
+
       <div className="animated-gradient" aria-hidden="true"></div>
 
-      {/* ✅ Particles - Memoized */}
       <Particles />
 
       <Swiper
@@ -493,23 +589,11 @@ const BannerSwiper = () => {
       >
         {SLIDES_DATA.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <article className="slide-container">
-              {/* Background */}
-              <motion.div
-                className="slide-background"
-                data-swiper-parallax="-23%"
-                variants={IMAGE_VARIANTS}
-                initial="hidden"
-                animate="visible"
-              >
-                <SlideBackground
-                  slide={slide}
-                  isActive={activeIndex === index}
-                />
-                <div className="slide-overlay" aria-hidden="true"></div>
-              </motion.div>
-
-              {/* Content */}
+            <article
+              className={`slide-container ${
+                slide.rightImage ? "has-right-hero" : ""
+              }`}
+            >
               <div className="slide-content">
                 <AnimatePresence mode="wait">
                   <SlideContent
@@ -521,8 +605,14 @@ const BannerSwiper = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Side Decoration */}
-              {slide.circleImage && (
+              {slide.rightImage && (
+                <RightHeroImage
+                  slide={slide}
+                  isActive={activeIndex === index}
+                />
+              )}
+
+              {!slide.rightImage && slide.circleImage && (
                 <motion.div
                   className="side-decoration"
                   initial={SIDE_DECO_INITIAL}
@@ -540,20 +630,11 @@ const BannerSwiper = () => {
         ))}
       </Swiper>
 
-      {/* ✅ Schema.org JSON-LD للـ SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(schemaData),
         }}
-      />
-
-      {/* ✅ Preload للسلايدات الجاية */}
-      <link
-        rel="preload"
-        as="image"
-        href={SLIDES_DATA[1]?.background}
-        fetchPriority="low"
       />
     </section>
   );

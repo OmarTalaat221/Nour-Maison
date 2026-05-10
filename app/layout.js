@@ -11,6 +11,7 @@ import {
   Playfair_Display,
   EB_Garamond,
   Yesteryear,
+  Caveat,
 } from "next/font/google";
 import Script from "next/script";
 import localFont from "next/font/local";
@@ -79,6 +80,12 @@ const pacifico = Pacifico({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-pacifico",
+});
+
+const caveat = Caveat({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-caveat",
 });
 
 const ebGaramond = EB_Garamond({
@@ -290,7 +297,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body
-        className={` ${geistSans.className} ${greatVibes.variable} ${inter.variable} ${lato.variable} ${oswald.variable} ${tajawal.variable} ${tangerine.variable} ${pacifico.variable} ${ebGaramond.variable}  ${theSeasons.variable} ${yesteryear.variable} `}
+        className={` ${geistSans.className} ${greatVibes.variable} ${inter.variable} ${lato.variable} ${oswald.variable} ${tajawal.variable} ${tangerine.variable} ${pacifico.variable} ${ebGaramond.variable}  ${theSeasons.variable} ${yesteryear.variable} ${caveat.variable} `}
       >
         <noscript>
           <iframe
