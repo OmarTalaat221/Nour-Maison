@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import TopHeader from "../../components/shared/TopHeader/TopHeader";
-import Preloader from "../../components/PreLoader/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,10 +21,5 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <>
-      {/* <Preloader /> */}
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
