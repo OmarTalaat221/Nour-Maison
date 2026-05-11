@@ -278,8 +278,8 @@ const OurServices = () => {
         </div>
 
         {/* ✅ Custom Event - برا الـ container، بنفس حجم الكارد الصغير */}
-        <div className="w-full mt-6 sm:mt-8 md:mt-10 relative z-20 flex justify-center px-3 sm:px-5">
-          <div className="w-full sm:w-[calc(50%-6px)] lg:w-[calc((100%-380px-16px)/2-6px)] xl:w-[calc((100%-420px-16px)/2-6px)] max-w-[400px]">
+        <div className="container mx-auto w-full mt-6 sm:mt-8 md:mt-10 relative z-20 flex justify-center px-3 sm:px-5">
+          <div className="w-full sm:w-[calc(50%-6px)] lg:w-[calc((100%-380px-16px)/2-6px)] xl:w-[calc((100%-420px-16px)/2-6px)]">
             <ServiceCard
               item={CUSTOM_EVENT}
               isMobile={isMobile}
