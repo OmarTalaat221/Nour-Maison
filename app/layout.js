@@ -30,6 +30,8 @@ import { menu_1 } from "./(pages)/data/menuData";
 import { NotFoundProvider } from "./context/NoutFoundContext";
 import Head from "next/head";
 import { HeaderProvider } from "./context/HeaderContext";
+import { LoadingProvider } from "./context/LoadingContext";
+import Preloader from "../components/Preloader/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -294,6 +296,21 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={structuredData}
         />
+
+        <link
+          rel="preload"
+          href="/images/nour-maison.gif"
+          as="image"
+          fetchPriority="high"
+        />
+
+        {/* ✅ DNS prefetch للـ Cloudinary */}
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link
+          rel="preconnect"
+          href="https://res.cloudinary.com"
+          crossOrigin="anonymous"
+        />
       </head>
 
       <body
@@ -323,11 +340,14 @@ export default function RootLayout({ children }) {
         </Script>
         {/* End Google Analytics */}
         <NotFoundProvider>
-          <HeaderProvider>
-            <TopHeader />
-            <StickyHeaderComponent />
-            <PageTransition>{children}</PageTransition>
-          </HeaderProvider>
+          <LoadingProvider>
+            <HeaderProvider>
+              <Preloader />
+              <TopHeader />
+              <StickyHeaderComponent />
+              <PageTransition>{children}</PageTransition>
+            </HeaderProvider>
+          </LoadingProvider>
           <Footer />
           <AOSAnimation />
         </NotFoundProvider>

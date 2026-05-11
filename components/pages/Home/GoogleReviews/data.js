@@ -171,12 +171,16 @@ export const reviews = [
     },
   },
   {
-    name: "Commendatore",
+    name: "U D",
     rating: 5,
-    review: `Best cafe experience to date. It was pretty busy inside but food came out within 20 minutes. Food was superb, tasted fresh and was hot. Really enjoyed the chicken escalope it was light and not greasy and the garlic and cheese topping added the right amount of flavour which was a pleasure to eat. The fries perfectly cooked and seasoned. They really thought out the menu as it has a variety of choices and can see why it becoming everyone’s favourite place to eat at. Can’t wait to come back here. Service was fantastic and ample car parking outside the cafe`,
+    review: `My experience at Nour Madison Cafe last night  was nothing short of magical from the moment we stepped inside. I actually drove all the way from Luton to Milton Keynes just to try it out and it was absolutely worth it!
+Every tiny detail was thoughtfully curated, creating an enchanting ambiance. The Ramadan décor in every corner added such a special and meaningful touch, making the atmosphere feel even more inviting and unique.
+The staff were welcoming and friendly. The menu was impressively vast, offering a wide variety of dishes and drinks to suit every craving.
+We ordered the crème brûlée latte and the strawberry matcha, both were absolutely outstanding. We had a slice of tiramisu cake, which had just the perfect amount of sweetness and the consistency.
+Overall, it was an exceptional experience, and I can’t wait to return. Highly recommended!`,
     image:
-      "https://lh3.googleusercontent.com/a-/ALV-UjUE69zg8JiSZ4v_fpodF7Opt2WqoERuDLTGWnG2TjMa8ljG71wh=w36-h36-p-rp-mo-ba5-br100",
-    tags: ["Dine in", "Brunch", "£30–20"],
+      "https://lh3.googleusercontent.com/a-/ALV-UjVQBXWY2SLkjGpm6I4TijwGZjMSqFnyujIOmEfBVqKsmTzdiv6sKQ=w36-h36-p-rp-mo-ba6-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
       service: "5",
@@ -184,12 +188,12 @@ export const reviews = [
     },
   },
   {
-    name: "tar1q_ Hu88",
+    name: "DżejSi.",
     rating: 5,
-    review: `place is amazing, atmosphere and service is 10/10 and the food is fantastic my wife loves it we’ll be back every week . BEST BREAKFAST IN MK!!`,
+    review: `A high-level cafe, beautiful colors and decor, everything fits, beautiful chairs, ornaments. I was very impressed. Staff was very nice, we talked for a while because we came from Liverpool and we were very happy to find such a lovely place. There were a lot of interesting dishes on the menu, we didn't know what to choose. The food was very tasty, the coffee very tasty. Clean and stylish. I recommend this place 🍀💜`,
     image:
-      "https://lh3.googleusercontent.com/a-/ALV-UjXRUs1uI7z-0H1mt_XdIqqumNQt1KJ1SZXpwhXE2W_fY2ox6npx=w36-h36-p-rp-mo-br100",
-    tags: ["Dine in", "Brunch", "£10–20"],
+      "https://lh3.googleusercontent.com/a-/ALV-UjWbfZje7rFJOyu2RNWvK0AXOYlktDIZTJ8FdwZ-csXdIXwqdp4=w36-h36-p-rp-mo-ba4-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
       service: "5",
@@ -197,12 +201,26 @@ export const reviews = [
     },
   },
   {
-    name: "Laurentiu Graur",
+    name: "Dezni Warren",
     rating: 5,
-    review: `I visited this place with my wife some time ago and i had an amazing experience. The owner Mo was kind and welcomed us in, seated us down and checked on us. Ana made us the best Baklava Pistachio Milkshakes and im not even kidding. It was the best milkshake we ever had. I recommend this place`,
+    review: `I can’t even explain how good it was until you try but every bite felt like an explosion of flavour, Yh it looks pretty with the presentation but it tastes way better! I’ll definitely come again, the staff were all nice and inviting plus the owner is on shop floor and talks with everyone, it’s such a nice temperature in there and the atmosphere is amazing, the decor was gorgeous and got a lil free cake so cute… definitely worth driving down from north!!!`,
     image:
-      "https://lh3.googleusercontent.com/a-/ALV-UjVYTiMUXFRFij8QwXy5BRMVBafeUwAR5chI6rYUGMETldeUOZpjLQ=w36-h36-p-rp-mo-br100",
-    tags: ["Dine in", "Brunch", "£10–20"],
+      "https://lh3.googleusercontent.com/a-/ALV-UjUSkAbnHH-iTL-uw4an7CY9yaVaeHUwk5IFObzH7BARCdgkOynw=w36-h36-p-rp-mo-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
+    breakdown: {
+      food: "5",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "Vibhusha Dube",
+    rating: 5,
+    review: `The food was amazing! We had the Nour Special Breakfast and San Sebastian Cheesecake- both of which were really delicious. The matcha and coffee were nice as well and pretty sweet with just the syrup.
+The only thing I wished they had was little descriptions for the relatively special/uncommon drinks, so we know what to expect.`,
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjVOqotz5nWwXZ0lGXat9JhQF1xYiKPowzRkhKzQl6XfmYbkBqyIfg=w36-h36-p-rp-mo-ba2-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
       service: "5",
@@ -210,55 +228,48 @@ export const reviews = [
     },
   },
   {
-    name: "Aqsa",
+    name: "Kalista Sky",
     rating: 5,
-    review: `The best food I’ve ever had the pleasure of trying. I want to try everything on the menu. Cant wait to be back`,
-    image:
-      "https://lh3.googleusercontent.com/a/ACg8ocJJ0P-kyO11WiJRTsRE7ONDLtjlUPjJ98Jp1egEmPYNgrT87h8=w36-h36-p-rp-mo-ba4-br100",
-    // tags: ["Dine in", "Brunch", "£10–20"],
+    review: ` recently visited Nour Maison Brasserie and was pleasantly impressed. The design is elegant and delicate, creating a very cozy atmosphere. The staff were extremely welcoming and friendly, which made the experience even more enjoyable. The food was delicious, and I especially loved the wide selection of coffee – truly impressive!
 
-  },
-  {
-    name: "Miss Abigail Safoa Kumi",
-    rating: 5,
-    review: `Recently found a spot in mk for the best breakfast and brunch ..we tried their Turkish breakfast and oh my we fell in love straight away !! Food was quick when ordered ,and it tasted too good .whole staff was welcoming
+On the downside, we had to wait quite a while for our order, most likely due to the restaurant being fully packed at the time.( Saturday 11 a.m.)
+Also, there seemed to be a lack of restrooms, which could be a bit inconvenient.
 
-Best spot ever will deffo making it my fav place
-`,
+Overall, it’s a lovely place with wonderful food and service, and I’d be happy to come back.`,
     image:
-      "https://lh3.googleusercontent.com/a-/ALV-UjWMxvXKdiPchUXPJ0x5NLPRBXtC5OvNFwU49nKTuggjdTH55Jw=w36-h36-p-rp-mo-br100",
-    tags: ["Dine in", "Brunch", "£10–20"],
-    breakdown: {
-      food: "5",
-      service: "5",
-      atmosphere: "5",
-    },
-  },
-  {
-    name: "Halima Akhtar",
-    rating: 5,
-    review: `First time visiting, the waiter and owner were amazing. We had the full English breakfast and Turkish breakfast- amazing. I tried an iced Spanish latte (as they are known for these) and it’s the best I’ve ever had. Lovely atmosphere, friendly staff, good location and amazing atmosphere. We will definitely be coming here again`,
-    image:
-      "https://lh3.googleusercontent.com/a/ACg8ocK1hvqeEIdI-KwG8rk1I-1e2Y37QsHzn7HE_ll_FW7AiLmJYA=w36-h36-p-rp-mo-br100",
+      "https://lh3.googleusercontent.com/a/ACg8ocJjbKg4CMbyCOzYqul5QNcsbpjwPA3AHyT82AY9xg4Q7x9Q-Rk=w36-h36-p-rp-mo-ba4-br100",
     // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
-      service: "5",
+      service: "4",
       atmosphere: "5",
     },
   },
   {
-    name: "Sonia Arora",
+    name: "Kamal Hussain",
     rating: 5,
-    review: `We are out of towners (Londoners) and were in Milton Keynes for a bysiness trip. Stumbled upon this on Sunday and managed to get a table for lunch. I'm so grateful for how lucky we were. This place is awesome! The atmosphere is vibrant and the Arabic music playing really got us pumped for a Sunday!
+    review: `Nour Maison Brasserie makes for a refined and tranquil choice, particularly in the mid-week breakfast hours when the atmosphere is pleasantly quiet. It’s a welcome pause from the hustle and bustle elsewhere in Milton Keynes, lending itself well to a relaxed morning, whether alone with a book or sharing conversation with company.
 
-The food and drinks were excellent. The best pistachio and rose latte I've ever had, authenthic flavours rather than the commercial flavours you normally get and are disappointed. My partner ordered arabic coffee and he was served in an authentic Arabic kettle, his response was "every sip transported him back to his homeland."
+The service was commendably quick and unfailingly polite. Staff struck just the right note of attentiveness, never overbearing, yet always ready to assist. A small detail worth mentioning: the English Breakfast tea arrived rather on the weak side. We found ourselves having to request an extra teabag. To their credit, the team responded with grace and courtesy, promptly resolving the issue without fuss—a small hiccup handled with genuine professionalism.
 
-The food is amazing, every bite is flavourful and balanced. Good value for money.
+As for the food, the menu edges on the pricey side, with certain items carrying a heftier tag than one might expect for a casual breakfast. That said, the quality and presentation justify the indulgence. Nour Maison Brasserie feels more like a place to treat oneself than an everyday stop-off, but that is part of its charm.
 
-If you're looking for an authentic, vibrant Arabic experience, this is your place. This place blew me away. I wish they had a Nour in London, we'd be there every day!`,
+In all, it’s a polished establishment: calm, elegant, and competently run. While the tea might have started weak, the experience as a whole was strong enough to ensure a return visit. I’ll happily come back, mindful of the prices, but reassured by the consistently pleasant service and the promise of another peaceful breakfast.`,
     image:
-      "https://lh3.googleusercontent.com/a/ACg8ocJ38WxRnD7G9xDU5g8r3NK1LsDlEwVzQLws51KXWlZi3Bx9ZA=w36-h36-p-rp-mo-ba2-br100",
+      "https://lh3.googleusercontent.com/a-/ALV-UjUfKhey64ZF20Sri_2C26x7K-WTbJlD0oUQsJmOQuCK63SrNWK6uw=w36-h36-p-rp-mo-ba5-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
+    breakdown: {
+      food: "4",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "Sophia Inanna",
+    rating: 4,
+    review: `Liana was so lovely and loved her vibe, very positive. The food was really nice too and  flavourful. The tartar sauce was so good and portions are large!`,
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjWm2ROfWsMJZRTeAy98_hP9fBsfpaX5K_CUunyettZJ_HErqyig=w36-h36-p-rp-mo-br100",
     // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
@@ -267,24 +278,11 @@ If you're looking for an authentic, vibrant Arabic experience, this is your plac
     },
   },
   {
-    name: "Sophie Gordge",
-    rating: 5,
-    review: `New favourite spot in MK! The atmosphere is amazingly peaceful with such a warm and cozy vibe, the food and the drinks was the best I have had and the service was fantastic! Overall such an amazing place, I really recommend going to everyone! I will definitely be a frequent visitor`,
+    name: "Yours Truelee",
+    rating: 4,
+    review: `Magdy is always welcoming at this venue. And their chai latte is always my drink of choice. Friendly warm and inviting all round. Most delicious food and perfect for brunch. Highly recommended`,
     image:
-      `https://lh3.googleusercontent.com/a-/ALV-UjUo83G2M9xWnPKFbpQ7vQwo32cGoIOGS6E0wrhPoNFm6oHqhLf3SQ=w36-h36-p-rp-mo-br100`,
-    tags: ["Dine in", "Brunch", "£10–20"],
-    breakdown: {
-      food: "5",
-      service: "5",
-      atmosphere: "5",
-    },
-  },
-  {
-    name: "Jay Bedford",
-    rating: 5,
-    review: `Food was amazing. Best breakfast spot you can come to in Milton Keynes. Warm welcoming. Beautiful restaurant, very nice and clean. Staff was amazing! Food and drinks were 10 out of 10`,
-    image:
-      "https://lh3.googleusercontent.com/a/ACg8ocL3YOFysBv7T22Z5WAjn5znrHmtX5DQcTm3nqjQP2OrnGTUYg=w36-h36-p-rp-mo-br100",
+      "https://lh3.googleusercontent.com/a-/ALV-UjUjqS2qUPDpTCXBYDAA6kcFgb16EJIqjNk4BvDkVyo5qDg0spWE=w36-h36-p-rp-mo-br100",
     // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
@@ -293,16 +291,25 @@ If you're looking for an authentic, vibrant Arabic experience, this is your plac
     },
   },
   {
-    name: "Farhat Somji",
-    rating: 5,
-    review: `A Truly Delightful Experience"
-From the moment we stepped into this beautifully decorated brasserie, we were met with the warmest of welcomes from the gracious staff. The service was impeccable, with our food and drinks arriving promptly.
-The culinary delights were simply divine! The pancakes ala canadienne and omelette were exquisite. We were particularly appreciative of the halal certification, making our dining experience both enjoyable and worry-free. The beverage selection was equally impressive, from the comforting warmth of the chai lattes and Arabic coffee to the refreshing and invigorating mango and pear juice.
-To our absolute delight, the owner generously treated us to some delectable cakes on the house. This unexpected gesture truly added a special touch to our dining experience.
-We extend our sincerest congratulations and wish the brasserie all the very best for continued success.
-Farhat`,
+    name: "J A",
+    rating: 4,
+    review: `First time trying. Service staff were lovely, however really slow and it seemed a bit disorganised. Somehow managed to get my order wrong, when I showed them what I ordered they rectified quickly and the chef made my order quickly. The salmon croissant was lovely, but the salmon paste was quite intense! The pistachio dream was nice, although very sweet! With the dessert menu, it would be good to see what's in them, rather than just the title.
+Owner of the cafe did a little birthday celebration which was a nice touch. Overall, a nice little cafe.`,
     image:
-      "https://lh3.googleusercontent.com/a/ACg8ocKrf2fF8mti9a6JvvtSEMhdulscLLYG45PrAcG4h1XXPTUqugMz=w36-h36-p-rp-mo-br100",
+      "https://lh3.googleusercontent.com/a-/ALV-UjVMJqBpvVJvsxK41WD2eDiJA8HK3hDS0Yy9q9vR-5K17s9yjgHO=w36-h36-p-rp-mo-ba4-br100",
+    // tags: ["Dine in", "Brunch", "£10–20"],
+    breakdown: {
+      food: "5",
+      service: "3",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "Razan AlGharbeh",
+    rating: 4,
+    review: `Visited this evening with my mum after family recommendations. Lovely atmosphere, quick service. Cannot fault them at all. Very friendly owner definitely understands customer service and quality food. My first visit and will not be my last. For the both of us paid around £33 which is very decent considering portions and quality. Food came out hot. Best wishes`,
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocLa-xd0Y161Fv9xpiEYXlVplDA8XuhEFVXbkueH03Ceml-Qxk8=w36-h36-p-rp-mo-br100",
     // tags: ["Dine in", "Brunch", "£10–20"],
     breakdown: {
       food: "5",
@@ -311,12 +318,77 @@ Farhat`,
     },
   },
   {
-    name: "Ceren K",
+    name: "Tajilly Garnie",
+    // date: "18 days ago",
     rating: 5,
-    review: `I don’t think I’ve EVER left a review before but I was so impressed by the service, food and ambience of this place. From the moment we walked in we were greeted warmly and they even opened the door for us when we left. There were plenty of breakfast options with variety, which is difficult to find in the UK. The music was also beautiful, not too loud. You can see the chefs making the food as it is an “open” kitchen. Presentation of the food on the plate was also immaculate. Drink choices blew me away, with baklava latte etc. Really clean and really friendly staff. I didn’t know that this place opened recently, it seems really well established - I wish them the best. I’m coming back with a friend next week!!`,
+    review: `First time at Nour Maison. Cosy vibe. Incredible food. Music was amazing. Staff friendly and did not have to wait long for our food. Top class place. Will be back very soon`,
     image:
-      "https://lh3.googleusercontent.com/a-/ALV-UjWOTOo9cZxP5yz6DIsiQVeA9sm5g43cUjrey26y3brx9bfLPkdfFA=w36-h36-p-rp-mo-br100",
-    // tags: ["Dine in", "Brunch", "£10–20"],
+      "https://lh3.googleusercontent.com/a/ACg8ocIsES9avrlnBBYxs9xPUhWhx0MnypcCucWTBafTy7nKzzLk1Q=w36-h36-p-rp-mo-br100",
+    //   tags: [],
+    breakdown: {
+      food: "5",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "Catherine Woodland",
+    // date: "18 days ago",
+    rating: 5,
+    review: `This place was absolutely fantastic. Menu was so varied, drinks were beautiful and the food tasted amazing. Service was attentive and quick.
+We hadn’t booked a table and the manager went out of his way to sort a table for us.
+What a little gem! Will definitely be back x`,
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjXrAdDlj2tMnkw83Uyo3A3NAloI7wkBBC63IqJzDXeEffJnQyqv=w36-h36-p-rp-mo-br100",
+    //   tags: [],
+    breakdown: {
+      food: "5",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "mohammed",
+    // date: "18 days ago",
+    rating: 5,
+    review: `I had such a fantastic experience at Nour Maison From the moment we walked in, the staff were warm, welcoming and genuinely attentive without being intrusive.
+The food was outstanding – every dish was beautifully presented and full of flavour.  you can really tell a lot of care goes into the cooking and ingredients.
+The atmosphere is lovely: relaxed, cosy and perfect for  a family meal / catching up with friends.  The restaurant is clean, well-decorated and has a really nice buzz without being too noisy.
+Service was prompt, friendly and professional throughout, and the prices are very reasonable for the quality you get.
+We will definitely be coming back and I’d highly recommend Nour Maison to anyone looking for great food, great service and a genuinely enjoyable dining experience.`,
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocJgpLgA5Tlh4Rq4YsyBdbk8tj6Jm9MNGJNWbBInBf8Nwr0jMA=w36-h36-p-rp-mo-br100",
+    //   tags: [],
+    breakdown: {
+      food: "5",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "littleman 123",
+    // date: "18 days ago",
+    rating: 5,
+    review: `Both Ana and yahya served us, both were very friendly polite and professional. The food was beautifully cooked and presented. Alot of love goes into their dishes. 100% recommend nour maison. We will be revisiting to try the rest of thr gorgeous menu`,
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocL7PsnTSWlDWDLNPT_tv6aLTAtdqhJ1QCgukNVNYGo9r-oTdQ=w36-h36-p-rp-mo-br100",
+    //   tags: [],
+    breakdown: {
+      food: "5",
+      service: "5",
+      atmosphere: "5",
+    },
+  },
+  {
+    name: "Trish Ferguson",
+    // date: "18 days ago",
+    rating: 5,
+    review: `I was introduced to Nour Maison by a friend and the owner & staff were perfect hosts: welcoming, attentive and efficient. Add to that food which is not only delicious, it is beautifully presented as a work of art.
+I wondered if it was a one-off so I came retuned a few weeks later. Still culinary delectation. So today, a week since my last visit, I’m back because I like the atmosphere, the team and setting - and I love the variety and flavours on the menu.
+I cannot recommend Nour Maison enough - if you want to savour delicious food with French and Middle Eastern flavours, or enjoy a companionable meal in a friendly atmosphere, this is the place to excite your tastebuds and your eyes.`,
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocKTAmYh6e0TwI4GIN6tAD6g1BnETe0_Vrr-NtOzRQom9go2NQ=w36-h36-p-rp-mo-br100",
+    //   tags: [],
     breakdown: {
       food: "5",
       service: "5",

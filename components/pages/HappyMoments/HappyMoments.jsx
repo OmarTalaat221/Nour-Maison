@@ -34,7 +34,6 @@ const HappyMoments = ({ withBg = false }) => {
   const [selectedIndex, setSelectedIndex] = useState("");
 
   return (
-    
     <>
       <div className={`${withBg ? "relative" : ""}`}>
         {withBg && (
@@ -53,7 +52,7 @@ const HappyMoments = ({ withBg = false }) => {
             </div>
           </>
         )}
-        <div
+        {/* <div
           data-aos="fade-right"
           className="overflow-hidden container my-11 flex flex-col md:flex-row justify-between gap-5 md:gap-10"
         >
@@ -133,8 +132,7 @@ const HappyMoments = ({ withBg = false }) => {
               );
             })}
           </Swiper>
-        </div>
-        
+        </div> */}
       </div>
       <Framer_gallery
         images={images}

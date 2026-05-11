@@ -1,5 +1,13 @@
+// components/Banner/BannerSwiper.jsx
 "use client";
-import React, { useRef, useState, useCallback, useMemo, memo } from "react";
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  memo,
+  useEffect,
+} from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -16,9 +24,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
+import { useLoading } from "../../../../app/context/LoadingContext";
+// import { useLoading } from "../../../../";
 
 // ============================================
-// SHARED BACKGROUND CONFIG - same for all slides
+// CONSTANTS
 // ============================================
 const SHARED_BACKGROUND = {
   src: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
@@ -27,9 +37,6 @@ const SHARED_BACKGROUND = {
   alt: "Nour Maison Restaurant Background",
 };
 
-// ============================================
-// ANIMATION VARIANTS
-// ============================================
 const SLIDE_VARIANTS = {
   enter: (direction) => ({
     x: direction > 0 ? 1000 : -1000,
@@ -42,10 +49,7 @@ const SLIDE_VARIANTS = {
     opacity: 1,
     scale: 1,
     rotateY: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.6, 0.05, 0.01, 0.9],
-    },
+    transition: { duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] },
   },
   exit: (direction) => ({
     x: direction > 0 ? -1000 : 1000,
@@ -57,22 +61,13 @@ const SLIDE_VARIANTS = {
 };
 
 const CHAR_VARIANTS = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    scale: 0.8,
-    filter: "blur(4px)",
-  },
+  hidden: { opacity: 0, y: 20, scale: 0.8, filter: "blur(4px)" },
   visible: (i) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: {
-      duration: 0.04,
-      delay: 0.3 + i * 0.045,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.04, delay: 0.3 + i * 0.045, ease: "easeOut" },
   }),
 };
 
@@ -80,14 +75,11 @@ const SIDE_DECO_INITIAL = { x: 100, opacity: 0, rotate: 10 };
 const SIDE_DECO_ANIMATE = { x: 0, opacity: 1, rotate: 0 };
 const SIDE_DECO_TRANSITION = { duration: 1, delay: 0.5 };
 
-// ============================================
-// SLIDES DATA - no background per slide anymore
-// ============================================
 const SLIDES_DATA = [
   {
     id: "slide-welcome",
-    rightImage: "/images/banner-1.webp",
-    alt: "Welcome to Nour Maison - French Middle Eastern fusion restaurant Milton Keynes",
+    rightImage: "/images/banner-6.webp",
+    alt: "Welcome to Nour Maison",
     title: "WELCOME TO",
     mainTitle: "NOUR MAISON Restaurant",
     description:
@@ -98,7 +90,7 @@ const SLIDES_DATA = [
   {
     id: "slide-roast",
     rightImage: "/images/banner-2.webp",
-    alt: "Halal Roast Dinner Menu Milton Keynes - Nour Maison Sunday roast with Arabic spices",
+    alt: "Halal Roast Dinner Menu Milton Keynes",
     title: "Experience our new",
     mainTitle: "Roast Dinner Menu",
     description:
@@ -111,8 +103,7 @@ const SLIDES_DATA = [
   {
     id: "slide-interior",
     rightImage: "/images/banner-3.webp",
-
-    alt: "Nour Maison restaurant interior - Parisian style halal restaurant Milton Keynes",
+    alt: "Nour Maison restaurant interior",
     title: "STEP INSIDE",
     mainTitle: "NOUR MAISON Restaurant",
     description: "Style Curated with Parisian Precision",
@@ -121,9 +112,8 @@ const SLIDES_DATA = [
   },
   {
     id: "slide-cuisine",
-    rightImage: "/images/banner-4.webp",
-
-    alt: "French Mediterranean cuisine Milton Keynes - Nour Maison halal fine dining",
+    rightImage: "/images/banner-7.webp",
+    alt: "French Mediterranean cuisine",
     title: "Bringing French &",
     mainTitle: "Mediterranean Cuisine",
     description: "to Milton Keynes",
@@ -132,9 +122,8 @@ const SLIDES_DATA = [
   },
   {
     id: "slide-drinks",
-    rightImage: "/images/banner-5.webp",
-
-    alt: "Premium craft drinks Milton Keynes - Nour Maison French Mediterranean beverages",
+    rightImage: "/images/banner-8.webp",
+    alt: "Premium craft drinks",
     title: "Premium Craft Drinks",
     mainTitle: "Blending French Flavor",
     description: "with Mediterranean Freshness",
@@ -143,9 +132,6 @@ const SLIDES_DATA = [
   },
 ];
 
-// ============================================
-// SWIPER CONFIG
-// ============================================
 const PAGINATION_CONFIG = {
   clickable: true,
   renderBullet: function (index, className) {
@@ -159,34 +145,44 @@ const PAGINATION_CONFIG = {
 };
 
 const FADE_EFFECT_CONFIG = { crossFade: true };
-
-const AUTOPLAY_CONFIG = {
-  delay: 5000,
-  disableOnInteraction: false,
-  pauseOnMouseEnter: false,
-};
-
 const A11Y_CONFIG = {
   prevSlideMessage: "Previous slide",
   nextSlideMessage: "Next slide",
   paginationBulletMessage: "Go to slide {{index}}",
   enabled: true,
 };
-
 const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
 
 // ============================================
-// PERSISTENT BACKGROUND - rendered once, never re-renders
+// PERSISTENT BACKGROUND - بيتحكم في الفيديو
 // ============================================
-const PersistentBackground = memo(() => {
+const PersistentBackground = memo(({ isLoading }) => {
   const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!videoRef.current || mediaType !== "video") return;
+
+    if (isLoading) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    } else {
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log("Video autoplay prevented:", err);
+        });
+      }
+    }
+  }, [isLoading, mediaType]);
 
   return (
     <div className="persistent-background" aria-hidden="true">
       {mediaType === "video" ? (
         <video
+          ref={videoRef}
           className="bg-media"
-          autoPlay
           loop
           muted
           playsInline
@@ -217,7 +213,7 @@ const PersistentBackground = memo(() => {
 PersistentBackground.displayName = "PersistentBackground";
 
 // ============================================
-// SIDE MEDIA COMPONENT
+// CIRCLE MEDIA
 // ============================================
 const CircleMedia = memo(({ slide }) => {
   const mediaType = useMemo(
@@ -236,8 +232,6 @@ const CircleMedia = memo(({ slide }) => {
         playsInline
         preload={slide.priority ? "auto" : "metadata"}
         aria-label={slide.alt}
-        disablePictureInPicture
-        disableRemotePlayback
       >
         <source src={slide.circleImage} type="video/mp4" />
       </video>
@@ -273,11 +267,7 @@ const RightHeroImage = memo(({ slide, isActive }) => {
           ? { x: 0, opacity: 1, scale: 1 }
           : { x: "100%", opacity: 0, scale: 0.9 }
       }
-      transition={{
-        duration: 1,
-        delay: 0.2,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
+      transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
       aria-hidden="true"
     >
       <img
@@ -293,28 +283,22 @@ const RightHeroImage = memo(({ slide, isActive }) => {
 RightHeroImage.displayName = "RightHeroImage";
 
 // ============================================
-// TYPING TITLE COMPONENT
+// TYPING TITLE
 // ============================================
 const TypingTitle = memo(({ text, slideId, isActive }) => {
   const words = useMemo(() => {
     let globalCharIndex = 0;
-
     return text.split(" ").map((word, wordIndex) => {
       const chars = word.split("").map((char, charIndex) => {
         const currentIndex = globalCharIndex;
         globalCharIndex += 1;
-
         return {
           char,
           index: currentIndex,
           key: `${slideId}-word-${wordIndex}-char-${charIndex}`,
         };
       });
-
-      return {
-        key: `${slideId}-word-${wordIndex}`,
-        chars,
-      };
+      return { key: `${slideId}-word-${wordIndex}`, chars };
     });
   }, [text, slideId]);
 
@@ -333,9 +317,7 @@ const TypingTitle = memo(({ text, slideId, isActive }) => {
           key={word.key}
           className="title-word-group"
           aria-hidden="true"
-          style={{
-            marginRight: wordIndex < words.length - 1 ? "0.22em" : 0,
-          }}
+          style={{ marginRight: wordIndex < words.length - 1 ? "0.22em" : 0 }}
         >
           {word.chars.map(({ char, index, key }) => (
             <motion.span
@@ -511,9 +493,33 @@ Particles.displayName = "Particles";
 // MAIN COMPONENT
 // ============================================
 const BannerSwiper = () => {
+  const { isLoading } = useLoading();
+
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (!swiperRef.current) return;
+
+    if (isLoading) {
+      swiperRef.current.autoplay?.stop();
+      swiperRef.current.slideToLoop(0, 0, false);
+      setActiveIndex(0);
+      setIsReady(false);
+    } else {
+      swiperRef.current.slideToLoop(0, 0, false);
+      setActiveIndex(0);
+
+      const timer = setTimeout(() => {
+        setIsReady(true);
+        swiperRef.current?.autoplay?.start();
+      }, 200);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   const handleSlideChange = useCallback(
     (swiper) => {
@@ -524,9 +530,27 @@ const BannerSwiper = () => {
     [activeIndex]
   );
 
-  const handleSwiperInit = useCallback((swiper) => {
-    swiperRef.current = swiper;
-  }, []);
+  const handleSwiperInit = useCallback(
+    (swiper) => {
+      swiperRef.current = swiper;
+      if (isLoading) {
+        swiper.autoplay?.stop();
+      }
+    },
+    [isLoading]
+  );
+
+  const autoplayConfig = useMemo(
+    () =>
+      isReady
+        ? {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }
+        : false,
+    [isReady]
+  );
 
   const schemaData = useMemo(
     () => ({
@@ -563,8 +587,7 @@ const BannerSwiper = () => {
         Nour Maison - French Middle Eastern Fusion Restaurant in Milton Keynes
       </h1>
 
-      {/* ✅ Persistent background - rendered ONCE, never changes */}
-      <PersistentBackground />
+      <PersistentBackground isLoading={isLoading} />
 
       <div className="animated-gradient" aria-hidden="true"></div>
 
@@ -581,7 +604,7 @@ const BannerSwiper = () => {
         slidesPerView={1}
         speed={1000}
         loop={true}
-        autoplay={AUTOPLAY_CONFIG}
+        autoplay={autoplayConfig}
         parallax={true}
         watchSlidesProgress={true}
         a11y={A11Y_CONFIG}
@@ -597,9 +620,9 @@ const BannerSwiper = () => {
               <div className="slide-content">
                 <AnimatePresence mode="wait">
                   <SlideContent
-                    key={`content-${slide.id}-${activeIndex}`}
+                    key={`content-${slide.id}-${activeIndex}-${isReady}`}
                     slide={slide}
-                    isActive={activeIndex === index}
+                    isActive={activeIndex === index && isReady}
                     direction={direction}
                   />
                 </AnimatePresence>
@@ -608,7 +631,7 @@ const BannerSwiper = () => {
               {slide.rightImage && (
                 <RightHeroImage
                   slide={slide}
-                  isActive={activeIndex === index}
+                  isActive={activeIndex === index && isReady}
                 />
               )}
 
@@ -616,7 +639,7 @@ const BannerSwiper = () => {
                 <motion.div
                   className="side-decoration"
                   initial={SIDE_DECO_INITIAL}
-                  animate={SIDE_DECO_ANIMATE}
+                  animate={isReady ? SIDE_DECO_ANIMATE : SIDE_DECO_INITIAL}
                   transition={SIDE_DECO_TRANSITION}
                   aria-hidden="true"
                 >

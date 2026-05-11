@@ -1,14 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState, useCallback, memo } from "react";
+import React, { useEffect, useState, useCallback, useMemo, memo } from "react";
 import { createPortal } from "react-dom";
 import toast from "react-hot-toast";
 import { IoCheckmarkCircle, IoClose, IoSend } from "react-icons/io5";
 import { Dropdown } from "rsuite";
 import { fetchData } from "../services/apiIntsance";
 
-// ✅ Memoized Toast Styles
+// ✅ Memoized Toast Styles - خارج الكومبوننت
 const toastStyles = {
   position: "bottom-right",
   style: {
@@ -25,7 +25,7 @@ const toastStyles = {
   },
 };
 
-// ✅ Animation Variants
+// ✅ Animation Variants - خارج الكومبوننت
 const modalVariants = {
   hidden: { opacity: 0, scale: 0.8, y: 50 },
   visible: {
@@ -43,7 +43,22 @@ const overlayVariants = {
   exit: { opacity: 0 },
 };
 
-// ✅ Generate data once
+// ✅ Initial form state - خارج الكومبوننت لتجنب إنشاء object جديد كل render
+const INITIAL_FORM_STATE = {
+  name: "",
+  email: "",
+  date: "",
+  time: "",
+  seats: "",
+  special_order_notes: "",
+  other_notes: "",
+  phone: "",
+};
+
+// ✅ Required fields - ثابت
+const REQUIRED_FIELDS = ["name", "email", "phone", "date", "time", "seats"];
+
+// ✅ Generate data once - خارج الكومبوننت
 const partyPersonsData = Array.from({ length: 100 }, (_, index) => ({
   label: `${index + 1} Persons`,
   value: index + 1,
@@ -60,35 +75,71 @@ const timeSlots = Array.from({ length: 52 }, (_, i) => {
   return { id: i + 1, label, value: label };
 });
 
+// ✅ Memoized Dropdown Item Component
+const DropdownOption = memo(({ item, isActive, onClick }) => (
+  <Dropdown.Item active={isActive} onClick={onClick} className="rounded-lg">
+    {item.label}
+  </Dropdown.Item>
+));
+DropdownOption.displayName = "DropdownOption";
+
+// ✅ Memoized Form Field Component
+const FormField = memo(({ label, required = true, children }) => (
+  <div className="space-y-2">
+    <label className="block text-sm font-semibold text-gray-700">
+      {label}{" "}
+      {required ? (
+        <span className="text-red-500">*</span>
+      ) : (
+        <span className="text-gray-400 font-normal">(Optional)</span>
+      )}
+    </label>
+    {children}
+  </div>
+));
+FormField.displayName = "FormField";
+
+// ✅ Memoized Spinner Component
+const Spinner = memo(() => (
+  <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+      fill="none"
+    />
+    <path
+      className="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+    />
+  </svg>
+));
+Spinner.displayName = "Spinner";
+
 const FramerModal = memo(
   ({ open, setOpen, event, onSuccess = () => null, onFail = () => {} }) => {
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      date: "",
-      time: "",
-      seats: "",
-      special_order_notes: "",
-      other_notes: "",
-      phone: "",
-    });
+    const [formData, setFormData] = useState(INITIAL_FORM_STATE);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [focusedField, setFocusedField] = useState("");
     const [mounted, setMounted] = useState(false);
 
-    // ✅ Wait for client-side mount
     useEffect(() => {
       setMounted(true);
     }, []);
 
     // ✅ Lock body scroll
     useEffect(() => {
-      if (open) {
-        document.body.style.overflow = "hidden";
-      } else {
+      if (!open) {
         document.body.style.overflow = "auto";
+        return;
       }
+
+      document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = "auto";
       };
@@ -104,21 +155,21 @@ const FramerModal = memo(
       setFormData((prev) => ({ ...prev, [name]: value }));
     }, []);
 
+    // ✅ Memoized focus/blur handlers - بدل إنشاء function جديدة كل render
+    const handleFocus = useCallback((fieldName) => {
+      setFocusedField(fieldName);
+    }, []);
+
+    const handleBlur = useCallback(() => {
+      setFocusedField("");
+    }, []);
+
     const handleSubmit = useCallback(
       async (e) => {
         e.preventDefault();
-
         if (isSubmitting) return;
 
-        const requiredFields = [
-          "name",
-          "email",
-          "phone",
-          "date",
-          "time",
-          "seats",
-        ];
-        for (let field of requiredFields) {
+        for (const field of REQUIRED_FIELDS) {
           if (!formData[field]) {
             toast.error(
               `${field.charAt(0).toUpperCase() + field.slice(1)} is required`,
@@ -136,6 +187,9 @@ const FramerModal = memo(
             inquiry_type: event?.title,
           };
 
+          // TODO: Remove console.log before production
+          // return console.log(dataset, "dataset");
+
           const data = await fetchData({
             url: "user/make_inquiry.php",
             body: dataset,
@@ -148,16 +202,7 @@ const FramerModal = memo(
 
             setTimeout(() => {
               setOpen(false);
-              setFormData({
-                name: "",
-                email: "",
-                date: "",
-                time: "",
-                seats: "",
-                special_order_notes: "",
-                other_notes: "",
-                phone: "",
-              });
+              setFormData(INITIAL_FORM_STATE);
               setIsSubmitted(false);
               onSuccess();
             }, 1500);
@@ -165,7 +210,7 @@ const FramerModal = memo(
             toast.error(data.message, toastStyles);
             onFail();
           }
-        } catch (error) {
+        } catch {
           toast.error("Something went wrong. Please try again.", toastStyles);
           onFail();
         } finally {
@@ -175,30 +220,60 @@ const FramerModal = memo(
       [formData, event?.title, isSubmitting, setOpen, onSuccess, onFail]
     );
 
-    const isFormValid =
-      formData.name &&
-      formData.email &&
-      formData.phone &&
-      formData.date &&
-      formData.time &&
-      formData.seats;
+    // ✅ Memoized validation
+    const isFormValid = useMemo(
+      () => REQUIRED_FIELDS.every((field) => Boolean(formData[field])),
+      [formData]
+    );
 
+    // ✅ Memoized input className generator
     const getInputClassName = useCallback(
-      (fieldName) => {
-        return `w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 bg-white/50 backdrop-blur-sm ${
+      (fieldName) =>
+        `w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 bg-white/50 backdrop-blur-sm ${
           focusedField === fieldName
             ? "border-softMintGreen shadow-lg shadow-softMintGreen/25 scale-[1.02]"
             : "border-gray-200 hover:border-gray-300"
-        } focus:outline-none`;
-      },
+        } focus:outline-none`,
       [focusedField]
     );
 
-    // ✅ Don't render until mounted (for Portal)
-    if (!mounted) return null;
-    if (!open) return null;
+    // ✅ Memoized dropdown handlers
+    const handleTimeSelect = useCallback(
+      (value) => {
+        handleInputChange({ target: { name: "time", value } });
+      },
+      [handleInputChange]
+    );
 
-    // ✅ Modal Content
+    const handleSeatsSelect = useCallback(
+      (value) => {
+        handleInputChange({ target: { name: "seats", value } });
+      },
+      [handleInputChange]
+    );
+
+    // ✅ Memoized button className
+    const submitButtonClassName = useMemo(
+      () =>
+        `w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center space-x-2 ${
+          isFormValid && !isSubmitting
+            ? "bg-gradient-to-r from-softMintGreen to-sageGreen hover:from-softMintGreen/90 hover:to-sageGreen/90 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+            : "bg-gray-400 cursor-not-allowed"
+        }`,
+      [isFormValid, isSubmitting]
+    );
+
+    // ✅ Memoized seats display value
+    const seatsDisplayValue = useMemo(
+      () => (formData.seats ? `${formData.seats} Persons` : ""),
+      [formData.seats]
+    );
+
+    // ✅ Today's date for min attribute
+    const todayDate = useMemo(() => new Date().toISOString().split("T")[0], []);
+
+    if (!mounted || !open) return null;
+
     const modalContent = (
       <AnimatePresence>
         {open && (
@@ -258,78 +333,63 @@ const FramerModal = memo(
                       >
                         {/* Name & Email */}
                         <div className="grid md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Full Name <span className="text-red-500">*</span>
-                            </label>
+                          <FormField label="Full Name">
                             <input
                               type="text"
                               name="name"
                               value={formData.name}
                               onChange={handleInputChange}
-                              onFocus={() => setFocusedField("name")}
-                              onBlur={() => setFocusedField("")}
+                              onFocus={() => handleFocus("name")}
+                              onBlur={handleBlur}
                               className={getInputClassName("name")}
                               placeholder="Enter your full name"
                             />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Email <span className="text-red-500">*</span>
-                            </label>
+                          </FormField>
+                          <FormField label="Email">
                             <input
                               type="email"
                               name="email"
                               value={formData.email}
                               onChange={handleInputChange}
-                              onFocus={() => setFocusedField("email")}
-                              onBlur={() => setFocusedField("")}
+                              onFocus={() => handleFocus("email")}
+                              onBlur={handleBlur}
                               className={getInputClassName("email")}
                               placeholder="your@email.com"
                             />
-                          </div>
+                          </FormField>
                         </div>
 
                         {/* Phone & Date */}
                         <div className="grid md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Phone <span className="text-red-500">*</span>
-                            </label>
+                          <FormField label="Phone">
                             <input
                               type="tel"
                               name="phone"
                               value={formData.phone}
                               onChange={handleInputChange}
-                              onFocus={() => setFocusedField("phone")}
-                              onBlur={() => setFocusedField("")}
+                              onFocus={() => handleFocus("phone")}
+                              onBlur={handleBlur}
                               className={getInputClassName("phone")}
                               placeholder="+44 7000 000000"
                             />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Event Date <span className="text-red-500">*</span>
-                            </label>
+                          </FormField>
+                          <FormField label="Event Date">
                             <input
                               type="date"
                               name="date"
-                              min={new Date().toISOString().split("T")[0]}
+                              min={todayDate}
                               value={formData.date}
                               onChange={handleInputChange}
-                              onFocus={() => setFocusedField("date")}
-                              onBlur={() => setFocusedField("")}
+                              onFocus={() => handleFocus("date")}
+                              onBlur={handleBlur}
                               className={getInputClassName("date")}
                             />
-                          </div>
+                          </FormField>
                         </div>
 
                         {/* Time & Party Size */}
                         <div className="grid md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Time <span className="text-red-500">*</span>
-                            </label>
+                          <FormField label="Time">
                             <Dropdown
                               className="!w-full"
                               renderToggle={(props, ref) => (
@@ -339,8 +399,8 @@ const FramerModal = memo(
                                     type="text"
                                     name="time"
                                     value={formData.time}
-                                    onFocus={() => setFocusedField("time")}
-                                    onBlur={() => setFocusedField("")}
+                                    onFocus={() => handleFocus("time")}
+                                    onBlur={handleBlur}
                                     className={getInputClassName("time")}
                                     placeholder="Select time"
                                   />
@@ -349,29 +409,17 @@ const FramerModal = memo(
                             >
                               <div className="flex flex-col gap-1 h-[250px] overflow-y-auto p-2">
                                 {timeSlots.map((item) => (
-                                  <Dropdown.Item
-                                    active={formData.time === item.value}
+                                  <DropdownOption
                                     key={item.id}
-                                    onClick={() =>
-                                      handleInputChange({
-                                        target: {
-                                          name: "time",
-                                          value: item.value,
-                                        },
-                                      })
-                                    }
-                                    className="rounded-lg"
-                                  >
-                                    {item.label}
-                                  </Dropdown.Item>
+                                    item={item}
+                                    isActive={formData.time === item.value}
+                                    onClick={() => handleTimeSelect(item.value)}
+                                  />
                                 ))}
                               </div>
                             </Dropdown>
-                          </div>
-                          <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-gray-700">
-                              Party Size <span className="text-red-500">*</span>
-                            </label>
+                          </FormField>
+                          <FormField label="Party Size">
                             <Dropdown
                               className="!w-full"
                               renderToggle={(props, ref) => (
@@ -380,13 +428,9 @@ const FramerModal = memo(
                                     readOnly
                                     type="text"
                                     name="seats"
-                                    value={
-                                      formData.seats
-                                        ? `${formData.seats} Persons`
-                                        : ""
-                                    }
-                                    onFocus={() => setFocusedField("seats")}
-                                    onBlur={() => setFocusedField("")}
+                                    value={seatsDisplayValue}
+                                    onFocus={() => handleFocus("seats")}
+                                    onBlur={handleBlur}
                                     className={getInputClassName("seats")}
                                     placeholder="Select party size"
                                   />
@@ -395,78 +439,43 @@ const FramerModal = memo(
                             >
                               <div className="flex flex-col gap-1 h-[250px] overflow-y-auto p-2">
                                 {partyPersonsData.map((item) => (
-                                  <Dropdown.Item
-                                    active={formData.seats === item.value}
+                                  <DropdownOption
                                     key={item.value}
+                                    item={item}
+                                    isActive={formData.seats === item.value}
                                     onClick={() =>
-                                      handleInputChange({
-                                        target: {
-                                          name: "seats",
-                                          value: item.value,
-                                        },
-                                      })
+                                      handleSeatsSelect(item.value)
                                     }
-                                    className="rounded-lg"
-                                  >
-                                    {item.label}
-                                  </Dropdown.Item>
+                                  />
                                 ))}
                               </div>
                             </Dropdown>
-                          </div>
+                          </FormField>
                         </div>
 
                         {/* Message */}
-                        <div className="space-y-2">
-                          <label className="block text-sm font-semibold text-gray-700">
-                            Special Requests{" "}
-                            <span className="text-gray-400 font-normal">
-                              (Optional)
-                            </span>
-                          </label>
+                        <FormField label="Special Requests" required={false}>
                           <textarea
                             name="other_notes"
                             rows="3"
                             value={formData.other_notes}
                             onChange={handleInputChange}
-                            onFocus={() => setFocusedField("other_notes")}
-                            onBlur={() => setFocusedField("")}
+                            onFocus={() => handleFocus("other_notes")}
+                            onBlur={handleBlur}
                             className={`${getInputClassName("other_notes")} resize-none`}
                             placeholder="Any special requests or dietary requirements..."
                           />
-                        </div>
+                        </FormField>
 
                         {/* Submit Button */}
                         <button
                           type="submit"
                           disabled={!isFormValid || isSubmitting}
-                          className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center space-x-2 ${
-                            isFormValid && !isSubmitting
-                              ? "bg-gradient-to-r from-softMintGreen to-sageGreen hover:from-softMintGreen/90 hover:to-sageGreen/90 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                              : "bg-gray-400 cursor-not-allowed"
-                          }`}
+                          className={submitButtonClassName}
                         >
                           {isSubmitting ? (
                             <>
-                              <svg
-                                className="animate-spin h-5 w-5 text-white"
-                                viewBox="0 0 24 24"
-                              >
-                                <circle
-                                  className="opacity-25"
-                                  cx="12"
-                                  cy="12"
-                                  r="10"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                  fill="none"
-                                />
-                                <path
-                                  className="opacity-75"
-                                  fill="currentColor"
-                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                                />
-                              </svg>
+                              <Spinner />
                               <span>Submitting...</span>
                             </>
                           ) : isSubmitted ? (
@@ -492,7 +501,6 @@ const FramerModal = memo(
       </AnimatePresence>
     );
 
-    // ✅ Use Portal to render at document.body level
     return createPortal(modalContent, document.body);
   }
 );

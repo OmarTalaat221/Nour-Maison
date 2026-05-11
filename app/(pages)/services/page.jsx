@@ -130,7 +130,7 @@ const page = () => {
 
       <div className="" id="services">
         <OurServices />
-        <HappyMoments />
+        {/* <HappyMoments /> */}
       </div>
     </div>
   );

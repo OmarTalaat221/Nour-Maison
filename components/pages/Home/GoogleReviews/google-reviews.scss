@@ -38,14 +38,22 @@ $white: #ffffff;
   .swiper-with-bg {
     position: relative;
     width: 100%;
-    min-height: 500px;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 768px) {
+      min-height: 500px;
+    }
+
+    @media (min-width: 1024px) {
+      min-height: 550px;
+    }
   }
 
   // ============================================
-  // BACKGROUND NOUR MAISON IMAGE - centered
+  // BACKGROUND NOUR MAISON IMAGE - ✅ واضحة أكتر
   // ============================================
   .reviews-bg-image {
     position: absolute;
@@ -67,46 +75,64 @@ $white: #ffffff;
       object-fit: contain;
     }
 
-    @media (max-width: 1024px) {
+    // ✅ موبايل - الصورة تبقى واضحة أكتر
+    @media (max-width: 640px) {
       width: 100%;
       opacity: 0.5;
+      top: 45%;
     }
 
-    @media (max-width: 768px) {
-      width: 110%;
-      opacity: 0.35;
+    @media (min-width: 641px) and (max-width: 768px) {
+      width: 100%;
+      opacity: 0.55;
     }
 
-    @media (max-width: 640px) {
-      width: 130%;
-      opacity: 0.25;
+    @media (min-width: 769px) and (max-width: 1024px) {
+      width: 98%;
+      opacity: 0.6;
     }
   }
 
   // ============================================
-  // EQUAL HEIGHT CARDS + COVERFLOW
+  // REVIEWS SWIPER - ✅ ريسبونسف محسّن
   // ============================================
   .reviews-swiper {
-    padding-bottom: 60px !important;
-    padding-top: 60px !important;
+    padding-bottom: 50px !important;
+    padding-top: 30px !important;
     position: relative;
     z-index: 2;
     width: 100%;
 
+    @media (min-width: 768px) {
+      padding-bottom: 60px !important;
+      padding-top: 50px !important;
+    }
+
+    @media (min-width: 1024px) {
+      padding-top: 60px !important;
+    }
+
     .swiper-wrapper {
-      align-items: center !important; // ✅ كاردات في النص
+      align-items: center !important;
       transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
     }
 
     // ============================================
-    // GLASS CARDS - opacity based on position
+    // SLIDES - ✅ opacity + scale محسّنين
     // ============================================
     .swiper-slide {
       height: auto !important;
       display: flex;
       transition: all 0.5s ease;
-      opacity: 0.4; // ✅ default opacity للكاردات البعيدة
-      transform: scale(0.9); // ✅ صغيرة شوية
+      opacity: 0.35;
+      transform: scale(0.88);
+
+      // ✅ موبايل - الكارد الواحد يبقى واضح وكامل
+      @media (max-width: 640px) {
+        opacity: 0.3;
+        transform: scale(0.85);
+        padding: 0 8px;
+      }
 
       > div {
         width: 100%;
@@ -115,61 +141,84 @@ $white: #ffffff;
       }
     }
 
-    // ✅ Active slide - واضح وفي المقدمة
+    // ✅ Active slide
     .swiper-slide-active {
       opacity: 1 !important;
       transform: scale(1) !important;
       z-index: 5;
+
+      @media (max-width: 640px) {
+        padding: 0 4px;
+      }
     }
 
-    // ✅ Slides جنب الـ active - شبه واضحة
+    // ✅ الكاردات الجنب
     .swiper-slide-prev,
     .swiper-slide-next {
-      opacity: 0.7;
-      transform: scale(0.95);
+      opacity: 0.65;
+      transform: scale(0.93);
       z-index: 3;
+
+      @media (max-width: 640px) {
+        opacity: 0.45;
+        transform: scale(0.88);
+      }
     }
   }
 
   // ============================================
-  // GLASS CARD STYLE
+  // GLASS CARD STYLE - ✅ موبايل فرندلي
   // ============================================
   .reviews-swiper .swiper-slide > div {
-    // ✅ Glassmorphism effect
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(204, 231, 191, 0.6) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+    @media (max-width: 640px) {
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
 
-  // Active card - أوضح
+  // Active card
   .reviews-swiper .swiper-slide-active > div {
-    background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     border: 2px solid $primary !important;
+
+    @media (max-width: 640px) {
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
   }
 
   // ============================================
-  // PAGINATION - modern pill style
+  // PAGINATION - ✅ محسّن للموبايل
   // ============================================
   .reviews-swiper .swiper-pagination {
     position: absolute !important;
-    bottom: 10px !important;
+    bottom: 8px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     display: flex !important;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     width: auto !important;
     z-index: 10;
+
+    @media (min-width: 768px) {
+      bottom: 10px !important;
+      gap: 8px;
+    }
   }
 
   .reviews-swiper .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: $pestachio;
     opacity: 1;
     border-radius: 999px;
@@ -179,6 +228,11 @@ $white: #ffffff;
     border: 2px solid transparent;
     display: inline-block;
 
+    @media (min-width: 768px) {
+      width: 10px;
+      height: 10px;
+    }
+
     &:hover {
       background: $primary;
       transform: scale(1.2);
@@ -186,8 +240,12 @@ $white: #ffffff;
 
     &.swiper-pagination-bullet-active {
       background: $primary;
-      width: 32px;
+      width: 26px;
       border-radius: 999px;
+
+      @media (min-width: 768px) {
+        width: 32px;
+      }
     }
   }
 

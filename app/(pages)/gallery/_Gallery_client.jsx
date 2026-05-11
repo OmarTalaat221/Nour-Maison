@@ -567,6 +567,27 @@ const Gallrey = () => {
         type: "drinks",
         descripiton: "",
       },
+      {
+        id: 37,
+        media_url:
+          "https://res.cloudinary.com/dbvh5i83q/image/upload/v1778498309/_JPC0513_1_wgckbe.webp",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 38,
+        media_url:
+          "https://res.cloudinary.com/dbvh5i83q/image/upload/v1778498310/_JPC0487_1_ejf3zq.webp",
+        type: "food",
+        descripiton: "",
+      },
+      {
+        id: 39,
+        media_url:
+          "https://res.cloudinary.com/dbvh5i83q/image/upload/v1778498312/_JPC0522_1_jabtct.webp",
+        type: "food",
+        descripiton: "",
+      },
       // {
       //   id: 36,
       //   media_url:
@@ -585,8 +606,9 @@ const Gallrey = () => {
 
   const bannerImages = useMemo(
     () => [
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448128/u7uslcapng0rhneh7ond_rnevo4.jpg",
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767448109/cd2oxrizxts95az7bhyy_vqrnhs.jpg",
+      "/images/gallery-1.webp",
+      "/images/gallery-2.webp",
+      "/images/gallery-3.webp",
     ],
     []
   );
