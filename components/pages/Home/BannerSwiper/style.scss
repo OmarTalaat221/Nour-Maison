@@ -157,6 +157,11 @@ $black: #0a0a0a;
   display: flex;
   align-items: center;
   padding: 0 5%;
+  padding-top: 80px; // ✅ مساحة من فوق للـ navigation على الموبايل
+
+  @media (min-width: 768px) {
+    padding-top: 0; // ✅ على الديسكتوب مفيش مشكلة
+  }
 
   @media (min-width: 1024px) {
     padding: 0 10%;
@@ -479,6 +484,11 @@ $black: #0a0a0a;
   z-index: 50 !important;
   width: auto !important;
 
+  @media (max-width: 768px) {
+    bottom: 20px !important;
+    gap: 10px;
+  }
+
   @media (min-width: 768px) {
     bottom: 40px !important;
     gap: 18px;
@@ -672,17 +682,51 @@ $black: #0a0a0a;
   }
 }
 
+@media (max-width: 768px) {
+  .slide-content {
+    align-items: center; // ✅ centered vertically
+    padding-top: 100px; // ✅ مساحة كبيرة من فوق للـ navigation
+  }
+}
+
 @media (max-width: 640px) {
+  .slide-content {
+    padding-top: 90px; // ✅ مساحة مناسبة للموبايل
+  }
+
   .slide-title.typing-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 14px;
   }
 
   .slide-subtitle {
     font-size: 16px;
+    margin-bottom: 8px;
   }
 
   .slide-description {
     font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .cta-button {
+    padding: 8px 24px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-content {
+    padding-top: 80px;
+  }
+
+  .slide-title.typing-title {
+    font-size: 26px;
+  }
+
+  .slide-description {
+    font-size: 13px;
   }
 }
 

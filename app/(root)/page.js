@@ -1990,10 +1990,10 @@ export default function Home() {
 
       {/* <Celebration /> */}
       <header className="">
-        <div className=" md:hidden">
+        {/* <div className=" md:hidden">
           <VideoBanner />
-        </div>
-        <div className="hidden md:block">
+        </div> */}
+        <div className="block">
           <BannerSwiper />
         </div>
       </header>

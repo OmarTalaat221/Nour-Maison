@@ -66,7 +66,7 @@ const Preloader = () => {
 
       {/* ✅ Preloader */}
       <div
-        className="fixed inset-0 z-[1000000] flex items-center justify-center overflow-hidden bg-bodyColor"
+        className="fixed inset-0 z-[1000000000000000000] flex items-center justify-center overflow-hidden bg-bodyColor"
         role="progressbar"
         aria-busy={isLoading}
         aria-live="polite"

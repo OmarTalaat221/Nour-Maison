@@ -25,13 +25,13 @@ import Link from "next/link";
 import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
 import { useLoading } from "../../../../app/context/LoadingContext";
-// import { useLoading } from "../../../../";
 
 // ============================================
 // CONSTANTS
 // ============================================
 const SHARED_BACKGROUND = {
   src: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+  mobileSrc: "/images/IMG_9871.webm", // ✅ فيديو الموبايل
   poster:
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
   alt: "Nour Maison Restaurant Background",
@@ -159,7 +159,22 @@ const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
 const PersistentBackground = memo(({ isLoading }) => {
   const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
   const videoRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // ✅ Detect mobile screen
+  useEffect(() => {
+    setMounted(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // ✅ التحكم في تشغيل الفيديو حسب حالة الـ Loading
   useEffect(() => {
     if (!videoRef.current || mediaType !== "video") return;
 
@@ -177,11 +192,29 @@ const PersistentBackground = memo(({ isLoading }) => {
     }
   }, [isLoading, mediaType]);
 
+  // ✅ إعادة تحميل الفيديو لما المصدر يتغير (mobile/desktop)
+  useEffect(() => {
+    if (videoRef.current && mounted) {
+      videoRef.current.load();
+      if (!isLoading) {
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  }, [isMobile, mounted, isLoading]);
+
+  // ✅ اختيار المصدر المناسب
+  const videoSource = isMobile
+    ? SHARED_BACKGROUND.mobileSrc
+    : SHARED_BACKGROUND.src;
+
+  const videoType = isMobile ? "video/webm" : "video/mp4";
+
   return (
     <div className="persistent-background" aria-hidden="true">
       {mediaType === "video" ? (
         <video
           ref={videoRef}
+          key={videoSource} // ✅ مهم عشان الفيديو يعيد تحميل المصدر
           className="bg-media"
           loop
           muted
@@ -192,7 +225,7 @@ const PersistentBackground = memo(({ isLoading }) => {
           disablePictureInPicture
           disableRemotePlayback
         >
-          <source src={SHARED_BACKGROUND.src} type="video/mp4" />
+          <source src={videoSource} type={videoType} />
         </video>
       ) : (
         <img
