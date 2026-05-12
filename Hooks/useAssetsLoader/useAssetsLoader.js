@@ -107,6 +107,7 @@ export const useAssetsLoader = () => {
     const loadAllAssets = () => {
       const images = Array.from(document.images);
       const videos = Array.from(document.querySelectorAll("video"));
+
       const elementsWithBg = Array.from(document.querySelectorAll("*")).filter(
         (el) => {
           const bg = window.getComputedStyle(el).backgroundImage;
@@ -121,6 +122,10 @@ export const useAssetsLoader = () => {
           return match ? match[1] : null;
         })
         .filter(Boolean);
+
+      // console.log("images", images);
+      // console.log("videos", videos);
+      // console.log("bgImages", bgImages);
 
       totalAssets = images.length + videos.length + bgImages.length;
 
