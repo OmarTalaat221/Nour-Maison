@@ -297,20 +297,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={structuredData}
         />
 
-        <link
-          rel="preload"
-          href="/images/nour-maison.gif"
-          as="image"
-          fetchPriority="high"
-        />
 
-        {/* ✅ DNS prefetch للـ Cloudinary */}
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link
-          rel="preconnect"
-          href="https://res.cloudinary.com"
-          crossOrigin="anonymous"
-        />
+
       </head>
 
       <body
@@ -342,7 +330,7 @@ export default function RootLayout({ children }) {
         <NotFoundProvider>
           <LoadingProvider>
             <HeaderProvider>
-              <Preloader />
+              
               <TopHeader />
               <StickyHeaderComponent />
               <PageTransition>{children}</PageTransition>
