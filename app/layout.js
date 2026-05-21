@@ -117,9 +117,9 @@ export const metadata = {
   title: "NOUR MAISON | Elegant Restaurant & Café - Fine Dining",
   // description:
   // "Discover the latest fashion trends and stylish collections at NOUR MAISON. Shop now for the best deals!",
-  // `Discover Nour Maison: Where French sophistication meets Middle Eastern flavors. Join us for artisan brunch, Mediterranean specialties, and a warm, family-friendly atmosphere in Milton Keynes.`,
+  // `Discover Nour Maison: Where French sophistication meets Middle Eastern flavors. Join us for artisan brunch, Mediterranean specialties, and a warm, family-friendly atmosphere in Milton Keynes.`,
   description:
-    "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
+    "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
   alternates: {
     canonical: "https://www.nourmaison.co.uk",
   },
@@ -139,7 +139,7 @@ export const metadata = {
   openGraph: {
     title: "NOUR MAISON | Elegant Restaurant & Café - Fine Dining",
     description:
-      "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
+      "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
 
     url: "https://www.nourmaison.co.uk",
     siteName: "Nour Maison",
@@ -160,7 +160,7 @@ export const metadata = {
     creator: "@CampCoding", // Developer/agency handle (optional)
     title: "NOUR MAISON | Elegant Restaurant & Café - Fine Dining",
     description:
-      "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
+      "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
 
     images: [
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
@@ -276,6 +276,50 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* ✅ Preconnect لـ Cloudinary - يفتح الاتصال بدري */}
+        <link
+          rel="preconnect"
+          href="https://res.cloudinary.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
+        {/* ✅ Preload الـ Poster Image (Desktop) - بيظهر فوراً */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+          fetchPriority="high"
+          media="(min-width: 769px)"
+        />
+
+        {/* ✅ Preload الـ Poster Image (Mobile) */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_768/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+          fetchPriority="high"
+          media="(max-width: 768px)"
+        />
+
+        {/* ✅ Preload فيديو Desktop */}
+        <link
+          rel="preload"
+          as="video"
+          href="https://res.cloudinary.com/dhebgz7qh/video/upload/q_auto,f_auto,vc_auto/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4"
+          type="video/mp4"
+          media="(min-width: 769px)"
+        />
+
+        {/* ✅ Preload فيديو Mobile */}
+        <link
+          rel="preload"
+          as="video"
+          href="/images/IMG_9871.webm"
+          type="video/webm"
+          media="(max-width: 768px)"
+        />
+
         {/* GTM & Ahrefs Scripts */}
         <script
           src="https://analytics.ahrefs.com/analytics.js"

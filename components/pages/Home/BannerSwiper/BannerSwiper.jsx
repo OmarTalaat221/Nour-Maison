@@ -24,16 +24,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
-import { useLoading } from "../../../../app/context/LoadingContext";
 
 // ============================================
 // CONSTANTS
 // ============================================
 const SHARED_BACKGROUND = {
-  src: "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
-  mobileSrc: "/images/IMG_9871.webm", // ✅ فيديو الموبايل
+  src: "https://res.cloudinary.com/dhebgz7qh/video/upload/q_auto,f_auto,vc_auto/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+  mobileSrc: "/images/IMG_9871.webm",
   poster:
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+  posterMobile:
+    "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_768/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
   alt: "Nour Maison Restaurant Background",
 };
 
@@ -153,92 +154,93 @@ const A11Y_CONFIG = {
 };
 const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
 
+const AUTOPLAY_CONFIG = {
+  delay: 5000,
+  disableOnInteraction: false,
+  pauseOnMouseEnter: false,
+};
+
 // ============================================
-// PERSISTENT BACKGROUND - بيتحكم في الفيديو
+// PERSISTENT BACKGROUND - بدون LoadingContext
 // ============================================
-const PersistentBackground = memo(({ isLoading }) => {
+const PersistentBackground = memo(() => {
   const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
   const videoRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(null);
+  const [videoReady, setVideoReady] = useState(false);
 
-  // ✅ Detect mobile screen
+  // ✅ Detect mobile
   useEffect(() => {
-    setMounted(true);
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const checkMobile = () => window.innerWidth <= 768;
+    setIsMobile(checkMobile());
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const handleResize = () => setIsMobile(checkMobile());
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ التحكم في تشغيل الفيديو حسب حالة الـ Loading
-  useEffect(() => {
-    if (!videoRef.current || mediaType !== "video") return;
+  // ✅ شغل الفيديو لما يكون جاهز
+  const handleCanPlay = useCallback(() => {
+    if (!videoRef.current) return;
 
-    if (isLoading) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    } else {
-      videoRef.current.currentTime = 0;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
+    const playPromise = videoRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setVideoReady(true);
+        })
+        .catch((err) => {
           console.log("Video autoplay prevented:", err);
+          setVideoReady(true); // ✅ نخلي الـ poster يفضل ظاهر
         });
-      }
     }
-  }, [isLoading, mediaType]);
+  }, []);
 
-  // ✅ إعادة تحميل الفيديو لما المصدر يتغير (mobile/desktop)
-  useEffect(() => {
-    if (videoRef.current && mounted) {
-      videoRef.current.load();
-      if (!isLoading) {
-        videoRef.current.play().catch(() => {});
-      }
-    }
-  }, [isMobile, mounted, isLoading]);
-
-  // ✅ اختيار المصدر المناسب
-  const videoSource = isMobile
-    ? SHARED_BACKGROUND.mobileSrc
-    : SHARED_BACKGROUND.src;
-
-  const videoType = isMobile ? "video/webm" : "video/mp4";
+  // ✅ المصادر المناسبة
+  const videoSource =
+    isMobile === true ? SHARED_BACKGROUND.mobileSrc : SHARED_BACKGROUND.src;
+  const videoType = isMobile === true ? "video/webm" : "video/mp4";
+  const posterSource =
+    isMobile === true
+      ? SHARED_BACKGROUND.posterMobile
+      : SHARED_BACKGROUND.poster;
 
   return (
     <div className="persistent-background" aria-hidden="true">
-      {mediaType === "video" ? (
+      {/* ✅ Poster - بيظهر فوراً قبل الفيديو */}
+      <img
+        src={posterSource}
+        alt={SHARED_BACKGROUND.alt}
+        className={`bg-media bg-poster ${videoReady ? "fade-out" : ""}`}
+        loading="eager"
+        fetchPriority="high"
+        decoding="sync"
+        width="1920"
+        height="1080"
+      />
+
+      {/* ✅ الفيديو - بيتحمل في الخلفية */}
+      {mediaType === "video" && isMobile !== null && (
         <video
           ref={videoRef}
-          key={videoSource} // ✅ مهم عشان الفيديو يعيد تحميل المصدر
-          className="bg-media"
+          key={videoSource}
+          className={`bg-media bg-video ${videoReady ? "fade-in" : ""}`}
           loop
           muted
           playsInline
           preload="auto"
-          poster={SHARED_BACKGROUND.poster}
+          autoPlay
+          poster={posterSource}
           aria-label={SHARED_BACKGROUND.alt}
           disablePictureInPicture
           disableRemotePlayback
+          onCanPlay={handleCanPlay}
+          onLoadedData={handleCanPlay}
         >
           <source src={videoSource} type={videoType} />
         </video>
-      ) : (
-        <img
-          src={SHARED_BACKGROUND.src}
-          alt={SHARED_BACKGROUND.alt}
-          className="bg-media"
-          loading="eager"
-          fetchPriority="high"
-          decoding="sync"
-          width="1920"
-          height="1080"
-        />
       )}
+
       <div className="bg-overlay" aria-hidden="true"></div>
     </div>
   );
@@ -251,7 +253,7 @@ PersistentBackground.displayName = "PersistentBackground";
 const CircleMedia = memo(({ slide }) => {
   const mediaType = useMemo(
     () => (slide.circleImage ? detectMediaType(slide.circleImage) : null),
-    [slide.circleImage]
+    [slide.circleImage],
   );
 
   if (!slide.circleImage) return null;
@@ -394,7 +396,7 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
         },
       },
     }),
-    [typingEndTime]
+    [typingEndTime],
   );
 
   const descriptionVariants = useMemo(
@@ -410,7 +412,7 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
         },
       },
     }),
-    [typingEndTime]
+    [typingEndTime],
   );
 
   const buttonVariants = useMemo(
@@ -432,7 +434,7 @@ const SlideContent = memo(({ slide, isActive, direction }) => {
         transition: { duration: 0.3 },
       },
     }),
-    [typingEndTime]
+    [typingEndTime],
   );
 
   if (!isActive) return null;
@@ -511,7 +513,7 @@ const Particles = memo(() => {
           aria-hidden="true"
         />
       )),
-    []
+    [],
   );
 
   return (
@@ -526,33 +528,8 @@ Particles.displayName = "Particles";
 // MAIN COMPONENT
 // ============================================
 const BannerSwiper = () => {
-  const { isLoading } = useLoading();
-
-  const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    if (!swiperRef.current) return;
-
-    if (isLoading) {
-      swiperRef.current.autoplay?.stop();
-      swiperRef.current.slideToLoop(0, 0, false);
-      setActiveIndex(0);
-      setIsReady(false);
-    } else {
-      swiperRef.current.slideToLoop(0, 0, false);
-      setActiveIndex(0);
-
-      const timer = setTimeout(() => {
-        setIsReady(true);
-        swiperRef.current?.autoplay?.start();
-      }, 200);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
 
   const handleSlideChange = useCallback(
     (swiper) => {
@@ -560,29 +537,7 @@ const BannerSwiper = () => {
       setDirection(newIndex > activeIndex ? 1 : -1);
       setActiveIndex(newIndex);
     },
-    [activeIndex]
-  );
-
-  const handleSwiperInit = useCallback(
-    (swiper) => {
-      swiperRef.current = swiper;
-      if (isLoading) {
-        swiper.autoplay?.stop();
-      }
-    },
-    [isLoading]
-  );
-
-  const autoplayConfig = useMemo(
-    () =>
-      isReady
-        ? {
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-          }
-        : false,
-    [isReady]
+    [activeIndex],
   );
 
   const schemaData = useMemo(
@@ -607,7 +562,7 @@ const BannerSwiper = () => {
       },
       acceptsReservations: true,
     }),
-    []
+    [],
   );
 
   return (
@@ -620,7 +575,7 @@ const BannerSwiper = () => {
         Nour Maison - French Middle Eastern Fusion Restaurant in Milton Keynes
       </h1>
 
-      <PersistentBackground isLoading={isLoading} />
+      <PersistentBackground />
 
       <div className="animated-gradient" aria-hidden="true"></div>
 
@@ -631,13 +586,12 @@ const BannerSwiper = () => {
         effect="fade"
         fadeEffect={FADE_EFFECT_CONFIG}
         navigation={true}
-        onSwiper={handleSwiperInit}
         onSlideChange={handleSlideChange}
         pagination={PAGINATION_CONFIG}
         slidesPerView={1}
         speed={1000}
         loop={true}
-        autoplay={autoplayConfig}
+        autoplay={AUTOPLAY_CONFIG}
         parallax={true}
         watchSlidesProgress={true}
         a11y={A11Y_CONFIG}
@@ -653,9 +607,9 @@ const BannerSwiper = () => {
               <div className="slide-content">
                 <AnimatePresence mode="wait">
                   <SlideContent
-                    key={`content-${slide.id}-${activeIndex}-${isReady}`}
+                    key={`content-${slide.id}-${activeIndex}`}
                     slide={slide}
-                    isActive={activeIndex === index && isReady}
+                    isActive={activeIndex === index}
                     direction={direction}
                   />
                 </AnimatePresence>
@@ -664,7 +618,7 @@ const BannerSwiper = () => {
               {slide.rightImage && (
                 <RightHeroImage
                   slide={slide}
-                  isActive={activeIndex === index && isReady}
+                  isActive={activeIndex === index}
                 />
               )}
 
@@ -672,7 +626,7 @@ const BannerSwiper = () => {
                 <motion.div
                   className="side-decoration"
                   initial={SIDE_DECO_INITIAL}
-                  animate={isReady ? SIDE_DECO_ANIMATE : SIDE_DECO_INITIAL}
+                  animate={SIDE_DECO_ANIMATE}
                   transition={SIDE_DECO_TRANSITION}
                   aria-hidden="true"
                 >
