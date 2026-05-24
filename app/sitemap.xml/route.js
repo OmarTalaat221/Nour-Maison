@@ -40,6 +40,7 @@ export async function GET() {
       "/afternoon-tea-menu",
       "/all-blogs",
       "/afternoon-tea-booking",
+      "/eid-al-adha-dinner-menu-milton-keynes"
     ];
 
     const now = escapeXml(new Date().toISOString());
