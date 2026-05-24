@@ -2062,7 +2062,7 @@ export default function Home() {
     }
     cta="Roast Menu"
     ctaLink="/roast-menu"
-    src="/videos/nour-reverse-720p.mp4"
+    src="/images/nour-reverse-720p.mp4"
     poster="/images/nour-reverse-poster.webp"
   />
 </LazyHomeSection>
