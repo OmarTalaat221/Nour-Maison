@@ -119,13 +119,14 @@ const NourKidsMenuHero = ({
                 <video
                   ref={videoRef}
                   className="block w-full  aspect-[17/9] object-cover"
-                  src={shouldLoadVideo ? src : undefined}
                   poster={poster}
                   playsInline
                   preload={shouldLoadVideo ? "metadata" : "none"}
                   loop
                   muted
-                />
+                >
+                  {shouldLoadVideo && <source src={src} type="video/mp4" />}
+                </video>
               </Link>
             </div>
           </div>

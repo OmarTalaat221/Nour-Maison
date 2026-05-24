@@ -2033,51 +2033,51 @@ export default function Home() {
       </header>
 
       <main className="bg-s-700 overflow-hidden">
-        <LazyHomeSection minHeight={780}>
-          <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
-            <AboutUsSection />
-          </section>
-        </LazyHomeSection>
+   <LazyHomeSection minHeight={780} mobileRootMargin="120px 0px">
+  <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
+    <AboutUsSection />
+  </section>
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={720}>
-          <HomaRoastMenu />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={720} mobileRootMargin="120px 0px">
+  <HomaRoastMenu />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={700}>
-          <InstagramFeeds />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={700} mobileRootMargin="120px 0px">
+  <InstagramFeeds />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={650}>
-          <BookTableSection />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={650} mobileRootMargin="120px 0px">
+  <BookTableSection />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={650}>
-          <NourKidsMenuHero
-            title="Roasted to Perfection. Crafted to Impress"
-            subTitle={
-              <>
-                Discover our signature roast lineup , bold flavors, slow{" "}
-                <span className="font-lato">-</span> cooked artistry.
-              </>
-            }
-            cta="Roast Menu"
-            ctaLink="/roast-menu"
-            src="/videos/nour-reverse-720p.mp4"
-            poster="/images/nour-reverse-poster.webp"
-          />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={650} mobileRootMargin="120px 0px">
+  <NourKidsMenuHero
+    title="Roasted to Perfection. Crafted to Impress"
+    subTitle={
+      <>
+        Discover our signature roast lineup , bold flavors, slow{" "}
+        <span className="font-lato">-</span> cooked artistry.
+      </>
+    }
+    cta="Roast Menu"
+    ctaLink="/roast-menu"
+    src="/videos/nour-reverse-720p.mp4"
+    poster="/images/nour-reverse-poster.webp"
+  />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={780}>
-          <AfternoonTea />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={780} mobileRootMargin="120px 0px">
+  <AfternoonTea />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={700}>
-          <GoogleReviews />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={700} mobileRootMargin="120px 0px">
+  <GoogleReviews />
+</LazyHomeSection>
 
-        <LazyHomeSection minHeight={700}>
-          <ChefsSection2 />
-        </LazyHomeSection>
+<LazyHomeSection minHeight={700} mobileRootMargin="120px 0px">
+  <ChefsSection2 />
+</LazyHomeSection>
       </main>
     </div>
   );

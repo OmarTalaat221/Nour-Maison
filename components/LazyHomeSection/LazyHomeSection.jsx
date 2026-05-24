@@ -5,7 +5,8 @@ import { memo, useEffect, useRef, useState } from "react";
 const LazyHomeSection = ({
   children,
   minHeight = 650,
-  rootMargin = "700px 0px",
+  desktopRootMargin = "700px 0px",
+  mobileRootMargin = "180px 0px",
   className = "",
 }) => {
   const ref = useRef(null);
@@ -15,6 +16,9 @@ const LazyHomeSection = ({
     const element = ref.current;
 
     if (!element || shouldRender) return;
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const rootMargin = isMobile ? mobileRootMargin : desktopRootMargin;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -32,7 +36,7 @@ const LazyHomeSection = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [shouldRender, rootMargin]);
+  }, [shouldRender, desktopRootMargin, mobileRootMargin]);
 
   return (
     <section
