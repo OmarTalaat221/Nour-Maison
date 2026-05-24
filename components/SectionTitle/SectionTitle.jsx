@@ -1,23 +1,27 @@
-import React from "react";
+import React, { memo } from "react";
 import AnimTitle from "../../utils/AnimTitle/AnimTitle";
 import cx from "classnames";
 
 const SectionTitle = ({ children, className, noLeaves }) => {
-  return noLeaves ? (
-    <div
-      className={cx(
-        "font-tangerine text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-softMintGreen text-center",
-        className
-      )}
-    >
-      {children}
-    </div>
-  ) : (
-    <AnimTitle data-aos="fade-down" data-aos-delay="300" className={"px-2"}>
+  if (noLeaves) {
+    return (
+      <div
+        className={cx(
+          "font-tangerine text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-softMintGreen text-center",
+          className,
+        )}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <AnimTitle data-aos="fade-down" data-aos-delay="300" className="px-2">
       <div
         className={cx(
           "font-tangerine text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-softMintGreen text-center",
-          className
+          className,
         )}
       >
         {children}
@@ -26,4 +30,4 @@ const SectionTitle = ({ children, className, noLeaves }) => {
   );
 };
 
-export default SectionTitle;
+export default memo(SectionTitle);

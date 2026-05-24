@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../../../features/contactSlice";
 import toast from "react-hot-toast";
 import { Loader } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import PlaneOverlaySuccess from "./../../../PaperPlaneSuccess/PaperPlaneSuccess";
 
 const ContactContent = () => {
@@ -18,7 +20,7 @@ const ContactContent = () => {
   const handleMapClick = () => {
     window.open(
       "https://www.google.com/maps/dir/?api=1&destination=149+Grafton+Gate,+Milton+Keynes+MK9+1AE",
-      "_blank"
+      "_blank",
     );
   };
 

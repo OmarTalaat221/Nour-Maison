@@ -1,16 +1,18 @@
+import React, { memo } from "react";
+import InstagramFeedCard from "./instagram_feed_card";
 
-
-import React from 'react'
-import Instagram_feed_card from './instagram_feed_card';
-
-const InstagramFeedsClient = ({feeds}) => {
+const InstagramFeedsClient = ({ feeds }) => {
   return (
     <div className="flex gap-3 md:gap-5 flex-wrap justify-center">
-    {feeds.map((item, index) => {
-      return <Instagram_feed_card key={index} data={item} index={index} />;
-    })}
-  </div>
-  )
-}
+      {feeds.map((item, index) => (
+        <InstagramFeedCard
+          key={`${item.link}-${index}`}
+          data={item}
+          index={index}
+        />
+      ))}
+    </div>
+  );
+};
 
-export default InstagramFeedsClient
+export default memo(InstagramFeedsClient);

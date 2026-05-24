@@ -4,6 +4,8 @@ import React from "react";
 import "./style.scss";
 import cx from "classnames";
 import { Dropdown } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import AnimButton from "../../../utils/AnimButton/AnimButton";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";

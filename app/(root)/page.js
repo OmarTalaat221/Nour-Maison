@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import BannerSwiper from "../../components/pages/Home/BannerSwiper/BannerSwiper";
+import LazyHomeSection from "../../components/LazyHomeSection/LazyHomeSection";
 
 const InstagramFeeds = dynamic(
   () => import("../../components/pages/Home/InstagramFeeds/InstagramFeeds"),
@@ -2025,44 +2026,58 @@ export const metadata = {
 };
 
 export default function Home() {
-  return (
+ return (
     <div className="overflow-hidden">
       <header>
-        <div className="block">
-          <BannerSwiper />
-        </div>
+        <BannerSwiper />
       </header>
 
       <main className="bg-s-700 overflow-hidden">
-        <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
-          <AboutUsSection />
-        </section>
+        <LazyHomeSection minHeight={780}>
+          <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
+            <AboutUsSection />
+          </section>
+        </LazyHomeSection>
 
-        <HomaRoastMenu />
+        <LazyHomeSection minHeight={720}>
+          <HomaRoastMenu />
+        </LazyHomeSection>
 
-        <InstagramFeeds />
+        <LazyHomeSection minHeight={700}>
+          <InstagramFeeds />
+        </LazyHomeSection>
 
-        <BookTableSection />
+        <LazyHomeSection minHeight={650}>
+          <BookTableSection />
+        </LazyHomeSection>
 
-        <NourKidsMenuHero
-          title="Roasted to Perfection. Crafted to Impress"
-          subTitle={
-            <>
-              Discover our signature roast lineup , bold flavors, slow{" "}
-              <span className="font-lato">-</span> cooked artistry.
-            </>
-          }
-          cta="Roast Menu"
-          ctaLink="/roast-menu"
-          src="/images/nour reverse.mp4"
-          poster="/images/download (7).jfif"
-        />
+        <LazyHomeSection minHeight={650}>
+          <NourKidsMenuHero
+            title="Roasted to Perfection. Crafted to Impress"
+            subTitle={
+              <>
+                Discover our signature roast lineup , bold flavors, slow{" "}
+                <span className="font-lato">-</span> cooked artistry.
+              </>
+            }
+            cta="Roast Menu"
+            ctaLink="/roast-menu"
+            src="/videos/nour-reverse-720p.mp4"
+            poster="/images/nour-reverse-poster.webp"
+          />
+        </LazyHomeSection>
 
-        <AfternoonTea />
+        <LazyHomeSection minHeight={780}>
+          <AfternoonTea />
+        </LazyHomeSection>
 
-        <GoogleReviews />
+        <LazyHomeSection minHeight={700}>
+          <GoogleReviews />
+        </LazyHomeSection>
 
-        <ChefsSection2 />
+        <LazyHomeSection minHeight={700}>
+          <ChefsSection2 />
+        </LazyHomeSection>
       </main>
     </div>
   );

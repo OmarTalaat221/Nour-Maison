@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import cx from "classnames";
-import SimpleParallax from "simple-parallax-js";
 
 const BranchesImage = ({
   variant,
@@ -27,13 +26,16 @@ const BranchesImage = ({
   const imageElement = (
     <img
       loading="lazy"
+      decoding="async"
       draggable="false"
       width={width || 500}
-      src={image || "/images/pngegg.png"}
-      alt="Decorative Branch"
+      height={width || 500}
+      src={image || "/images/pngegg.webp"}
+      alt=""
+      aria-hidden="true"
       className={cx(
         "select-none w-full sm:w-[250px] md:w-[300px] lg:w-[400px]",
-        imgClassName
+        imgClassName,
       )}
     />
   );
@@ -49,4 +51,4 @@ const BranchesImage = ({
   );
 };
 
-export default BranchesImage;
+export default memo(BranchesImage);

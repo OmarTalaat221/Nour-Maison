@@ -19,7 +19,6 @@ import Footer from "./../components/shared/Footer/Footer";
 import TopHeader from "../components/shared/TopHeader/TopHeader";
 import AOSAnimation from "./../components/AOS";
 import PageTransition from "../components/PageTransition";
-import "rsuite/dist/rsuite.min.css";
 import StickyHeaderComponent from "../components/shared/StickyHeader/StickyHeaderComponent";
 import { menu_1 } from "./(pages)/data/menuData";
 import { NotFoundProvider } from "./context/NoutFoundContext";

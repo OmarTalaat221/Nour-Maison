@@ -1,31 +1,40 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Counter from './Counter'
+"use client";
 
-export default function CounterUp({ end }) {
-    const [inViewport, setInViewport] = useState(false)
+import { memo, useEffect, useRef, useState } from "react";
+import Counter from "./Counter";
 
-    const handleScroll = () => {
-        const elements = document.getElementsByClassName('count-text')
-        if (elements.length > 0) {
-            const element = elements[0]
-            const rect = element.getBoundingClientRect()
-            const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight
-            if (isInViewport && !inViewport) {
-                setInViewport(true)
-            }
+const CounterUp = ({ end }) => {
+  const ref = useRef(null);
+  const [inViewport, setInViewport] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element || inViewport) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInViewport(true);
+          observer.disconnect();
         }
-    }
+      },
+      {
+        threshold: 0.35,
+        rootMargin: "0px 0px -8% 0px",
+      }
+    );
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
-    return (
-        <>
-            <span className="count-text">{inViewport && <Counter end={end} duration={20} />}</span>
-        </>
-    )
-}
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [inViewport]);
+
+  return (
+    <span ref={ref} className="count-text">
+      {inViewport ? <Counter end={end} duration={20} /> : "0"}
+    </span>
+  );
+};
+
+export default memo(CounterUp);

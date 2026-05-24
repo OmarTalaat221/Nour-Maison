@@ -3,6 +3,8 @@
 import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Col, Grid, Loader, Row, Toggle } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
 import Tilt from "react-parallax-tilt";
@@ -120,7 +122,7 @@ const BookingForm = ({ bg }) => {
         `${conifgs.BASE_URL}/user/check_booking_date_time.php`,
         {
           date: selectedDate,
-        }
+        },
       );
 
       if (response?.data?.status === "success" && response?.data?.message) {
@@ -140,7 +142,7 @@ const BookingForm = ({ bg }) => {
     if (!lockedTimesData || !lockedTimesData.times_locked) return false;
 
     const lockedTimes = lockedTimesData.times_locked.map((t) =>
-      convertTo12Hour(t.time)
+      convertTo12Hour(t.time),
     );
 
     return lockedTimes.includes(timeValue);
@@ -257,7 +259,7 @@ const BookingForm = ({ bg }) => {
   const handleShowMap = () => {
     window.open(
       "https://www.google.com/maps/dir/?api=1&destination=149+Grafton+Gate,+Milton+Keynes+MK9+1AE",
-      "_blank"
+      "_blank",
     );
   };
 

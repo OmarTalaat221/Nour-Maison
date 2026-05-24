@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
 import { Toggle } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import { motion } from "framer-motion";
 import PlaneOverlaySuccess from "../../../components/PaperPlaneSuccess/PaperPlaneSuccess";
@@ -152,7 +154,7 @@ const Form = () => {
             headers: {
               "Content-Type": "text/plain",
             },
-          }
+          },
         );
 
         if (data?.status === "error") {
@@ -160,7 +162,7 @@ const Form = () => {
         }
 
         setSuccessText(
-          "Your request has been received! Your 10% welcome discount will be sent to your email shortly. We can’t wait to welcome you to Nour Maison and make your next visit truly special."
+          "Your request has been received! Your 10% welcome discount will be sent to your email shortly. We can’t wait to welcome you to Nour Maison and make your next visit truly special.",
         );
         setShowOverlay(true);
 
@@ -193,7 +195,7 @@ const Form = () => {
         submitRef.current = false;
       }
     },
-    [formData]
+    [formData],
   );
 
   return (

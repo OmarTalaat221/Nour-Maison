@@ -6,6 +6,8 @@ import { createPortal } from "react-dom";
 import toast from "react-hot-toast";
 import { IoCheckmarkCircle, IoClose, IoSend } from "react-icons/io5";
 import { Dropdown } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import { fetchData } from "../services/apiIntsance";
 
 // ✅ Memoized Toast Styles - خارج الكومبوننت
@@ -173,7 +175,7 @@ const FramerModal = memo(
           if (!formData[field]) {
             toast.error(
               `${field.charAt(0).toUpperCase() + field.slice(1)} is required`,
-              toastStyles
+              toastStyles,
             );
             return;
           }
@@ -217,13 +219,13 @@ const FramerModal = memo(
           setIsSubmitting(false);
         }
       },
-      [formData, event?.title, isSubmitting, setOpen, onSuccess, onFail]
+      [formData, event?.title, isSubmitting, setOpen, onSuccess, onFail],
     );
 
     // ✅ Memoized validation
     const isFormValid = useMemo(
       () => REQUIRED_FIELDS.every((field) => Boolean(formData[field])),
-      [formData]
+      [formData],
     );
 
     // ✅ Memoized input className generator
@@ -234,7 +236,7 @@ const FramerModal = memo(
             ? "border-softMintGreen shadow-lg shadow-softMintGreen/25 scale-[1.02]"
             : "border-gray-200 hover:border-gray-300"
         } focus:outline-none`,
-      [focusedField]
+      [focusedField],
     );
 
     // ✅ Memoized dropdown handlers
@@ -242,14 +244,14 @@ const FramerModal = memo(
       (value) => {
         handleInputChange({ target: { name: "time", value } });
       },
-      [handleInputChange]
+      [handleInputChange],
     );
 
     const handleSeatsSelect = useCallback(
       (value) => {
         handleInputChange({ target: { name: "seats", value } });
       },
-      [handleInputChange]
+      [handleInputChange],
     );
 
     // ✅ Memoized button className
@@ -260,13 +262,13 @@ const FramerModal = memo(
             ? "bg-gradient-to-r from-softMintGreen to-sageGreen hover:from-softMintGreen/90 hover:to-sageGreen/90 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             : "bg-gray-400 cursor-not-allowed"
         }`,
-      [isFormValid, isSubmitting]
+      [isFormValid, isSubmitting],
     );
 
     // ✅ Memoized seats display value
     const seatsDisplayValue = useMemo(
       () => (formData.seats ? `${formData.seats} Persons` : ""),
-      [formData.seats]
+      [formData.seats],
     );
 
     // ✅ Today's date for min attribute
@@ -502,7 +504,7 @@ const FramerModal = memo(
     );
 
     return createPortal(modalContent, document.body);
-  }
+  },
 );
 
 FramerModal.displayName = "FramerModal";

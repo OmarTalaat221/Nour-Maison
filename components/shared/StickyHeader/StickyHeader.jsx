@@ -5,6 +5,8 @@ import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import cx from "classnames";
 import MenuButton from "../../../utils/MenuButton/MenuButton";
 import { Dropdown } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+
 import { usePathname, useRouter } from "next/navigation";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
 import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
