@@ -78,6 +78,19 @@ const SIDE_DECO_TRANSITION = { duration: 1, delay: 0.5 };
 
 const SLIDES_DATA = [
   {
+    id: "slide-eid-al-adha",
+    rightImage: "/images/eid-banner.webp",
+    alt: "Eid Al-Adha Dinner Menu at Nour Maison Milton Keynes",
+    title: "Celebrate Eid Al-Adha",
+    mainTitle: "Eid Dinner Menu",
+    description:
+      "A premium halal à la carte Eid experience in Milton Keynes — where Middle Eastern warmth meets French elegance.",
+    buttonText: "View Eid Menu",
+    buttonLink: "/eid-al-adha-dinner-menu-milton-keynes",
+    hasButton: true,
+    priority: true,
+  },
+  {
     id: "slide-welcome",
     rightImage: "/images/banner-6.webp",
     alt: "Welcome to Nour Maison",
