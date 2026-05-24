@@ -36,6 +36,12 @@ const TopHeader = () => {
           path: "/ramadan-iftar-menu-milton-keynes",
           // new: true,
         },
+        {
+          id: 7,
+          name: "Eid Al-Adha Dinner Menu",
+          path: "/eid-al-adha-dinner-menu-milton-keynes",
+          new: true,
+        },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -81,7 +87,7 @@ const TopHeader = () => {
             "relative bg-sageGreen shadow-md py-3": headerWithBg,
             // لو شفاف (على البانر)
             "absolute mt-6": !headerWithBg,
-          }
+          },
         )}
       >
         <div>
@@ -138,13 +144,13 @@ const TopHeader = () => {
                                   pathname === item?.path && !headerWithBg,
                                 "!text-logoGold":
                                   pathname === item?.path && headerWithBg,
-                              }
+                              },
                             )}
                           >
                             <span
                               className={cx(
                                 "pointer-events-none absolute inset-0 -z-10 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70",
-                                { hidden: headerWithBg }
+                                { hidden: headerWithBg },
                               )}
                               style={{
                                 background:
@@ -162,7 +168,7 @@ const TopHeader = () => {
                                   "bg-logoGold": headerWithBg,
                                   "via-[#D59A3B] w-[120%]":
                                     pathname === item?.path,
-                                }
+                                },
                               )}
                             />
                           </Link>
@@ -187,13 +193,13 @@ const TopHeader = () => {
                                       isMenuActive && !headerWithBg,
                                     "!text-logoGold":
                                       isMenuActive && headerWithBg,
-                                  }
+                                  },
                                 )}
                               >
                                 <span
                                   className={cx(
                                     "pointer-events-none absolute inset-0 -z-10 rounded-xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70",
-                                    { hidden: headerWithBg }
+                                    { hidden: headerWithBg },
                                   )}
                                   style={{
                                     background:
@@ -207,7 +213,7 @@ const TopHeader = () => {
                                     {
                                       "text-white/80": !headerWithBg,
                                       "text-white/60": headerWithBg,
-                                    }
+                                    },
                                   )}
                                 >
                                   ▾
@@ -219,7 +225,7 @@ const TopHeader = () => {
                                       "bg-gradient-to-r from-transparent via-white/90 to-transparent":
                                         !headerWithBg,
                                       "bg-logoGold": headerWithBg,
-                                    }
+                                    },
                                   )}
                                 />
                               </div>
@@ -235,7 +241,7 @@ const TopHeader = () => {
                                   {
                                     "!text-logoGold !bg-logoGold/5 !font-bold":
                                       pathname === subItem.path,
-                                  }
+                                  },
                                 )}
                               >
                                 {subItem.name}

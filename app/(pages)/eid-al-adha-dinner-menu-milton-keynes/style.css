@@ -1,0 +1,463 @@
+/* ============================================ */
+/* ✅ Main Section Background                   */
+/* ============================================ */
+.eid-adha-section {
+  background-color: #CCE7BF;
+  background-image: url("/images/eid-pattern.webp");
+  background-size: 600px;
+  background-repeat: repeat;
+  background-position: center top;
+  position: relative;
+}
+
+/* ============================================ */
+/* ✅ Menu Poster - the wrapper                 */
+/* ============================================ */
+.menu-poster {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ============================================ */
+/* ✅ HEADER: Lanterns + Title overlap          */
+/* ============================================ */
+.poster-header {
+  position: relative;
+  width: 100%;
+  margin-bottom: -1px;
+}
+
+.poster-lanterns {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  z-index: 3;
+}
+
+.poster-lanterns-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============================================ */
+/* ✅ Eid Title - between lanterns              */
+/* ============================================ */
+.poster-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  max-width: 400px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.poster-title-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================ */
+/* ✅ Arch Body - DESKTOP (working perfectly)   */
+/* ============================================ */
+.poster-arch {
+  position: relative;
+  width: 100%;
+  height: 1100px;
+  padding: 30% 12% 24%;
+  background-image: url("/images/eid-arch-frame.png");
+  background-size: 100% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ============================================ */
+/* ✅ Scrollable content area                   */
+/* ============================================ */
+.poster-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  padding-bottom: 60px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.poster-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+/* ============================================ */
+/* ✅ Section Pill                              */
+/* ============================================ */
+.poster-pill-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.poster-pill-wrap:first-child {
+  margin-top: 0;
+}
+
+.poster-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, #CA852D 0%, #dd9933 100%);
+  color: #ffffff;
+  font-family: var(--font-playfair), serif;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  letter-spacing: 0.05em;
+  padding: 0.45rem 2.8rem;
+  border-radius: 9999px;
+  box-shadow: 
+    0 4px 12px rgba(202, 133, 45, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+/* ============================================ */
+/* ✅ Menu Items List                           */
+/* ============================================ */
+.poster-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 1.8vw, 1.2rem);
+}
+
+/* ============================================ */
+/* ✅ Menu Item - with hover/tap effect         */
+/* ============================================ */
+.poster-item {
+  text-align: center;
+  padding: 0.6rem 5%;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Desktop hover */
+.poster-item:hover {
+  background-color: rgba(202, 133, 45, 0.08);
+  transform: scale(1.02);
+  box-shadow: 0 2px 16px rgba(202, 133, 45, 0.12);
+}
+
+/* Mobile tap/active */
+.poster-item:active {
+  background-color: rgba(202, 133, 45, 0.13);
+  transform: scale(0.98);
+  box-shadow: 0 1px 8px rgba(202, 133, 45, 0.18);
+}
+
+.poster-item-name {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+  color: #855333;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.poster-item:hover .poster-item-name {
+  color: #CA852D;
+}
+
+.poster-item:active .poster-item-name {
+  color: #CA852D;
+}
+
+.poster-dash {
+  color: #855333;
+  margin: 0 0.2rem;
+  transition: color 0.3s ease;
+}
+
+.poster-item:hover .poster-dash {
+  color: #CA852D;
+}
+
+.poster-item:active .poster-dash {
+  color: #CA852D;
+}
+
+.poster-item-price {
+  color: #855333;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.poster-item:hover .poster-item-price {
+  color: #CA852D;
+}
+
+.poster-item:active .poster-item-price {
+  color: #CA852D;
+}
+
+.poster-item-desc {
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(0.82rem, 1.6vw, 1rem);
+  color: #8B6844;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 90%;
+  margin-inline: auto;
+  transition: color 0.3s ease;
+}
+
+.poster-item:hover .poster-item-desc {
+  color: #6B4F2D;
+}
+
+.poster-item:active .poster-item-desc {
+  color: #6B4F2D;
+}
+
+/* ============================================ */
+/* ✅ Divider between Starters & Mains          */
+/* ============================================ */
+.poster-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem auto 1rem;
+  width: 80%;
+}
+
+.poster-divider span:not(.poster-divider-icon) {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #CA852D,
+    transparent
+  );
+}
+
+.poster-divider-icon {
+  color: #CA852D;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* ============================================ */
+/* ✅ Crescent                                  */
+/* ============================================ */
+.poster-crescent {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.poster-crescent-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(202, 133, 45, 0.4));
+  animation: crescentFloat 4s ease-in-out infinite;
+}
+
+@keyframes crescentFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+
+
+/* ============================================ */
+/* ✅ Shimmer Button                            */
+/* ============================================ */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmerBtn 2.5s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shimmerBtn {
+  0% { left: -100%; }
+  60%, 100% { left: 100%; }
+}
+
+/* ============================================ */
+/* ✅ RESPONSIVE - FIXED for mobile             */
+/* ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .poster-arch {
+    height: 950px;
+    padding: 28% 10% 26%;
+  }
+
+  .poster-scroll {
+    padding-bottom: 40px;
+  }
+
+  .poster-crescent {
+    width: 50%;
+    bottom: 2%;
+  }
+}
+
+/* Small tablet / large mobile */
+@media (max-width: 640px) {
+  .poster-arch {
+    height: 900px;
+    padding: 37% 8% 28%;
+  }
+
+  .poster-scroll {
+    padding-bottom: 40px;
+  }
+
+  .poster-title {
+    width: 40%;
+  }
+
+  .poster-pill {
+    padding: 0.4rem 2rem;
+  }
+
+  .poster-menu-list {
+    gap: 0.8rem;
+  }
+
+  .poster-crescent {
+    width: 55%;
+    max-width: 180px;
+    bottom: 2%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .poster-arch {
+    height: 850px;
+    padding: 42% 7% 30%;
+  }
+
+  .poster-title {
+    width: 45%;
+  }
+
+  .poster-item-name {
+    font-size: 0.95rem;
+  }
+  
+  .poster-item-desc {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  .poster-item {
+    padding: 0.5rem 2%;
+  }
+
+  .poster-crescent {
+    width: 50%;
+    max-width: 160px;
+    bottom: 2%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .poster-arch {
+    height: 800px;
+    padding: 42% 5% 32%;
+  }
+
+  .poster-scroll {
+    padding-bottom: 40px;
+  }
+
+  .poster-item-name {
+    font-size: 0.9rem;
+  }
+  
+  .poster-item-desc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .poster-crescent {
+    width: 50%;
+    max-width: 150px;
+    bottom: 3%;
+  }
+}
+
+/* Very small mobile (iPhone SE etc.) */
+@media (max-width: 360px) {
+  .poster-arch {
+    height: 750px;
+    padding: 46% 4% 34%;
+  }
+
+  .poster-scroll {
+    padding-bottom: 50px;
+  }
+
+  .poster-item-name {
+    font-size: 0.85rem;
+  }
+  
+  .poster-item-desc {
+    font-size: 0.7rem;
+    line-height: 1.35;
+  }
+}
+
+/* ✅ Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .poster-crescent-img {
+    animation: none;
+  }
+  
+  .poster-item {
+    transition: none;
+  }
+}

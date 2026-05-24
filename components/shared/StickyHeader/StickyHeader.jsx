@@ -52,6 +52,12 @@ const StickyHeader = ({ open, setOpen }) => {
           path: "/ramadan-iftar-menu-milton-keynes",
           // new: true,
         },
+        {
+          id: 7,
+          name: "Eid Al-Adha Dinner Menu",
+          path: "/eid-al-adha-dinner-menu-milton-keynes",
+          new: true,
+        },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -67,7 +73,8 @@ const StickyHeader = ({ open, setOpen }) => {
     pathname === "/menu-gallery" ||
     pathname === "/kids-menu" ||
     pathname === "/roast-menu" ||
-    pathname === "/ramadan-iftar-menu-milton-keynes";
+    pathname === "/ramadan-iftar-menu-milton-keynes" ||
+    pathname === "/eid-al-adha-dinner-menu-milton-keynes";
 
   return (
     <>
@@ -78,7 +85,7 @@ const StickyHeader = ({ open, setOpen }) => {
           {
             "!fixed": isVisible,
             "!top-2 xs:!top-3 sm:!top-4": isVisible,
-          }
+          },
         )}
       >
         <MenuButton
@@ -108,7 +115,7 @@ const StickyHeader = ({ open, setOpen }) => {
                 "/terms-and-conditions",
                 "/refund-policy",
               ].includes(pathname),
-            }
+            },
           )}
         >
           {/* Branches - Hidden on mobile */}
@@ -168,7 +175,7 @@ const StickyHeader = ({ open, setOpen }) => {
                               <span
                                 className={cx(
                                   "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-8px] xl:bottom-[-10px] left-0 h-[2px] xl:h-[3px] bg-goldenOrange transition-all duration-300",
-                                  { "!w-full": pathname === item.path }
+                                  { "!w-full": pathname === item.path },
                                 )}
                               ></span>
                             </div>
@@ -183,14 +190,14 @@ const StickyHeader = ({ open, setOpen }) => {
                                     "whitespace-nowrap m-0 font-seasons font-bold tracking-wider transition relative group cursor-pointer hover:text-goldenOrange text-[11px] lg:text-[12px] xl:text-[13px] 2xl:text-[15px]",
                                     {
                                       "text-goldenOrange": isMenuActive,
-                                    }
+                                    },
                                   )}
                                 >
                                   {item.name}
                                   <span
                                     className={cx(
                                       "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-8px] xl:bottom-[-10px] left-0 h-[2px] xl:h-[3px] bg-goldenOrange transition-all duration-300",
-                                      { "!w-full": isMenuActive }
+                                      { "!w-full": isMenuActive },
                                     )}
                                   ></span>
                                 </div>
@@ -205,7 +212,7 @@ const StickyHeader = ({ open, setOpen }) => {
                                     {
                                       "!text-logoGold !bg-logoGold/5 !font-bold":
                                         pathname === subItem.path,
-                                    }
+                                    },
                                   )}
                                 >
                                   {subItem.name}

@@ -32,6 +32,12 @@ const Sidebar = ({ open, setOpen }) => {
           path: "/ramadan-iftar-menu-milton-keynes",
           new: false,
         },
+        {
+          id: 7,
+          name: "Eid Al-Adha Dinner Menu",
+          path: "/eid-al-adha-dinner-menu-milton-keynes",
+          // new: true,
+        },
       ],
     },
     { id: 3, name: "BOOKING", path: "/booking", type: "navigate" },
@@ -66,7 +72,7 @@ const Sidebar = ({ open, setOpen }) => {
         <motion.div
           className={cx(
             "side_bar w-[100vw] fixed inset-0 z-[99999999] h-[100vh] rounded-lg",
-            open && "open"
+            open && "open",
           )}
           initial={{ y: "-100%" }}
           animate={{ y: open ? 0 : "-100%" }}
@@ -78,7 +84,7 @@ const Sidebar = ({ open, setOpen }) => {
               "h-[100vh] content w-[100%] shadow-lg bg-white p-10 py-20",
               {
                 open: open,
-              }
+              },
             )}
             style={
               open
@@ -181,7 +187,7 @@ const Sidebar = ({ open, setOpen }) => {
                                           {
                                             "!text-logoGold font-bold":
                                               pathname === subItem.path,
-                                          }
+                                          },
                                         )}
                                         onClick={() =>
                                           handleNavigation(subItem.path)
@@ -211,7 +217,7 @@ const Sidebar = ({ open, setOpen }) => {
                               {
                                 "!text-logoGold font-bold":
                                   pathname === item.path,
-                              }
+                              },
                             )}
                             onClick={() => handleNavigation(item.path)}
                             whileHover={{

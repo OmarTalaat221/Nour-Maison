@@ -26,7 +26,7 @@ const Footer = () => {
   const handleMapClick = () => {
     window.open(
       "https://www.google.com/maps/dir/?api=1&destination=149+Grafton+Gate,+Milton+Keynes+MK9+1AE",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -52,6 +52,11 @@ const Footer = () => {
     {
       label: "Ramadan Iftar",
       path: "/ramadan-iftar-menu-milton-keynes",
+    },
+    {
+      label: "Eid Al-Adha Dinner Menu",
+      path: "/eid-al-adha-dinner-menu-milton-keynes",
+      new: true,
     },
   ];
 

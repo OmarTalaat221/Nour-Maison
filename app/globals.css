@@ -375,6 +375,15 @@ input[type="number"] {
   z-index: 9999999999 !important;
 }
 
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 /* تخصيص لون وخلفية السكروول */
 ::-webkit-scrollbar {
   width: 5px; /* عرض الـ Scroll */
