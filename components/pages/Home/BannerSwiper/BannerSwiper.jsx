@@ -1,5 +1,5 @@
-// components/Banner/BannerSwiper.jsx
 "use client";
+
 import React, {
   useRef,
   useState,
@@ -8,6 +8,8 @@ import React, {
   memo,
   useEffect,
 } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -21,13 +23,9 @@ import {
   Parallax,
 } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
 
-// ============================================
-// CONSTANTS
-// ============================================
 const SHARED_BACKGROUND = {
   src: "https://res.cloudinary.com/dhebgz7qh/video/upload/q_auto,f_auto,vc_auto/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
   mobileSrc: "/images/IMG_9871.webm",
@@ -62,13 +60,12 @@ const SLIDE_VARIANTS = {
 };
 
 const CHAR_VARIANTS = {
-  hidden: { opacity: 0, y: 20, scale: 0.8, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 20, scale: 0.8 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.04, delay: 0.3 + i * 0.045, ease: "easeOut" },
+    transition: { duration: 0.04, delay: 0.25 + i * 0.035, ease: "easeOut" },
   }),
 };
 
@@ -99,7 +96,7 @@ const SLIDES_DATA = [
     description:
       "Where French sophistication meets the bold, vibrant flavors of the Middle East",
     hasButton: false,
-    priority: true,
+    priority: false,
   },
   {
     id: "slide-roast",
@@ -159,12 +156,14 @@ const PAGINATION_CONFIG = {
 };
 
 const FADE_EFFECT_CONFIG = { crossFade: true };
+
 const A11Y_CONFIG = {
   prevSlideMessage: "Previous slide",
   nextSlideMessage: "Next slide",
   paginationBulletMessage: "Go to slide {{index}}",
   enabled: true,
 };
+
 const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
 
 const AUTOPLAY_CONFIG = {
@@ -173,67 +172,108 @@ const AUTOPLAY_CONFIG = {
   pauseOnMouseEnter: false,
 };
 
-// ============================================
-// PERSISTENT BACKGROUND - بدون LoadingContext
-// ============================================
-const PersistentBackground = memo(() => {
-  const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
-  const videoRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(null);
-  const [videoReady, setVideoReady] = useState(false);
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
-  // ✅ Detect mobile
   useEffect(() => {
-    const checkMobile = () => window.innerWidth <= 768;
-    setIsMobile(checkMobile());
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
 
-    const handleResize = () => setIsMobile(checkMobile());
-    window.addEventListener("resize", handleResize, { passive: true });
-    return () => window.removeEventListener("resize", handleResize);
+    updateIsMobile();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", updateIsMobile);
+      return () => mediaQuery.removeEventListener("change", updateIsMobile);
+    }
+
+    mediaQuery.addListener(updateIsMobile);
+    return () => mediaQuery.removeListener(updateIsMobile);
   }, []);
 
-  // ✅ شغل الفيديو لما يكون جاهز
-  const handleCanPlay = useCallback(() => {
-    if (!videoRef.current) return;
+  return isMobile;
+};
 
-    const playPromise = videoRef.current.play();
+const useDeferredVideo = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    let idleId;
+
+    const loadVideo = () => setShowVideo(true);
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(loadVideo, { timeout: 6000 });
+    } else {
+      timeoutId = window.setTimeout(loadVideo, 4500);
+    }
+
+    return () => {
+      if (idleId) window.cancelIdleCallback(idleId);
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, []);
+
+  return showVideo;
+};
+
+const PersistentBackground = memo(() => {
+  const videoRef = useRef(null);
+  const isMobile = useIsMobile();
+  const showVideo = useDeferredVideo();
+  const [videoReady, setVideoReady] = useState(false);
+
+  const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
+
+  const videoSource = isMobile
+    ? SHARED_BACKGROUND.mobileSrc
+    : SHARED_BACKGROUND.src;
+
+  const videoType = isMobile ? "video/webm" : "video/mp4";
+
+  const posterSource = isMobile
+    ? SHARED_BACKGROUND.posterMobile
+    : SHARED_BACKGROUND.poster;
+
+  const handleCanPlay = useCallback(() => {
+    const video = videoRef.current;
+
+    if (!video) {
+      setVideoReady(true);
+      return;
+    }
+
+    const playPromise = video.play();
+
     if (playPromise !== undefined) {
       playPromise
-        .then(() => {
-          setVideoReady(true);
-        })
-        .catch((err) => {
-          console.log("Video autoplay prevented:", err);
-          setVideoReady(true); // ✅ نخلي الـ poster يفضل ظاهر
-        });
+        .then(() => setVideoReady(true))
+        .catch(() => setVideoReady(true));
+    } else {
+      setVideoReady(true);
     }
   }, []);
 
-  // ✅ المصادر المناسبة
-  const videoSource =
-    isMobile === true ? SHARED_BACKGROUND.mobileSrc : SHARED_BACKGROUND.src;
-  const videoType = isMobile === true ? "video/webm" : "video/mp4";
-  const posterSource =
-    isMobile === true
-      ? SHARED_BACKGROUND.posterMobile
-      : SHARED_BACKGROUND.poster;
-
   return (
     <div className="persistent-background" aria-hidden="true">
-      {/* ✅ Poster - بيظهر فوراً قبل الفيديو */}
-      <img
-        src={posterSource}
-        alt={SHARED_BACKGROUND.alt}
-        className={`bg-media bg-poster ${videoReady ? "fade-out" : ""}`}
-        loading="eager"
-        fetchPriority="high"
-        decoding="sync"
-        width="1920"
-        height="1080"
-      />
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcSet={SHARED_BACKGROUND.posterMobile}
+        />
+        <img
+          src={SHARED_BACKGROUND.poster}
+          alt=""
+          className={`bg-media bg-poster ${videoReady ? "fade-out" : ""}`}
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+          width="1920"
+          height="1080"
+        />
+      </picture>
 
-      {/* ✅ الفيديو - بيتحمل في الخلفية */}
-      {mediaType === "video" && isMobile !== null && (
+      {mediaType === "video" && showVideo && (
         <video
           ref={videoRef}
           key={videoSource}
@@ -241,7 +281,7 @@ const PersistentBackground = memo(() => {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           autoPlay
           poster={posterSource}
           aria-label={SHARED_BACKGROUND.alt}
@@ -258,11 +298,9 @@ const PersistentBackground = memo(() => {
     </div>
   );
 });
+
 PersistentBackground.displayName = "PersistentBackground";
 
-// ============================================
-// CIRCLE MEDIA
-// ============================================
 const CircleMedia = memo(({ slide }) => {
   const mediaType = useMemo(
     () => (slide.circleImage ? detectMediaType(slide.circleImage) : null),
@@ -278,7 +316,7 @@ const CircleMedia = memo(({ slide }) => {
         loop
         muted
         playsInline
-        preload={slide.priority ? "auto" : "metadata"}
+        preload="metadata"
         aria-label={slide.alt}
       >
         <source src={slide.circleImage} type="video/mp4" />
@@ -287,65 +325,96 @@ const CircleMedia = memo(({ slide }) => {
   }
 
   return (
-    <img
+    <Image
       src={slide.circleImage}
       alt={slide.alt}
-      loading={slide.priority ? "eager" : "lazy"}
-      fetchPriority={slide.priority ? "high" : "low"}
-      decoding={slide.priority ? "sync" : "async"}
-      width="500"
-      height="500"
+      loading="lazy"
+      fetchPriority="low"
+      decoding="async"
+      width={500}
+      height={500}
+      sizes="(max-width: 768px) 70vw, 500px"
     />
   );
 });
+
 CircleMedia.displayName = "CircleMedia";
 
-// ============================================
-// RIGHT HERO IMAGE
-// ============================================
-const RightHeroImage = memo(({ slide, isActive }) => {
+const RightHeroImage = memo(({ slide, isActive, isFirstSlide }) => {
   if (!slide.rightImage) return null;
+
+  const shouldRenderImage = isActive || isFirstSlide;
 
   return (
     <motion.div
       className="right-hero-image"
-      initial={{ x: "100%", opacity: 0, scale: 0.9 }}
+      initial={false}
       animate={
         isActive
           ? { x: 0, opacity: 1, scale: 1 }
           : { x: "100%", opacity: 0, scale: 0.9 }
       }
-      transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{
+        duration: 1,
+        delay: isFirstSlide ? 0 : 0.2,
+        ease: [0.25, 0.1, 0.25, 1],
+      }}
       aria-hidden="true"
     >
-      <img
-        src={slide.rightImage}
-        alt={slide.alt}
-        loading={slide.priority ? "eager" : "lazy"}
-        fetchPriority={slide.priority ? "high" : "low"}
-        decoding={slide.priority ? "sync" : "async"}
-      />
+      {shouldRenderImage && (
+        <Image
+          src={slide.rightImage}
+          alt={slide.alt}
+          priority={isFirstSlide}
+          loading={isFirstSlide ? "eager" : "lazy"}
+          fetchPriority={isFirstSlide ? "high" : "low"}
+          decoding={isFirstSlide ? "sync" : "async"}
+          width={900}
+          height={650}
+          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 52vw, 680px"
+        />
+      )}
     </motion.div>
   );
 });
+
 RightHeroImage.displayName = "RightHeroImage";
 
-// ============================================
-// TYPING TITLE
-// ============================================
+const StaticTitle = memo(({ text }) => {
+  return (
+    <h1 className="slide-title typing-title !font-seasons" aria-label={text}>
+      {text.split(" ").map((word, index, array) => (
+        <span
+          key={`${word}-${index}`}
+          className="title-word-group"
+          aria-hidden="true"
+          style={{ marginRight: index < array.length - 1 ? "0.22em" : 0 }}
+        >
+          {word}
+        </span>
+      ))}
+    </h1>
+  );
+});
+
+StaticTitle.displayName = "StaticTitle";
+
 const TypingTitle = memo(({ text, slideId, isActive }) => {
   const words = useMemo(() => {
     let globalCharIndex = 0;
+
     return text.split(" ").map((word, wordIndex) => {
       const chars = word.split("").map((char, charIndex) => {
         const currentIndex = globalCharIndex;
         globalCharIndex += 1;
+
         return {
           char,
           index: currentIndex,
           key: `${slideId}-word-${wordIndex}-char-${charIndex}`,
         };
       });
+
       return { key: `${slideId}-word-${wordIndex}`, chars };
     });
   }, [text, slideId]);
@@ -384,141 +453,168 @@ const TypingTitle = memo(({ text, slideId, isActive }) => {
     </motion.h1>
   );
 });
+
 TypingTitle.displayName = "TypingTitle";
 
-// ============================================
-// SLIDE CONTENT
-// ============================================
-const SlideContent = memo(({ slide, isActive, direction }) => {
-  const typingEndTime = useMemo(() => {
-    const totalChars = slide.mainTitle.replace(/\s/g, "").length;
-    return 0.3 + totalChars * 0.045 + 0.2;
-  }, [slide.mainTitle]);
+const SlideContent = memo(
+  ({ slide, isActive, direction, isInitialLcpSlide }) => {
+    const typingEndTime = useMemo(() => {
+      const totalChars = slide.mainTitle.replace(/\s/g, "").length;
+      return 0.25 + totalChars * 0.035 + 0.15;
+    }, [slide.mainTitle]);
 
-  const subtitleVariants = useMemo(
-    () => ({
-      hidden: { y: -40, opacity: 0, rotateX: -60 },
-      visible: {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        transition: {
-          duration: 0.6,
-          delay: typingEndTime,
-          ease: [0.6, 0.05, 0.01, 0.9],
+    const subtitleVariants = useMemo(
+      () => ({
+        hidden: { y: -40, opacity: 0, rotateX: -60 },
+        visible: {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          transition: {
+            duration: 0.6,
+            delay: typingEndTime,
+            ease: [0.6, 0.05, 0.01, 0.9],
+          },
         },
-      },
-    }),
-    [typingEndTime],
-  );
+      }),
+      [typingEndTime],
+    );
 
-  const descriptionVariants = useMemo(
-    () => ({
-      hidden: { x: -80, opacity: 0 },
-      visible: {
-        x: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.7,
-          delay: typingEndTime + 0.2,
-          ease: "easeOut",
+    const descriptionVariants = useMemo(
+      () => ({
+        hidden: { x: -80, opacity: 0 },
+        visible: {
+          x: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.7,
+            delay: typingEndTime + 0.15,
+            ease: "easeOut",
+          },
         },
-      },
-    }),
-    [typingEndTime],
-  );
+      }),
+      [typingEndTime],
+    );
 
-  const buttonVariants = useMemo(
-    () => ({
-      hidden: { scale: 0, opacity: 0 },
-      visible: {
-        scale: 1,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          delay: typingEndTime + 0.4,
-          type: "spring",
-          stiffness: 200,
+    const buttonVariants = useMemo(
+      () => ({
+        hidden: { scale: 0, opacity: 0 },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+            delay: typingEndTime + 0.3,
+            type: "spring",
+            stiffness: 200,
+          },
         },
-      },
-      hover: {
-        scale: 1.05,
-        boxShadow: "0 10px 40px rgba(221, 153, 51, 0.4)",
-        transition: { duration: 0.3 },
-      },
-    }),
-    [typingEndTime],
-  );
+        hover: {
+          scale: 1.05,
+          boxShadow: "0 10px 40px rgba(221, 153, 51, 0.4)",
+          transition: { duration: 0.3 },
+        },
+      }),
+      [typingEndTime],
+    );
 
-  if (!isActive) return null;
+    if (!isActive) return null;
 
-  return (
-    <motion.div
-      className="content-wrapper"
-      custom={direction}
-      variants={SLIDE_VARIANTS}
-      initial="enter"
-      animate="center"
-      exit="exit"
-    >
-      <motion.h2
-        className="slide-subtitle !font-yesteryear"
-        variants={subtitleVariants}
-        initial="hidden"
-        animate="visible"
+    if (isInitialLcpSlide) {
+      return (
+        <div className="content-wrapper">
+          <h2 className="slide-subtitle !font-yesteryear">{slide.title}</h2>
+
+          <StaticTitle text={slide.mainTitle} />
+
+          <p className="slide-description !font-seasons">{slide.description}</p>
+
+          {slide.hasButton && (
+            <div className="w-fit">
+              <Link
+                href={slide.buttonLink}
+                className="cta-button"
+                aria-label={`Navigate to ${slide.buttonText}`}
+                prefetch={false}
+              >
+                <span className="button-text">{slide.buttonText}</span>
+                <span className="button-icon" aria-hidden="true">
+                  →
+                </span>
+                <span className="button-bg" aria-hidden="true"></span>
+              </Link>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <motion.div
+        className="content-wrapper"
+        custom={direction}
+        variants={SLIDE_VARIANTS}
+        initial="enter"
+        animate="center"
+        exit="exit"
       >
-        {slide.title}
-      </motion.h2>
-
-      <TypingTitle
-        text={slide.mainTitle}
-        slideId={slide.id}
-        isActive={isActive}
-      />
-
-      <motion.p
-        className="slide-description !font-seasons"
-        variants={descriptionVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {slide.description}
-      </motion.p>
-
-      {slide.hasButton && (
-        <motion.div
-          variants={buttonVariants}
+        <motion.h2
+          className="slide-subtitle !font-yesteryear"
+          variants={subtitleVariants}
           initial="hidden"
           animate="visible"
-          whileHover="hover"
-          className="w-fit"
         >
-          <Link
-            href={slide.buttonLink}
-            className="cta-button"
-            aria-label={`Navigate to ${slide.buttonText}`}
-            prefetch={false}
+          {slide.title}
+        </motion.h2>
+
+        <TypingTitle
+          text={slide.mainTitle}
+          slideId={slide.id}
+          isActive={isActive}
+        />
+
+        <motion.p
+          className="slide-description !font-seasons"
+          variants={descriptionVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {slide.description}
+        </motion.p>
+
+        {slide.hasButton && (
+          <motion.div
+            variants={buttonVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover="hover"
+            className="w-fit"
           >
-            <span className="button-text">{slide.buttonText}</span>
-            <span className="button-icon" aria-hidden="true">
-              →
-            </span>
-            <span className="button-bg" aria-hidden="true"></span>
-          </Link>
-        </motion.div>
-      )}
-    </motion.div>
-  );
-});
+            <Link
+              href={slide.buttonLink}
+              className="cta-button"
+              aria-label={`Navigate to ${slide.buttonText}`}
+              prefetch={false}
+            >
+              <span className="button-text">{slide.buttonText}</span>
+              <span className="button-icon" aria-hidden="true">
+                →
+              </span>
+              <span className="button-bg" aria-hidden="true"></span>
+            </Link>
+          </motion.div>
+        )}
+      </motion.div>
+    );
+  },
+);
+
 SlideContent.displayName = "SlideContent";
 
-// ============================================
-// PARTICLES
-// ============================================
 const Particles = memo(() => {
   const particles = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => (
+      Array.from({ length: 8 }, (_, i) => (
         <div
           key={`particle-${i}`}
           className="particle"
@@ -535,23 +631,55 @@ const Particles = memo(() => {
     </div>
   );
 });
+
 Particles.displayName = "Particles";
 
-// ============================================
-// MAIN COMPONENT
-// ============================================
 const BannerSwiper = () => {
+  const activeIndexRef = useRef(0);
+  const swiperRef = useRef(null);
+  const autoplayTimerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [initialLcpDone, setInitialLcpDone] = useState(false);
 
-  const handleSlideChange = useCallback(
-    (swiper) => {
-      const newIndex = swiper.realIndex;
-      setDirection(newIndex > activeIndex ? 1 : -1);
-      setActiveIndex(newIndex);
-    },
-    [activeIndex],
-  );
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setInitialLcpDone(true);
+    }, 1800);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const handleSlideChange = useCallback((swiper) => {
+    const newIndex = swiper.realIndex;
+    const currentIndex = activeIndexRef.current;
+
+    if (newIndex === currentIndex) return;
+
+    setInitialLcpDone(true);
+    setDirection(newIndex > currentIndex ? 1 : -1);
+    activeIndexRef.current = newIndex;
+    setActiveIndex(newIndex);
+  }, []);
+
+  const handleSwiperInit = useCallback((swiper) => {
+    swiperRef.current = swiper;
+
+    autoplayTimerRef.current = window.setTimeout(() => {
+      if (!swiperRef.current || !swiperRef.current.autoplay) return;
+
+      swiperRef.current.params.autoplay = AUTOPLAY_CONFIG;
+      swiperRef.current.autoplay.start();
+    }, 6500);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (autoplayTimerRef.current) {
+        window.clearTimeout(autoplayTimerRef.current);
+      }
+    };
+  }, []);
 
   const schemaData = useMemo(
     () => ({
@@ -599,58 +727,67 @@ const BannerSwiper = () => {
         effect="fade"
         fadeEffect={FADE_EFFECT_CONFIG}
         navigation={true}
+        onSwiper={handleSwiperInit}
         onSlideChange={handleSlideChange}
         pagination={PAGINATION_CONFIG}
         slidesPerView={1}
         speed={1000}
         loop={true}
-        autoplay={AUTOPLAY_CONFIG}
+        autoplay={false}
         parallax={true}
-        watchSlidesProgress={true}
+        watchSlidesProgress={false}
         a11y={A11Y_CONFIG}
         className="home-swiper-new"
       >
-        {SLIDES_DATA.map((slide, index) => (
-          <SwiperSlide key={slide.id}>
-            <article
-              className={`slide-container ${
-                slide.rightImage ? "has-right-hero" : ""
-              }`}
-            >
-              <div className="slide-content">
-                <AnimatePresence mode="wait">
-                  <SlideContent
-                    key={`content-${slide.id}-${activeIndex}`}
+        {SLIDES_DATA.map((slide, index) => {
+          const isActive = activeIndex === index;
+          const isFirstSlide = index === 0;
+          const isInitialLcpSlide = isFirstSlide && isActive && !initialLcpDone;
+
+          return (
+            <SwiperSlide key={slide.id}>
+              <article
+                className={`slide-container ${
+                  slide.rightImage ? "has-right-hero" : ""
+                }`}
+              >
+                <div className="slide-content">
+                  <AnimatePresence mode="wait">
+                    <SlideContent
+                      key={`content-${slide.id}-${activeIndex}-${initialLcpDone}`}
+                      slide={slide}
+                      isActive={isActive}
+                      direction={direction}
+                      isInitialLcpSlide={isInitialLcpSlide}
+                    />
+                  </AnimatePresence>
+                </div>
+
+                {slide.rightImage && (
+                  <RightHeroImage
                     slide={slide}
-                    isActive={activeIndex === index}
-                    direction={direction}
+                    isActive={isActive}
+                    isFirstSlide={isFirstSlide}
                   />
-                </AnimatePresence>
-              </div>
+                )}
 
-              {slide.rightImage && (
-                <RightHeroImage
-                  slide={slide}
-                  isActive={activeIndex === index}
-                />
-              )}
-
-              {!slide.rightImage && slide.circleImage && (
-                <motion.div
-                  className="side-decoration"
-                  initial={SIDE_DECO_INITIAL}
-                  animate={SIDE_DECO_ANIMATE}
-                  transition={SIDE_DECO_TRANSITION}
-                  aria-hidden="true"
-                >
-                  <div className="decoration-frame">
-                    <CircleMedia slide={slide} />
-                  </div>
-                </motion.div>
-              )}
-            </article>
-          </SwiperSlide>
-        ))}
+                {!slide.rightImage && slide.circleImage && (
+                  <motion.div
+                    className="side-decoration"
+                    initial={SIDE_DECO_INITIAL}
+                    animate={SIDE_DECO_ANIMATE}
+                    transition={SIDE_DECO_TRANSITION}
+                    aria-hidden="true"
+                  >
+                    <div className="decoration-frame">
+                      <CircleMedia slide={slide} />
+                    </div>
+                  </motion.div>
+                )}
+              </article>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
       <script

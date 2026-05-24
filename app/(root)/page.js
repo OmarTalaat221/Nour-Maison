@@ -1,17 +1,63 @@
+/* ===================== Performance Optimization ===================== */
+
+import dynamic from "next/dynamic";
 import BannerSwiper from "../../components/pages/Home/BannerSwiper/BannerSwiper";
-import InstagramFeeds from "../../components/pages/Home/InstagramFeeds/InstagramFeeds";
-import BookTableSection from "./../../components/pages/Home/BookTableSection/BookTableSection";
-import FeedBack from "../../components/pages/Home/FeedBack/FeedBack";
-import AboutUsSection from "../../components/pages/Home/AboutUsSection/AboutUsSection";
-import AfternoonTea from "./../../components/pages/Home/AfternoonTea/AfternoonTea";
-import NourKidsMenuHero from "../../components/pages/Home/KidsSection";
-import VideoBanner from "../../components/pages/Home/MobileBanner";
-import ChefsSection2 from "../../components/pages/Home/ChefsSection/ChefsSection2";
-import HomaRoastMenu from "../../components/pages/Home/HomaRoastMenu";
-// import EntryDesign from './../../components/bages/HomePage/EntryDesign/EntryDesign';
-import GoogleReviews from "./../../components/pages/Home/GoogleReviews/GoogleReviews";
-import Annerversary from "../../components/pages/Home/Anneversary";
-import Celebration from "../../components/pages/Home/Celebration";
+
+const InstagramFeeds = dynamic(
+  () => import("../../components/pages/Home/InstagramFeeds/InstagramFeeds"),
+  {
+    loading: () => null,
+  }
+);
+
+const BookTableSection = dynamic(
+  () => import("./../../components/pages/Home/BookTableSection/BookTableSection"),
+  {
+    loading: () => null,
+  }
+);
+
+const AboutUsSection = dynamic(
+  () => import("../../components/pages/Home/AboutUsSection/AboutUsSection"),
+  {
+    loading: () => null,
+  }
+);
+
+const AfternoonTea = dynamic(
+  () => import("./../../components/pages/Home/AfternoonTea/AfternoonTea"),
+  {
+    loading: () => null,
+  }
+);
+
+const NourKidsMenuHero = dynamic(
+  () => import("../../components/pages/Home/KidsSection"),
+  {
+    loading: () => null,
+  }
+);
+
+const ChefsSection2 = dynamic(
+  () => import("../../components/pages/Home/ChefsSection/ChefsSection2"),
+  {
+    loading: () => null,
+  }
+);
+
+const HomaRoastMenu = dynamic(
+  () => import("../../components/pages/Home/HomaRoastMenu"),
+  {
+    loading: () => null,
+  }
+);
+
+const GoogleReviews = dynamic(
+  () => import("./../../components/pages/Home/GoogleReviews/GoogleReviews"),
+  {
+    loading: () => null,
+  }
+);
 
 export const metadata = {
   title: "Nour Maison | Halal French & middle eastern Café Restaurant",
@@ -1978,31 +2024,22 @@ export const metadata = {
   ],
 };
 
-/**
- * Home component - Main page component of the application
- * Renders the complete homepage layout with various sections
- */
-
 export default function Home() {
   return (
     <div className="overflow-hidden">
-      {/* Header section containing video and banner elements */}
-
-      {/* <Celebration /> */}
-      <header className="">
-        {/* <div className=" md:hidden">
-          <VideoBanner />
-        </div> */}
+      <header>
         <div className="block">
           <BannerSwiper />
         </div>
       </header>
-      <main className="bg-s-700 overflow-hidden ">
+
+      <main className="bg-s-700 overflow-hidden">
         <section className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20">
           <AboutUsSection />
         </section>
+
         <HomaRoastMenu />
-        {/* <GoogleReviews /> */}
+
         <InstagramFeeds />
 
         <BookTableSection />
@@ -2015,19 +2052,16 @@ export default function Home() {
               <span className="font-lato">-</span> cooked artistry.
             </>
           }
-          cta={"Roast Menu"}
-          ctaLink={"/roast-menu"}
+          cta="Roast Menu"
+          ctaLink="/roast-menu"
           src="/images/nour reverse.mp4"
           poster="/images/download (7).jfif"
         />
 
         <AfternoonTea />
-        {/* <EntryDesign /> */}
-        {/* <OurServices /> */}
-        {/* <HappyMoments withBg={true} /> */}
-        {/* <FeedBack /> */}
+
         <GoogleReviews />
-        {/* <BlogSectionServer /> */}
+
         <ChefsSection2 />
       </main>
     </div>
