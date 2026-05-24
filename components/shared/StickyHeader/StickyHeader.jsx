@@ -8,6 +8,7 @@ import { Dropdown } from "rsuite";
 import { usePathname, useRouter } from "next/navigation";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
 import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
+import useBookingUrl from "../../../Hooks/useBookingUrl";
 
 const StickyHeader = ({ open, setOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,6 +16,7 @@ const StickyHeader = ({ open, setOpen }) => {
 
   const router = useRouter();
   const pathname = usePathname();
+  const bookingUrl = useBookingUrl();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -236,7 +238,7 @@ const StickyHeader = ({ open, setOpen }) => {
               <div className="hidden lg:flex gap-3">
                 <button
                   className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white hidden"
-                  onClick={() => (window.location.href = "/booking")}
+                  onClick={() => (window.location.href = bookingUrl)}
                 >
                   BOOK NOW
                 </button>

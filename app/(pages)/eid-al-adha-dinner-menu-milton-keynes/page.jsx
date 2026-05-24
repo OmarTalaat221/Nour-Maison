@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import "./style.css";
+import BookingButton from "./BookingButton";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/eid-al-adha-dinner-menu-milton-keynes";
@@ -555,13 +556,7 @@ const EidAlAdhaDinnerMenuPage = () => {
             </p>
 
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8">
-              <a
-                href="https://www.nourmaison.co.uk/booking?source=eid"
-                className="shimmer-btn inline-block bg-logoGold hover:bg-goldenOrange text-white hover:text-white hover:no-underline font-nour text-base sm:text-lg md:text-xl px-8 sm:px-12 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                aria-label="Book your Eid Al-Adha dinner table at Nour Maison Milton Keynes"
-              >
-                Book Your Eid Table
-              </a>
+              <BookingButton />
             </div>
           </div>
         </section>

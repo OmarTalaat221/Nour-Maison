@@ -10,12 +10,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
 import { useHeader } from "../../../app/context/HeaderContext";
+import useBookingUrl from "../../../Hooks/useBookingUrl";
 
 const TopHeader = () => {
   const { isNotFound } = useNotFound();
   const { headerWithBg } = useHeader();
   const pathname = usePathname();
   const router = useRouter();
+  const bookingUrl = useBookingUrl();
 
   const navItems = [
     { id: 1, name: "HOME", path: "/", type: "navigate" },
@@ -263,7 +265,7 @@ const TopHeader = () => {
 
             {/* Book Now Button */}
             <div className="hidden lg:flex gap-3">
-              <Link href={"/booking"}>
+              <Link href={bookingUrl}>
                 <AnimButton
                   text={"BOOK NOW"}
                   variant={headerWithBg ? "solid" : "default"}

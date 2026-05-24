@@ -6,11 +6,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import AnimButton from "../../../utils/AnimButton/AnimButton";
 import "./style.scss";
 import { useRouter, usePathname } from "next/navigation";
+import useBookingUrl from "../../../Hooks/useBookingUrl";
 
 const Sidebar = ({ open, setOpen }) => {
   const [expandedMenu, setExpandedMenu] = useState(null);
   const router = useRouter();
   const pathname = usePathname();
+  const bookingUrl = useBookingUrl();
 
   // نفس الروابط الموجودة في الـ Header
   const navItems = [
@@ -245,7 +247,7 @@ const Sidebar = ({ open, setOpen }) => {
                 >
                   <AnimButton
                     onClick={() => {
-                      router.push("/booking");
+                      router.push(bookingUrl);
                       setOpen(false);
                     }}
                     text={"BOOK NOW"}
