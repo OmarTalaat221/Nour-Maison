@@ -1,13 +1,18 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-
+import { useEffect, useState } from "react";
 
 export default function useBookingUrl(basePath = "/booking") {
-  const searchParams = useSearchParams();
-  const source = searchParams.get("source");
+  const [url, setUrl] = useState(basePath);
 
-  if (!source) return basePath;
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get("source");
 
-  return `${basePath}?source=${encodeURIComponent(source)}`;
+    if (source) {
+      setUrl(`${basePath}?source=${encodeURIComponent(source)}`);
+    }
+  }, [basePath]);
+
+  return url;
 }
