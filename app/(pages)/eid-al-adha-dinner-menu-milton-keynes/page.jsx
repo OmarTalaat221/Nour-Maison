@@ -13,7 +13,7 @@ const description =
   "Celebrate Eid Al-Adha 2026 at Nour Maison Milton Keynes with our à la carte halal dinner menu. Starters from £7, mains from £21. Confit Lamb Neck, Smoked Lahma, Fatteh Masri & more. Book your table now.";
 
 /* temporary OG image using existing asset */
-const ogImage = `${siteUrl}/images/eid-arch-frame.png`;
+const ogImage = `${siteUrl}/images/eid-arch-frame.webp`;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
