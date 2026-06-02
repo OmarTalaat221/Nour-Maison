@@ -149,6 +149,37 @@
     1.33333s 0.6666s anim2 linear infinite alternate;
 }
 
+.paper-plane .txt-upload {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper-plane .txt-upload::after {
+  content: "";
+}
+
+.paper-plane .button-border-anime:focus .rect {
+  stroke-dasharray: 50;
+}
+
+.paper-plane .button-border-anime:focus .border {
+  stroke: theme("colors.logoGold");
+}
+
+.paper-plane .button-border-anime:focus .txt-upload {
+  opacity: 0;
+  transition: opacity 0.25s 8s;
+}
+
+.paper-plane .button-border-anime:focus .txt-upload::after {
+  animation:
+    0.66666s anim step-end forwards,
+    1.33333s 0.6666s anim2 linear infinite alternate;
+}
+
 .button-border-anime:focus .done-check {
   transition: stroke-dasharray 0.5s 9.2s ease-out;
   stroke: #08ca08;
