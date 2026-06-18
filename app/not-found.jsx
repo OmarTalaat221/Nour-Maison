@@ -29,10 +29,10 @@ const NotFound = () => {
             helpful links:
           </p>
           <div className="flex items-center mt-6 gap-x-3">
-            <button 
-                  onClick={() => router.back()}
+            <button
+              onClick={() => router.back()}
 
-            className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -49,7 +49,7 @@ const NotFound = () => {
               </svg>
               <span>Go back</span>
             </button>
-            <button onClick={()=> router.push("/")} className="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-softMintGreen rounded-lg shrink-0 sm:w-auto hover:bg-green-800 dark:hover:bg-blue-500 dark:bg-blue-600">
+            <button onClick={() => router.push("/")} className="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-softMintGreen rounded-lg shrink-0 sm:w-auto hover:bg-green-800 dark:hover:bg-blue-500 dark:bg-blue-600">
               Take me home
             </button>
 
@@ -58,7 +58,7 @@ const NotFound = () => {
         <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0" >
           <img
             className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-contain "
-            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+            src="/images/nour-gold-logo.webp"
             alt="Nour Maison Logo"
             title="NOUR MAISON"
           />

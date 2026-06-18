@@ -113,7 +113,7 @@ const ShippingCart = () => {
           <motion.div className="flex justify-center  items-center flex-col gap-5 sm:gap-11 h-full mt-4">
             <img
               loading="lazy"
-              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+              src="/images/nour-gold-logo.webp"
               alt="Nour Maison Logo"
               title="NOUR MAISON"
 
@@ -164,7 +164,7 @@ const ShippingCart = () => {
                               onDragEnd={(_, info) =>
                                 handleSwipeToDelete(info, prod)
                               }
-                              // whileDrag={{scale: 0.95}}
+                            // whileDrag={{scale: 0.95}}
                             >
                               <div className="prod_image">
                                 <img

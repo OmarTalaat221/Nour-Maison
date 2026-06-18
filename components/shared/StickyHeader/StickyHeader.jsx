@@ -145,7 +145,7 @@ const StickyHeader = ({ open, setOpen }) => {
                   <span className="sr-only">Home</span>
                   <img
                     loading="lazy"
-                    src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+                    src="/images/nour-gold-logo.webp"
                     alt="Nour Maison Logo"
                     className="w-[45px] xs:w-[50px] sm:w-[55px] md:w-[60px] lg:w-[65px] xl:w-[70px]"
                     title="NOUR MAISON"

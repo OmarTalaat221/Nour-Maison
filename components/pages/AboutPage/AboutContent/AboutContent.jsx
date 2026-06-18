@@ -121,7 +121,7 @@ export default function AboutContent() {
             {/* brand stamp */}
             <div className="mt-6 flex items-center gap-3 opacity-90">
               <img
-                src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+                src="/images/nour-gold-logo.webp"
                 alt="Nour Maison"
                 className="h-11 w-11 drop-shadow"
               />

@@ -100,7 +100,7 @@ const TopHeader = () => {
                   }}
                   priority
                   fetchPriority="high"
-                  src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+                  src="/images/nour-gold-logo.webp"
                   alt="Nour Maison Logo"
                   title="NOUR MAISON"
                   width={100}

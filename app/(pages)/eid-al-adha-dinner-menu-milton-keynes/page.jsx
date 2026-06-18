@@ -229,7 +229,7 @@ const EidAlAdhaDinnerMenuPage = () => {
       priceRange: "££",
       acceptsReservations: true,
       image: [
-        "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
+        "/images/nour-gold-logo.webp",
       ],
       logo: {
         "@type": "ImageObject",

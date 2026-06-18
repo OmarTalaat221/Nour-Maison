@@ -188,9 +188,7 @@ export const metadata = {
     title: "NOUR MAISON | Elegant Restaurant & Café - Fine Dining",
     description:
       "Experience exceptional dining at NOUR MAISON - a stylish restaurant and café offering international flavors, cozy ambiance, and unforgettable moments. Book your table today!",
-    images: [
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
-    ],
+    images: ["/images/nour-gold-logo.webp"],
   },
 };
 
@@ -205,9 +203,7 @@ const structuredData = {
   name: "Nour Maison",
   url: "https://www.nourmaison.co.uk",
   logo: "https://www.nourmaison.co.uk/logo.png",
-  image: [
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png",
-  ],
+  image: ["/images/nour-gold-logo.webp"],
   address: {
     "@type": "PostalAddress",
     streetAddress: "149 Grafton Gate",

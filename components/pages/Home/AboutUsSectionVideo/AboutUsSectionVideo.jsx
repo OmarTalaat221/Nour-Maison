@@ -194,8 +194,8 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
       <button
         onClick={togglePlay}
         className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${showControls || !isPlaying
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-90"
+          ? "opacity-100 scale-100"
+          : "opacity-0 scale-90"
           }`}
         aria-label={isPlaying ? "Pause video" : "Play video"}
       >
@@ -215,8 +215,8 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
 
       <div
         className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 ${showControls || !isPlaying
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4"
           }`}
       >
         <div
@@ -273,13 +273,13 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
 
       <div
         className={`absolute top-4 left-4 z-10 transition-all duration-300 ${showControls || !isPlaying
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-4"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 -translate-y-4"
           }`}
       >
         <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
           <img
-            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+            src="/images/nour-gold-logo.webp"
             alt="Nour Maison"
             className="h-6 w-6"
             loading="lazy"

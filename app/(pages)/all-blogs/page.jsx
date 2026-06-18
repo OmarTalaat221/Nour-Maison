@@ -15,7 +15,7 @@ const title =
 const description =
   "Discover halal dining guides, brunch inspiration, afternoon tea tips and fine dining insights from Nour Maison, Milton Keynes. Explore the latest articles.";
 const ogImage =
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png";
+  "/images/nour-gold-logo.webp";
 
 // ✅ Server-side fetch function
 async function getBlogsData() {

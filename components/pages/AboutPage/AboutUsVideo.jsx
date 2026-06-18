@@ -118,7 +118,7 @@ const AboutUsVideo = ({ videoSrc, poster }) => {
         <div className="absolute top-4 left-4 z-10">
           <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
             <img
-              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+              src="/images/nour-gold-logo.webp"
               alt="Nour Maison"
               className="h-6 w-6"
             />

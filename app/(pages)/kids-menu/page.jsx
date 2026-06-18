@@ -189,7 +189,7 @@ const KidsMenu = () => {
             />
             <img
               className="w-[100px] md:w-[200px] ms-auto md:mx-auto"
-              src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+              src="/images/nour-gold-logo.webp"
               alt="Nour Maison kids menu badge"
               loading="lazy"
             />

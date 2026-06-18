@@ -2,7 +2,7 @@ import StorePage from "./_Store_Client";
 
 const SITE_URL = "https://www.nourmaison.co.uk";
 const PAGE_URL = `${SITE_URL}/store`;
-const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png`; // <- change to your real image
+const OG_IMAGE = `/images/nour-gold-logo.webp`; // <- change to your real image
 
 // metadata
 export const metadata = {

@@ -75,17 +75,17 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
             draggable={"false"}
             src={
               item.image ||
-              "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767452496/y3replc9wmlnvwb7kjvo_hyo3u3.png"
+              "/images/nour-gold-logo.webp"
             }
             alt={item.name}
             className="rounded-2xl object-cover  w-[120px] h-[120px] md:w-full md:h-full select-none "
           />
           <div className="flex flex-1 items-center justify-center">
 
-          <h5 className=" md:hidden  text-white font-normal  text-5xl font-pacifico ">
-            {" "}
-            &#163;{item?.price}
-          </h5>
+            <h5 className=" md:hidden  text-white font-normal  text-5xl font-pacifico ">
+              {" "}
+              &#163;{item?.price}
+            </h5>
           </div>
         </div>
         {/* Content */}
