@@ -590,3 +590,30 @@ a:hover {
     transform: none;
   }
 }
+
+@media (max-width: 768px) {
+  .fixed-bg .fixed-img {
+    position: absolute;
+  }
+
+  .global-shimmer-btn {
+    will-change: auto;
+  }
+
+  .global-shimmer-btn::before {
+    will-change: auto;
+  }
+
+  .scale-down-center {
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-shimmer-btn::before,
+  .border-anime,
+  .scale-down-center {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}

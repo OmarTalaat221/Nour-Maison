@@ -13,47 +13,52 @@ const AOSAnimation = () => {
   }, [pathname]);
 
   useEffect(() => {
-    let cancelled = false;
-    let idleId;
+    let mounted = true;
     let timeoutId;
+    let idleId;
 
-    const loadAosCss = () => {
-      if (document.querySelector('link[data-aos-css="true"]')) return;
+    const initAOS = async () => {
+      const [{ default: AOS }] = await Promise.all([
+        import("aos"),
+        import("aos/dist/aos.css"),
+      ]);
 
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://unpkg.com/aos@2.3.4/dist/aos.css";
-      link.setAttribute("data-aos-css", "true");
-      document.head.appendChild(link);
-    };
-
-    const initAos = async () => {
-      if (cancelled) return;
-
-      loadAosCss();
-
-      const AOS = (await import("aos")).default;
-
-      if (cancelled) return;
+      if (!mounted) return;
 
       AOS.init({
         once: false,
         duration: 700,
         easing: "ease-out",
         offset: 80,
-        disable: () =>
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+        disable: () => window.innerWidth < 360,
       });
+
+      window.setTimeout(() => {
+        if (mounted) {
+          AOS.refreshHard();
+        }
+      }, 300);
     };
 
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(initAos, { timeout: 2500 });
+    const scheduleAOS = () => {
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(initAOS, {
+          timeout: 3500,
+        });
+      } else {
+        timeoutId = window.setTimeout(initAOS, 1800);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      scheduleAOS();
     } else {
-      timeoutId = window.setTimeout(initAos, 1500);
+      window.addEventListener("load", scheduleAOS, { once: true });
     }
 
     return () => {
-      cancelled = true;
+      mounted = false;
+      window.removeEventListener("load", scheduleAOS);
 
       if (idleId) {
         window.cancelIdleCallback(idleId);

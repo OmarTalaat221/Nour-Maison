@@ -107,7 +107,6 @@ const yesteryear = Yesteryear({
   weight: "400",
   variable: "--font-yesteryear",
   display: "swap",
-  preload: false,
 });
 
 const theSeasons = localFont({
@@ -145,7 +144,6 @@ const theSeasons = localFont({
     },
   ],
   display: "swap",
-  preload: false,
 });
 
 export const metadata = {
@@ -245,9 +243,17 @@ export default function RootLayout({ children }) {
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_768/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+          href="/images/mobile-banner-poster.webp"
           fetchPriority="high"
           media="(max-width: 768px)"
+        />
+
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+          fetchPriority="high"
+          media="(min-width: 769px)"
         />
 
         <script
