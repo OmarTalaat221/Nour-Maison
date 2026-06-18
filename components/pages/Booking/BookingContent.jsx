@@ -29,6 +29,8 @@ const BookingForm = ({ bg }) => {
     title: "",
     message: "",
   });
+
+
   const [chatId, setChatid] = useState("");
   const [dateLoading, setDateLoading] = useState(false);
   const [lockedTimesData, setLockedTimesData] = useState(null);
@@ -421,7 +423,7 @@ const BookingForm = ({ bg }) => {
                     onChange={getBookingData}
                     value={
                       bookingData[
-                        isSpecialOrder ? "special_order_notes" : "other_notes"
+                      isSpecialOrder ? "special_order_notes" : "other_notes"
                       ]
                     }
                     label={

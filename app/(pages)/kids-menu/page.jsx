@@ -1,6 +1,7 @@
 import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import NourKidsMenuHero from "../../../components/pages/Home/KidsSection";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 // ✅ SEO Metadata for Nour Maison Kids Menu
 const OG_IMAGE = "/images/kids menu .jpeg"
@@ -11,16 +12,7 @@ export const metadata = {
 
   title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
   description: `Nour Maison’s Kids Menu: fresh, healthy, and fun meals for children, with kid-sized portions and a family-friendly café atmosphere.`,
-  keywords: [
-    "Nour Maison kids menu",
-    "kids menu",
-    "family friendly cafe",
-    "healthy kids meals",
-    "kid friendly cafe",
-    "children meals",
-    "Milton Keynes kids menu",
-    "halal kids menu",
-  ],
+  keywords: getPageKeywords("kidsMenu"),
 
   alternates: {
     canonical: "https://www.nourmaison.co.uk/kids-menu",
@@ -176,7 +168,7 @@ const KidsMenu = () => {
       >
         {/* Primary H1 for the page (SEO) */}
         <h1 className="sr-only">
-          Nour Maison Kids Menu – Healthy and Fun Food for Children in Egypt
+          Nour Maison Kids Menu – Healthy and Fun Food for Children in UK
         </h1>
 
         <section aria-labelledby="kids-menu-heading">

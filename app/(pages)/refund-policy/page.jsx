@@ -3,6 +3,7 @@
 import React from "react";
 import Script from "next/script";
 import RefundPolicyClient from "./_components/RefundPolicyClient";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/refund-policy";
@@ -17,18 +18,7 @@ export const metadata = {
   title,
   description,
 
-  keywords: [
-    "NOUR MAISON refund policy",
-    "refund policy UK restaurant",
-    "NOUR MAISON LTD",
-    "Nour Maison Café refund",
-    "Milton Keynes restaurant refund",
-    "online order refund",
-    "food delivery refund",
-    "restaurant refund policy UK",
-    "order not delivered refund",
-    "café refund policy",
-  ],
+  keywords: getPageKeywords("refundPolicy"),
 
   robots: {
     index: true,

@@ -110,7 +110,7 @@ export default function AboutContent() {
               {/* Video Component (replaced AboutUsSwiper) */}
               {/* <AboutUsSwiper images={images} /> */}
               <AboutUsVideo
-                videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4"
+                videoSrc="/videos/booking-home-about.webm"
                 poster={images[0]}
               />
 
@@ -355,7 +355,7 @@ export default function AboutContent() {
           if (!v) closeVideo();
           else openVideo();
         }}
-        videoSrc={"https://camp-coding.tech/nour_maison/Nour-opening-1.mp4"}
+        videoSrc={"/videos/nour-opening-1.webm"}
       />
     </section>
   );

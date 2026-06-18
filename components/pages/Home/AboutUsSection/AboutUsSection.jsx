@@ -47,7 +47,7 @@ const AboutUsSection = () => {
     <div className="grid lg:grid grid-cols-1 lg:grid-cols-2 relative overflow-hidden">
       <div className="w-full" data-aos="fade-down-right">
         <AboutUsSectionVideo
-          videoSrc="https://res.cloudinary.com/dhebgz7qh/video/upload/q_auto,f_auto,vc_auto/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4"
+          videoSrc="/videos/booking-home-about.webm"
           poster={images[0]}
         />
       </div>

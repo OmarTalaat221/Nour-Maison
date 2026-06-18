@@ -1,10 +1,13 @@
+import { getPageKeywords } from "../../lib/seo/keywords";
 import BannerSwiper from "../../components/pages/Home/BannerSwiper/BannerSwiper";
 import HomeLazySections from "../../components/pages/Home/HomeLazySections";
 
 export const metadata = {
-  title: "Nour Maison | Halal French & middle eastern Café Restaurant",
+  title:
+    "Reserve Now and Enjoy Halal French and Middle Eastern Dining in Milton Keynes",
   description:
-    "Enjoy halal French and Middle Eastern brunch at Nour Maison in Milton Keynes. A cozy café offering pancakes, coffee, and elegant breakfast options.",
+    "Enjoy a unique halal dining experience with French and Middle Eastern flavours in Milton Keynes. Book now for breakfast, dining and afternoon tea.",
+  keywords: getPageKeywords("home"),
 };
 
 export default function Home() {

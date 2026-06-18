@@ -3,7 +3,7 @@
 import React, { Suspense } from "react";
 import Script from "next/script";
 import CheckoutPageClient from "./_components/CheckoutPageClient";
-
+import { getPageKeywords } from "../../../lib/seo/keywords";
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/checkout";
 const url = `${siteUrl}${pathname}`;
@@ -17,20 +17,7 @@ export const metadata = {
   title,
   description,
 
-  keywords: [
-    "NOUR MAISON checkout",
-    "secure payment UK",
-    "buy gift card online",
-    "online payment Milton Keynes",
-    "Dojo payment gateway",
-    "NOUR MAISON gift card",
-    "restaurant gift voucher",
-    "Milton Keynes gift card",
-    "secure online checkout",
-    "encrypted payment",
-    "halal restaurant gift card",
-    "safe online payment",
-  ],
+  keywords: getPageKeywords("checkout"),
 
   robots: {
     index: false,

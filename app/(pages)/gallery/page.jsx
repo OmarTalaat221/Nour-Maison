@@ -1,5 +1,6 @@
 import React from "react";
 import Gallrey from "./_Gallery_client";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 // metadata
 const OG_IMAGE =
@@ -27,21 +28,7 @@ export const metadata = {
     },
   },
 
-  keywords: [
-    "Nour Maison gallery",
-    "Nour Maison photos",
-    "Nour Maison food gallery",
-    "Nour Maison Milton Keynes",
-    "restaurant ambiance photos",
-    "elegant restaurant interiors",
-    "artisanal food photography",
-    "French Middle Eastern restaurant",
-    "halal restaurant Milton Keynes",
-    "Instagrammable restaurants Milton Keynes",
-    "beautiful restaurants in Milton Keynes",
-    "restaurant gallery Milton Keynes",
-    "brunch spots Milton Keynes",
-  ],
+  keywords: getPageKeywords("gallery"),
 
   openGraph: {
     type: "website",

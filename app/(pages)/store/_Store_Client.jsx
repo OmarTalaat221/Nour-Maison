@@ -110,7 +110,7 @@ const StorePage = () => {
         title={`Maison Market – Simple and elegant`}
         // scrollTo={"booking"}
         images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
       />
 

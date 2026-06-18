@@ -7,16 +7,16 @@ import Script from "next/script";
 import AfternoonTeaCTA from "./_components/AfternoonTeaCTA";
 import "./style.css";
 import FloatingElements from "./_components/FloatingElements";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/afternoon-tea-menu";
 const url = `${siteUrl}${pathname}`;
 
 // ✅ SEO Optimized
-const title = "Best Afternoon Tea in Milton Keynes | Nour Maison Café";
+const title = "Book the Most Luxurious Afternoon Tea in Milton Keynes at Nour Maison";
 const description =
-  "Looking for the best afternoon tea in Milton Keynes? Nour Maison offers a refined halal afternoon tea menu — French patisserie meets Middle Eastern flavours. Sweet treats, savoury bites & unlimited premium tea for £29.95. Book now!";
-
+  "Treat yourself to Milton Keynes' finest afternoon tea at Nour Maison. Enjoy elegant pastries, premium teas and unforgettable moments. Book now."
 const ogImage =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg";
 
@@ -29,26 +29,7 @@ export const metadata = {
     canonical: url,
   },
 
-  keywords: [
-    "best afternoon tea Milton Keynes",
-    "afternoon tea near me",
-    "halal afternoon tea Milton Keynes",
-    "Nour Maison afternoon tea",
-    "afternoon tea Milton Keynes",
-    "French patisserie Milton Keynes",
-    "Middle Eastern afternoon tea",
-    "afternoon tea menu UK",
-    "halal afternoon tea UK",
-    "afternoon tea MK",
-    "luxury afternoon tea Milton Keynes",
-    "afternoon tea for celebrations",
-    "birthday afternoon tea Milton Keynes",
-    "Nour Maison café menu",
-    "sweet treats and savoury bites",
-    "fusion afternoon tea",
-    "elegant afternoon tea experience",
-  ],
-
+  keywords: getPageKeywords("afternoonTeaMenu"),
   authors: [{ name: "Nour Maison Café" }],
   creator: "Nour Maison Café",
   publisher: "Nour Maison Café",

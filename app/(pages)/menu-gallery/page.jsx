@@ -1,5 +1,6 @@
 import React from "react";
 import MenuClient from "./_menuClient";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const OG_IMAGE =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1769095229/download_11_rjqdfc.png";
@@ -11,15 +12,7 @@ export const metadata = {
   description:
     "Explore our dessert menu at Nour Maison – halal French and Middle Eastern sweets, pastries, and treats in Milton Keynes.",
 
-  keywords: [
-    "Nour Maison dessert menu",
-    "halal desserts Milton Keynes",
-    "French pastries Milton Keynes",
-    "Middle Eastern sweets",
-    "cakes Milton Keynes",
-    "pancakes Milton Keynes",
-    "halal cafe Milton Keynes",
-  ],
+  keywords: getPageKeywords("menuGallery"),
 
   alternates: {
     canonical: "https://www.nourmaison.co.uk/menu-gallery",

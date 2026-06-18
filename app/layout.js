@@ -247,7 +247,7 @@ export default function RootLayout({ children }) {
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
+          href="/images/banner-img.webp"
           fetchPriority="high"
           media="(min-width: 769px)"
         />

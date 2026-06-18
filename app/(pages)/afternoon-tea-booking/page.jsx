@@ -2,6 +2,7 @@
 import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import AfternoonTeaBookingContent from "../../../components/pages/AfternoonTeaBooking/AfternoonTeaBooking";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const OG_IMAGE =
   "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443802/xvt7iw6wqrjw2ifcsxyk_mbwlqs.jpg";
@@ -10,23 +11,7 @@ export const metadata = {
   title: "Book Afternoon Tea | NOUR MAISON Restaurant & Café",
   description:
     "Reserve your Afternoon Tea experience at NOUR MAISON Milton Keynes. £29.95 per person with unlimited tea. French pâtisserie meets Middle Eastern flavors.",
-  keywords: [
-    "Afternoon Tea Milton Keynes",
-    "Book Afternoon Tea",
-    "Nour Maison Afternoon Tea",
-    "halal afternoon tea",
-    "French afternoon tea UK",
-    "Middle Eastern afternoon tea",
-    "afternoon tea booking",
-    "halal high tea Milton Keynes",
-    "best afternoon tea MK",
-    "afternoon tea reservation",
-    "Nour Maison booking",
-    "halal patisserie",
-    "afternoon tea experience",
-    "Book Afternoon Tea online",
-    "Afternoon Tea reservation UK",
-  ],
+  keywords: getPageKeywords("afternoonTeaBooking"),
   alternates: {
     canonical: "https://www.nourmaison.co.uk/afternoon-tea-booking",
   },

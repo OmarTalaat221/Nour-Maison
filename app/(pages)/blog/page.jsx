@@ -5,66 +5,14 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import Link from "next/link";
 import slugify from "../../../lib/slugify";
 import BlogPagination from "../../../components/BlogPagination/BlogPagination";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 export const metadata = {
   title: "NOUR MAISON - BLOGS",
   description:
     "Discover inspiring articles, tips, and insights on lifestyle, design, and more at NOUR MAISON Blogs. Explore fresh ideas to elevate your everyday living.",
 
-  keywords: [
-    "Nour Maison blog",
-    "Nour Maison lifestyle",
-    "Nour Maison articles",
-    "Nour Maison insights",
-    "Nour Maison inspiration",
-    "Nour Maison design blog",
-    "Nour Maison decor tips",
-    "lifestyle blogs",
-    "modern lifestyle blog",
-    "creative living tips",
-    "mindful living",
-    "balanced lifestyle ideas",
-    "wellness and lifestyle",
-    "personal growth blog",
-    "elegant lifestyle ideas",
-    "luxury lifestyle tips",
-    "living well daily",
-    "smart living blog",
-    "lifestyle for modern homes",
-    "home inspiration",
-    "interior design tips",
-    "home styling blog",
-    "modern home ideas",
-    "small space decorating tips",
-    "luxury home ideas",
-    "decor ideas",
-    "home decor blog",
-    "furniture styling tips",
-    "elevated home spaces",
-    "design for everyday living",
-    "home improvement tips",
-    "interior styling guide",
-    "daily inspiration blog",
-    "inspirational articles",
-    "tips and ideas blog",
-    "home and lifestyle articles",
-    "read lifestyle tips online",
-    "design tips for home",
-    "interior decor blog UK",
-    "food and lifestyle blog",
-    "blog for home lovers",
-    "blog for creative living",
-    "blog for cozy living",
-    "blog on interior trends",
-    "read about lifestyle online",
-    "design inspiration Milton Keynes",
-    "UK home and lifestyle blog",
-    "trending decor blog",
-    "luxury interiors blog UK",
-    "wellness lifestyle blog UK",
-    "French style interiors blog",
-    "stylish living ideas",
-  ],
+  keywords: getPageKeywords("blog"),
 
   alternates: {
     canonical: "https://www.nourmaison.co.uk/blog",
@@ -103,7 +51,7 @@ const Page = async ({ searchParams }) => {
         slogan={"Nour Maison Moments"}
         scrollTo={"blogs"}
         images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
       />
 

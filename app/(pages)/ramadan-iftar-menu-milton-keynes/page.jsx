@@ -5,6 +5,7 @@ import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import Script from "next/script";
 import "./style.css";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/ramadan-iftar-menu-milton-keynes";
@@ -26,29 +27,7 @@ export const metadata = {
     canonical: url,
   },
 
-  keywords: [
-    "Best Iftar Milton Keynes",
-    "Best Iftar menu in Milton Keynes",
-    "Iftar near me",
-    "Halal Iftar near me Milton Keynes",
-    "Family Iftar Milton Keynes",
-    "Halal Iftar Restaurant Milton Keynes",
-    "Iftar Menu Milton Keynes",
-    "Iftar restaurant near me",
-    "Halal Ramadan dinner",
-    "Ramadan restaurant MK",
-    "Halal restaurant Ramadan MK",
-    "Iftar Milton Keynes",
-    "Ramadan dining Milton Keynes",
-    "5 course Iftar menu UK",
-    "Halal restaurant Milton Keynes",
-    "Ramadan 2026 Milton Keynes",
-    "Middle Eastern restaurant MK",
-    "Where to break fast Milton Keynes",
-    "Iftar deals Milton Keynes",
-    "Ramadan special menu MK",
-    "Best Ramadan restaurant Milton Keynes",
-  ],
+  keywords: getPageKeywords("ramadanIftarMenuMiltonKeynes"),
 
   authors: [{ name: "Nour Maison Café" }],
   creator: "Nour Maison Café",

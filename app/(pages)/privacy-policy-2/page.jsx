@@ -3,6 +3,7 @@
 import React from "react";
 import Script from "next/script";
 import PrivacyPolicyClient from "./_components/PrivacyPolicyClient";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/privacy-policy-2";
@@ -17,18 +18,7 @@ export const metadata = {
   title,
   description,
 
-  keywords: [
-    "NOUR MAISON privacy policy",
-    "privacy policy UK restaurant",
-    "NOUR MAISON LTD",
-    "data protection",
-    "GDPR compliance",
-    "personal data protection",
-    "Milton Keynes restaurant privacy",
-    "email marketing privacy",
-    "cookie policy",
-    "customer data security",
-  ],
+  keywords: getPageKeywords("privacyPolicy"),
 
   robots: {
     index: true,

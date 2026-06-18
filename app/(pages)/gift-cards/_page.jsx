@@ -1,29 +1,16 @@
-"use client";
+import GiftCardsPage from "./GiftCardsPage";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
-import React from "react";
-import GiftCardsContainer from "../../../components/pages/GiftCardsPage/GiftCardsContainer";
-import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import dynamic from "next/dynamic";
-
-const HeavyComponent = dynamic(
-  () => import("../../../components/pages/GiftCardsPage/GiftCardsContainer"),
-  {
-    ssr: false,
-    loading: () => <p style={{ color: "gray" }}>Loading component...</p>,
-  }
-);
-const GiftCardsPage = () => {
-  return (
-    <div className="gift_cards_page">
-      <PagesBanner
-        title={"Give the Gift of Luxury with Nour Miason"}
-        slogan={"Luxury, Wrapped in a Card"}
-        scrollTo={"gift_cards_page"}
-      />
-
-      <HeavyComponent />
-    </div>
-  );
+export const metadata = {
+  title: "Gift Cards | Nour Maison Milton Keynes",
+  description:
+    "Give the gift of halal French and Middle Eastern dining with Nour Maison gift cards in Milton Keynes. Perfect for birthdays, anniversaries and special occasions.",
+  keywords: getPageKeywords("giftCards"),
+  alternates: {
+    canonical: "https://www.nourmaison.co.uk/gift-cards",
+  },
 };
 
-export default GiftCardsPage;
+export default function Page() {
+  return <GiftCardsPage />;
+}

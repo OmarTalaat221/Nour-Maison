@@ -5,6 +5,7 @@ import Script from "next/script";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import AllBlogsContent from "./_components/AllBlogsContent";
 import { conifgs } from "../../../config";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/all-blogs";
@@ -48,21 +49,7 @@ export async function generateMetadata() {
     },
 
     keywords: [
-      "Halal restaurant blog Milton Keynes",
-      "Halal dining guide MK",
-      "Afternoon tea Milton Keynes",
-      "Brunch ideas Milton Keynes",
-      "Halal restaurant tips",
-      "Fine dining blog UK",
-      "Milton Keynes restaurant guide",
-      "Halal food blog",
-      "French Middle Eastern cuisine blog",
-      "Nour Maison blog",
-      "Best halal restaurants MK",
-      "Restaurant recommendations Milton Keynes",
-      "Halal afternoon tea guide",
-      "Special occasions dining MK",
-      "Family dining Milton Keynes",
+      ...getPageKeywords("allBlogs"),
       ...(keywords || []),
     ],
 
@@ -303,7 +290,7 @@ export default async function AllBlogsPage() {
       {/* ✅ Banner Section */}
       <PagesBanner
         images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
         bottomBg={true}
         slogan={

@@ -3,6 +3,7 @@
 import React from "react";
 import Script from "next/script";
 import TermsAndConditionsClient from "./_components/TermsAndConditionsClient";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/terms-and-conditions";
@@ -18,18 +19,7 @@ export const metadata = {
   title,
   description,
 
-  keywords: [
-    "NOUR MAISON terms and conditions",
-    "NOUR MAISON LTD",
-    "Nour Maison Café terms",
-    "restaurant terms UK",
-    "Milton Keynes restaurant policy",
-    "café terms and conditions",
-    "online ordering terms",
-    "reservation policy",
-    "payment terms restaurant",
-    "halal restaurant terms",
-  ],
+  keywords: getPageKeywords("termsAndConditions"),
 
   robots: {
     index: true,

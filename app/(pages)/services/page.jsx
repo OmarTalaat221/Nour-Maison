@@ -1,68 +1,12 @@
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import OurServices from "../../../components/pages/Home/OurServices/OurServices";
 import HappyMoments from "../../../components/pages/HappyMoments/HappyMoments";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 const OG_IMAGE = `https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451823/ga4mdhcqwbr2sqhdc7os_1_eahl9l.webp`;
 export const metadata = {
   title: "Services for Private Events & Gatherings | Nour Maison",
   description: `Host birthdays or corporate events at Nour Maison Milton Keynes—halal-friendly French & Middle Eastern flavours.`,
-  keywords: [
-    "Nour Maison services",
-    "Nour Maison events",
-    "private events Milton Keynes",
-    "birthday venue Milton Keynes",
-    "corporate events Milton Keynes",
-    "halal catering Milton Keynes",
-    "restaurant events venue MK",
-    "celebrations at Nour Maison",
-    "family events Milton Keynes",
-    "Afternoon Tea",
-    "Baby Shower",
-    "Gender Reveal",
-    "Birthday Party",
-    "Anniversaries",
-    "Special Events",
-    "Private Events",
-    "Celebrations",
-
-    // Experience & atmosphere
-    "Elegant celebration",
-    "Beautifully arranged gathering",
-    "Magical moment",
-    "Warm atmosphere",
-    "Stunning decorations",
-    "Exciting atmosphere",
-    "Fun-filled party",
-    "Elegant ambiance",
-    "Cozy celebration",
-
-    // Emotions & messaging
-    "Cherish forever",
-    "Unforgettable memories",
-    "Lasting memories",
-    "Special milestone",
-    "Love and joy",
-    "Delightful memories",
-    "Feels like love",
-    "Tastes like adventure",
-
-    // Family & social
-    "Baby celebration",
-    "Family gathering",
-    "Friends celebration",
-    "Little one arrival",
-    "Birthday celebration",
-    "Couple anniversaries",
-
-    // SEO-friendly use-cases
-    "Afternoon tea experience",
-    "Baby shower venue",
-    "Gender reveal party venue",
-    "Birthday party venue",
-    "Anniversary celebration venue",
-    "Elegant event space",
-    "Celebration cafe",
-    "Restaurant events",
-  ],
+  keywords: getPageKeywords("services"),
 
   alternates: {
     canonical: "https://www.nourmaison.co.uk/services", // ✅ عدّل لو مسار الصفحة مختلف
@@ -124,7 +68,7 @@ const page = () => {
         // ]}
 
         images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
       />
 

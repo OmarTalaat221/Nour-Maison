@@ -3,6 +3,7 @@ import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import "./style.css";
 import BookingButton from "./BookingButton";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/eid-al-adha-dinner-menu-milton-keynes";
@@ -21,18 +22,7 @@ export const metadata = {
   title,
   description,
   alternates: { canonical: url },
-  keywords: [
-    "Eid Al-Adha dinner Milton Keynes",
-    "Eid Adha menu Milton Keynes 2026",
-    "Halal Eid dinner Milton Keynes",
-    "Eid Al-Adha restaurant MK",
-    "Confit lamb neck Milton Keynes",
-    "Smoked Lahma MK",
-    "Fatteh Masri Milton Keynes",
-    "Halal fine dining Milton Keynes",
-    "Family Eid dinner Milton Keynes",
-    "Eid Mubarak dinner Milton Keynes",
-  ],
+  keywords: getPageKeywords("eidAlAdhaDinnerMenuMiltonKeynes"),
   authors: [{ name: "Nour Maison Café" }],
   creator: "Nour Maison Café",
   publisher: "Nour Maison Café",
@@ -399,7 +389,7 @@ const EidAlAdhaDinnerMenuPage = () => {
         bottomBg={false}
         images={[
           "/images/eid-video.mp4",
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">

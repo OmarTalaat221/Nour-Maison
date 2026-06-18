@@ -27,10 +27,10 @@ import "./style.scss";
 import { detectMediaType } from "../../../../lib/functions";
 
 const SHARED_BACKGROUND = {
-  src: "https://res.cloudinary.com/dhebgz7qh/video/upload/q_auto,f_auto,vc_auto/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+  src: "/videos/booking-home-about.webm",
   mobileSrc: "/images/IMG_9871.webm",
   poster:
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+    "/images/banner-img.webp",
   posterMobile:
     "/images/mobile-banner-poster.webp",
   alt: "Nour Maison Restaurant Background",

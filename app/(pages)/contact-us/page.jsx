@@ -1,6 +1,7 @@
 import React from "react";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import ContactContent from "../../../components/pages/ContactPage/ContactContent/Content";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 // metadata
 // app/(whatever)/contact-us/page.jsx
@@ -15,21 +16,7 @@ export const metadata = {
   description:
     "Get in touch with Nour Maison in Milton Keynes for inquiries, reservations, events, or feedback. We’re here to help.",
 
-  keywords: [
-    "Nour Maison contact",
-    "contact Nour Maison",
-    "Nour Maison Milton Keynes",
-    "Nour Maison email",
-    "Nour Maison phone",
-    "restaurant contact Milton Keynes",
-    "halal restaurant Milton Keynes contact",
-    "reservation contact Nour Maison",
-    "Nour Maison address",
-    "get directions Nour Maison",
-    "restaurant enquiries UK",
-    "events booking Nour Maison",
-  ],
-
+  keywords: getPageKeywords("contactUs"),
   alternates: {
     canonical: "https://www.nourmaison.co.uk/contact-us",
   },
@@ -83,7 +70,7 @@ const Contact = () => {
         slogan={"Reach Us Anytime, Anywhere!"}
         scrollTo={"contact"}
         images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101573/booking-home-about_info_ulolyx_tspht2.mp4",
+          "/videos/booking-home-about.webm",
         ]}
       />
 

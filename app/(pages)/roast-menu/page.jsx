@@ -5,13 +5,14 @@ import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import BottomBg from "./../../../utils/bottomBg/BottomBg";
 import Script from "next/script";
+import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk"; // <-- غيّره للدومين الحقيقي
 const pathname = "/roast-menu"; // <-- غيّره للمسار الحقيقي
 const url = `${siteUrl}${pathname}`;
 
 const title = `Roast Dinner Menu | Nour Maison Café And Brasserie`;
-const description = `Nour Maison Café: halal Sunday roast in Egypt—Arabic spices, French finesse, locally sourced ingredients.`;
+const description = `Nour Maison Café: halal Sunday roast in UK—Arabic spices, French finesse, locally sourced ingredients.`;
 const ogImage = `${siteUrl}/images/rc.webp`;
 
 export const metadata = {
@@ -22,16 +23,7 @@ export const metadata = {
     canonical: url,
   },
 
-  keywords: [
-    "Nour Maison roast dinner",
-    "Sunday roast Egypt",
-    "halal roast dinner",
-    "French Arabic fusion roast",
-    "Nour Maison café menu",
-    "roast dinner menu Cairo",
-    "family roast dinner Egypt",
-    "British roast with Arabic twist",
-  ],
+  keywords: getPageKeywords("roastMenu"),
 
   robots: {
     index: true,
@@ -109,7 +101,7 @@ const RoastDinnerMenuPage = () => {
           Spice and French Finesse
         </h1>
         <p>
-          Halal-friendly Sunday roast in Egypt with locally sourced ingredients,
+          Halal-friendly Sunday roast in UK with locally sourced ingredients,
           crafted as a comforting ritual.
         </p>
       </header>
