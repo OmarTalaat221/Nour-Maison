@@ -15,14 +15,21 @@ $black: #0a0a0a;
   transform: translate3d(0, 0, 0);
   isolation: isolate;
 }
-
 .persistent-background {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   background-color: #1a1a1a;
+  background-image: url("/images/mobile-banner-poster.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   contain: paint;
+
+  @media (min-width: 769px) {
+    background-image: url("https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp");
+  }
 
   picture {
     position: absolute;
