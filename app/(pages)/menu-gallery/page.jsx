@@ -8,9 +8,9 @@ const OG_IMAGE =
 export const metadata = {
   metadataBase: new URL("https://www.nourmaison.co.uk"),
 
-  title: "Menu Gallery | Nour Maison – Halal Sweets in Milton Keynes",
+  title: "Discover Nour Maison's Dessert Gallery in Milton Keynes Today",
   description:
-    "Explore our dessert menu at Nour Maison – halal French and Middle Eastern sweets, pastries, and treats in Milton Keynes.",
+    "Explore Nour Maison's dessert gallery in Milton Keynes and discover handcrafted cakes, pastries and sweet treats inspired by French and Middle Eastern flavours.",
 
   keywords: getPageKeywords("menuGallery"),
 
