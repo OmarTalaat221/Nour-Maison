@@ -32,7 +32,7 @@ const SHARED_BACKGROUND = {
   poster:
     "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
   posterMobile:
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_768/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp",
+    "/images/mobile-banner-poster.webp",
   alt: "Nour Maison Restaurant Background",
 };
 
@@ -146,9 +146,8 @@ const SLIDES_DATA = [
 const PAGINATION_CONFIG = {
   clickable: true,
   renderBullet: function (index, className) {
-    return `<span class="${className}" role="button" aria-label="Go to slide ${
-      index + 1
-    }" tabindex="0">
+    return `<span class="${className}" role="button" aria-label="Go to slide ${index + 1
+      }" tabindex="0">
       <span class="bullet-number">${String(index + 1).padStart(2, "0")}</span>
       <span class="bullet-progress"></span>
     </span>`;
@@ -197,21 +196,19 @@ const useDeferredVideo = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
-    let idleId;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    const loadVideo = () => setShowVideo(true);
+    const saveData = navigator.connection?.saveData;
 
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(loadVideo, { timeout: 6000 });
-    } else {
-      timeoutId = window.setTimeout(loadVideo, 4500);
-    }
+    if (prefersReducedMotion || saveData) return;
 
-    return () => {
-      if (idleId) window.cancelIdleCallback(idleId);
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
+    const timer = window.setTimeout(() => {
+      setShowVideo(true);
+    }, 900);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   return showVideo;
@@ -281,7 +278,7 @@ const PersistentBackground = memo(() => {
           loop
           muted
           playsInline
-          preload="none"
+          preload="metadata"
           autoPlay
           poster={posterSource}
           aria-label={SHARED_BACKGROUND.alt}
@@ -304,7 +301,7 @@ PersistentBackground.displayName = "PersistentBackground";
 const CircleMedia = memo(({ slide }) => {
   const mediaType = useMemo(
     () => (slide.circleImage ? detectMediaType(slide.circleImage) : null),
-    [slide.circleImage],
+    [slide.circleImage]
   );
 
   if (!slide.circleImage) return null;
@@ -477,7 +474,7 @@ const SlideContent = memo(
           },
         },
       }),
-      [typingEndTime],
+      [typingEndTime]
     );
 
     const descriptionVariants = useMemo(
@@ -493,7 +490,7 @@ const SlideContent = memo(
           },
         },
       }),
-      [typingEndTime],
+      [typingEndTime]
     );
 
     const buttonVariants = useMemo(
@@ -515,7 +512,7 @@ const SlideContent = memo(
           transition: { duration: 0.3 },
         },
       }),
-      [typingEndTime],
+      [typingEndTime]
     );
 
     if (!isActive) return null;
@@ -606,7 +603,7 @@ const SlideContent = memo(
         )}
       </motion.div>
     );
-  },
+  }
 );
 
 SlideContent.displayName = "SlideContent";
@@ -622,7 +619,7 @@ const Particles = memo(() => {
           aria-hidden="true"
         />
       )),
-    [],
+    []
   );
 
   return (
@@ -670,7 +667,7 @@ const BannerSwiper = () => {
 
       swiperRef.current.params.autoplay = AUTOPLAY_CONFIG;
       swiperRef.current.autoplay.start();
-    }, 6500);
+    }, 1200);
   }, []);
 
   useEffect(() => {
@@ -703,7 +700,7 @@ const BannerSwiper = () => {
       },
       acceptsReservations: true,
     }),
-    [],
+    []
   );
 
   return (
@@ -747,9 +744,8 @@ const BannerSwiper = () => {
           return (
             <SwiperSlide key={slide.id}>
               <article
-                className={`slide-container ${
-                  slide.rightImage ? "has-right-hero" : ""
-                }`}
+                className={`slide-container ${slide.rightImage ? "has-right-hero" : ""
+                  }`}
               >
                 <div className="slide-content">
                   <AnimatePresence mode="wait">

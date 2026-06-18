@@ -30,7 +30,8 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
   const wrapperRef = useRef(null);
   const videoRef = useRef(null);
   const progressFrameRef = useRef(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [shouldRenderVideo, setShouldRenderVideo] = useState(false);
+  const [shouldAutoplay, setShouldAutoplay] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(true);
@@ -39,36 +40,39 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
   useEffect(() => {
     const element = wrapperRef.current;
 
-    if (!element || shouldLoadVideo) return;
+    if (!element || shouldRenderVideo) return;
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoadVideo(true);
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting) return;
+
+        setShouldRenderVideo(true);
+        setShouldAutoplay(true);
+        observer.disconnect();
       },
       {
-        rootMargin: "350px 0px",
-        threshold: 0.1,
-      },
+        rootMargin: isMobile ? "0px 0px" : "120px 0px",
+        threshold: 0.25,
+      }
     );
 
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [shouldLoadVideo]);
+  }, [shouldRenderVideo]);
 
   useEffect(() => {
     const video = videoRef.current;
 
-    if (!video || !shouldLoadVideo) return;
+    if (!video || !shouldRenderVideo || !shouldAutoplay) return;
 
     video
       .play()
       .then(() => setIsPlaying(true))
       .catch(() => setIsPlaying(false));
-  }, [shouldLoadVideo]);
+  }, [shouldRenderVideo, shouldAutoplay]);
 
   useEffect(() => {
     return () => {
@@ -81,8 +85,9 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
 
-    if (!video) {
-      setShouldLoadVideo(true);
+    if (!shouldRenderVideo || !video) {
+      setShouldRenderVideo(true);
+      setShouldAutoplay(true);
       return;
     }
 
@@ -97,19 +102,21 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
       .play()
       .then(() => {
         setIsPlaying(true);
+        setShouldAutoplay(true);
       })
       .catch(() => {
         setIsPlaying(false);
       });
-  }, [isPlaying]);
+  }, [isPlaying, shouldRenderVideo]);
 
   const toggleMute = useCallback(() => {
     const video = videoRef.current;
 
     if (!video) return;
 
-    video.muted = !isMuted;
-    setIsMuted((prev) => !prev);
+    const nextMutedValue = !isMuted;
+    video.muted = nextMutedValue;
+    setIsMuted(nextMutedValue);
   }, [isMuted]);
 
   const handleVideoEnd = useCallback(() => {
@@ -121,9 +128,7 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
   const handleTimeUpdate = useCallback(() => {
     const video = videoRef.current;
 
-    if (!video || !video.duration) return;
-
-    if (progressFrameRef.current) return;
+    if (!video || !video.duration || progressFrameRef.current) return;
 
     progressFrameRef.current = requestAnimationFrame(() => {
       setProgress((video.currentTime / video.duration) * 100);
@@ -148,21 +153,25 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => isPlaying && setShowControls(false)}
     >
-      {!shouldLoadVideo && (
+      {!shouldRenderVideo && (
         <img
           src={poster}
           alt="Nour Maison restaurant video preview"
           className="w-full h-full object-cover cursor-pointer !max-h-[780px]"
           loading="lazy"
           decoding="async"
-          onClick={() => setShouldLoadVideo(true)}
+          width="1100"
+          height="780"
+          onClick={() => {
+            setShouldRenderVideo(true);
+            setShouldAutoplay(true);
+          }}
         />
       )}
 
-      {shouldLoadVideo && (
+      {shouldRenderVideo && (
         <video
           ref={videoRef}
-          src={videoSrc}
           poster={poster}
           muted={isMuted}
           loop
@@ -172,22 +181,22 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
           onEnded={handleVideoEnd}
           onTimeUpdate={handleTimeUpdate}
           className="w-full h-full object-cover cursor-pointer !max-h-[780px]"
-        />
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
       )}
 
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none transition-opacity duration-300 ${
-          showControls || !isPlaying ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none transition-opacity duration-300 ${showControls || !isPlaying ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       <button
         onClick={togglePlay}
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${
-          showControls || !isPlaying
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${showControls || !isPlaying
             ? "opacity-100 scale-100"
             : "opacity-0 scale-90"
-        }`}
+          }`}
         aria-label={isPlaying ? "Pause video" : "Play video"}
       >
         <span className="absolute inset-0 rounded-full bg-logoGold/30 blur-xl" />
@@ -205,11 +214,10 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
       </button>
 
       <div
-        className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 ${
-          showControls || !isPlaying
+        className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 ${showControls || !isPlaying
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
-        }`}
+          }`}
       >
         <div
           className="w-full h-1 bg-white/30 cursor-pointer group"
@@ -264,11 +272,10 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
       </div>
 
       <div
-        className={`absolute top-4 left-4 z-10 transition-all duration-300 ${
-          showControls || !isPlaying
+        className={`absolute top-4 left-4 z-10 transition-all duration-300 ${showControls || !isPlaying
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4"
-        }`}
+          }`}
       >
         <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
           <img
@@ -277,6 +284,8 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
             className="h-6 w-6"
             loading="lazy"
             decoding="async"
+            width="24"
+            height="24"
           />
           <span className="text-white text-sm font-seasons font-semibold">
             Nour Maison

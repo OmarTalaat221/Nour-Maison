@@ -752,3 +752,64 @@ $black: #0a0a0a;
   white-space: nowrap;
   border: 0;
 }
+
+.static-banner-shell {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100vh;
+  min-height: 100svh;
+  background: transparent;
+  contain: layout paint;
+}
+
+.static-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+.static-banner-shell .swiper-button-prev {
+  left: 20px;
+}
+
+.static-banner-shell .swiper-button-next {
+  right: 20px;
+}
+
+.static-banner-shell .swiper-button-prev::after {
+  content: "‹";
+}
+
+.static-banner-shell .swiper-button-next::after {
+  content: "›";
+}
+
+.static-banner-pagination {
+  pointer-events: none;
+}
+
+.static-right-hero picture,
+.static-right-hero img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.static-right-hero img {
+  object-fit: contain;
+  object-position: right center;
+}
+
+@media (max-width: 1024px) {
+  .static-right-hero {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .static-swiper-button {
+    width: 42px;
+    height: 42px;
+  }
+}

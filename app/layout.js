@@ -11,30 +11,31 @@ import {
   Yesteryear,
   Caveat,
 } from "next/font/google";
-import Script from "next/script";
 import localFont from "next/font/local";
 
 import "./globals.css";
-import Footer from "./../components/shared/Footer/Footer";
 import TopHeader from "../components/shared/TopHeader/TopHeader";
 import AOSAnimation from "./../components/AOS";
 import PageTransition from "../components/PageTransition";
 import StickyHeaderComponent from "../components/shared/StickyHeader/StickyHeaderComponent";
-import { menu_1 } from "./(pages)/data/menuData";
 import { NotFoundProvider } from "./context/NoutFoundContext";
 import { HeaderProvider } from "./context/HeaderContext";
 import { LoadingProvider } from "./context/LoadingContext";
+import LazyAnalytics from "../components/LazyAnalytics/LazyAnalytics";
+import LazyFooter from "../components/LazyFooter/LazyFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  preload: false,
 });
 
 const lato = Lato({
@@ -42,6 +43,7 @@ const lato = Lato({
   weight: ["300", "400", "700", "900"],
   variable: "--font-lato",
   display: "swap",
+  preload: false,
 });
 
 const oswald = Oswald({
@@ -49,6 +51,7 @@ const oswald = Oswald({
   weight: ["400", "500", "600", "700"],
   variable: "--font-oswald",
   display: "swap",
+  preload: false,
 });
 
 const tajawal = Tajawal({
@@ -56,6 +59,7 @@ const tajawal = Tajawal({
   weight: ["300", "400", "500", "700", "800"],
   variable: "--font-tajawal",
   display: "swap",
+  preload: false,
 });
 
 const tangerine = Tangerine({
@@ -63,6 +67,7 @@ const tangerine = Tangerine({
   weight: ["400", "700"],
   variable: "--font-tangerine",
   display: "swap",
+  preload: false,
 });
 
 const greatVibes = Great_Vibes({
@@ -70,6 +75,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
   variable: "--font-greatvibes",
   display: "swap",
+  preload: false,
 });
 
 const pacifico = Pacifico({
@@ -77,6 +83,7 @@ const pacifico = Pacifico({
   subsets: ["latin"],
   variable: "--font-pacifico",
   display: "swap",
+  preload: false,
 });
 
 const caveat = Caveat({
@@ -84,6 +91,7 @@ const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
   display: "swap",
+  preload: false,
 });
 
 const ebGaramond = EB_Garamond({
@@ -91,6 +99,7 @@ const ebGaramond = EB_Garamond({
   weight: ["400", "500", "600", "700"],
   variable: "--font-eb-garamond",
   display: "swap",
+  preload: false,
 });
 
 const yesteryear = Yesteryear({
@@ -98,6 +107,7 @@ const yesteryear = Yesteryear({
   weight: "400",
   variable: "--font-yesteryear",
   display: "swap",
+  preload: false,
 });
 
 const theSeasons = localFont({
@@ -135,6 +145,7 @@ const theSeasons = localFont({
     },
   ],
   display: "swap",
+  preload: false,
 });
 
 export const metadata = {
@@ -190,30 +201,6 @@ export const viewport = {
   initialScale: 1,
 };
 
-function generateStructuredMenu(menuItems) {
-  return {
-    "@type": "MenuSection",
-    name: "Featured Items",
-    hasMenuItem: menuItems
-      .map((e) => e.items)
-      .flat()
-      .map((item) => ({
-        "@type": "MenuItem",
-        name: item.name,
-        image: item?.image ?? "https://www.nourmaison.co.uk/logo.png",
-        description:
-          item.description ?? "Best " + item.name + " in Milton Keynes",
-        offers: {
-          "@type": "Offer",
-          price: item.price.toFixed(2),
-          priceCurrency: "GBP",
-          availability: "https://schema.org/InStock",
-          priceValidUntil: "2026-12-31",
-        },
-      })),
-  };
-}
-
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
@@ -240,7 +227,7 @@ const structuredData = {
     "https://www.instagram.com/nourmaisonuk",
     "https://www.facebook.com/nourmaisonuk",
   ],
-  hasMenuSection: [generateStructuredMenu(menu_1)],
+  acceptsReservations: true,
 };
 
 export default function RootLayout({ children }) {
@@ -252,15 +239,8 @@ export default function RootLayout({ children }) {
           href="https://res.cloudinary.com"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-        <link
-          rel="preload"
-          as="image"
-          href="https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1920/v1767443794/jnd1i37zypsinyyigm1o_wocejk.webp"
-          fetchPriority="high"
-          media="(min-width: 769px)"
-        />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
         <link
           rel="preload"
@@ -281,46 +261,6 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${inter.variable} ${lato.variable} ${oswald.variable} ${tajawal.variable} ${tangerine.variable} ${greatVibes.variable} ${pacifico.variable} ${ebGaramond.variable} ${theSeasons.variable} ${yesteryear.variable} ${caveat.variable}`}
       >
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-P48D3KC3"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
-        <Script
-          id="ahrefs-analytics"
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="FUJMrE2qx69y9MrZZkD6AA"
-          strategy="lazyOnload"
-        />
-
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-P48D3KC3');
-          `}
-        </Script>
-
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-GDNDWEWDFW"
-          strategy="afterInteractive"
-        />
-
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-GDNDWEWDFW');
-          `}
-        </Script>
-
         <NotFoundProvider>
           <LoadingProvider>
             <HeaderProvider>
@@ -330,8 +270,9 @@ export default function RootLayout({ children }) {
             </HeaderProvider>
           </LoadingProvider>
 
-          <Footer />
+          <LazyFooter />
           <AOSAnimation />
+          <LazyAnalytics />
         </NotFoundProvider>
       </body>
     </html>

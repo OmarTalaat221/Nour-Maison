@@ -1,13 +1,26 @@
 "use client";
 
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import dynamic from "next/dynamic";
 import cx from "classnames";
 import ButtonsLayers from "../../../../utils/ButtonsLayers/ButtonsLayers";
 import TopBg from "./../../../../utils/topBg/TopBg";
-import CounterUp from "../../../elements/CounterUp";
 import BottomBg from "../../../../utils/bottomBg/BottomBg";
-import AboutUsSectionVideo from "../AboutUsSectionVideo/AboutUsSectionVideo";
+
+const AboutUsSectionVideo = dynamic(
+  () => import("../AboutUsSectionVideo/AboutUsSectionVideo"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[360px] sm:h-[460px] md:h-[560px] lg:h-full bg-black/20" />
+    ),
+  }
+);
+
+const CounterUp = dynamic(() => import("../../../elements/CounterUp"), {
+  ssr: false,
+  loading: () => <span>0</span>,
+});
 
 const RatingStars = dynamic(() => import("../RatingWithSound"), {
   ssr: false,
@@ -30,8 +43,6 @@ const images = [
 ];
 
 const AboutUsSection = () => {
-  const counters = useMemo(() => counterdata, []);
-
   return (
     <div className="grid lg:grid grid-cols-1 lg:grid-cols-2 relative overflow-hidden">
       <div className="w-full" data-aos="fade-down-right">
@@ -52,62 +63,6 @@ const AboutUsSection = () => {
       import "swiper/css/effect-coverflow";
       import { Autoplay, Navigation, Pagination } from "swiper/modules";
       import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-      const swiperRef = useRef(null);
-      const [activeIndex, setActiveIndex] = useState(0);
-
-      const handleSlideChange = (e) => {
-        setActiveIndex(e.activeIndex);
-      };
-
-      <div className="w-full" data-aos="fade-down-right">
-        <Swiper
-          className="!max-h-[600px] hs-full relative"
-          modules={[Navigation, Pagination, Autoplay]}
-          centeredSlides={true}
-          navigation={{
-            nextEl: ".custom-next_1",
-            prevEl: ".custom-prev_1",
-          }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          ref={swiperRef}
-          onSlideChange={handleSlideChange}
-          slidesPerView={1}
-          fadeEffect={{
-            crossFade: true,
-          }}
-          loop={true}
-          autoplay={{ delay: 2000 }}
-        >
-          <button
-            aria-label="Previous slide"
-            title="Previous slide"
-            className="custom-prev_1 absolute z-20 bottom-0 !right-20 -translate-y-1/2"
-          >
-            <FaChevronLeft className="slider_buttons bg-logoGold rounded-full" />
-          </button>
-
-          <button
-            aria-label="Next slide"
-            title="Next slide"
-            className="custom-next_1 absolute z-20 bottom-0 right-3 -translate-y-1/2"
-          >
-            <FaChevronRight className="slider_buttons bg-logoGold rounded-full" />
-          </button>
-
-          {images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <img
-                className="w-full h-full object-cover"
-                src={img}
-                alt={`nour caffe - ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding={index === 0 ? "sync" : "async"}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
       */}
 
       <div className="relative flex flex-col max-h-[780px] md:!max-h-[780px] overflow-auto">
@@ -150,13 +105,13 @@ const AboutUsSection = () => {
         </div>
 
         <div className="grid w-full mt-auto bottom-0 grid-cols-2 lg:grid-cols-3">
-          {counters.map((item) => (
+          {counterdata.map((item) => (
             <div
               key={item.id}
               className={cx(
                 "flex py-5 items-center gap-4 flex-col justify-center",
                 item.bg,
-                item.id === 3 && "col-span-2 lg:col-span-1 !gap-2",
+                item.id === 3 && "col-span-2 lg:col-span-1 !gap-2"
               )}
             >
               <div className="text-2xl font-bold text-white font-oswald">

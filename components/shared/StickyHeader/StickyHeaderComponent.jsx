@@ -1,8 +1,14 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { memo, useState } from "react";
+import dynamic from "next/dynamic";
 import StickyHeader from "./StickyHeader";
-import Sidebar from "../Sidebar/Sidebar";
 import { usePathname } from "next/navigation";
+
+const Sidebar = dynamic(() => import("../Sidebar/Sidebar"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const StickyHeaderComponent = () => {
   const [open, setOpen] = useState(false);
@@ -17,9 +23,9 @@ const StickyHeaderComponent = () => {
   return (
     <>
       <StickyHeader open={open} setOpen={setOpen} />
-      <Sidebar open={open} setOpen={setOpen} />
+      {open && <Sidebar open={open} setOpen={setOpen} />}
     </>
   );
 };
 
-export default StickyHeaderComponent;
+export default memo(StickyHeaderComponent);

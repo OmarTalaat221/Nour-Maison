@@ -1,0 +1,57 @@
+"use client";
+
+import React, { memo, useEffect, useRef, useState } from "react";
+
+const LazyHomeImport = ({
+    loader,
+    props,
+    minHeight = 650,
+    mobileRootMargin = "80px 0px",
+    desktopRootMargin = "600px 0px",
+    className = "",
+}) => {
+    const ref = useRef(null);
+    const [Component, setComponent] = useState(null);
+
+    useEffect(() => {
+        const element = ref.current;
+
+        if (!element || Component) return;
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        const rootMargin = isMobile ? mobileRootMargin : desktopRootMargin;
+
+        const observer = new IntersectionObserver(
+            async ([entry]) => {
+                if (!entry.isIntersecting) return;
+
+                observer.disconnect();
+
+                const mod = await loader();
+                setComponent(() => mod.default);
+            },
+            {
+                rootMargin,
+                threshold: 0.01,
+            }
+        );
+
+        observer.observe(element);
+
+        return () => observer.disconnect();
+    }, [Component, loader, mobileRootMargin, desktopRootMargin]);
+
+    return (
+        <section
+            ref={ref}
+            className={className}
+            style={{
+                minHeight: Component ? undefined : minHeight,
+            }}
+        >
+            {Component ? <Component {...props} /> : null}
+        </section>
+    );
+};
+
+export default memo(LazyHomeImport);

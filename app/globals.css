@@ -575,3 +575,18 @@ a:hover {
   z-index: 1;
   background-color: #313131 ba;
 }
+
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .global-shimmer-btn::before {
+    animation-duration: 2.5s;
+  }
+
+  .button-border-anime:hover {
+    transform: none;
+  }
+}
