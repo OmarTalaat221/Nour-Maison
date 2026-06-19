@@ -340,11 +340,10 @@ const Form = () => {
 
               <div className="mt-5 sm:mt-7 flex justify-center items-center">
                 <button
-                  className={`button-border-anime ${
-                    isSubmitting
+                  className={`button-border-anime ${isSubmitting
                       ? "opacity-60 pointer-events-none cursor-not-allowed"
                       : ""
-                  }`}
+                    }`}
                   aria-label="Submit"
                   type="submit"
                   disabled={isSubmitting}

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaPaperPlane } from "react-icons/fa";
 import Link from "next/link";
@@ -11,22 +12,56 @@ export default function PlaneOverlaySuccess({
   text,
   chatLink,
 }) {
+  const [mounted, setMounted] = useState(false);
+
+  // ✅ التأكد إن الـ component اتعمله mount (مهم للـ Portal مع Next.js SSR)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Auto close بعد 4 ثواني
   useEffect(() => {
     if (!showOverlay) return;
     const timer = setTimeout(() => setShowOverlay(false), 4000);
     return () => clearTimeout(timer);
   }, [showOverlay, setShowOverlay]);
 
-  return (
+  // ✅ منع scroll للـ body لما الـ overlay مفتوح
+  useEffect(() => {
+    if (showOverlay) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showOverlay]);
+
+  if (!mounted) return null;
+
+  const overlayContent = (
     <AnimatePresence>
       {showOverlay && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="paper-plane fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
+          onClick={() => setShowOverlay(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 99999,
+          }}
+          className="paper-plane bg-black/60 backdrop-blur-md flex items-center justify-center px-4"
         >
-          <div className="relative w-full max-w-[95vw] sm:max-w-4xl mx-auto min-h-[280px] sm:min-h-[340px] md:min-h-[380px]">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-[95vw] sm:max-w-4xl mx-auto min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
+          >
             <motion.div
               initial={{ x: "-100%", opacity: 0, rotate: 360, scale: 0 }}
               animate={{ x: "0", opacity: 1, rotate: 0, scale: 1.5 }}
@@ -78,4 +113,7 @@ export default function PlaneOverlaySuccess({
       )}
     </AnimatePresence>
   );
+
+  // ✅ استخدام Portal لطلوع الـ overlay خارج DOM tree
+  return createPortal(overlayContent, document.body);
 }

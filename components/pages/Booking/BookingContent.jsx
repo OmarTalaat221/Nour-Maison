@@ -30,7 +30,6 @@ const BookingForm = ({ bg }) => {
     message: "",
   });
 
-
   const [chatId, setChatid] = useState("");
   const [dateLoading, setDateLoading] = useState(false);
   const [lockedTimesData, setLockedTimesData] = useState(null);
@@ -564,23 +563,25 @@ const BookingForm = ({ bg }) => {
           </div>
         </div>
         <Toaster />
-        <PaperPlaneSuccess
-          chatLink={chatId}
-          showOverlay={showOverlay}
-          setShowOverlay={setShowOverlay}
-        />
-        <AlleadyReservedModal
-          open={allreadyReservedModal}
-          setOpen={setAllreadyReservedModal}
-        />
-
-        <BusyModal
-          title={busyModalContent.title || "Limited Availability Notice"}
-          message={busyModalContent.message}
-          open={busyModal}
-          setOpen={setBusyModal}
-        />
       </div>
+
+      {/* ✅ نقلنا الـ Overlays و Modals خارج الـ div اللي فيه overflow-hidden */}
+      {/* ✅ صلحنا showOverlay={true} لـ showOverlay={showOverlay} */}
+      <PaperPlaneSuccess
+        chatLink={chatId}
+        showOverlay={showOverlay}
+        setShowOverlay={setShowOverlay}
+      />
+      <AlleadyReservedModal
+        open={allreadyReservedModal}
+        setOpen={setAllreadyReservedModal}
+      />
+      <BusyModal
+        title={busyModalContent.title || "Limited Availability Notice"}
+        message={busyModalContent.message}
+        open={busyModal}
+        setOpen={setBusyModal}
+      />
     </main>
   );
 };
