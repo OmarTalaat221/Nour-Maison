@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Script from "next/script";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import "./style.css";
 import BookingButton from "./BookingButton";
@@ -14,8 +15,8 @@ const title = "Eid Al-Adha Dinner Menu Milton Keynes 2026 | Halal À La Carte";
 const description =
   "Celebrate Eid Al-Adha 2026 at Nour Maison Milton Keynes with our à la carte halal dinner menu. Starters from £7, mains from £21. Confit Lamb Neck, Smoked Lahma, Fatteh Masri & more. Book your table now.";
 
-/* temporary OG image using existing asset */
-const ogImage = `${siteUrl}/images/eid-arch-frame.webp`;
+// ✅ استخدم الصورة المحسّنة
+const ogImage = `${siteUrl}/images/eid-arch-frame-opt.webp`;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,8 +48,10 @@ export const metadata = {
     images: [
       {
         url: ogImage,
+        width: 1200,
+        height: 630,
         alt: "Eid Al-Adha Dinner Menu Milton Keynes 2026 – Nour Maison",
-        type: "image/png",
+        type: "image/webp",
       },
     ],
   },
@@ -206,7 +209,7 @@ const EidAlAdhaDinnerMenuPage = () => {
     },
 
     /* ============================================ */
-    /* ✅ 4. Restaurant (NO hasMenu link)           */
+    /* ✅ 4. Restaurant + AggregateRating           */
     /* ============================================ */
     {
       "@context": "https://schema.org",
@@ -218,8 +221,10 @@ const EidAlAdhaDinnerMenuPage = () => {
       servesCuisine: ["French", "Middle Eastern", "Fusion", "Halal"],
       priceRange: "££",
       acceptsReservations: true,
+      // ✅ Image array بـ absolute URLs
       image: [
-        "/images/nour-gold-logo.webp",
+        `${siteUrl}/images/nour-gold-logo.webp`,
+        `${siteUrl}/images/eid-arch-frame-opt.webp`,
       ],
       logo: {
         "@type": "ImageObject",
@@ -237,6 +242,15 @@ const EidAlAdhaDinnerMenuPage = () => {
         "@type": "GeoCoordinates",
         latitude: "52.0406",
         longitude: "-0.7594",
+      },
+      // ✅ AggregateRating ضروري
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.7",
+        bestRating: "5",
+        worstRating: "1",
+        ratingCount: "850",
+        reviewCount: "850",
       },
       openingHoursSpecification: [
         {
@@ -274,7 +288,7 @@ const EidAlAdhaDinnerMenuPage = () => {
     },
 
     /* ============================================ */
-    /* ✅ 5. Menu (STANDALONE — NOT linked to Restaurant) */
+    /* ✅ 5. Menu                                   */
     /* ============================================ */
     {
       "@context": "https://schema.org",
@@ -285,6 +299,9 @@ const EidAlAdhaDinnerMenuPage = () => {
       description:
         "Premium halal à la carte Eid Al-Adha dinner menu featuring Middle Eastern and French fusion cuisine.",
       inLanguage: "en-GB",
+      provider: {
+        "@id": `${siteUrl}/#restaurant`,
+      },
       hasMenuSection: [
         {
           "@type": "MenuSection",
@@ -294,6 +311,7 @@ const EidAlAdhaDinnerMenuPage = () => {
             "@type": "MenuItem",
             name: item.name,
             description: item.description,
+            suitableForDiet: "https://schema.org/HalalDiet",
             offers: {
               "@type": "Offer",
               price: item.price,
@@ -311,6 +329,7 @@ const EidAlAdhaDinnerMenuPage = () => {
             "@type": "MenuItem",
             name: item.name,
             description: item.description,
+            suitableForDiet: "https://schema.org/HalalDiet",
             offers: {
               "@type": "Offer",
               price: item.price,
@@ -377,10 +396,13 @@ const EidAlAdhaDinnerMenuPage = () => {
 
   return (
     <div>
+      {/* ✅ Schemas باستخدام Next Script (أفضل من script العادي) */}
       {jsonLd.map((schema, index) => (
-        <script
+        <Script
           key={index}
+          id={`eid-adha-schema-${index}`}
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
@@ -388,7 +410,7 @@ const EidAlAdhaDinnerMenuPage = () => {
       <PagesBanner
         bottomBg={false}
         images={[
-          "/images/eid-video.mp4",
+          "/videos/eid-banner.mp4",
           "/videos/booking-home-about.webm",
         ]}
         slogan={
@@ -415,7 +437,7 @@ const EidAlAdhaDinnerMenuPage = () => {
               textShadow: "1px 1px 3px rgba(255,255,255,0.4)",
             }}
           >
-            Eid Al-Adha Dinner Menu
+            Eid Al-Adha Dinner Menu {" "}
             <span className="block mt-1 sm:mt-2 text-softMintGreen">
               in Milton Keynes
             </span>
@@ -444,7 +466,7 @@ const EidAlAdhaDinnerMenuPage = () => {
             <div className="poster-header">
               <div className="poster-lanterns" aria-hidden="true">
                 <Image
-                  src="/images/eid-lanterns-top.webp"
+                  src="/images/eid-lanterns-opt.webp"
                   alt=""
                   width={1980}
                   height={645}
@@ -455,7 +477,7 @@ const EidAlAdhaDinnerMenuPage = () => {
 
               <div className="poster-title">
                 <Image
-                  src="/images/eid-title.webp"
+                  src="/images/eid-title-opt.webp"
                   alt="Eid Dinner Menu"
                   width={1100}
                   height={400}
@@ -471,7 +493,7 @@ const EidAlAdhaDinnerMenuPage = () => {
               <div className="poster-scroll no-scrollbar">
                 {/* STARTERS */}
                 <div className="poster-pill-wrap">
-                  <span className="poster-pill">Starters</span>
+                  <h2 className="poster-pill">Starters</h2>
                 </div>
 
                 <ul className="poster-menu-list" role="list">
@@ -495,7 +517,7 @@ const EidAlAdhaDinnerMenuPage = () => {
 
                 {/* MAINS */}
                 <div className="poster-pill-wrap">
-                  <span className="poster-pill">Mains</span>
+                  <h2 className="poster-pill">Mains</h2>
                 </div>
 
                 <ul className="poster-menu-list" role="list">
@@ -514,7 +536,7 @@ const EidAlAdhaDinnerMenuPage = () => {
               {/* Crescent - inside the arch, large like original menu */}
               <div className="poster-crescent" aria-hidden="true">
                 <Image
-                  src="/images/eid-crescent-lanterns.webp"
+                  src="/images/eid-crescent-opt.webp"
                   alt=""
                   width={500}
                   height={500}

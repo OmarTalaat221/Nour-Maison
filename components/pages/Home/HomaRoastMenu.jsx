@@ -110,6 +110,7 @@ const HomaRoastMenu = () => {
     <section
       ref={containerRef}
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
+      aria-labelledby="award-winning-cafe-heading"
     >
       <motion.img
         loading="lazy"
@@ -153,7 +154,7 @@ const HomaRoastMenu = () => {
           loading="lazy"
           decoding="async"
           src={roastImage}
-          alt="Homa Roast Menu"
+          alt="Halal Roast Dinner Menu at Nour Maison Milton Keynes"
           width={1200}
           height={1200}
           className="
@@ -179,19 +180,24 @@ const HomaRoastMenu = () => {
             rotate: textRotate,
           }}
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-8xl font-seasons !font-extralight text-softMintGreen">
+          {/* ✅ تحول من h1 إلى h2 (نفس الكلاسات والاستايل بالظبط) */}
+          <h2
+            id="award-winning-cafe-heading"
+            className="text-3xl sm:text-4xl lg:text-8xl font-seasons !font-extralight text-softMintGreen"
+          >
             <span
               style={{ textShadow: "1px 3px 0px #5c5948" }}
               className="font-bold"
             >
               Award <span className="font-oswald">-</span>Winning Café{" "}
-              <span className="font-oswald">/</span>brasserie
+              <span className="font-oswald">/</span>Brasserie in Milton Keynes
             </span>
 
+            {/* ✅ تحول من span إلى h3 - subtitle */}
             <span className="block text-2xl !leading-loose text-logoGold">
               Crafted for Moments That Matter
             </span>
-          </h1>
+          </h2>
 
           <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
             <strong>NOUR MAISON</strong> Brasserie has been crowned{" "}

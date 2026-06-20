@@ -62,7 +62,7 @@ const NourKidsMenuHero = ({
           } else {
             video.pause();
           }
-        } catch (_) {}
+        } catch (_) { }
       },
       {
         threshold: 0.35,
@@ -78,7 +78,7 @@ const NourKidsMenuHero = ({
     <section
       ref={sectionRef}
       className={`relative overflow-hidden  ${className}`}
-      aria-label="Nour Maison Kids Menu Announcement"
+      aria-labelledby="kids-menu-heading"
     >
       <div className="relative z-0" data-aos="fade-left" data-aos-delay="300">
         <BranchesImage
@@ -98,17 +98,20 @@ const NourKidsMenuHero = ({
       </div>
 
       <div className="container mx-auto px-4 py-10 md:py-16">
-        <div
+        {/* ✅ تحول من div إلى h2 (نفس الستايل بالظبط) */}
+        <h2
+          id="kids-menu-heading"
           style={{
             textShadow: "2px 2px 10px 0px rgba(0, 0, 0, 0.75)",
           }}
-          className="text-center font-tangerine text-softMintGreen text-5xl md:text-7xl  mb-4 md:mb-8 font-black"
+          className="text-center font-tangerine text-softMintGreen text-5xl md:text-7xl mb-4 md:mb-8 font-black"
         >
-          {title || "Small Hands,"} <br />{" "}
-          <span className="text-logoGold  text-2xl font-seasons ">
-            {subTitle || "Big Appetite!"}
+          {title || "Kids Menu at Nour Maison Milton Keynes"} <br />
+          {/* ✅ تحول من span إلى h3 - subtitle */}
+          <span className="text-logoGold text-2xl font-seasons block">
+            {subTitle || "Family Friendly Halal Restaurant"}
           </span>
-        </div>
+        </h2>
 
         <div className="grid grid-cols-1 gap-8 items-center">
           <div className="order-1 md:order-2 max-w-6xl mx-auto">
@@ -124,6 +127,7 @@ const NourKidsMenuHero = ({
                   preload={shouldLoadVideo ? "metadata" : "none"}
                   loop
                   muted
+                  aria-label="Kids menu video preview"
                 >
                   {shouldLoadVideo && <source src={src} type="video/mp4" />}
                 </video>

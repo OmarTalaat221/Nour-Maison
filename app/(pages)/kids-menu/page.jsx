@@ -3,15 +3,14 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import NourKidsMenuHero from "../../../components/pages/Home/KidsSection";
 import { getPageKeywords } from "../../../lib/seo/keywords";
 
-// ✅ SEO Metadata for Nour Maison Kids Menu
-const OG_IMAGE = "/images/kids menu .jpeg"
-// لو عندك صورة kids فعلًا على Cloudinary حطها بدل اللي فوق بنفس التحويلة
+// ✅ استخدم الصورة الجديدة المحسّنة
+const OG_IMAGE = "/images/kids-menu-poster.webp";
 
 export const metadata = {
   metadataBase: new URL("https://www.nourmaison.co.uk"),
 
   title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
-  description: `Nour Maison’s Kids Menu: fresh, healthy, and fun meals for children, with kid-sized portions and a family-friendly café atmosphere.`,
+  description: `Nour Maison's Kids Menu: fresh, healthy, and fun meals for children, with kid-sized portions and a family-friendly café atmosphere.`,
   keywords: getPageKeywords("kidsMenu"),
 
   alternates: {
@@ -34,13 +33,14 @@ export const metadata = {
     type: "website",
     url: "https://www.nourmaison.co.uk/kids-menu",
     siteName: "Nour Maison Café",
-    title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+    title:
+      "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
     description:
       "A playful, healthy and delicious kids menu at Nour Maison Café – mini mains, pancakes, waffles, nuggets, juices and more for little foodies.",
     locale: "en_GB",
     images: [
       {
-        url: OG_IMAGE, // ✅ absolute + 1200x630
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "Nour Maison Kids Menu",
@@ -50,9 +50,10 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
+    title:
+      "Kids Menu | Nour Maison Café – Healthy & Fun Meals for Little Foodies",
     description:
-      "Discover Nour Maison’s Kids Menu with fun, balanced meals and drinks crafted especially for kids.",
+      "Discover Nour Maison's Kids Menu with fun, balanced meals and drinks crafted especially for kids.",
     images: [OG_IMAGE],
   },
 
@@ -64,7 +65,7 @@ const KidsMenu = () => {
     {
       item: "On Toast",
       description:
-        "Pick your toppings—eggs, beans, sausage, or bacon! It’s like a breakfast bash on toast, and you’re the boss!",
+        "Pick your toppings—eggs, beans, sausage, or bacon! It's like a breakfast bash on toast, and you're the boss!",
     },
     {
       item: "Nuggets",
@@ -74,7 +75,7 @@ const KidsMenu = () => {
     {
       item: "Mini Chicken Milanese",
       description:
-        "Crispy chicken made just for little foodies. It’s fancy but oh-so-fun!",
+        "Crispy chicken made just for little foodies. It's fancy but oh-so-fun!",
     },
     {
       item: "Falafel Bites",
@@ -84,7 +85,7 @@ const KidsMenu = () => {
     {
       item: "Pancakes",
       description:
-        "Fluffy little clouds of joy! Stack ’em, snack ’em, and lick the plate clean!",
+        "Fluffy little clouds of joy! Stack 'em, snack 'em, and lick the plate clean!",
     },
     {
       item: "Waffle",
@@ -109,7 +110,6 @@ const KidsMenu = () => {
     },
   ];
 
-  // ✅ Basic structured data for SEO (Restaurant + Menu)
   const kidsMenuStructuredData = {
     "@context": "https://schema.org",
     "@type": "Menu",
@@ -133,40 +133,39 @@ const KidsMenu = () => {
 
   return (
     <div>
-      {/* 🔹 Banner with strong visual and SEO-friendly title */}
+      {/* ✅ Banner - الصور المحسّنة */}
       <PagesBanner
         images={[
-          "/images/kids.png",
-          "/images/Whisk_e0617739cbe1b4385fb4a9b9cca15b6fdr.jpeg",
-          "/images/Whisk_qjy0qwmhftm4edz20soxktotemn5qtl0kjm40sy.jpeg",
+          "/images/kids-banner.webp",
+          "/images/kids-banner-2.webp",
+          "/images/kids-banner-3.webp",
         ]}
         slogan={"Where every little bite brings a big smile!"}
         title={"Kids Corner – Nour Maison Kids Menu"}
         scrollTo={"kids-menu"}
       />
 
-      {/* 🎥 Hero kids animation section */}
+      {/* ✅ Hero animation - الفيديو المحسّن */}
       <NourKidsMenuHero
-        src="/images/Kids_Menu_Animation_Generation.mp4"
-        poster="/images/kids menu .jpeg"
+        src="/images/kids-menu-animation.mp4"
+        poster="/images/kids-menu-video-poster.webp"
       />
 
-      {/* 🖼 Main hero image with descriptive alt for SEO */}
+      {/* ✅ Main hero image */}
       <div className="w-full px-10">
         <img
-          src="/images/2241974483.png"
+          src="/images/kids-menu-board.webp"
           className="w-full mx-auto mt-5 rounded-3xl shadow-2xl"
           alt="Nour Maison kids menu board with playful food illustrations"
           loading="lazy"
+          decoding="async"
         />
       </div>
 
-      {/* ✅ Main content – visible on all screens for better SEO */}
       <main
         id="kids-menu"
         className="container hidden mx-auto px-4 sm:px-6 lg:px-4 relative py-10"
       >
-        {/* Primary H1 for the page (SEO) */}
         <h1 className="sr-only">
           Nour Maison Kids Menu – Healthy and Fun Food for Children in UK
         </h1>
@@ -174,16 +173,18 @@ const KidsMenu = () => {
         <section aria-labelledby="kids-menu-heading">
           <div className="relative mb-5 md:mb-10 text-center">
             <img
-              src="/images/image-priece-arrow.png"
+              src="/images/kids-arrow.webp"
               alt="Decorative arrow pointing to kids menu title"
               className="absolute top-3 md:top-32 left-0"
               loading="lazy"
+              decoding="async"
             />
             <img
               className="w-[100px] md:w-[200px] ms-auto md:mx-auto"
               src="/images/nour-gold-logo.webp"
               alt="Nour Maison kids menu badge"
               loading="lazy"
+              decoding="async"
             />
             <div
               id="kids-menu-heading"
@@ -197,7 +198,6 @@ const KidsMenu = () => {
             </p>
           </div>
 
-          {/* Grid of kids items */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {data.map((item) => (
               <article
@@ -207,10 +207,11 @@ const KidsMenu = () => {
                 itemType="https://schema.org/MenuItem"
               >
                 <img
-                  src="/images/Whisk_3ec94f4af6fee939e944ae5f75649288dr.jpg"
+                  src="/images/kids-card-bg.webp"
                   alt={`Nour Maison kids menu item: ${item.item}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-black/40 flex flex-col items-center text-center px-[40px] md:px-[80px] lg:px-[130px] py-[60px] md:py-[120px] lg:py-[110px]">
                   <h2
@@ -231,10 +232,8 @@ const KidsMenu = () => {
           </div>
         </section>
 
-        {/* 🔹 JSON-LD structured data */}
         <script
           type="application/ld+json"
-          // لمنع مشاكل الـ hydration
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(kidsMenuStructuredData),

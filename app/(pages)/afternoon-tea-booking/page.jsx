@@ -55,7 +55,7 @@ export default async function AfternoonTeaBookingPage() {
 
       <AfternoonTeaBookingContent
         bg={
-          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"
+          "/images/booking-bg.webp"
         }
       />
     </div>

@@ -30,6 +30,50 @@ import { TypingEffect } from "../../utils/TypingEffect/TypingEffect";
 import { Link } from "react-scroll";
 import { detectMediaType } from "../../lib/functions";
 
+// ✅ Helper: يفحص لو الـ value فيها محتوى حقيقي
+const hasRealContent = (value) => {
+  // null أو undefined → فاضي
+  if (value === null || value === undefined) return false;
+
+  // String فاضي أو مساحات بس → فاضي
+  if (typeof value === "string") {
+    return value.trim().length > 0;
+  }
+
+  // Number → موجود
+  if (typeof value === "number") return true;
+
+  // Boolean → موجود
+  if (typeof value === "boolean") return true;
+
+  // React element → فاتش جوه الـ children
+  if (React.isValidElement(value)) {
+    const children = value.props?.children;
+
+    // لو فاضي
+    if (children === null || children === undefined) return false;
+
+    // لو string فاضي
+    if (typeof children === "string") return children.trim().length > 0;
+
+    // لو array → فيه element واحد على الأقل فيه محتوى
+    if (Array.isArray(children)) {
+      return children.some((child) => hasRealContent(child));
+    }
+
+    // غير كده → اعتبره موجود
+    return true;
+  }
+
+  // Array → فيه element واحد على الأقل
+  if (Array.isArray(value)) {
+    return value.some((item) => hasRealContent(item));
+  }
+
+  // أي حاجة تانية → موجود
+  return true;
+};
+
 const PagesBanner = ({
   images = [
     "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
@@ -40,12 +84,12 @@ const PagesBanner = ({
   slogan,
   scrollTo,
   bottomBg = true,
+  useH1 = false, // ✅ default false عشان متأثرش على باقي الصفحات
 }) => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [animationKey, setAnimationKey] = useState(0); // Key to re-trigger animations
-
+  const [animationKey, setAnimationKey] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleStop = () => {
@@ -108,70 +152,37 @@ const PagesBanner = ({
     },
   };
 
+  // ✅ افحص لو فيه محتوى حقيقي في الـ title والـ slogan
+  const showTitle = hasRealContent(title);
+  const showSlogan = hasRealContent(slogan);
+
   return (
     <div className="!bg-fixed h-[500px]  md:h-[600px] relative ">
       <Swiper
         modules={[Navigation, EffectFade, Pagination, Parallax, Autoplay]}
         effect="fade"
         centeredSlides={true}
-        parallax={true} // Enable parallax effect
-        // coverflowEffect={{
-        //   rotate: 30, // Rotation angle
-        //   stretch: 0, // Spacing between slides
-        //   depth: 100, // Perspective depth
-        //   modifier: 2, // Effect intensity
-        //   slideShadows: true, // Enable shadows
-        // }}
+        parallax={true}
         navigation={false}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         ref={swiperRef}
         onSlideChange={handleSlideChange}
         pagination={pagination && false}
-        // direction="rtl"
-
-        // slidesPerGroupSkip={4}
         slidesPerView={1}
         fadeEffect={{ crossFade: true }}
-        loop={true} // Enable looping (optional)
+        loop={true}
         autoplay={{
           delay: 2000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
         className=" overflow-visible h-full"
-        // breakpoints={{
-        //   1230: {
-        //     slidesPerView: 10,
-        //     spaceBetween: 15,
-        //   },
-        //   1024: {
-        //     slidesPerView: 6,
-        //     spaceBetween: 10,
-        //   },
-        //   768: {
-        //     slidesPerView: 4,
-        //     spaceBetween: 10,
-        //   },
-        //   600: {
-        //     slidesPerView: 2.5,
-        //     spaceBetween: 8,
-        //   },
-        //   480: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 1,
-        //   },
-        //   370: {
-        //     slidesPerView: 1.5,
-        //     spaceBetween: 1,
-        //   },
-        //   0: {
-        //     slidesPerView: 1,
-        //     spaceBetween: 0,
-        //   },
-        // }}
       >
         {images.map((item, index) => (
-          <SwiperSlide className=" flex h-full items-center justify-center relative">
+          <SwiperSlide
+            key={index}
+            className=" flex h-full items-center justify-center relative"
+          >
             <div className="banner_swiper h-full">
               <div className="relative h-full  !w-full">
                 {detectMediaType(item) == "image" ? (
@@ -207,31 +218,66 @@ const PagesBanner = ({
         ))}
       </Swiper>
       <motion.div
-        // onMouseMove={() => handleStop()}
-        // onMouseLeave={() => handleStart()}
         className="absolute z-10 inset-0 flex flex-col gap-6 justify-center items-center w-full px-4 sm:px-8 md:px-16"
-        key={activeIndex} // Key forces re-mounting of the entire animated container
+        key={activeIndex}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="mt-auto mb-10 flex items-center gap-6 justify-center flex-col text-center">
-          <h1
-            data-aos="fade-up"
-            className=" text-logoGold  font-seasons italic !font-bold text-4xl sm:text-5xl lg:text-6xl"
-            style={{
-              textShadow: "1px 1px 0px white",
-            }}
-          >
-            {title ?? "All About Us"}
-          </h1>
-          <h2
-            data-aos="fade-up"
-            data-aos-delay="200"
-            className="font-oswald text-white text-2xl md:text-4xl sm:text-5xl lg:text-7xl"
-          >
-            {slogan ?? "Behind the Scenes: Who We Are"}
-          </h2>
+          {/* ✅ التايتل - يتعرض فقط لو فيه محتوى حقيقي */}
+          {showTitle && (
+            <>
+              {useH1 ? (
+                <motion.h1
+                  data-aos="fade-up"
+                  className=" text-logoGold  font-seasons italic !font-bold text-4xl sm:text-5xl lg:text-6xl"
+                  style={{
+                    textShadow: "1px 1px 0px white",
+                  }}
+                >
+                  {title}
+                </motion.h1>
+              ) : (
+                <motion.div
+                  data-aos="fade-up"
+                  role="heading"
+                  aria-level="2"
+                  className=" text-logoGold  font-seasons italic !font-bold text-4xl sm:text-5xl lg:text-6xl"
+                  style={{
+                    textShadow: "1px 1px 0px white",
+                  }}
+                >
+                  {title}
+                </motion.div>
+              )}
+            </>
+          )}
+
+          {/* ✅ الـ Slogan - يتعرض فقط لو فيه محتوى حقيقي */}
+          {showSlogan && (
+            <>
+              {useH1 ? (
+                <motion.h2
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                  className="font-oswald text-white text-2xl md:text-4xl sm:text-5xl lg:text-7xl"
+                >
+                  {slogan}
+                </motion.h2>
+              ) : (
+                <motion.div
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                  role="heading"
+                  aria-level="3"
+                  className="font-oswald text-white text-2xl md:text-4xl sm:text-5xl lg:text-7xl"
+                >
+                  {slogan}
+                </motion.div>
+              )}
+            </>
+          )}
 
           <Link
             href="/"

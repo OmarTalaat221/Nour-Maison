@@ -252,7 +252,6 @@ const PersistentBackground = memo(() => {
 
   const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
 
-  // iOS مبيدعمش webm — استخدم mp4 لو موجود
   const useMP4 = isIOS;
 
   const videoSource = isMobile
@@ -323,21 +322,18 @@ const PersistentBackground = memo(() => {
           onCanPlay={handleCanPlay}
           onLoadedData={handleCanPlay}
         >
-          {/* iOS: mp4 الأول */}
           {useMP4 && (
             <source
               src={isMobile ? SHARED_BACKGROUND.mobileSrcMp4 : SHARED_BACKGROUND.srcMp4}
               type="video/mp4"
             />
           )}
-          {/* الباقي: webm */}
           {!useMP4 && (
             <source
               src={isMobile ? SHARED_BACKGROUND.mobileSrc : SHARED_BACKGROUND.src}
               type="video/webm"
             />
           )}
-          {/* Fallback */}
           <source
             src={isMobile ? SHARED_BACKGROUND.mobileSrcMp4 : SHARED_BACKGROUND.srcMp4}
             type="video/mp4"
@@ -434,9 +430,10 @@ const RightHeroImage = memo(({ slide, isActive, isFirstSlide }) => {
 
 RightHeroImage.displayName = "RightHeroImage";
 
+// ✅ تحول من h1 إلى div (الديزاين نفسه — div مش هيـ render كـ heading)
 const StaticTitle = memo(({ text }) => {
   return (
-    <h1 className="slide-title typing-title !font-seasons" aria-label={text}>
+    <div className="slide-title typing-title !font-seasons" aria-label={text}>
       {text.split(" ").map((word, index, array) => (
         <span
           key={`${word}-${index}`}
@@ -447,12 +444,13 @@ const StaticTitle = memo(({ text }) => {
           {word}
         </span>
       ))}
-    </h1>
+    </div>
   );
 });
 
 StaticTitle.displayName = "StaticTitle";
 
+// ✅ تحول من motion.h1 إلى motion.div
 const TypingTitle = memo(({ text, slideId, isActive }) => {
   const words = useMemo(() => {
     let globalCharIndex = 0;
@@ -476,7 +474,7 @@ const TypingTitle = memo(({ text, slideId, isActive }) => {
   if (!isActive) return null;
 
   return (
-    <motion.h1
+    <motion.div
       className="slide-title typing-title !font-seasons"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -504,7 +502,7 @@ const TypingTitle = memo(({ text, slideId, isActive }) => {
           ))}
         </span>
       ))}
-    </motion.h1>
+    </motion.div>
   );
 });
 
@@ -577,7 +575,8 @@ const SlideContent = memo(
     if (isInitialLcpSlide) {
       return (
         <div className="content-wrapper">
-          <h2 className="slide-subtitle !font-yesteryear">{slide.title}</h2>
+          {/* ✅ تحول من h2 إلى span (مش heading) عشان السلايدر مش لازم يكون فيه headings */}
+          <span className="slide-subtitle !font-yesteryear block">{slide.title}</span>
 
           <StaticTitle text={slide.mainTitle} />
 
@@ -612,14 +611,15 @@ const SlideContent = memo(
         animate="center"
         exit="exit"
       >
-        <motion.h2
-          className="slide-subtitle !font-yesteryear"
+        {/* ✅ تحول من motion.h2 إلى motion.span */}
+        <motion.span
+          className="slide-subtitle !font-yesteryear block"
           variants={subtitleVariants}
           initial="hidden"
           animate="visible"
         >
           {slide.title}
-        </motion.h2>
+        </motion.span>
 
         <TypingTitle
           text={slide.mainTitle}
@@ -674,7 +674,6 @@ const Particles = memo(() => {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // اوقف الـ particles على الموبايل وreduced motion
     if (isMobile || prefersReducedMotion) return;
 
     setEnabled(true);
@@ -782,8 +781,9 @@ const BannerSwiper = () => {
       aria-label="Nour Maison Restaurant Hero Banner"
       role="banner"
     >
+      {/* ✅ الـ H1 الوحيد في الصفحة - keyword-rich */}
       <h1 className="sr-only">
-        Nour Maison - French Middle Eastern Fusion Restaurant in Milton Keynes
+        Nour Maison – Best Halal French & Middle Eastern Restaurant in Milton Keynes
       </h1>
 
       <PersistentBackground />

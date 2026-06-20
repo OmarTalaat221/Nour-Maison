@@ -5,60 +5,11 @@ import styled, { css, keyframes } from "styled-components";
 import FancyboxElement from "../../../utils/FancyBox/FancyBox";
 import Tilt from "react-parallax-tilt";
 
-const MenuItemCard = ({ idx = 1, data: item }) => {
+const MenuItemCard = ({ idx = 1, data: item, categoryName = "" }) => {
   const [isCardOpened, setIsCardOpened] = useState(false);
   const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
 
   return (
-    // <Fragment>
-    //   <div className='flex gap-3 bg-white flex-col md:flex-row items-center p-2 shadow-xl rounded-xl'>
-    //     <FancyboxElement
-    //       options={{
-    //         Carousel: {
-    //           infinite: false,
-    //         },
-    //       }}
-    //     >
-    //       <div
-    //         data-fancybox='gallery'
-    //         href={
-    //           "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg"
-    //         }
-    //         onClick={() => setIsCardOpened(true)}
-    //         layout="true"
-    //         className='min-w-[100px] max-w-[100px] h-[100px] overflow-hidden rounded-lg '
-    //       >
-    //         <img
-    //           loading="lazy"
-    //           className='w-full cursor-pointer hover:scale-125 hover:skew-x-6 transition h-full object-cover'
-    //           src='https://res.cloudinary.com/dhebgz7qh/image/upload/v1767529826/Jambon-Fromage_Croissant_tv5cmy.jpg'
-    //           alt=''
-    //         />
-    //       </div>
-    //     </FancyboxElement>
-    //     <div className='flex flex-col justify-between w-full'>
-    //       <div className='flex flex-col md:flex-row w-full justify-between items-center pb-3'>
-    //         <h3 className='text-[17px] text-center md:text-start font-semibold text-softMintGreen font-inter'>
-    //           {item?.name}
-    //         </h3>
-    //         <div>
-    //           <span className='text-xl text-goldenOrange italic font-bold font-tajawal '>
-    //             &#163;{item?.price}
-    //           </span>
-    //         </div>
-    //       </div>
-    //       <div className='flex items-center pb-2  gap-y-2 gap-x-2  flex-wrap overflow-auto'>
-    //         {item.description &&
-    //           item?.description?.split(",").map((item, index) => (
-    //             <Tag key={index} color='green ' className='!mx-0 whitespace-nowrap'>
-    //               {item}
-    //             </Tag>
-    //           ))}
-    //       </div>
-    //       {/* <p className='text-gray-500  w-full'>{item.description}</p> */}
-    //     </div>
-    //   </div>
-    // </Fragment>
     <Fragment>
       <Tilt
         perspective={5000}
@@ -77,43 +28,38 @@ const MenuItemCard = ({ idx = 1, data: item }) => {
               item.image ||
               "/images/nour-gold-logo.webp"
             }
-            alt={item.name}
+            alt={`${item.name}${categoryName ? ` - ${categoryName} at Nour Maison Milton Keynes` : ""}`}
+            loading="lazy"
+            decoding="async"
             className="rounded-2xl object-cover  w-[120px] h-[120px] md:w-full md:h-full select-none "
           />
           <div className="flex flex-1 items-center justify-center">
-
-            <h5 className=" md:hidden  text-white font-normal  text-5xl font-pacifico ">
+            {/* ✅ تحول من h5 إلى span - مش heading */}
+            <span className=" md:hidden  text-white font-normal  text-5xl font-pacifico block">
               {" "}
               &#163;{item?.price}
-            </h5>
+            </span>
           </div>
         </div>
+
         {/* Content */}
         <div className="flex-1 text-left">
           <div className="flex flex-col gap-2">
-            <h5 className=" hidden md:block text-white font-normal text-end text-2xl font-pacifico ">
+            {/* ✅ تحول من h5 إلى span (price مش heading) */}
+            <span className=" hidden md:block text-white font-normal text-end text-2xl font-pacifico ">
               {" "}
               &#163;{item?.price}
-            </h5>
+            </span>
+
+            {/* ✅ خلي h3 (dish name) - keyword-rich */}
             <h3 className="text-xl md:text-xl font-semibold text-white font-inter">
               {item?.name}
             </h3>
           </div>
+
           <p className=" mt-2  text-[white] text-[16px] leading-5 font-tajawal">
             {item?.description}
           </p>
-          {/* Tags */}
-          {/* <div className="flex flex-wrap gap-2 mt-4">
-      <span className="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
-        Turkey Ham
-      </span>
-      <span className="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">
-        Dijon Mustard
-      </span>
-      <span className="bg-amber-100 text-amber-800 text-sm font-medium px-3 py-1 rounded-full">
-        Swiss Cheese
-      </span>
-    </div> */}
         </div>
       </Tilt>
     </Fragment>

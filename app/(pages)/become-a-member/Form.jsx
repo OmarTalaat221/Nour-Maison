@@ -207,7 +207,7 @@ const Form = () => {
         backgroundPosition: "center",
         backgroundImage: `
           linear-gradient(to bottom, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.28) 60%, rgba(204,231,191,1) 100%),
-          url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp")
+          url("/images/booking-bg.webp")
         `,
       }}
     >
@@ -341,8 +341,8 @@ const Form = () => {
               <div className="mt-5 sm:mt-7 flex justify-center items-center">
                 <button
                   className={`button-border-anime ${isSubmitting
-                      ? "opacity-60 pointer-events-none cursor-not-allowed"
-                      : ""
+                    ? "opacity-60 pointer-events-none cursor-not-allowed"
+                    : ""
                     }`}
                   aria-label="Submit"
                   type="submit"

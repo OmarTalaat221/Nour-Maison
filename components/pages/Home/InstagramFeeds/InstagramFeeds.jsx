@@ -171,7 +171,9 @@ Come for the food, stay for the vibes ✨
 const InstagramFeeds = () => {
   return (
     <div data-aos="zoom-in">
-      <SectionTitle>Nour Maison: Latest Instagram Feeds</SectionTitle>
+      <SectionTitle as="h2" id="instagram-feeds-heading">
+        Nour Maison: Latest Instagram Feeds
+      </SectionTitle>
 
       <div className="flex justify-center items-center mt-20">
         <Marquee

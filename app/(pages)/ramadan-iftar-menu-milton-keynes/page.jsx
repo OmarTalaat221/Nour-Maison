@@ -1,4 +1,4 @@
-// app/(whatever)/ramadan-iftar-menu-milton-keynes/page.jsx
+// app/(pages)/ramadan-iftar-menu-milton-keynes/page.jsx
 
 import React from "react";
 import Image from "next/image";
@@ -16,7 +16,8 @@ const title = "Ramadan Iftar Menu Milton Keynes 2026 | 5-Course Halal £35";
 const description =
   "Enjoy a 5-course halal Ramadan Iftar at Nour Maison, Milton Keynes for £35. Served at Maghrib daily with 10% family discount and kids under 10 eat free. Book now.";
 
-const ogImage = `${siteUrl}/images/ramadan-iftar-menu.jpeg`;
+// ✅ استخدم الصورة المحسّنة محلياً
+const ogImage = `${siteUrl}/images/ramadan-menu.webp`;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -58,7 +59,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "Best Ramadan Iftar Menu Milton Keynes 2026 – 5 Course Halal Dining at Nour Maison",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -125,8 +126,11 @@ const RamadanIftarMenuPage = () => {
         name: "Nour Maison",
         url: siteUrl,
         telephone: "+44-1908-772177",
-        image:
-          "/images/nour-gold-logo.webp",
+        // ✅ Image array (absolute URLs)
+        image: [
+          `${siteUrl}/images/nour-gold-logo.webp`,
+          `${siteUrl}/images/ramadan-menu.webp`,
+        ],
         logo: `${siteUrl}/images/logo.png`,
         servesCuisine: ["French", "Middle Eastern", "Fusion", "Halal"],
         priceRange: "££",
@@ -143,6 +147,15 @@ const RamadanIftarMenuPage = () => {
           "@type": "GeoCoordinates",
           latitude: "52.0406",
           longitude: "-0.7594",
+        },
+        // ✅ AggregateRating ضروري للنجوم في Google
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.7",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "850",
+          reviewCount: "850",
         },
         openingHoursSpecification: [
           {
@@ -300,6 +313,8 @@ const RamadanIftarMenuPage = () => {
 
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       eventStatus: "https://schema.org/EventScheduled",
+      startDate: "2026-02-28T18:00:00+00:00",
+      endDate: "2026-03-30T22:00:00+00:00",
       location: {
         "@type": "Restaurant",
         "@id": `${siteUrl}/#restaurant`,
@@ -324,6 +339,8 @@ const RamadanIftarMenuPage = () => {
           "@type": "Offer",
           name: "Family Discount (4+)",
           description: "10% off for families of four or more",
+          price: "31.50",
+          priceCurrency: "GBP",
           eligibleQuantity: {
             "@type": "QuantitativeValue",
             minValue: 4,
@@ -353,15 +370,14 @@ const RamadanIftarMenuPage = () => {
         />
       ))}
 
-      {/* ✅ Banner Section */}
+      {/* ✅ Banner Section - الصور المحسّنة محلياً */}
       <PagesBanner
         bottomBg={false}
         images={[
-          // "https://res.cloudinary.com/dkc5klynm/video/upload/v1771755775/nour-2-2026_eqrfpf.mp4",
-          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101803/HKE09820_1_e43fwl_wpiqnz.webp",
-          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101744/HKE09789_itafrw_ilimoh.webp",
-          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101789/HKE09816_e7ojrs_zug2bx.webp",
-          "https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101734/HKE09822_1_khyolt_fgavcl.webp",
+          "/images/ramadan-banner-1.webp",
+          "/images/ramadan-banner-2.webp",
+          "/images/ramadan-banner-3.webp",
+          "/images/ramadan-banner-4.webp",
         ]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">
@@ -385,12 +401,11 @@ const RamadanIftarMenuPage = () => {
         }}
         aria-labelledby="ramadan-menu-heading"
       >
-        {/* ✅ Wave Anchor Strip */}
+        {/* ✅ Wave Anchor Strip - الصورة المحسّنة محلياً */}
         <div
           className="wave-strip absolute inset-x-0 top-0 z-30 pointer-events-none"
           style={{
-            backgroundImage:
-              "url('https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101720/Pattern_fia8ft_nc0n26.webp')",
+            backgroundImage: "url('/images/ramadan-wave-pattern.webp')",
           }}
         />
 
@@ -404,7 +419,7 @@ const RamadanIftarMenuPage = () => {
                 "3px 3px 6px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.5)",
             }}
           >
-            A Blessed Ramadan Iftar
+            A Blessed Ramadan Iftar {" "}
             <span
               className="block mt-1 sm:mt-2 text-goldenOrange"
               style={{
@@ -440,20 +455,22 @@ const RamadanIftarMenuPage = () => {
           </div>
         </header>
 
-        {/* ✅ Menu Image */}
+        {/* ✅ Menu Image (LCP) - الصورة المحسّنة محلياً */}
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-5xl mx-auto relative px-2 sm:px-4 z-10">
           <Image
-            src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1772101710/22_vkxlyt_tynwyr.webp"
+            src="/images/ramadan-menu.webp"
             alt="Best Ramadan Iftar Menu Milton Keynes 2026 - 5 Course Halal Dining Experience at Nour Maison"
             width={1400}
             height={1800}
             className="w-full h-auto rounded-2xl sm:rounded-3xl relative"
             priority
+            fetchPriority="high"
             sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, (max-width: 1280px) 800px, 1100px"
+            quality={88}
           />
         </div>
 
-        {/* ✅ Offer Cards with Shimmer */}
+        {/* ✅ Offer Cards (نفس الديزاين) */}
         <section
           className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-2 sm:px-4 mt-8 sm:mt-12 md:mt-16 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 relative z-10"
           aria-label="Iftar menu offers and pricing"
@@ -463,9 +480,9 @@ const RamadanIftarMenuPage = () => {
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
               £35
             </div>
-            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
+            <h2 className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               per person
-            </p>
+            </h2>
             <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               5-course Iftar experience
             </p>
@@ -476,9 +493,9 @@ const RamadanIftarMenuPage = () => {
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
               10<span className="font-nour">%</span>
             </div>
-            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
+            <h2 className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               Family Discount
-            </p>
+            </h2>
             <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               For families of four
             </p>
@@ -489,26 +506,26 @@ const RamadanIftarMenuPage = () => {
             <div className="font-seasons text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-goldenOrange mb-1 sm:mb-2">
               FREE
             </div>
-            <p className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
+            <h2 className="font-playfair text-white text-xs sm:text-sm md:text-lg font-medium">
               Kids Eat Free
-            </p>
+            </h2>
             <p className="font-nour text-[10px] sm:text-xs md:text-sm text-white/80 mt-1 hidden sm:block">
               Children under 10
             </p>
           </article>
         </section>
 
-        {/* ✅ CTA Section */}
+        {/* ✅ CTA Section (نفس الديزاين) */}
         <section className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 sm:px-4 mt-10 sm:mt-14 md:mt-20 relative z-10">
           <div className="bg-gradient-to-br from-black/50 to-black/30 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 text-center border border-goldenOrange/30 shadow-2xl">
-            <h2
+            <h3
               className="font-seasons text-goldenOrange text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 sm:mb-4 md:mb-5 leading-snug"
               style={{
                 textShadow: "2px 2px 4px rgba(0,0,0,0.6)",
               }}
             >
               Looking for the best iftar in Milton Keynes?
-            </h2>
+            </h3>
 
             <p className="font-playfair text-dairyCream text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed md:leading-loose max-w-3xl mx-auto">
               Book your Ramadan table at{" "}
@@ -522,7 +539,7 @@ const RamadanIftarMenuPage = () => {
               with family and friends this Ramadan.
             </p>
 
-            {/* ✅ CTA Button with Shimmer */}
+            {/* ✅ CTA Button */}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6 md:mt-8 mb-6 sm:mb-8">
               <a
                 href="https://www.nourmaison.co.uk/booking"

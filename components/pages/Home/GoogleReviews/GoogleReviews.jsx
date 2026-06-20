@@ -73,9 +73,8 @@ const StarsRow = memo(({ rating = 5 }) => {
       {[...Array(5)].map((_, i) => (
         <FaStar
           key={i}
-          className={`text-xs sm:text-sm ${
-            i < rating ? "text-goldenOrange" : "text-whiteGray"
-          }`}
+          className={`text-xs sm:text-sm ${i < rating ? "text-goldenOrange" : "text-whiteGray"
+            }`}
         />
       ))}
 
@@ -95,7 +94,7 @@ const ModernReviewCard = memo(({ data }) => {
   const reviewDate = data?.date || data?.time || "Verified Customer";
 
   return (
-    <div className="group relative h-full bg-white border-2 border-pestachio rounded-2xl p-4 sm:p-5 lg:p-7 flex flex-col gap-3 sm:gap-4 lg:gap-5 transition-all duration-300 hover:border-softMintGreen hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-xl">
+    <article className="group relative h-full bg-white border-2 border-pestachio rounded-2xl p-4 sm:p-5 lg:p-7 flex flex-col gap-3 sm:gap-4 lg:gap-5 transition-all duration-300 hover:border-softMintGreen hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-xl">
       <div className="flex items-start justify-between">
         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-goldenOrange flex items-center justify-center group-hover:rotate-[-10deg] transition-transform duration-300 flex-shrink-0">
           <FaQuoteLeft className="text-white text-sm sm:text-lg" />
@@ -125,16 +124,17 @@ const ModernReviewCard = memo(({ data }) => {
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="font-seasons text-goldenOrange text-xs sm:text-sm lg:text-base font-semibold truncate">
+          {/* ✅ تحول من h4 إلى h3 - keyword: reviewer name */}
+          <h3 className="font-seasons text-goldenOrange text-xs sm:text-sm lg:text-base font-semibold truncate">
             {reviewerName}
-          </h4>
+          </h3>
 
           <p className="font-lato text-whiteGray text-[10px] sm:text-xs truncate">
             {reviewDate}
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 });
 
@@ -170,118 +170,42 @@ const CircledText = memo(
 CircledText.displayName = "CircledText";
 
 const swiperModules = [Navigation, Pagination, Autoplay, EffectCoverflow];
-
-const coverflowEffect = {
-  rotate: 0,
-  stretch: 0,
-  depth: 100,
-  modifier: 1.5,
-  slideShadows: false,
-};
-
-const paginationConfig = {
-  clickable: true,
-  dynamicBullets: true,
-  dynamicMainBullets: 3,
-};
-
-const autoplayConfig = {
-  delay: 5000,
-  disableOnInteraction: false,
-  pauseOnMouseEnter: true,
-};
-
-const navigationConfig = {
-  nextEl: ".custom-next__15",
-  prevEl: ".custom-prev__15",
-};
+const coverflowEffect = { rotate: 0, stretch: 0, depth: 100, modifier: 1.5, slideShadows: false };
+const paginationConfig = { clickable: true, dynamicBullets: true, dynamicMainBullets: 3 };
+const autoplayConfig = { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true };
+const navigationConfig = { nextEl: ".custom-next__15", prevEl: ".custom-prev__15" };
 
 const breakpointsConfig = {
-  480: {
-    slidesPerView: 1.3,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 100,
-      modifier: 1.5,
-      slideShadows: false,
-    },
-  },
-  640: {
-    slidesPerView: 1.6,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 110,
-      modifier: 1.8,
-      slideShadows: false,
-    },
-  },
-  768: {
-    slidesPerView: 2,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 120,
-      modifier: 2,
-      slideShadows: false,
-    },
-  },
-  1024: {
-    slidesPerView: 2.8,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 150,
-      modifier: 2,
-      slideShadows: false,
-    },
-  },
-  1280: {
-    slidesPerView: 3.2,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 180,
-      modifier: 2,
-      slideShadows: false,
-    },
-  },
-  1536: {
-    slidesPerView: 3.5,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 200,
-      modifier: 2,
-      slideShadows: false,
-    },
-  },
+  480: { slidesPerView: 1.3, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 1.5, slideShadows: false } },
+  640: { slidesPerView: 1.6, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 110, modifier: 1.8, slideShadows: false } },
+  768: { slidesPerView: 2, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 120, modifier: 2, slideShadows: false } },
+  1024: { slidesPerView: 2.8, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 2, slideShadows: false } },
+  1280: { slidesPerView: 3.2, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 180, modifier: 2, slideShadows: false } },
+  1536: { slidesPerView: 3.5, spaceBetween: 0, coverflowEffect: { rotate: 0, stretch: 0, depth: 200, modifier: 2, slideShadows: false } },
 };
 
 const GoogleReviews = () => {
   const reversedReviews = useMemo(() => [...reviews].reverse(), []);
 
   return (
-    <div>
+    <section aria-labelledby="google-reviews-heading">
       <div className="w-full py-6 sm:py-8 md:py-12 lg:py-16 mx-auto google-reviews-section">
         <div
           data-aos="fade-right"
           className="container mt-4 sm:mt-6 md:mt-8 px-4 sm:px-6 flex flex-col items-center md:items-start md:flex-row justify-between gap-4 sm:gap-5 md:gap-10 relative z-10"
         >
           <div className="text-center md:text-start">
-            <h5 className="text-3xl sm:text-4xl lg:text-5xl font-tangerine text-whiteGray">
-              <CircledText>Clients Feedbacks</CircledText>
-            </h5>
+            {/* ✅ تحول من h5 إلى h2 - keyword-rich */}
+            <h2
+              id="google-reviews-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-tangerine text-whiteGray"
+            >
+              <CircledText>Nour Maison Reviews</CircledText>
+            </h2>
 
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-seasons font-semibold text-goldenOrange mt-1">
-              What the Buzz Is About{" "}
+            {/* ✅ تحول من h2 إلى h3 (subtitle) */}
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-seasons font-semibold text-goldenOrange mt-1">
+              Best Restaurant in Milton Keynes – Customer Feedback{" "}
               <Link
                 href="blog"
                 prefetch={false}
@@ -289,7 +213,7 @@ const GoogleReviews = () => {
               >
                 Show More...
               </Link>
-            </h2>
+            </h3>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 self-center md:self-end">
@@ -362,7 +286,7 @@ const GoogleReviews = () => {
           </Swiper>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

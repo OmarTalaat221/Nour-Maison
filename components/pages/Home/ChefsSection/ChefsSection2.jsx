@@ -10,8 +10,10 @@ import {
 } from "framer-motion";
 import { useMediaQuery } from "../../../../Hooks/GeneralHooks/useMediaQueries";
 
-const SectionTitle = memo(({ children, className }) => (
+// ✅ SectionTitle بقى يقدر يكون h2 (نفس الاستايل بالظبط)
+const SectionTitle = memo(({ children, className, id }) => (
   <h2
+    id={id}
     className={`text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 ${className}`}
   >
     {children}
@@ -45,19 +47,12 @@ const ChefsSection2 = () => {
   });
 
   const springConfig = useMemo(
-    () => ({
-      stiffness: 140,
-      damping: 20,
-      mass: 0.9,
-    }),
+    () => ({ stiffness: 140, damping: 20, mass: 0.9 }),
     [],
   );
 
   const gpuStyle = useMemo(
-    () => ({
-      willChange: "transform, opacity",
-      transform: "translateZ(0)",
-    }),
+    () => ({ willChange: "transform, opacity", transform: "translateZ(0)" }),
     [],
   );
 
@@ -70,137 +65,45 @@ const ChefsSection2 = () => {
   const opacityRaw = useTransform(scrollYProgress, [0, 0.15, 0.5], [0, 0.8, 1]);
   const opacity = useSpring(opacityRaw, springConfig);
 
-  const titleYRaw = useTransform(
-    scrollYProgress,
-    [0, 0.2],
-    reduceMotion ? [0, 0] : [40, 0],
-  );
-
+  const titleYRaw = useTransform(scrollYProgress, [0, 0.2], reduceMotion ? [0, 0] : [40, 0]);
   const titleOpacityRaw = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   const titleY = useSpring(titleYRaw, springConfig);
   const titleOpacity = useSpring(titleOpacityRaw, springConfig);
 
-  const branchRightXRaw = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [getResponsiveValue(60, 80, 120), 0],
-  );
-
-  const branchRightRotateRaw = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [8, 0],
-  );
-
-  const branchRightOpacityRaw = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5],
-    [0, 0.6, 1],
-  );
-
+  const branchRightXRaw = useTransform(scrollYProgress, [0, 0.5], reduceMotion ? [0, 0] : [getResponsiveValue(60, 80, 120), 0]);
+  const branchRightRotateRaw = useTransform(scrollYProgress, [0, 0.5], reduceMotion ? [0, 0] : [8, 0]);
+  const branchRightOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 1]);
   const branchRightX = useSpring(branchRightXRaw, springConfig);
   const branchRightRotate = useSpring(branchRightRotateRaw, springConfig);
   const branchRightOpacity = useSpring(branchRightOpacityRaw, springConfig);
 
-  const branchLeftXRaw = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [getResponsiveValue(-60, -80, -120), 0],
-  );
-
-  const branchLeftRotateRaw = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    reduceMotion ? [0, 0] : [-8, 0],
-  );
-
-  const branchLeftOpacityRaw = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5],
-    [0, 0.6, 1],
-  );
-
+  const branchLeftXRaw = useTransform(scrollYProgress, [0, 0.5], reduceMotion ? [0, 0] : [getResponsiveValue(-60, -80, -120), 0]);
+  const branchLeftRotateRaw = useTransform(scrollYProgress, [0, 0.5], reduceMotion ? [0, 0] : [-8, 0]);
+  const branchLeftOpacityRaw = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.6, 1]);
   const branchLeftX = useSpring(branchLeftXRaw, springConfig);
   const branchLeftRotate = useSpring(branchLeftRotateRaw, springConfig);
   const branchLeftOpacity = useSpring(branchLeftOpacityRaw, springConfig);
 
-  const xImg5Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion
-      ? [0, 0]
-      : [
-          getResponsiveValue(-200, -350, -500),
-          getResponsiveValue(-30, -80, -120),
-        ],
-  );
-
-  const yImg5Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [0, 0] : [getResponsiveValue(50, 80, 100), 0],
-  );
-
-  const rotateImg5Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [0, 0] : [getResponsiveValue(-20, -30, -42), 0],
-  );
-
-  const scaleImg5Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [1, 1] : [getResponsiveValue(0.6, 0.5, 0.4), 1],
-  );
-
+  const xImg5Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(-200, -350, -500), getResponsiveValue(-30, -80, -120)]);
+  const yImg5Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(50, 80, 100), 0]);
+  const rotateImg5Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(-20, -30, -42), 0]);
+  const scaleImg5Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [1, 1] : [getResponsiveValue(0.6, 0.5, 0.4), 1]);
   const xImg5 = useSpring(xImg5Raw, springConfig);
   const yImg5 = useSpring(yImg5Raw, springConfig);
   const rotateImg5 = useSpring(rotateImg5Raw, springConfig);
   const scaleImg5 = useSpring(scaleImg5Raw, springConfig);
 
-  const xImg6Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion
-      ? [0, 0]
-      : [getResponsiveValue(200, 400, 600), getResponsiveValue(30, 80, 120)],
-  );
-
-  const yImg6Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [0, 0] : [getResponsiveValue(60, 90, 120), 0],
-  );
-
-  const rotateImg6Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [0, 0] : [getResponsiveValue(15, 22, 28), 0],
-  );
-
-  const scaleImg6Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [1, 1] : [getResponsiveValue(0.85, 0.8, 0.75), 1],
-  );
-
+  const xImg6Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(200, 400, 600), getResponsiveValue(30, 80, 120)]);
+  const yImg6Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(60, 90, 120), 0]);
+  const rotateImg6Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(15, 22, 28), 0]);
+  const scaleImg6Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [1, 1] : [getResponsiveValue(0.85, 0.8, 0.75), 1]);
   const xImg6 = useSpring(xImg6Raw, springConfig);
   const yImg6 = useSpring(yImg6Raw, springConfig);
   const rotateImg6 = useSpring(rotateImg6Raw, springConfig);
   const scaleImg6 = useSpring(scaleImg6Raw, springConfig);
 
-  const yImg8Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [0, 0] : [getResponsiveValue(50, 80, 100), 0],
-  );
-
-  const scaleImg8Raw = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    reduceMotion ? [1, 1] : [0.9, 1],
-  );
-
+  const yImg8Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [0, 0] : [getResponsiveValue(50, 80, 100), 0]);
+  const scaleImg8Raw = useTransform(scrollYProgress, [0, 0.4], reduceMotion ? [1, 1] : [0.9, 1]);
   const yImg8 = useSpring(yImg8Raw, springConfig);
   const scaleImg8 = useSpring(scaleImg8Raw, springConfig);
 
@@ -208,6 +111,7 @@ const ChefsSection2 = () => {
     <section
       ref={containerRef}
       className="relative overflow-hidden py-8 sm:py-12 md:py-16"
+      aria-labelledby="chefs-heading"
     >
       <motion.img
         loading="lazy"
@@ -219,12 +123,7 @@ const ChefsSection2 = () => {
         src={branchImage}
         alt=""
         aria-hidden="true"
-        style={{
-          ...gpuStyle,
-          x: branchRightX,
-          rotate: branchRightRotate,
-          opacity: branchRightOpacity,
-        }}
+        style={{ ...gpuStyle, x: branchRightX, rotate: branchRightRotate, opacity: branchRightOpacity }}
       />
 
       <motion.img
@@ -237,18 +136,17 @@ const ChefsSection2 = () => {
         src={branchImage}
         alt=""
         aria-hidden="true"
-        style={{
-          ...gpuStyle,
-          x: branchLeftX,
-          rotate: branchLeftRotate,
-          opacity: branchLeftOpacity,
-        }}
+        style={{ ...gpuStyle, x: branchLeftX, rotate: branchLeftRotate, opacity: branchLeftOpacity }}
       />
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div style={{ y: titleY, opacity: titleOpacity }}>
-          <SectionTitle className="!text-amber-600 text-3xl sm:text-4xl md:text-5xl lg:!text-7xl font-tangerine">
-            The Faces Behind the Flavors
+          {/* ✅ H2 keyword-rich (نفس الكلاسات بالظبط) */}
+          <SectionTitle
+            id="chefs-heading"
+            className="!text-amber-600 text-3xl sm:text-4xl md:text-5xl lg:!text-7xl font-tangerine"
+          >
+            Meet Our Award-Winning Chefs in Milton Keynes
           </SectionTitle>
         </motion.div>
 
@@ -261,16 +159,9 @@ const ChefsSection2 = () => {
               width={400}
               height={400}
               src={chefImageOne}
-              alt="Chef 1"
+              alt="Award-winning chef at Nour Maison Milton Keynes"
               className="drop-shadow-2xl w-[120px] sm:w-[160px] md:w-[240px] lg:w-[350px] xl:w-[400px] rounded-lg"
-              style={{
-                ...gpuStyle,
-                x: xImg5,
-                y: yImg5,
-                rotate: rotateImg5,
-                scale: scaleImg5,
-                opacity,
-              }}
+              style={{ ...gpuStyle, x: xImg5, y: yImg5, rotate: rotateImg5, scale: scaleImg5, opacity }}
             />
 
             <motion.img
@@ -280,16 +171,9 @@ const ChefsSection2 = () => {
               width={400}
               height={400}
               src={chefImageTwo}
-              alt="Chef 2"
+              alt="Head chef at Nour Maison French Middle Eastern restaurant"
               className="drop-shadow-2xl w-[120px] sm:w-[160px] md:w-[240px] lg:w-[350px] xl:w-[400px] rounded-lg"
-              style={{
-                ...gpuStyle,
-                x: xImg6,
-                y: yImg6,
-                rotate: rotateImg6,
-                scale: scaleImg6,
-                opacity,
-              }}
+              style={{ ...gpuStyle, x: xImg6, y: yImg6, rotate: rotateImg6, scale: scaleImg6, opacity }}
             />
           </div>
 
@@ -300,14 +184,9 @@ const ChefsSection2 = () => {
             width={500}
             height={500}
             src={restaurantBanner}
-            alt="Restaurant banner"
+            alt="Nour Maison restaurant banner Milton Keynes"
             className="drop-shadow-2xl w-[200px] sm:w-[280px] md:w-[380px] lg:w-[450px] xl:w-[500px] rounded-lg -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-56 xl:-mt-64"
-            style={{
-              ...gpuStyle,
-              y: yImg8,
-              scale: scaleImg8,
-              opacity,
-            }}
+            style={{ ...gpuStyle, y: yImg8, scale: scaleImg8, opacity }}
           />
         </div>
       </div>

@@ -5,9 +5,9 @@ import { getPageKeywords } from "../../../lib/seo/keywords";
 export const metadata = {
   metadataBase: new URL("https://www.nourmaison.co.uk/"),
 
-  title: "Discover the Finest French and Middle Eastern Cuisine in Milton Keynes",
+  title: "Halal French & Middle Eastern Menu in Milton Keynes | Nour Maison",
   description:
-    "Enjoy a menu that blends French elegance with authentic Middle Eastern flavours in Milton Keynes. Discover Nour Maison's signature dishes and book your experience today.",
+    "Discover Nour Maison's halal menu featuring French & Middle Eastern brunch, mains, desserts, specialty coffees, and craft drinks in Milton Keynes. Book your table today.",
   keywords: getPageKeywords("menu"),
   alternates: {
     canonical: "https://www.nourmaison.co.uk/menu",
@@ -30,16 +30,16 @@ export const metadata = {
     url: "https://www.nourmaison.co.uk/menu",
     siteName: "Nour Maison Cafe",
     title:
-      "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
+      "Halal French & Middle Eastern Menu in Milton Keynes | Nour Maison",
     description:
-      "Explore the Nour Maison menu: French & Middle Eastern halal brunch, elegant pancakes, premium coffee, and cozy breakfast options in Milton Keynes.",
+      "Explore the Nour Maison menu: halal French & Middle Eastern brunch, signature dishes, premium coffee, and elegant desserts in Milton Keynes.",
     locale: "en_GB",
     images: [
       {
         url: "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
         width: 1200,
         height: 630,
-        alt: "Nour Maison Menu",
+        alt: "Nour Maison Menu - Halal French & Middle Eastern Cuisine Milton Keynes",
       },
     ],
   },
@@ -47,9 +47,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Menu | Nour Maison – Halal French & Middle Eastern Brunch in Milton Keynes",
+      "Halal French & Middle Eastern Menu in Milton Keynes | Nour Maison",
     description:
-      "Explore the Nour Maison menu: French & Middle Eastern halal brunch, elegant pancakes, premium coffee, and cozy breakfast options in Milton Keynes.",
+      "Explore the Nour Maison menu: halal French & Middle Eastern brunch, premium coffee, and elegant desserts in Milton Keynes.",
     images: [
       "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767447622/f76djjyilyjfpzpjmryl_puk2vj.webp",
     ],

@@ -35,7 +35,7 @@ const backgroundStyle = {
   backgroundSize: "cover",
   backgroundImage: `
     linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-    url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp")
+    url("/images/booking-bg.webp")
   `,
 };
 
@@ -84,32 +84,17 @@ const AfternoonTea = () => {
 
   const galleryBreakpoints = useMemo(
     () => ({
-      0: {
-        slidesPerView: 2,
-        spaceBetween: 6,
-      },
-      480: {
-        slidesPerView: 3,
-        spaceBetween: 8,
-      },
-      640: {
-        slidesPerView: 3,
-        spaceBetween: 10,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 12,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 16,
-      },
+      0: { slidesPerView: 2, spaceBetween: 6 },
+      480: { slidesPerView: 3, spaceBetween: 8 },
+      640: { slidesPerView: 3, spaceBetween: 10 },
+      768: { slidesPerView: 3, spaceBetween: 12 },
+      1024: { slidesPerView: 3, spaceBetween: 16 },
     }),
     [],
   );
 
   return (
-    <section ref={sectionRef}>
+    <section ref={sectionRef} aria-labelledby="afternoon-tea-heading">
       <div
         className="relative mx-2 sm:mx-3 md:mx-4 lg:mx-5 mt-4 sm:mt-5 md:mt-6 overflow-hidden"
         style={backgroundStyle}
@@ -153,7 +138,7 @@ const AfternoonTea = () => {
             className="w-[95%] sm:w-[92%] md:w-[90%] lg:max-w-[1000px] xl:max-w-[1200px] relative mx-auto my-6 sm:my-8 md:my-10"
           >
             <div className="shadow-xl rounded-2xl sm:rounded-3xl overflow-hidden mx-auto">
-              <section className="product-infomation">
+              <div className="product-infomation">
                 <div
                   className="flex flex-col lg:flex-row
                     order-1 lg:order-2 lg:mx-0 relative z-20 
@@ -171,14 +156,16 @@ const AfternoonTea = () => {
                   </div>
 
                   <div className="w-full lg:w-1/2 flex flex-col p-3 xs:p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10">
+                    {/* ✅ H2 keyword-rich */}
                     <h2
+                      id="afternoon-tea-heading"
                       style={titleShadowStyle}
                       className="font-seasons !font-normal text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:!text-6xl xl:!text-7xl !m-0 !p-0 text-logoGold drop-shadow-lg"
                     >
-                      Afternoon Tea
+                      Luxury Afternoon Tea in Milton Keynes
                     </h2>
 
-                    <section className="accordion mt-3 sm:mt-4 md:mt-6 flex-1 flex flex-col">
+                    <div className="accordion mt-3 sm:mt-4 md:mt-6 flex-1 flex flex-col">
                       <div className="text-white flex-1">
                         <p
                           className="text-xs xs:text-sm sm:text-[14px] md:text-[15px] lg:text-base mb-2 xs:mb-3 sm:mb-4 ps-1 sm:ps-2 md:ps-3 font-lato leading-relaxed sm:leading-loose text-justify font-semibold"
@@ -291,10 +278,10 @@ const AfternoonTea = () => {
                           ))}
                         </Swiper>
                       </div>
-                    </section>
+                    </div>
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
           </motion.div>
         </div>

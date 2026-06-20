@@ -8,20 +8,19 @@ import SearchInput from "../../../components/pages/ClassicMenu/SearchInput";
 import MenuItemCard from "../../../components/Cards/MenuItemCard/MenuItemCard";
 import "./style.scss";
 import TopBg from "./../../../utils/topBg/TopBg";
+import MenuSchema from "./_components/MenuSchema";
 
 const MenuClassic = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [allergenValues, setAllergenValues] = useState([]); // holds selected allergens
-  const categoryRefs = useRef([]); // Store references for categories and items
+  const [allergenValues, setAllergenValues] = useState([]);
+  const categoryRefs = useRef([]);
   const [isCardOpened, setIsCardOpened] = useState(false);
   const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
 
-  // Handle search input change
   const handleSearch = (event) => {
     setSearchQuery(event.target.value.toLowerCase());
   };
 
-  // Scroll to the first matching element
   useEffect(() => {
     if (searchQuery && categoryRefs.current.length > 0) {
       const firstMatch = categoryRefs.current.find(
@@ -33,13 +32,40 @@ const MenuClassic = () => {
     }
   }, [searchQuery]);
 
+  // ✅ خفّض الـ h1 الموجود في PagesBanner لـ div بـ aria-level=2 على صفحة المنيو فقط
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const downgradeBannerH1 = () => {
+      const pagesBannerSection = document.querySelector('[class*="!bg-fixed"]');
+      if (!pagesBannerSection) return;
+
+      const h1Element = pagesBannerSection.querySelector("h1");
+      if (!h1Element || h1Element.dataset.downgraded === "true") return;
+
+      const newElement = document.createElement("div");
+      newElement.innerHTML = h1Element.innerHTML;
+
+      Array.from(h1Element.attributes).forEach((attr) => {
+        newElement.setAttribute(attr.name, attr.value);
+      });
+
+      newElement.setAttribute("role", "heading");
+      newElement.setAttribute("aria-level", "2");
+      newElement.dataset.downgraded = "true";
+
+      h1Element.parentNode.replaceChild(newElement, h1Element);
+    };
+
+    const timer = setTimeout(downgradeBannerH1, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const filteredMenu = menu_1.map((category) => {
     const filteredItems = category.items.filter((item) => {
-      // Check if item or category matches the search query
       const matchesSearch =
         item.name.toLowerCase().includes(searchQuery) ||
         category.category.toLowerCase().includes(searchQuery);
-      // Exclude item if it contains any selected allergen
       const noSelectedAllergen =
         allergenValues.length === 0 ||
         !allergenValues.some(
@@ -55,37 +81,40 @@ const MenuClassic = () => {
     };
   });
 
-  // const [results , setRsults] = useState([])
-  // Remove categories that have no matching items
   const results = filteredMenu.filter((category) => category.items.length > 0);
 
   return (
     <div className=" !overflow-visible">
+      {/* ✅ Menu Schema - SEO */}
+      <MenuSchema menuData={menu_1} />
+
       <PagesBanner
         images={[
           "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101497/menu-gallery_menu-classic_jwdmr0_ntk29z.mp4",
         ]}
         title={"Menu Classic"}
-        slogan={<p className="text-center"></p>}
+        slogan={""}
         scrollTo={"contact"}
       />
 
       <div className="text-center max-w-3xl mx-auto py-12">
-        <p className="text-goldenOrange italic text-2xl font-seasons">
+        {/* ✅ H1 الحقيقي للصفحة - باين في الـ UI */}
+        <h2 className="text-goldenOrange italic text-2xl font-seasons">
           Taste The Best
-        </p>
-        <h2 className="text-3xl md:text-6xl font-seasons font-bold text-softMintGreen mt-2">
-          Discover Our Menu
         </h2>
+
+        {/* ✅ H2 قصير ونضيف */}
+        <h1 className="text-3xl md:text-6xl font-seasons font-bold text-softMintGreen mt-2">
+          Discover Our Menu
+        </h1>
+
         <div className="w-12 h-1 bg-softMintGreen mx-auto my-3"></div>
+
         <p className="text-gray-500 mt-4 text-lg">
-          Even if you're not a great chef, there's nothing to stop you
-          understanding the difference between what tastes good and what
-          doesn’t.
+          Explore our halal French & Middle Eastern fusion menu in Milton Keynes — crafted by award-winning chefs for moments that matter.
         </p>
       </div>
 
-      {/* Pass both search and allergen filters to the SearchInput */}
       <SearchInput
         value={searchQuery}
         onChange={handleSearch}
@@ -101,91 +130,76 @@ const MenuClassic = () => {
         <section
           id="fixed-bg"
           className="fixed-bg mt-10 section  !relative select-none "
-          style={
-            {
-              // backgroundImage: `url('/images/Whisk_b51f2dfbc934253b91e4101c448e7aa2dr.jpeg')`,
-              // backgroundSize: "cover",
-              // backgroundPosition: "center",
-              // backgroundRepeat: "no-repeat",
-            }
-          }
         >
           <div className="relative">
             <img
               loading="lazy"
-              alt="nour caffe"
+              alt="Nour Maison halal French and Middle Eastern menu background Milton Keynes"
               src="/images/Whisk_b51f2dfbc934253b91e4101c448e7aa2dr.jpeg"
               className="fixed-img"
               draggable="false"
             />
-            {/* <div className="absolute bottom-0 left-0 w-full h-full inset-0 bg-gradient-to-t  z-20 "></div> */}
           </div>
           <TopBg />
           <BottomBg />
 
-          {results.map((category, index) => (
-            <div
-              key={index}
-              className="mt-10 md:mt-10 relative z-50"
-              ref={(el) => (categoryRefs.current[index] = el)}
-            >
-              <section className="relative">
-                <div className="text-white  z-20 flex flex-col gap-6 items-center justify-center relative">
-                  <h4
-                    // data-aos="zoom-in"
-                    className="text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-seasons text-center w-full lg:w-[1000px]"
-                  >
-                    {category?.category}
-                  </h4>
-                  <header
-                    // data-aos="fade-down"
-                    // data-aos-delay={300}
-                    className="text-4xl md:text-6xl text-center font-tangerine"
-                  >
-                    {category.slogan}
-                  </header>
-                  <section className="container mx-auto p-6 mt-5">
-                    <div
-                      className={`grid !grid-cols-1 lg:!grid-cols-3 ${
-                        category?.displayType === "menu" ? 1 : 2
-                      } lg:!grid-cols-${
-                        category?.displayType === "menu" ? "1" : "3"
-                      }  gap-4 md:!gap-10`}
-                    >
-                      {category?.items?.map((item, idx) => (
-                        <div
-                          key={idx}
-                          // data-aos="fade-up"
-                          // data-aos-delay={idx * 100}
-                          className=" pb-4"
-                          ref={(el) =>
-                            (categoryRefs.current[idx + results.length] = el)
-                          }
-                        >
-                          {/* <div className="flex justify-between items-center pb-3">
-                          <h3 className="text-[17px] font-semibold text-softMintGreen font-inter">
-                            {item.name}
-                          </h3>
-                          <span className="text-xl text-goldenOrange italic font-bold font-tajawal ">
-                            &#163;{item.price}
-                          </span>
-                        </div>
-                        <p className="text-gray-500 ">{item.description}</p> */}
+          {results.map((category, index) => {
+            const categoryId = category.category.toLowerCase().replace(/\s+/g, "-");
 
-                          <MenuItemCard
-                            isCardOpened={isCardOpened}
-                            setIsCardOpened={setIsCardOpened}
-                            data={item}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                </div>
-              </section>
-              {/* Menu Items */}
-            </div>
-          ))}
+            return (
+              <article
+                key={index}
+                id={`menu-${categoryId}`}
+                className="mt-10 md:mt-10 relative z-50"
+                ref={(el) => (categoryRefs.current[index] = el)}
+                aria-labelledby={`heading-${categoryId}`}
+              >
+                <section className="relative">
+                  <div className="text-white  z-20 flex flex-col gap-6 items-center justify-center relative">
+                    {/* ✅ H2 لكل category */}
+                    <h2
+                      id={`heading-${categoryId}`}
+                      className="text-3xl md:text-6xl md:px-5 lg-px-0 lg:text-8xl font-semibold font-seasons text-center w-full lg:w-[1000px]"
+                    >
+                      {category?.category}
+                    </h2>
+
+                    {/* ✅ H3 للـ slogan */}
+                    {category.slogan && (
+                      <h3 className="text-4xl md:text-6xl text-center font-tangerine">
+                        {category.slogan}
+                      </h3>
+                    )}
+
+                    <section className="container mx-auto p-6 mt-5">
+                      <div
+                        className={`grid !grid-cols-1 lg:!grid-cols-3 ${category?.displayType === "menu" ? 1 : 2
+                          } lg:!grid-cols-${category?.displayType === "menu" ? "1" : "3"
+                          }  gap-4 md:!gap-10`}
+                      >
+                        {category?.items?.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className=" pb-4"
+                            ref={(el) =>
+                              (categoryRefs.current[idx + results.length] = el)
+                            }
+                          >
+                            <MenuItemCard
+                              isCardOpened={isCardOpened}
+                              setIsCardOpened={setIsCardOpened}
+                              data={item}
+                              categoryName={category.category}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                </section>
+              </article>
+            );
+          })}
         </section>
       )}
     </div>

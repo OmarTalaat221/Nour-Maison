@@ -1,4 +1,4 @@
-// app/(whatever)/afternoon-tea-menu/page.jsx
+// app/(pages)/afternoon-tea-menu/page.jsx
 
 import React from "react";
 import Image from "next/image";
@@ -6,19 +6,19 @@ import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import Script from "next/script";
 import AfternoonTeaCTA from "./_components/AfternoonTeaCTA";
 import "./style.css";
-import FloatingElements from "./_components/FloatingElements";
 import { getPageKeywords } from "../../../lib/seo/keywords";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/afternoon-tea-menu";
 const url = `${siteUrl}${pathname}`;
 
-// ✅ SEO Optimized
-const title = "Book the Most Luxurious Afternoon Tea in Milton Keynes at Nour Maison";
+const title =
+  "Book the Most Luxurious Afternoon Tea in Milton Keynes at Nour Maison";
 const description =
-  "Treat yourself to Milton Keynes' finest afternoon tea at Nour Maison. Enjoy elegant pastries, premium teas and unforgettable moments. Book now."
-const ogImage =
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767535312/jpuklhijc9vofwlhiz4m_ug1pp7.jpg";
+  "Treat yourself to Milton Keynes' finest afternoon tea at Nour Maison. Enjoy elegant pastries, premium teas and unforgettable moments. Book now.";
+
+// ✅ استخدم الصورة المحسّنة محلياً
+const ogImage = `${siteUrl}/images/afternoon-tea-menu.webp`;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -59,7 +59,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "Best Afternoon Tea in Milton Keynes at Nour Maison - Halal French & Middle Eastern Fusion",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -85,7 +85,9 @@ export const metadata = {
 
 export default function AfternoonTeaMenuPage() {
   const jsonLd = [
+    // ============================================
     // ✅ Schema 1: WebPage + Restaurant + Menu + Offer
+    // ============================================
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -144,6 +146,14 @@ export default function AfternoonTeaMenuPage() {
           latitude: "52.0406",
           longitude: "-0.7594",
         },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.7",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "850",
+          reviewCount: "850",
+        },
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -158,7 +168,6 @@ export default function AfternoonTeaMenuPage() {
             closes: "23:00",
           },
         ],
-
         sameAs: [
           "https://www.instagram.com/nourmaison",
           "https://www.facebook.com/nourmaison",
@@ -171,7 +180,7 @@ export default function AfternoonTeaMenuPage() {
         name: "Nour Maison Afternoon Tea Menu",
         url: url,
         description: description,
-        inLanguage: "en",
+        inLanguage: "en-GB",
         hasMenuSection: {
           "@type": "MenuSection",
           name: "Afternoon Tea Selection",
@@ -183,10 +192,12 @@ export default function AfternoonTeaMenuPage() {
               name: "Full Afternoon Tea Experience",
               description:
                 "Includes sweet treats, savoury bites, and unlimited premium loose leaf tea",
+              suitableForDiet: "https://schema.org/HalalDiet",
               offers: {
                 "@type": "Offer",
                 price: "29.95",
                 priceCurrency: "GBP",
+                availability: "https://schema.org/InStock",
               },
             },
           ],
@@ -212,7 +223,9 @@ export default function AfternoonTeaMenuPage() {
       },
     },
 
+    // ============================================
     // ✅ Schema 2: FAQPage
+    // ============================================
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -277,7 +290,9 @@ export default function AfternoonTeaMenuPage() {
       ],
     },
 
-    // ✅ Schema 3: Product (Afternoon Tea as a Product/Service)
+    // ============================================
+    // ✅ Schema 3: Product (Afternoon Tea as a Product)
+    // ============================================
     {
       "@context": "https://schema.org",
       "@type": "Product",
@@ -301,6 +316,14 @@ export default function AfternoonTeaMenuPage() {
           name: "Nour Maison Café",
         },
       },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.7",
+        bestRating: "5",
+        worstRating: "1",
+        ratingCount: "850",
+        reviewCount: "850",
+      },
     },
   ];
 
@@ -317,12 +340,10 @@ export default function AfternoonTeaMenuPage() {
         />
       ))}
 
-      {/* ✅ Banner Section */}
+      {/* ✅ Banner Section - استخدم الفيديو المحسّن محلياً */}
       <PagesBanner
         bottomBg={true}
-        images={[
-          "https://res.cloudinary.com/dhebgz7qh/video/upload/v1772101467/afternoon_tea_section_menu_goocyq_balo8f.mp4",
-        ]}
+        images={["/videos/afternoon-tea-banner.mp4"]}
         slogan={
           <div className="text-base sm:text-lg md:text-2xl xl:text-3xl px-2">
             A refined afternoon ritual where French patisserie meets Middle
@@ -342,18 +363,18 @@ export default function AfternoonTeaMenuPage() {
         className="w-full relative py-20 sm:py-28 md:py-36 mt-[-80px] sm:mt-[-100px] md:mt-[-120px] z-10 overflow-hidden"
         aria-labelledby="afternoon-tea-menu-heading"
       >
-        {/* <FloatingElements /> */}
         {/* ✅ Header Section */}
         <header className="w-full max-w-[90%] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-3 sm:px-4 md:px-6 text-center mb-8 sm:mb-10 md:mb-14 mt-10 relative z-10">
           <p className="font-pacifico text-goldenOrange text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 sm:mb-3">
             Nour Maison Brasserie
           </p>
 
+          {/* ✅ H1 - "The Best Afternoon Tea in Milton Keynes" */}
           <h1
             id="afternoon-tea-menu-heading"
             className="font-seasons text-softMintGreen text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-3 sm:mb-4 md:mb-5 leading-tight tracking-wide"
           >
-            The Best <span className="text-goldenOrange">Afternoon Tea</span>
+            The Best <span className="text-goldenOrange">Afternoon Tea {" "}</span>
             <span className="block mt-1 sm:mt-2">in Milton Keynes</span>
           </h1>
 
@@ -382,20 +403,22 @@ export default function AfternoonTeaMenuPage() {
           </p>
         </header>
 
-        {/* ✅ Menu Image */}
+        {/* ✅ Menu Image (LCP) - الصورة المحسّنة */}
         <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-5xl mx-auto relative px-2 sm:px-4 z-10">
           <Image
-            src={ogImage}
+            src="/images/afternoon-tea-menu.webp"
             alt="Best Afternoon Tea Menu in Milton Keynes - Nour Maison Halal French & Middle Eastern Fusion"
             width={1400}
             height={1800}
             className="w-full h-auto rounded-2xl sm:rounded-3xl relative shadow-2xl"
             priority
+            fetchPriority="high"
             sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, (max-width: 1280px) 800px, 1100px"
+            quality={88}
           />
         </div>
 
-        {/* ✅ Offer Cards */}
+        {/* ✅ Offer Cards - 3 cards */}
         <section
           className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-2 sm:px-4 mt-8 sm:mt-12 md:mt-16 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 relative z-10"
           aria-label="Afternoon Tea pricing and features"
@@ -404,9 +427,9 @@ export default function AfternoonTeaMenuPage() {
             <div className="font-pacifico text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-dairyCream mb-0.5 sm:mb-1 md:mb-2 relative z-10 drop-shadow-md">
               £29.95
             </div>
-            <p className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
+            <h2 className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
               per person
-            </p>
+            </h2>
             <p className="font-nour text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/80 mt-0.5 sm:mt-1 hidden xs:block relative z-10">
               Full Afternoon Tea
             </p>
@@ -416,9 +439,9 @@ export default function AfternoonTeaMenuPage() {
             <div className="font-pacifico text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-dairyCream mb-0.5 sm:mb-1 md:mb-2 py-0.5 sm:py-1 md:py-2 relative z-10 drop-shadow-md">
               Unlimited
             </div>
-            <p className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
+            <h2 className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
               Tea Included
-            </p>
+            </h2>
             <p className="font-nour text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/80 mt-0.5 sm:mt-1 hidden xs:block relative z-10">
               Premium loose leaf
             </p>
@@ -428,9 +451,9 @@ export default function AfternoonTeaMenuPage() {
             <div className="font-pacifico text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-dairyCream mb-0.5 sm:mb-1 md:mb-2 py-0.5 sm:py-1 md:py-2 relative z-10 drop-shadow-md">
               Fusion{" "}
             </div>
-            <p className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
+            <h2 className="font-playfair text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg font-medium relative z-10 drop-shadow-sm">
               Sweet & Savoury
-            </p>
+            </h2>
             <p className="font-nour text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/80 mt-0.5 sm:mt-1 hidden xs:block relative z-10">
               French & Middle Eastern
             </p>
@@ -439,6 +462,7 @@ export default function AfternoonTeaMenuPage() {
 
         <AfternoonTeaCTA />
 
+        {/* ✅ SEO Hidden Content */}
         <section
           className="sr-only"
           aria-label="Afternoon Tea menu details and FAQs"

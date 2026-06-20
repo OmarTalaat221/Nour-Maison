@@ -60,18 +60,18 @@ const AboutUsSection = () => {
           data-aos-delay="500"
         >
           <div className="p-4 md:p-16 md:py-5">
-            <h6
-              className="uppercase font-oswald text-softMintGreen !text-lg sm:!text-2xl md:!text-3xl"
-              data-aos="fade-left"
-              data-aos-delay="700"
-            />
+            {/* ✅ شيلت الـ h6 الفاضي اللي كان بيتعب الـ SEO */}
 
+            {/* ✅ H2 keyword-rich - حافظ على نفس الكلاسات بالظبط */}
             <h2
               data-aos="fade-right"
               data-aos-delay="1000"
               className="text-2xl font-tangerine md:text-5xl font-bold mb-2 md:mb-4 text-whiteGray"
             >
-              Why Choose Us
+              Why Choose Nour Maison{" "}
+              <span className="block text-xl md:text-3xl text-softMintGreen font-tangerine">
+                Best Café & Brasserie in Milton Keynes
+              </span>
             </h2>
 
             <p
@@ -112,9 +112,10 @@ const AboutUsSection = () => {
                 </span>
               )}
 
-              <p className="text-white tracking-widest md:text-xl font-seasons">
+              {/* ✅ تحول من p إلى h3 (نفس الكلاسات بالظبط) */}
+              <h3 className="text-white tracking-widest !text-sm md:text-xl font-seasons">
                 {item.title}
-              </p>
+              </h3>
             </div>
           ))}
         </div>

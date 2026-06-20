@@ -44,7 +44,7 @@ const MAIN_SERVICES = [
     description:
       "Mark your special milestone with an elegant celebration tailored for you.",
     image:
-      "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451825/ga4mdhcqwbr2sqhdc7os_ogwrgw.webp",
+      "/images/event-1.webp",
   },
 ];
 
@@ -54,7 +54,7 @@ const CUSTOM_EVENT = {
   description:
     "Have something unique in mind? Let us bring your vision to life with a fully personalized event experience.",
   image:
-    "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767451825/ga4mdhcqwbr2sqhdc7os_ogwrgw.webp",
+    "/images/event-1.webp",
 };
 
 // ✅ Tilt configs
@@ -242,7 +242,10 @@ const OurServices = () => {
   }, []);
 
   return (
-    <div className="mt-20 relative flex flex-col overflow-visible">
+    <div
+      id="our-services"
+      className="mt-20 relative flex flex-col overflow-visible scroll-mt-32"
+    >
       {/* ✅ Branches */}
       <BranchesImage
         variant="top-right"
@@ -254,17 +257,14 @@ const OurServices = () => {
       />
 
       <div className="w-full mx-auto z-10">
-        <SectionTitle className="!text-goldenOrange">
+        <SectionTitle as="h2" className="!text-goldenOrange">
           Elegance <span className="font-tajawal">&</span> Events: Crafting
           Unforgettable Moments
         </SectionTitle>
 
-        {/* ✅ Main Container - Afternoon Tea + 4 Cards */}
         <div className="container !flex flex-col lg:flex-row h-full gap-4 relative z-20 mt-10 sm:mt-14 md:mt-20 !px-3 sm:!px-5">
-          {/* ✅ Afternoon Tea Card */}
           <AfternoonTeaCard isMobile={isMobile} />
 
-          {/* ✅ 4 Service Cards - Grid 2x2 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 flex-1">
             {MAIN_SERVICES.map((item) => (
               <ServiceCard
@@ -274,17 +274,6 @@ const OurServices = () => {
                 onInquiry={handleInquiry}
               />
             ))}
-          </div>
-        </div>
-
-        {/* ✅ Custom Event - برا الـ container، بنفس حجم الكارد الصغير */}
-        <div className="container mx-auto w-full mt-6 sm:mt-8 md:mt-10 relative z-20 flex justify-center px-3 sm:px-5">
-          <div className="w-full sm:w-[calc(50%-6px)] lg:w-[calc((100%-380px-16px)/2-6px)] xl:w-[calc((100%-420px-16px)/2-6px)]">
-            <ServiceCard
-              item={CUSTOM_EVENT}
-              isMobile={isMobile}
-              onInquiry={handleInquiry}
-            />
           </div>
         </div>
       </div>

@@ -13,13 +13,14 @@ const BookTableSection = () => {
       <section
         id="fixed-bg"
         className="fixed-bg section dark-background relative select-none"
+        aria-labelledby="book-table-heading"
       >
         <img
           loading="lazy"
           decoding="async"
           fetchPriority="low"
           src="https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg"
-          alt="nour caffe"
+          alt="Book a table at Nour Maison Restaurant Milton Keynes"
           width={1920}
           height={1280}
           className="fixed-img"
@@ -27,7 +28,9 @@ const BookTableSection = () => {
         />
 
         <div className="text-white relative z-20 flex flex-col gap-6 items-center justify-center">
-          <header
+          {/* ✅ تحول من header إلى h2 (نفس الستايل) */}
+          <h2
+            id="book-table-heading"
             style={{
               textShadow: "1px 2px 0 #493207",
             }}
@@ -35,10 +38,11 @@ const BookTableSection = () => {
             data-aos-delay={300}
             className="text-4xl md:text-6xl text-center font-bold font-tangerine text-[#fff]"
           >
-            We Create Delicious Memories
-          </header>
+            Book a Table at Nour Maison Milton Keynes
+          </h2>
 
-          <h4
+          {/* ✅ تحول من h4 إلى h3 (نفس الكلاسات) */}
+          <h3
             style={{
               textShadow: "6px 4px 0 #493207",
             }}
@@ -54,14 +58,15 @@ const BookTableSection = () => {
                 {letter}
               </span>
             ))}
-          </h4>
+          </h3>
 
-          <h6
+          {/* ✅ تحول من h6 إلى p */}
+          <p
             data-aos="zoom-in"
             className="text-lg md:text-xl font-thin text-center"
           >
             We have awesome recipes and the most talented chefs in town!
-          </h6>
+          </p>
 
           <div data-aos="fade-up" data-aos-delay={400}>
             <button

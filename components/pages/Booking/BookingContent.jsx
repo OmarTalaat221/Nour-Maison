@@ -1,9 +1,10 @@
 // components/pages/Booking/BookingContent.jsx
 "use client";
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import { Col, Grid, Loader, Row, Toggle } from "rsuite";
+import { Loader } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import Link from "next/link";
 
 import CustomSelect from "../../../utils/CustomSelect/CustomSelect";
 import CustomInput from "../../../utils/CustomInput/CustomInput";
@@ -43,32 +44,10 @@ const BookingForm = ({ bg }) => {
     email: "",
     time: "",
     seats: "",
-    special_order_notes: "",
     other_notes: "",
     date: "",
     phone: "",
   });
-
-  const personsData = [
-    "1 Person",
-    "2 Persons",
-    "3 Persons",
-    "4 Persons",
-    "5 Persons",
-    "6 Persons",
-    "7 Persons",
-    "8 Persons",
-  ].map((item) => ({ label: item, value: parseInt(item) }));
-
-  const partyPersonsData = Array.from({ length: 92 })
-    .fill(0)
-    .map((item, index) => ({
-      label: index + 9 + " Persons",
-      value: parseInt(index + 9),
-    }));
-
-  const [type, setType] = useState("normal");
-  const [isSpecialOrder, setIsSpecialOrder] = useState(false);
 
   const timeSlots = Array.from({ length: 12.5 * 4 + 1 }, (_, i) => {
     const hours = Math.floor(i / 4) + 9;
@@ -172,9 +151,28 @@ const BookingForm = ({ bg }) => {
     }
   };
 
+  // ✅ Seats handler - يقبل أرقام بس
+  const handleSeatsChange = useCallback((e) => {
+    const value = e.target.value;
+    // اقبل قيمة فاضية أو رقم صحيح
+    if (value === "" || /^\d+$/.test(value)) {
+      setBookingData((prev) => ({
+        ...prev,
+        seats: value,
+      }));
+    }
+  }, []);
+
+  // ✅ منع wheel scroll على الـ number input
+  const preventWheel = useCallback((e) => {
+    e.target.blur();
+    // أعد التركيز فوراً عشان متضيعش الـ UX
+    setTimeout(() => e.target.focus(), 0);
+  }, []);
+
   const createBooking = async () => {
     const dataset = { ...bookingData };
-    dataset.seats = bookingData?.seats?.value;
+    dataset.seats = parseInt(bookingData?.seats) || 0;
     dataset.time = bookingData?.time?.value;
 
     // ✅ إضافة الـ source للـ request
@@ -199,7 +197,7 @@ const BookingForm = ({ bg }) => {
       toast.error("Enter the date", toastStyles);
       return;
     }
-    if (!dataset.seats) {
+    if (!dataset.seats || dataset.seats < 1) {
       toast.error("Enter number of seats", toastStyles);
       return;
     }
@@ -239,7 +237,6 @@ const BookingForm = ({ bg }) => {
           email: "",
           time: "",
           seats: "",
-          special_order_notes: "",
           other_notes: "",
           date: "",
           phone: "",
@@ -266,11 +263,12 @@ const BookingForm = ({ bg }) => {
 
   return (
     <main>
+      {/* ✅ H2 - keyword-rich (H1 لازم يكون في الـ PagesBanner أو الصفحة الرئيسية) */}
       <header>
-        <h1 className="px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
-          <b>Book a Table </b> at <strong>Nour Maison</strong> –{" "}
-          <strong>Halal French</strong> & Middle Eastern Dining
-        </h1>
+        <h2 className="px-2 text-4xl lg:text-5xl font-bold text-center font-tangerine text-goldenOrange my-10">
+          <strong>Book a Table</strong> at Nour Maison – Halal French &
+          Middle Eastern Dining in Milton Keynes
+        </h2>
       </header>
 
       <div
@@ -281,7 +279,7 @@ const BookingForm = ({ bg }) => {
           backgroundSize: "cover",
           backgroundImage: `
             linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-            url(${bg || "https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443791/bznj0n2qms9qo0jxjvfc_rrmmu2.webp"})
+            url(${bg || "/images/booking-bg.webp"})
           `,
         }}
       >
@@ -312,14 +310,15 @@ const BookingForm = ({ bg }) => {
                 bg-gradient-to-br from-white/10 via-white/20 to-white/5"
             >
               <div className="relative z-20 flex flex-col h-full">
-                <h2
+                {/* ✅ H3 - sub-heading */}
+                <h3
                   style={{
                     textShadow: "white 1px 2px 0px",
                   }}
                   className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold text-shadow-xs text-center mb-6 z-10 relative"
                 >
                   Your Table Awaits
-                </h2>
+                </h3>
                 <p className="mb-3 text-center lg:text-start text-lg lg:text-lg !font-normal leading-tight text-white font-inter">
                   You can book your table online easily in just a couple of
                   minutes. We take reservations for lunch, just check the
@@ -381,87 +380,52 @@ const BookingForm = ({ bg }) => {
                     required
                     disabled={dateLoading}
                   />
-                  <CustomSelect
+
+                  {/* ✅ Number input بدل Select - يقبل مسح وكتابة بحرية */}
+                  <CustomInput
                     isGlass
-                    placeholder="Seats"
+                    type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    placeholder="Number of seats"
                     name="seats"
-                    onChange={(e) => {
-                      setBookingData((prev) => ({
-                        ...prev,
-                        seats: e,
-                      }));
-                    }}
-                    data={type == "normal" ? personsData : partyPersonsData}
+                    value={bookingData.seats}
+                    onChange={handleSeatsChange}
+                    onWheel={preventWheel}
                     label="Number of Seats"
                     required
-                    value={bookingData?.seats}
+                    min={1}
+                    max={100}
+                    step={1}
                   />
                 </div>
-                {type != "normal" && (
-                  <div className="mt-6">
-                    <CustomInput
-                      isGlass
-                      rows={"auto"}
-                      placeholder="Occasion type"
-                      name="type"
-                      value={bookingData.type}
-                      onChange={getBookingData}
-                      label="Occasion Type"
-                    />
-                  </div>
-                )}
+
+                {/* ✅ Additional Notes - دايماً ظاهر */}
                 <div className="mt-6">
                   <CustomInput
                     isGlass
                     textarea={true}
                     rows={"5"}
                     placeholder="Message"
-                    name={
-                      isSpecialOrder ? "special_order_notes" : "other_notes"
-                    }
+                    name="other_notes"
                     onChange={getBookingData}
-                    value={
-                      bookingData[
-                      isSpecialOrder ? "special_order_notes" : "other_notes"
-                      ]
-                    }
-                    label={
-                      isSpecialOrder
-                        ? "Special Order Notes"
-                        : "Additional Notes"
-                    }
+                    value={bookingData.other_notes}
+                    label="Additional Notes"
                   />
                 </div>
-                {type == "normal" ? (
-                  <></>
-                ) : (
-                  <div className="mt-4 flex items-center">
-                    <label htmlFor="specialOrderToggle" className="mr-4">
-                      Is Special Order?
-                    </label>
-                    <Toggle
-                      id="specialOrderToggle"
-                      checked={isSpecialOrder}
-                      onChange={(e) => setIsSpecialOrder(e)}
-                      className="!bg-[#D3DED5] border border-softMintGreen p-2 px-4 rounded-full shadow-lg"
-                      defaultChecked
-                      color="green"
-                      aria-label="Toggle special order"
-                    />
-                  </div>
-                )}
-                <p className="my-3 text-green-900">
-                  {type == "normal"
-                    ? "More than 8 persons? "
-                    : "Less than 8 persons? "}
-                  <b
-                    onClick={() =>
-                      setType((prev) => (prev == "normal" ? "party" : "normal"))
-                    }
-                    className="hover:underline font-bold cursor-pointer"
+
+                {/* ✅ Do you need party? → link لصفحة Services */}
+                <p className="my-3 text-white text-center lg:text-start">
+                  Do you need party?{" "}
+                  <Link
+                    href="/services#our-services"
+                    prefetch={false}
+                    scroll={true}
+                    className="hover:underline font-bold cursor-pointer !text-goldenOrange hover:!text-logoGold transition-colors"
+                    aria-label="Visit our services and events page"
                   >
                     Make an enquiry
-                  </b>
+                  </Link>
                 </p>
 
                 <div className="mt-4">
@@ -474,7 +438,7 @@ const BookingForm = ({ bg }) => {
                       <button
                         onClick={createBooking}
                         className="button-border-anime hover:!bg-[#1a1a1a] !w-44 md:!w-60 h-[3rem] md:!h-[4rem] flex items-center justify-center"
-                        aria-label="Book Now"
+                        aria-label="Book Now at Nour Maison Milton Keynes"
                         type="submit"
                       >
                         <svg
@@ -512,14 +476,15 @@ const BookingForm = ({ bg }) => {
                 >
                   <div className="absolute inset-0 rounded-3xl border opacity-40 pointer-events-none"></div>
 
-                  <header
+                  {/* ✅ H3 - sub-heading */}
+                  <h3
                     style={{
                       textShadow: "white 1px 2px 0px",
                     }}
                     className="text-3xl lg:text-5xl font-bold italic font-seasons text-logoGold text-shadow-xs text-center mt-2 z-10 relative"
                   >
                     Opening times
-                  </header>
+                  </h3>
 
                   <p className="text-2xl lg:text-3xl font-sans text-center text-white mt-4 z-10 relative">
                     Daily:
@@ -528,20 +493,22 @@ const BookingForm = ({ bg }) => {
                     09:00 AM – 10:00 PM
                   </p>
 
-                  <strong
+                  {/* ✅ H3 - sub-heading */}
+                  <h3
                     style={{
                       textShadow: "white 1px 3px 0px",
                     }}
                     className="text-5xl mt-6 italic text-logoGold z-10 relative font-lato text-center lg:text-6xl font-bold"
                   >
                     Call Us Now
-                  </strong>
+                  </h3>
                   <a
                     href="tel:+441908772177"
                     style={{
                       textShadow: "white 0px 2px 0px",
                     }}
                     className="text-3xl lg:text-4xl text-center font-lato !text-logoGold hover:!text-logoGold no-underline hover:no-underline hover:scale-105 transition mt-1 z-10 relative"
+                    aria-label="Call Nour Maison Milton Keynes"
                   >
                     +44 1908 772177
                   </a>
@@ -552,6 +519,7 @@ const BookingForm = ({ bg }) => {
                       textShadow: "white 0px 2px 2px",
                     }}
                     className="mt-6 not-italic cursor-pointer hover:scale-110 transition text-center text-logoGold lg:text-3xl font-oswald font-semibold leading-relaxed z-10 relative"
+                    aria-label="Get directions to Nour Maison in Milton Keynes"
                   >
                     149 Grafton Gate, Milton Keynes
                     <br />
@@ -565,8 +533,7 @@ const BookingForm = ({ bg }) => {
         <Toaster />
       </div>
 
-      {/* ✅ نقلنا الـ Overlays و Modals خارج الـ div اللي فيه overflow-hidden */}
-      {/* ✅ صلحنا showOverlay={true} لـ showOverlay={showOverlay} */}
+      {/* ✅ Modals خارج الـ overflow-hidden */}
       <PaperPlaneSuccess
         chatLink={chatId}
         showOverlay={showOverlay}

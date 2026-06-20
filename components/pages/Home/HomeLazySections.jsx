@@ -27,6 +27,10 @@ const loadGoogleReviews = () =>
 const loadChefsSection2 = () =>
     import("./ChefsSection/ChefsSection2");
 
+// ✅ Lazy load للسكشن الجديد
+const loadLatestArticles = () =>
+    import("./LatestArticles/LatestArticles");
+
 const HomeLazySections = () => {
     return (
         <main className="bg-s-700 overflow-hidden">
@@ -88,6 +92,13 @@ const HomeLazySections = () => {
 
             <LazyHomeImport
                 loader={loadChefsSection2}
+                minHeight={700}
+                mobileRootMargin="0px 0px"
+            />
+
+            {/* ✅ Latest Articles - قبل الفوتر مباشرة */}
+            <LazyHomeImport
+                loader={loadLatestArticles}
                 minHeight={700}
                 mobileRootMargin="0px 0px"
             />
