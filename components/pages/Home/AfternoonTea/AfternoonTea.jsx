@@ -162,7 +162,7 @@ const AfternoonTea = () => {
                       style={titleShadowStyle}
                       className="font-seasons !font-normal text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:!text-6xl xl:!text-7xl !m-0 !p-0 text-logoGold drop-shadow-lg"
                     >
-                      Luxury Afternoon Tea in Milton Keynes
+                      Luxury Afternoon Tea
                     </h2>
 
                     <div className="accordion mt-3 sm:mt-4 md:mt-6 flex-1 flex flex-col">
