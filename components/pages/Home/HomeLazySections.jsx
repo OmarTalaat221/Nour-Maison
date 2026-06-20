@@ -2,38 +2,27 @@
 
 import React, { memo } from "react";
 import LazyHomeImport from "../../LazyHomeImport/LazyHomeImport";
+// ✅ Prefetcher
+import ArticlesPrefetcher from "./LatestArticles/ArticlesPrefetcher";
 
-const loadAboutUsSection = () =>
-    import("./AboutUsSection/AboutUsSection");
-
-const loadHomaRoastMenu = () =>
-    import("./HomaRoastMenu");
-
-const loadInstagramFeeds = () =>
-    import("./InstagramFeeds/InstagramFeeds");
-
+const loadAboutUsSection = () => import("./AboutUsSection/AboutUsSection");
+const loadHomaRoastMenu = () => import("./HomaRoastMenu");
+const loadInstagramFeeds = () => import("./InstagramFeeds/InstagramFeeds");
 const loadBookTableSection = () =>
     import("./BookTableSection/BookTableSection");
-
-const loadNourKidsMenuHero = () =>
-    import("./KidsSection");
-
-const loadAfternoonTea = () =>
-    import("./AfternoonTea/AfternoonTea");
-
-const loadGoogleReviews = () =>
-    import("./GoogleReviews/GoogleReviews");
-
-const loadChefsSection2 = () =>
-    import("./ChefsSection/ChefsSection2");
-
-// ✅ Lazy load للسكشن الجديد
+const loadNourKidsMenuHero = () => import("./KidsSection");
+const loadAfternoonTea = () => import("./AfternoonTea/AfternoonTea");
+const loadGoogleReviews = () => import("./GoogleReviews/GoogleReviews");
+const loadChefsSection2 = () => import("./ChefsSection/ChefsSection2");
 const loadLatestArticles = () =>
     import("./LatestArticles/LatestArticles");
 
 const HomeLazySections = () => {
     return (
         <main className="bg-s-700 overflow-hidden">
+            {/* ✅ Prefetch الـ Articles بدري (في الـ background) */}
+            <ArticlesPrefetcher />
+
             <LazyHomeImport
                 loader={loadAboutUsSection}
                 minHeight={780}
@@ -96,11 +85,12 @@ const HomeLazySections = () => {
                 mobileRootMargin="0px 0px"
             />
 
-            {/* ✅ Latest Articles - قبل الفوتر مباشرة */}
+            {/* ✅ Latest Articles - مع rootMargin أكبر للتحميل المبكر */}
             <LazyHomeImport
                 loader={loadLatestArticles}
                 minHeight={700}
-                mobileRootMargin="0px 0px"
+                mobileRootMargin="800px 0px"
+                desktopRootMargin="1200px 0px"
             />
         </main>
     );
