@@ -20,7 +20,6 @@ import {
   Navigation,
   Pagination,
   EffectFade,
-  Parallax,
 } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
 import "./style.scss";
@@ -29,10 +28,10 @@ import { detectMediaType } from "../../../../lib/functions";
 const SHARED_BACKGROUND = {
   src: "/videos/booking-home-about.webm",
   mobileSrc: "/images/IMG_9871.webm",
-  poster:
-    "/images/banner-img.webp",
-  posterMobile:
-    "/images/mobile-banner-poster.webp",
+  srcMp4: "/videos/booking-home-about.mp4",
+  mobileSrcMp4: "/images/IMG_9871.mp4",
+  poster: "/images/banner-img.webp",
+  posterMobile: "/images/mobile-banner-poster.webp",
   alt: "Nour Maison Restaurant Background",
 };
 
@@ -163,7 +162,7 @@ const A11Y_CONFIG = {
   enabled: true,
 };
 
-const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Parallax, Autoplay];
+const SWIPER_MODULES = [EffectFade, Navigation, Pagination, Autoplay];
 
 const AUTOPLAY_CONFIG = {
   delay: 5000,
@@ -192,6 +191,20 @@ const useIsMobile = () => {
   return isMobile;
 };
 
+const useIsIOS = () => {
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    const ua = window.navigator.userAgent;
+    const iOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (ua.includes("Mac") && "ontouchend" in document);
+    setIsIOS(iOS);
+  }, []);
+
+  return isIOS;
+};
+
 const useDeferredVideo = () => {
   const [showVideo, setShowVideo] = useState(false);
 
@@ -201,14 +214,30 @@ const useDeferredVideo = () => {
     ).matches;
 
     const saveData = navigator.connection?.saveData;
+    const effectiveType = navigator.connection?.effectiveType;
+    const isSlow = ["slow-2g", "2g"].includes(effectiveType);
 
-    if (prefersReducedMotion || saveData) return;
+    if (prefersReducedMotion || saveData || isSlow) return;
 
-    const timer = window.setTimeout(() => {
-      setShowVideo(true);
-    }, 900);
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const delay = isMobile ? 2500 : 1000;
 
-    return () => window.clearTimeout(timer);
+    const schedule =
+      window.requestIdleCallback ||
+      ((cb) => window.setTimeout(cb, delay));
+
+    const handle = schedule(
+      () => setShowVideo(true),
+      { timeout: delay + 1500 }
+    );
+
+    return () => {
+      if (window.cancelIdleCallback && typeof handle === "number") {
+        try {
+          window.cancelIdleCallback(handle);
+        } catch (e) { }
+      }
+    };
   }, []);
 
   return showVideo;
@@ -217,16 +246,20 @@ const useDeferredVideo = () => {
 const PersistentBackground = memo(() => {
   const videoRef = useRef(null);
   const isMobile = useIsMobile();
+  const isIOS = useIsIOS();
   const showVideo = useDeferredVideo();
   const [videoReady, setVideoReady] = useState(false);
 
   const mediaType = useMemo(() => detectMediaType(SHARED_BACKGROUND.src), []);
 
-  const videoSource = isMobile
-    ? SHARED_BACKGROUND.mobileSrc
-    : SHARED_BACKGROUND.src;
+  // iOS مبيدعمش webm — استخدم mp4 لو موجود
+  const useMP4 = isIOS;
 
-  const videoType = isMobile ? "video/webm" : "video/mp4";
+  const videoSource = isMobile
+    ? (useMP4 ? SHARED_BACKGROUND.mobileSrcMp4 : SHARED_BACKGROUND.mobileSrc)
+    : (useMP4 ? SHARED_BACKGROUND.srcMp4 : SHARED_BACKGROUND.src);
+
+  const videoType = useMP4 ? "video/mp4" : "video/webm";
 
   const posterSource = isMobile
     ? SHARED_BACKGROUND.posterMobile
@@ -277,7 +310,10 @@ const PersistentBackground = memo(() => {
           className={`bg-media bg-video ${videoReady ? "fade-in" : ""}`}
           loop
           muted
+          defaultMuted
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="metadata"
           autoPlay
           poster={posterSource}
@@ -287,7 +323,25 @@ const PersistentBackground = memo(() => {
           onCanPlay={handleCanPlay}
           onLoadedData={handleCanPlay}
         >
-          <source src={videoSource} type={videoType} />
+          {/* iOS: mp4 الأول */}
+          {useMP4 && (
+            <source
+              src={isMobile ? SHARED_BACKGROUND.mobileSrcMp4 : SHARED_BACKGROUND.srcMp4}
+              type="video/mp4"
+            />
+          )}
+          {/* الباقي: webm */}
+          {!useMP4 && (
+            <source
+              src={isMobile ? SHARED_BACKGROUND.mobileSrc : SHARED_BACKGROUND.src}
+              type="video/webm"
+            />
+          )}
+          {/* Fallback */}
+          <source
+            src={isMobile ? SHARED_BACKGROUND.mobileSrcMp4 : SHARED_BACKGROUND.srcMp4}
+            type="video/mp4"
+          />
         </video>
       )}
 
@@ -312,7 +366,9 @@ const CircleMedia = memo(({ slide }) => {
         autoPlay
         loop
         muted
+        defaultMuted
         playsInline
+        webkit-playsinline="true"
         preload="metadata"
         aria-label={slide.alt}
       >
@@ -352,8 +408,8 @@ const RightHeroImage = memo(({ slide, isActive, isFirstSlide }) => {
           : { x: "100%", opacity: 0, scale: 0.9 }
       }
       transition={{
-        duration: 1,
-        delay: isFirstSlide ? 0 : 0.2,
+        duration: isFirstSlide ? 0 : 1,
+        delay: 0,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       aria-hidden="true"
@@ -368,7 +424,8 @@ const RightHeroImage = memo(({ slide, isActive, isFirstSlide }) => {
           decoding={isFirstSlide ? "sync" : "async"}
           width={900}
           height={650}
-          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 52vw, 680px"
+          quality={75}
+          sizes="(max-width: 1024px) 0px, (max-width: 1200px) 52vw, 680px"
         />
       )}
     </motion.div>
@@ -609,6 +666,20 @@ const SlideContent = memo(
 SlideContent.displayName = "SlideContent";
 
 const Particles = memo(() => {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // اوقف الـ particles على الموبايل وreduced motion
+    if (isMobile || prefersReducedMotion) return;
+
+    setEnabled(true);
+  }, []);
+
   const particles = useMemo(
     () =>
       Array.from({ length: 8 }, (_, i) => (
@@ -621,6 +692,8 @@ const Particles = memo(() => {
       )),
     []
   );
+
+  if (!enabled) return null;
 
   return (
     <div className="particles" aria-hidden="true">
@@ -667,7 +740,7 @@ const BannerSwiper = () => {
 
       swiperRef.current.params.autoplay = AUTOPLAY_CONFIG;
       swiperRef.current.autoplay.start();
-    }, 1200);
+    }, 1500);
   }, []);
 
   useEffect(() => {
@@ -731,7 +804,6 @@ const BannerSwiper = () => {
         speed={1000}
         loop={true}
         autoplay={false}
-        parallax={true}
         watchSlidesProgress={false}
         a11y={A11Y_CONFIG}
         className="home-swiper-new"

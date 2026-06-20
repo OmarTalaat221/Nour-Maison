@@ -33,32 +33,32 @@ const HomeLazySections = () => {
             <LazyHomeImport
                 loader={loadAboutUsSection}
                 minHeight={780}
-                mobileRootMargin="-120px 0px"
+                mobileRootMargin="0px 0px"
                 className="flex flex-col mb-[40px] mt-[20px] md:mb-[100px] relative z-20"
             />
 
             <LazyHomeImport
                 loader={loadHomaRoastMenu}
                 minHeight={720}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
 
             <LazyHomeImport
                 loader={loadInstagramFeeds}
                 minHeight={700}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
 
             <LazyHomeImport
                 loader={loadBookTableSection}
                 minHeight={650}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
 
             <LazyHomeImport
                 loader={loadNourKidsMenuHero}
                 minHeight={650}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
                 props={{
                     title: "Roasted to Perfection. Crafted to Impress",
                     subTitle: (
@@ -77,19 +77,19 @@ const HomeLazySections = () => {
             <LazyHomeImport
                 loader={loadAfternoonTea}
                 minHeight={780}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
 
             <LazyHomeImport
                 loader={loadGoogleReviews}
                 minHeight={700}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
 
             <LazyHomeImport
                 loader={loadChefsSection2}
                 minHeight={700}
-                mobileRootMargin="60px 0px"
+                mobileRootMargin="0px 0px"
             />
         </main>
     );

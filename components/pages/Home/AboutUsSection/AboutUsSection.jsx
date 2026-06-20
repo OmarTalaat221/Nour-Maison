@@ -34,12 +34,12 @@ const counterdata = [
 ];
 
 const images = [
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg",
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767443794/l2vsemfnzxd9rvtck24a_jzeww6.jpg",
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg",
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
-  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto,f_auto,w_1100/v1767444279/zmovmsobwahf2a353gxu_xdwksa.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767443804/zexptzvrvwxbsvi8pqho_uwwxnb.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767443794/l2vsemfnzxd9rvtck24a_jzeww6.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767443801/sdw9jufkrx0onoo2vwfp_wnzcjx.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767443802/kgkdwtofzolvzkb6oyh5_p6m5cg.jpg",
+  "https://res.cloudinary.com/dhebgz7qh/image/upload/q_auto:eco,f_auto,w_900/v1767444279/zmovmsobwahf2a353gxu_xdwksa.jpg",
 ];
 
 const AboutUsSection = () => {
@@ -48,22 +48,10 @@ const AboutUsSection = () => {
       <div className="w-full" data-aos="fade-down-right">
         <AboutUsSectionVideo
           videoSrc="/videos/booking-home-about.webm"
+          videoSrcMp4="/videos/booking-home-about.mp4"
           poster={images[0]}
         />
       </div>
-
-      {/*
-      لو حبيت ترجع السوايبر القديم مكان الفيديو، رجّع imports دي:
-      import { useRef, useState } from "react";
-      import { Swiper, SwiperSlide } from "swiper/react";
-      import "swiper/css";
-      import "swiper/css/grid";
-      import "swiper/css/navigation";
-      import "swiper/css/pagination";
-      import "swiper/css/effect-coverflow";
-      import { Autoplay, Navigation, Pagination } from "swiper/modules";
-      import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-      */}
 
       <div className="relative flex flex-col max-h-[780px] md:!max-h-[780px] overflow-auto">
         <div

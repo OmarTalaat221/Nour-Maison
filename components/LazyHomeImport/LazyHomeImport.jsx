@@ -6,7 +6,7 @@ const LazyHomeImport = ({
     loader,
     props,
     minHeight = 650,
-    mobileRootMargin = "80px 0px",
+    mobileRootMargin = "0px 0px",
     desktopRootMargin = "600px 0px",
     className = "",
 }) => {
@@ -22,13 +22,26 @@ const LazyHomeImport = ({
         const rootMargin = isMobile ? mobileRootMargin : desktopRootMargin;
 
         const observer = new IntersectionObserver(
-            async ([entry]) => {
+            ([entry]) => {
                 if (!entry.isIntersecting) return;
 
                 observer.disconnect();
 
-                const mod = await loader();
-                setComponent(() => mod.default);
+                const schedule =
+                    window.requestIdleCallback ||
+                    ((cb) => window.setTimeout(cb, 1));
+
+                schedule(
+                    async () => {
+                        try {
+                            const mod = await loader();
+                            setComponent(() => mod.default);
+                        } catch (err) {
+                            console.error("LazyHomeImport load error:", err);
+                        }
+                    },
+                    { timeout: 2000 }
+                );
             },
             {
                 rootMargin,

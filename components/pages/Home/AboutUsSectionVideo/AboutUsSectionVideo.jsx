@@ -26,7 +26,31 @@ const VolumeUpIcon = ({ className = "" }) => (
   </svg>
 );
 
-const AboutUsSectionVideo = ({ videoSrc, poster }) => {
+// helper: يحدد نوع الفيديو من الـ src
+const getVideoType = (src) => {
+  if (!src) return "video/mp4";
+  const ext = src.split(".").pop().toLowerCase().split("?")[0];
+  const map = {
+    mp4: "video/mp4",
+    webm: "video/webm",
+    ogg: "video/ogg",
+    mov: "video/quicktime",
+    m4v: "video/mp4",
+  };
+  return map[ext] || "video/mp4";
+};
+
+// iOS detection
+const detectIOS = () => {
+  if (typeof window === "undefined") return false;
+  const ua = window.navigator.userAgent;
+  return (
+    /iPad|iPhone|iPod/.test(ua) ||
+    (ua.includes("Mac") && "ontouchend" in document)
+  );
+};
+
+const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
   const wrapperRef = useRef(null);
   const videoRef = useRef(null);
   const progressFrameRef = useRef(null);
@@ -36,6 +60,11 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    setIsIOS(detectIOS());
+  }, []);
 
   useEffect(() => {
     const element = wrapperRef.current;
@@ -68,10 +97,35 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
 
     if (!video || !shouldRenderVideo || !shouldAutoplay) return;
 
-    video
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
+    // iOS محتاج تأكيد إن الفيديو muted قبل play
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch((err) => {
+            console.warn("Autoplay blocked:", err);
+            setIsPlaying(false);
+          });
+      }
+    };
+
+    // على iOS، استنى loadeddata قبل play
+    if (video.readyState >= 2) {
+      attemptPlay();
+    } else {
+      const onLoadedData = () => {
+        attemptPlay();
+        video.removeEventListener("loadeddata", onLoadedData);
+      };
+      video.addEventListener("loadeddata", onLoadedData);
+      return () => video.removeEventListener("loadeddata", onLoadedData);
+    }
   }, [shouldRenderVideo, shouldAutoplay]);
 
   useEffect(() => {
@@ -146,6 +200,11 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
     video.currentTime = clickPosition * video.duration;
   }, []);
 
+  // اختيار الـ source على حسب iOS
+  // iOS مبيدعمش webm — لازم mp4
+  const primarySrc = isIOS && videoSrcMp4 ? videoSrcMp4 : videoSrc;
+  const primaryType = getVideoType(primarySrc);
+
   return (
     <div
       ref={wrapperRef}
@@ -173,16 +232,31 @@ const AboutUsSectionVideo = ({ videoSrc, poster }) => {
         <video
           ref={videoRef}
           poster={poster}
-          muted={isMuted}
+          muted
+          defaultMuted
           loop
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="metadata"
+          autoPlay
           onClick={togglePlay}
           onEnded={handleVideoEnd}
           onTimeUpdate={handleTimeUpdate}
           className="w-full h-full object-cover cursor-pointer !max-h-[780px]"
         >
-          <source src={videoSrc} type="video/mp4" />
+          {/* iOS: mp4 الأول */}
+          {isIOS && videoSrcMp4 && (
+            <source src={videoSrcMp4} type="video/mp4" />
+          )}
+
+          {/* المصدر الأساسي */}
+          <source src={primarySrc} type={primaryType} />
+
+          {/* Fallback لو videoSrcMp4 موجود */}
+          {!isIOS && videoSrcMp4 && (
+            <source src={videoSrcMp4} type="video/mp4" />
+          )}
         </video>
       )}
 

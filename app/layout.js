@@ -107,6 +107,7 @@ const yesteryear = Yesteryear({
   weight: "400",
   variable: "--font-yesteryear",
   display: "swap",
+  preload: false,
 });
 
 const theSeasons = localFont({
@@ -233,9 +234,9 @@ export default function RootLayout({ children }) {
           href="https://res.cloudinary.com"
           crossOrigin="anonymous"
         />
-
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
+        {/* Mobile poster = LCP */}
         <link
           rel="preload"
           as="image"
@@ -244,11 +245,22 @@ export default function RootLayout({ children }) {
           media="(max-width: 768px)"
         />
 
+        {/* Desktop: eid-banner هو الـ LCP الحقيقي (الصورة على اليمين) */}
+        <link
+          rel="preload"
+          as="image"
+          href="/_next/image?url=%2Fimages%2Feid-banner.webp&w=1080&q=75"
+          fetchPriority="high"
+          media="(min-width: 769px)"
+          imageSrcSet="/_next/image?url=%2Fimages%2Feid-banner.webp&w=828&q=75 828w, /_next/image?url=%2Fimages%2Feid-banner.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Feid-banner.webp&w=1200&q=75 1200w"
+        />
+
+        {/* Desktop poster as secondary preload */}
         <link
           rel="preload"
           as="image"
           href="/images/banner-img.webp"
-          fetchPriority="high"
+          fetchPriority="low"
           media="(min-width: 769px)"
         />
 

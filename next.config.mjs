@@ -1,5 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
+
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
+  },
+
+  experimental: {
+    optimizePackageImports: ["framer-motion", "swiper", "react-icons"],
+  },
+
   images: {
     remotePatterns: [
       {
@@ -12,6 +25,9 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
   },
 
   async headers() {
@@ -32,10 +48,23 @@ const nextConfig = {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
           },
+          {
+            key: "Accept-Ranges",
+            value: "bytes",
+          },
         ],
       },
       {
         source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",
