@@ -783,7 +783,7 @@ const BannerSwiper = () => {
     >
       {/* ✅ الـ H1 الوحيد في الصفحة - keyword-rich */}
       <h1 className="sr-only">
-        Nour Maison – Best Halal French & Middle Eastern Restaurant in Milton Keynes
+        Nour Maison – Best Halal Restaurant in Milton Keynes
       </h1>
 
       <PersistentBackground />

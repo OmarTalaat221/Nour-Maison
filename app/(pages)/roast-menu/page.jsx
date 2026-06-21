@@ -414,7 +414,7 @@ const RoastDinnerMenuPage = () => {
             offering 100% halal certified meals crafted by award-winning chefs.
             Our roast dinner menu features locally sourced ingredients and
             innovative flavor combinations that have made us Best Café and
-            Brasserie 2025.
+            Brasserie 2026.
           </p>
 
           <h2>Family Roast Dinner Milton Keynes</h2>

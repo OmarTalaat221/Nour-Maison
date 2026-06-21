@@ -18,11 +18,8 @@ import {
   Autoplay,
   Navigation,
   Pagination,
-  EffectCoverflow,
-  Parallax,
 } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import SimpleParallax from "simple-parallax-js";
 import TopBg from "./../../../utils/topBg/TopBg";
 
 const AboutUsSection = () => {
@@ -69,7 +66,7 @@ const AboutUsSection = () => {
       {/* swiper here */}
 
       <div className="w-full " data-aos="fade-down-right">
-       
+
         <Swiper
           className=" !max-h-[600px] hs-full relative"
           modules={[Navigation, Pagination, Autoplay]}
@@ -89,7 +86,7 @@ const AboutUsSection = () => {
             crossFade: true, // Ensure smooth transition between slides
           }}
           loop={true} // Enable looping (optional)
-          // autoplay={{delay: 2000}} // Auto-slide every 3 seconds (optional)
+        // autoplay={{delay: 2000}} // Auto-slide every 3 seconds (optional)
         >
           <button
             // style={{

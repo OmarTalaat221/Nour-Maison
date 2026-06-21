@@ -26,6 +26,23 @@ const VolumeUpIcon = ({ className = "" }) => (
   </svg>
 );
 
+// ✅ iOS detection
+const detectIOS = () => {
+  if (typeof window === "undefined") return false;
+  const ua = window.navigator.userAgent;
+  return (
+    /iPad|iPhone|iPod/.test(ua) ||
+    (ua.includes("Mac") && "ontouchend" in document)
+  );
+};
+
+// ✅ Safari detection (Safari على Mac كمان بيعمل مشاكل)
+const detectSafari = () => {
+  if (typeof window === "undefined") return false;
+  const ua = window.navigator.userAgent;
+  return /^((?!chrome|android).)*safari/i.test(ua);
+};
+
 // helper: يحدد نوع الفيديو من الـ src
 const getVideoType = (src) => {
   if (!src) return "video/mp4";
@@ -40,20 +57,12 @@ const getVideoType = (src) => {
   return map[ext] || "video/mp4";
 };
 
-// iOS detection
-const detectIOS = () => {
-  if (typeof window === "undefined") return false;
-  const ua = window.navigator.userAgent;
-  return (
-    /iPad|iPhone|iPod/.test(ua) ||
-    (ua.includes("Mac") && "ontouchend" in document)
-  );
-};
-
 const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
   const wrapperRef = useRef(null);
   const videoRef = useRef(null);
   const progressFrameRef = useRef(null);
+  const playAttemptRef = useRef(false);
+
   const [shouldRenderVideo, setShouldRenderVideo] = useState(false);
   const [shouldAutoplay, setShouldAutoplay] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,14 +70,18 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
   const [showControls, setShowControls] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isIOS, setIsIOS] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
+  // ✅ Detect iOS و Safari
   useEffect(() => {
     setIsIOS(detectIOS());
+    setIsSafari(detectSafari());
   }, []);
 
+  // ✅ Intersection Observer
   useEffect(() => {
     const element = wrapperRef.current;
-
     if (!element || shouldRenderVideo) return;
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -76,7 +89,6 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-
         setShouldRenderVideo(true);
         setShouldAutoplay(true);
         observer.disconnect();
@@ -88,46 +100,81 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
     );
 
     observer.observe(element);
-
     return () => observer.disconnect();
   }, [shouldRenderVideo]);
 
+  // ✅ Setup video بمجرد ما الـ source يظهر
   useEffect(() => {
     const video = videoRef.current;
+    if (!video || !shouldRenderVideo) return;
 
-    if (!video || !shouldRenderVideo || !shouldAutoplay) return;
-
-    // iOS محتاج تأكيد إن الفيديو muted قبل play
+    // ✅ Setup attributes مهمين لـ iOS قبل أي حاجة
     video.muted = true;
     video.defaultMuted = true;
+    video.playsInline = true;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+    video.setAttribute("x5-video-player-type", "h5");
+    video.setAttribute("x5-video-player-fullscreen", "true");
 
-    const attemptPlay = () => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setIsPlaying(true))
-          .catch((err) => {
-            console.warn("Autoplay blocked:", err);
-            setIsPlaying(false);
+    // ✅ Force reload للـ source في iOS
+    if (isIOS || isSafari) {
+      video.load();
+    }
+  }, [shouldRenderVideo, isIOS, isSafari]);
+
+  // ✅ Auto-play logic
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldRenderVideo || !shouldAutoplay) return;
+    if (playAttemptRef.current) return;
+
+    playAttemptRef.current = true;
+
+    const attemptPlay = async () => {
+      try {
+        // ✅ Force properties قبل play
+        video.muted = true;
+        video.defaultMuted = true;
+
+        // ✅ في iOS، لازم نستنى canplay event
+        if (video.readyState < 3) {
+          await new Promise((resolve) => {
+            const onCanPlay = () => {
+              video.removeEventListener("canplay", onCanPlay);
+              video.removeEventListener("loadeddata", onCanPlay);
+              resolve();
+            };
+            video.addEventListener("canplay", onCanPlay, { once: true });
+            video.addEventListener("loadeddata", onCanPlay, { once: true });
+
+            // Timeout بعد 5 ثواني
+            setTimeout(resolve, 5000);
           });
+        }
+
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+          await playPromise;
+          setIsPlaying(true);
+          setVideoError(false);
+        }
+      } catch (err) {
+        console.warn("Autoplay blocked or video error:", err);
+        setIsPlaying(false);
+
+        // ✅ في حالة iOS، لو فشل، خلي الـ user يضغط play
+        playAttemptRef.current = false;
       }
     };
 
-    // على iOS، استنى loadeddata قبل play
-    if (video.readyState >= 2) {
-      attemptPlay();
-    } else {
-      const onLoadedData = () => {
-        attemptPlay();
-        video.removeEventListener("loadeddata", onLoadedData);
-      };
-      video.addEventListener("loadeddata", onLoadedData);
-      return () => video.removeEventListener("loadeddata", onLoadedData);
-    }
+    attemptPlay();
   }, [shouldRenderVideo, shouldAutoplay]);
 
+  // ✅ Cleanup
   useEffect(() => {
     return () => {
       if (progressFrameRef.current) {
@@ -136,7 +183,8 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
     };
   }, []);
 
-  const togglePlay = useCallback(() => {
+  // ✅ Toggle play - محسّن لـ iOS
+  const togglePlay = useCallback(async () => {
     const video = videoRef.current;
 
     if (!shouldRenderVideo || !video) {
@@ -145,31 +193,41 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
       return;
     }
 
-    if (isPlaying) {
-      video.pause();
-      setIsPlaying(false);
-      setShowControls(true);
-      return;
-    }
+    try {
+      if (isPlaying && !video.paused) {
+        video.pause();
+        setIsPlaying(false);
+        setShowControls(true);
+        return;
+      }
 
-    video
-      .play()
-      .then(() => {
+      // ✅ Force muted للأمان
+      video.muted = true;
+      video.defaultMuted = true;
+
+      const playPromise = video.play();
+
+      if (playPromise !== undefined) {
+        await playPromise;
         setIsPlaying(true);
         setShouldAutoplay(true);
-      })
-      .catch(() => {
-        setIsPlaying(false);
-      });
+        playAttemptRef.current = true;
+      }
+    } catch (err) {
+      console.warn("Play failed:", err);
+      setIsPlaying(false);
+      setVideoError(true);
+    }
   }, [isPlaying, shouldRenderVideo]);
 
+  // ✅ Toggle mute
   const toggleMute = useCallback(() => {
     const video = videoRef.current;
-
     if (!video) return;
 
     const nextMutedValue = !isMuted;
     video.muted = nextMutedValue;
+    video.defaultMuted = nextMutedValue;
     setIsMuted(nextMutedValue);
   }, [isMuted]);
 
@@ -181,7 +239,6 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
 
   const handleTimeUpdate = useCallback(() => {
     const video = videoRef.current;
-
     if (!video || !video.duration || progressFrameRef.current) return;
 
     progressFrameRef.current = requestAnimationFrame(() => {
@@ -192,7 +249,6 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
 
   const handleProgressClick = useCallback((e) => {
     const video = videoRef.current;
-
     if (!video || !video.duration) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
@@ -200,9 +256,25 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
     video.currentTime = clickPosition * video.duration;
   }, []);
 
-  // اختيار الـ source على حسب iOS
-  // iOS مبيدعمش webm — لازم mp4
-  const primarySrc = isIOS && videoSrcMp4 ? videoSrcMp4 : videoSrc;
+  // ✅ Listen لـ play/pause events من الفيديو نفسه
+  const handlePlay = useCallback(() => {
+    setIsPlaying(true);
+    setVideoError(false);
+  }, []);
+
+  const handlePause = useCallback(() => {
+    setIsPlaying(false);
+  }, []);
+
+  const handleVideoError = useCallback((e) => {
+    console.error("Video error:", e.target.error);
+    setVideoError(true);
+    setIsPlaying(false);
+  }, []);
+
+  // ✅ تحديد الـ source على حسب الـ browser
+  const shouldUseMP4 = isIOS || isSafari;
+  const primarySrc = shouldUseMP4 && videoSrcMp4 ? videoSrcMp4 : videoSrc;
   const primaryType = getVideoType(primarySrc);
 
   return (
@@ -238,25 +310,35 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
           playsInline
           webkit-playsinline="true"
           x5-playsinline="true"
-          preload="metadata"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          preload={isIOS ? "auto" : "metadata"}
           autoPlay
+          controls={false}
+          crossOrigin="anonymous"
           onClick={togglePlay}
           onEnded={handleVideoEnd}
           onTimeUpdate={handleTimeUpdate}
+          onPlay={handlePlay}
+          onPause={handlePause}
+          onError={handleVideoError}
           className="w-full h-full object-cover cursor-pointer !max-h-[780px]"
         >
-          {/* iOS: mp4 الأول */}
-          {isIOS && videoSrcMp4 && (
+          {/* ✅ iOS/Safari: MP4 الأول */}
+          {shouldUseMP4 && videoSrcMp4 && (
             <source src={videoSrcMp4} type="video/mp4" />
           )}
 
-          {/* المصدر الأساسي */}
+          {/* ✅ المصدر الأساسي */}
           <source src={primarySrc} type={primaryType} />
 
-          {/* Fallback لو videoSrcMp4 موجود */}
-          {!isIOS && videoSrcMp4 && (
+          {/* ✅ Fallback MP4 لباقي الـ browsers */}
+          {!shouldUseMP4 && videoSrcMp4 && (
             <source src={videoSrcMp4} type="video/mp4" />
           )}
+
+          {/* ✅ النص اللي يظهر لو الـ video مش بيشتغل خالص */}
+          Your browser does not support the video tag.
         </video>
       )}
 
@@ -267,9 +349,10 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
 
       <button
         onClick={togglePlay}
+        type="button"
         className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${showControls || !isPlaying
-          ? "opacity-100 scale-100"
-          : "opacity-0 scale-90"
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-90"
           }`}
         aria-label={isPlaying ? "Pause video" : "Play video"}
       >
@@ -289,8 +372,8 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
 
       <div
         className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 ${showControls || !isPlaying
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4"
           }`}
       >
         <div
@@ -309,6 +392,7 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
           <div className="flex items-center gap-3">
             <button
               onClick={togglePlay}
+              type="button"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
               aria-label={isPlaying ? "Pause" : "Play"}
             >
@@ -332,6 +416,7 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleMute}
+              type="button"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
               aria-label={isMuted ? "Unmute" : "Mute"}
             >
@@ -347,8 +432,8 @@ const AboutUsSectionVideo = ({ videoSrc, videoSrcMp4, poster }) => {
 
       <div
         className={`absolute top-4 left-4 z-10 transition-all duration-300 ${showControls || !isPlaying
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 -translate-y-4"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-4"
           }`}
       >
         <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">

@@ -139,7 +139,7 @@ const LatestArticles = () => {
                     <>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                             {articles.map((article, index) => {
-                                const slug = slugify(article.title);
+                                const slug = slugify(article.keywords);
                                 const articleUrl = `/blog/${article.id}/${slug}`;
 
                                 return (

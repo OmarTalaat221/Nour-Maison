@@ -68,7 +68,7 @@ const AboutUsSection = () => {
               data-aos-delay="1000"
               className="text-2xl font-tangerine md:text-5xl font-bold mb-2 md:mb-4 text-whiteGray"
             >
-              Why Choose Nour Maison{" "}
+              What Awaits You at Nour Maison?{" "}
               <span className="block text-xl md:text-3xl text-softMintGreen font-tangerine">
                 Best Café & Brasserie in Milton Keynes
               </span>

@@ -202,7 +202,7 @@ const HomaRoastMenu = () => {
           <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
             <strong>NOUR MAISON</strong> Brasserie has been crowned{" "}
             <span className="font-semibold">
-              Best Café/brasserie Business / Café 2025
+              Best Café/brasserie Business / Café 2026
             </span>
             . Discover a roast menu where every blend is slow-crafted, layered
             with flavor, and poured to turn everyday Café/brasserie into a small
