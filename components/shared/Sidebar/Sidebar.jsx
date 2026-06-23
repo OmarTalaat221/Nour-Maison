@@ -1,4 +1,3 @@
-// components/Sidebar/Sidebar.jsx
 "use client";
 import React, { useEffect, useState } from "react";
 import cx from "classnames";
@@ -50,13 +49,19 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
   ];
 
+  // ✅ التعديل هنا - Cleanup مضمون + إرجاع الـ overflow للقيمة الأصلية
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
-      setExpandedMenu(null); // إغلاق القوائم الفرعية عند إغلاق الـ Sidebar
+      document.body.style.overflow = "";
+      setExpandedMenu(null);
     }
+
+    // ✅ Cleanup بيتنفذ لما الـ component يتعمله unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   const handleNavigation = (path) => {
@@ -91,12 +96,12 @@ const Sidebar = ({ open, setOpen }) => {
             style={
               open
                 ? {
-                    backgroundImage: `url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundBlendMode: "multiply",
-                  }
+                  backgroundImage: `url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundBlendMode: "multiply",
+                }
                 : {}
             }
             initial={{ opacity: 0 }}

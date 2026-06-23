@@ -23,7 +23,7 @@ const StickyHeaderComponent = () => {
   return (
     <>
       <StickyHeader open={open} setOpen={setOpen} />
-      {open && <Sidebar open={open} setOpen={setOpen} />}
+      <Sidebar open={open} setOpen={setOpen} />
     </>
   );
 };
