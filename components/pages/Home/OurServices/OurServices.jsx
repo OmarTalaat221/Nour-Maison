@@ -14,7 +14,6 @@ import PaperPlaneSuccess from "../../../PaperPlaneSuccess/PaperPlaneSuccess";
 import { useMediaQuery } from "../../../../Hooks/GeneralHooks/useMediaQueries";
 import Link from "next/link";
 
-// ✅ Static data
 const MAIN_SERVICES = [
   {
     id: 1,
@@ -43,8 +42,7 @@ const MAIN_SERVICES = [
     title: "Anniversaries",
     description:
       "Mark your special milestone with an elegant celebration tailored for you.",
-    image:
-      "/images/event-1.webp",
+    image: "/images/event-1.webp",
   },
 ];
 
@@ -53,11 +51,9 @@ const CUSTOM_EVENT = {
   title: "Custom Event",
   description:
     "Have something unique in mind? Let us bring your vision to life with a fully personalized event experience.",
-  image:
-    "/images/event-1.webp",
+  image: "/images/event-1.webp",
 };
 
-// ✅ Tilt configs
 const TILT_CONFIG = {
   perspective: 1000,
   glareMaxOpacity: 0.45,
@@ -70,11 +66,9 @@ const TILT_CONFIG_LARGE = {
   scale: 1.02,
 };
 
-// ✅ Common card classes
 const CARD_BASE_CLASSES =
   "relative z-20 mx-auto hover:shadow-2xl transition-shadow duration-300 w-full h-full rounded-xl bg-gradient-to-br from-dairyCream/25 to-dairyCream/80 !border-[3px] border-softMintGreen/40 backdrop-blur-md backdrop-saturate-150 shadow-lg ring-1 ring-white/10";
 
-// ✅ Memoized Animated Border Button
 const AnimatedBorderButton = memo(({ children, onClick, ariaLabel, title }) => (
   <button
     onClick={onClick}
@@ -95,7 +89,6 @@ const AnimatedBorderButton = memo(({ children, onClick, ariaLabel, title }) => (
 ));
 AnimatedBorderButton.displayName = "AnimatedBorderButton";
 
-// ✅ Memoized Event Header
 const EventHeader = memo(({ number, title }) => (
   <>
     <p className="text-sm sm:text-base md:text-lg text-softMintGreen font-medium font-nour text-center md:text-left">
@@ -108,7 +101,6 @@ const EventHeader = memo(({ number, title }) => (
 ));
 EventHeader.displayName = "EventHeader";
 
-// ✅ Memoized Service Card
 const ServiceCard = memo(({ item, isMobile, onInquiry }) => {
   const handleClick = useCallback(
     (e) => {
@@ -152,7 +144,6 @@ const ServiceCard = memo(({ item, isMobile, onInquiry }) => {
 });
 ServiceCard.displayName = "ServiceCard";
 
-// ✅ Memoized Afternoon Tea Card
 const AfternoonTeaCard = memo(({ isMobile }) => (
   <Tilt
     className="background-stripes parallax-effect-glare-scale lg:self-stretch"
@@ -211,7 +202,6 @@ const AfternoonTeaCard = memo(({ isMobile }) => (
 ));
 AfternoonTeaCard.displayName = "AfternoonTeaCard";
 
-// ✅ Main Component
 const OurServices = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
@@ -246,7 +236,6 @@ const OurServices = () => {
       id="our-services"
       className="mt-20 relative flex flex-col overflow-visible scroll-mt-32"
     >
-      {/* ✅ Branches */}
       <BranchesImage
         variant="top-right"
         className="opacity-30 md:opacity-100"
@@ -257,11 +246,12 @@ const OurServices = () => {
       />
 
       <div className="w-full mx-auto z-10">
-        <SectionTitle as="h2" className="!text-goldenOrange">
+        <SectionTitle className="!text-goldenOrange">
           Elegance <span className="font-tajawal">&</span> Events: Crafting
           Unforgettable Moments
         </SectionTitle>
 
+        {/* ✅ Main Container - Afternoon Tea + 4 Cards */}
         <div className="container !flex flex-col lg:flex-row h-full gap-4 relative z-20 mt-10 sm:mt-14 md:mt-20 !px-3 sm:!px-5">
           <AfternoonTeaCard isMobile={isMobile} />
 
@@ -276,9 +266,19 @@ const OurServices = () => {
             ))}
           </div>
         </div>
+
+        {/* ✅ Custom Event - بنفس حجم الكارد الواحد من الـ grid */}
+        <div className="container mx-auto w-full mt-3 md:mt-4 relative z-20 flex justify-center px-3 sm:px-5">
+          <div className="w-full sm:w-[calc(50%-6px)] lg:w-[calc((100%-380px-16px)/2-8px)] xl:w-[calc((100%-420px-16px)/2-8px)]">
+            <ServiceCard
+              item={CUSTOM_EVENT}
+              isMobile={isMobile}
+              onInquiry={handleInquiry}
+            />
+          </div>
+        </div>
       </div>
 
-      {/* ✅ Modal */}
       <FramerModal
         onSuccess={handleSuccess}
         onFail={handleFail}
@@ -287,7 +287,6 @@ const OurServices = () => {
         setOpen={handleCloseModal}
       />
 
-      {/* ✅ Success Overlay */}
       <PaperPlaneSuccess
         text="Inquiry sent successfully"
         showOverlay={showOverlay}

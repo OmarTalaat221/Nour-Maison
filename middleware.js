@@ -31,6 +31,7 @@ const VALID_ROUTES = new Set([
   "/CreateGiftPage",
   "/portfolio",
   "/become-a-member",
+  "/free-coffee",
 ]);
 
 // ✅ Dynamic routes prefixes

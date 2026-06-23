@@ -93,12 +93,12 @@ const BlogClient = ({ data, blogsData = [], id, title }) => {
   // ✅ Filter and validate blogs data
   const validBlogsData = Array.isArray(blogsData)
     ? blogsData.filter(
-        (blog) =>
-          blog &&
-          blog.id &&
-          blog.title &&
-          blog.id?.toString() !== id?.toString()
-      )
+      (blog) =>
+        blog &&
+        blog.id &&
+        blog.title &&
+        blog.id?.toString() !== id?.toString()
+    )
     : [];
 
   return (
@@ -224,6 +224,9 @@ const BlogClient = ({ data, blogsData = [], id, title }) => {
                     dangerouslySetInnerHTML={{ __html: data.content }}
                   />
                 )}
+
+
+
               </div>
             </div>
 

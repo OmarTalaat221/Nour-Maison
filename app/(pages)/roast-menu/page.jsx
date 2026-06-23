@@ -5,6 +5,7 @@ import Image from "next/image";
 import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import Script from "next/script";
 import { getPageKeywords } from "../../../lib/seo/keywords";
+import CTAButtons from "../../../components/CTAButtons/CTAButtons";
 
 const siteUrl = "https://www.nourmaison.co.uk";
 const pathname = "/roast-menu";
@@ -351,6 +352,8 @@ const RoastDinnerMenuPage = () => {
             </span>
           </h2>
 
+
+
           <div className="bg-pestachio2/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-7 w-full mx-auto border-2 border-logoGold/30">
             <p className="font-oswald text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose">
               Discover Milton Keynes' finest halal roast dinner at Nour Maison.
@@ -388,6 +391,8 @@ const RoastDinnerMenuPage = () => {
             quality={88}
           />
         </div>
+
+
 
 
 
