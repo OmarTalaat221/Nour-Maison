@@ -53,7 +53,7 @@ const EXCLUDED_PREFIXES = [
 
 // ✅ Bot detection (شامل)
 const BOT_REGEX =
-  /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|whatsapp|telegram|linkedinbot|twitterbot|pinterest|googlebot|bingbot|yandex|baiduspider|duckduckbot|applebot|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|seznambot|sogou|exabot|gptbot|chatgpt|perplexity|claude|anthropic|ccbot|google-extended|bytespider|amazonbot|lighthouse|chrome-lighthouse|pagespeed/i;
+  /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|whatsapp|telegram|linkedinbot|twitterbot|pinterest|google|bingbot|yandex|baiduspider|duckduckbot|applebot|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|seznambot|sogou|exabot|gptbot|chatgpt|perplexity|claude|anthropic|ccbot|google-extended|bytespider|amazonbot|lighthouse|chrome-lighthouse|pagespeed/i;
 
 function isBot(userAgent) {
   if (!userAgent) return true;

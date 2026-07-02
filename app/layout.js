@@ -1,28 +1,28 @@
 import {
+  Caveat,
+  EB_Garamond,
   Geist,
+  Great_Vibes,
   Inter,
   Lato,
   Oswald,
+  Pacifico,
   Tajawal,
   Tangerine,
-  Great_Vibes,
-  Pacifico,
-  EB_Garamond,
   Yesteryear,
-  Caveat,
 } from "next/font/google";
 import localFont from "next/font/local";
 
-import "./globals.css";
-import TopHeader from "../components/shared/TopHeader/TopHeader";
-import AOSAnimation from "./../components/AOS";
-import PageTransition from "../components/PageTransition";
-import StickyHeaderComponent from "../components/shared/StickyHeader/StickyHeaderComponent";
-import { NotFoundProvider } from "./context/NoutFoundContext";
-import { HeaderProvider } from "./context/HeaderContext";
-import { LoadingProvider } from "./context/LoadingContext";
 import LazyAnalytics from "../components/LazyAnalytics/LazyAnalytics";
 import LazyFooter from "../components/LazyFooter/LazyFooter";
+import PageTransition from "../components/PageTransition";
+import StickyHeaderComponent from "../components/shared/StickyHeader/StickyHeaderComponent";
+import TopHeader from "../components/shared/TopHeader/TopHeader";
+import AOSAnimation from "./../components/AOS";
+import { HeaderProvider } from "./context/HeaderContext";
+import { LoadingProvider } from "./context/LoadingContext";
+import { NotFoundProvider } from "./context/NoutFoundContext";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -287,6 +287,7 @@ export default function RootLayout({ children }) {
           <LazyFooter />
           <AOSAnimation />
           <LazyAnalytics />
+          {/* <SubscribeModalProvider /> */}
         </NotFoundProvider>
       </body>
     </html>
