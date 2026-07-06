@@ -1,15 +1,15 @@
 "use client";
 
-import React, { memo } from "react";
-import "./style.scss";
 import cx from "classnames";
-import AnimButton from "../../../utils/AnimButton/AnimButton";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-import { useNotFound } from "../../../app/context/NoutFoundContext";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { memo } from "react";
 import { useHeader } from "../../../app/context/HeaderContext";
+import { useNotFound } from "../../../app/context/NoutFoundContext";
 import useBookingUrl from "../../../Hooks/useBookingUrl";
+import AnimButton from "../../../utils/AnimButton/AnimButton";
+import "./style.scss";
 
 const navItems = [
   { id: 1, name: "HOME", path: "/" },
@@ -42,6 +42,7 @@ const navItems = [
   { id: 6, name: "ABOUT US", path: "/about-us" },
   { id: 8, name: "CONTACT US", path: "/contact-us" },
   { id: 10, name: "BLOGS", path: "/blog" },
+  { id: 11, name: "STORE", path: "/store" },
 ];
 
 const hiddenPages = [
@@ -107,8 +108,10 @@ const TopHeader = () => {
                   height={100}
                   sizes="(max-width: 768px) 70px, 100px"
                   className={cx("transition-all duration-300", {
-                    "w-[60px] sm:!w-[60px] md:!w-[70px] lg:!w-[80px]": headerWithBg,
-                    "w-[70px] sm:!w-[70px] md:!w-[80px] lg:!w-[100px]": !headerWithBg,
+                    "w-[60px] sm:!w-[60px] md:!w-[70px] lg:!w-[80px]":
+                      headerWithBg,
+                    "w-[70px] sm:!w-[70px] md:!w-[80px] lg:!w-[100px]":
+                      !headerWithBg,
                   })}
                 />
               </Link>

@@ -1,18 +1,11 @@
-// app/checkout/CheckoutPageClient.jsx
-
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  FaLock,
-  FaCreditCard,
-  FaCalendarAlt,
-  FaShieldAlt,
-} from "react-icons/fa";
-import { BsShieldCheck } from "react-icons/bs";
-import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { BsShieldCheck } from "react-icons/bs";
+import { FaCreditCard, FaLock, FaShieldAlt } from "react-icons/fa";
 import { useHeader } from "../../../context/HeaderContext";
 
 const CheckoutPageClient = () => {
@@ -20,13 +13,6 @@ const CheckoutPageClient = () => {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-
-  const [cardDetails, setCardDetails] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    cardholderName: "",
-  });
 
   const { setHeaderWithBg } = useHeader();
 
@@ -37,113 +23,85 @@ const CheckoutPageClient = () => {
 
   useEffect(() => {
     const amount = searchParams.get("amount");
-    const toName = searchParams.get("toName");
-    const toEmail = searchParams.get("toEmail");
+    const unitAmount = searchParams.get("unitAmount");
+    const quantity = searchParams.get("quantity");
+    const totalAmount = searchParams.get("totalAmount");
+
     const senderName = searchParams.get("senderName");
     const senderEmail = searchParams.get("senderEmail");
+    const senderWhats = searchParams.get("senderWhats") || "";
+    const cardType = searchParams.get("cardType") || "Gift Card";
+    const cardId = searchParams.get("cardId") || "";
+    const hideName = searchParams.get("hideName") === "true";
     const type = searchParams.get("type") || "gift-card";
 
-    if (amount) {
+    const resolvedTotal = parseFloat(totalAmount || amount || 0);
+    const resolvedUnit = parseFloat(unitAmount || amount || 0);
+    const resolvedQty = parseInt(quantity || 1, 10);
+
+    if (resolvedTotal > 0) {
       setOrderDetails({
-        amount: parseFloat(amount),
-        toName,
-        toEmail,
+        unitAmount: resolvedUnit,
+        quantity: resolvedQty,
+        totalAmount: resolvedTotal,
         senderName,
         senderEmail,
+        senderWhats,
+        cardType,
+        cardId,
+        hideName,
         type,
       });
     }
   }, [searchParams]);
 
-  const formatCardNumber = (value) => {
-    const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
-    const matches = v.match(/\d{4,16}/g);
-    const match = (matches && matches[0]) || "";
-    const parts = [];
-    for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4));
-    }
-    return parts.length ? parts.join(" ") : value;
-  };
-
-  const formatExpiryDate = (value, prevValue = "") => {
-    if (value.length < prevValue.length) {
-      if (prevValue.length === 3 && prevValue.endsWith("/")) {
-        return value.slice(0, 1);
-      }
-      return value;
-    }
-
-    let v = value.replace(/[^0-9]/gi, "");
-
-    if (v.length === 1 && parseInt(v) > 1) {
-      return "0" + v + "/";
-    }
-
-    if (v.length === 2) {
-      return v + "/";
-    }
-
-    if (v.length > 2) {
-      return v.substring(0, 2) + "/" + v.substring(2, 4);
-    }
-
-    return v;
-  };
-
-  const handleCardChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "cardNumber") {
-      setCardDetails((prev) => ({
-        ...prev,
-        cardNumber: formatCardNumber(value),
-      }));
-    } else if (name === "expiryDate") {
-      setCardDetails((prev) => ({
-        ...prev,
-        expiryDate: formatExpiryDate(value, prev.expiryDate),
-      }));
-    } else if (name === "cvv") {
-      const cvv = value.replace(/[^0-9]/gi, "").substring(0, 4);
-      setCardDetails((prev) => ({ ...prev, cvv }));
-    } else {
-      setCardDetails((prev) => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const validateCard = () => {
-    if (!cardDetails.cardholderName.trim()) {
-      toast.error("Please enter cardholder name");
-      return false;
-    }
-    if (cardDetails.cardNumber.replace(/\s/g, "").length < 16) {
-      toast.error("Please enter a valid card number");
-      return false;
-    }
-    if (cardDetails.expiryDate.length < 5) {
-      toast.error("Please enter a valid expiry date");
-      return false;
-    }
-    if (cardDetails.cvv.length < 3) {
-      toast.error("Please enter a valid CVV");
-      return false;
-    }
-    return true;
-  };
-
   const handlePayment = async () => {
-    if (!validateCard()) return;
+    if (!orderDetails?.totalAmount || orderDetails.totalAmount <= 0) {
+      toast.error("Invalid payment amount");
+      return;
+    }
 
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      toast.success("Payment successful!");
-      router.push("/checkout/success");
+      const reference = `NM-${Date.now()}`;
+
+      const response = await fetch("/api/dojo/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: orderDetails.totalAmount,
+          reference,
+          description: `${orderDetails.cardType || "Nour Maison"} payment`,
+          type: orderDetails.type,
+          cardType: orderDetails.cardType,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Dojo create payment error:", data);
+        throw new Error(data.message || "Payment could not be started");
+      }
+
+      sessionStorage.setItem(
+        "dojoCheckoutSession",
+        JSON.stringify({
+          paymentIntentId: data.paymentIntentId,
+          reference: data.reference || reference,
+          amount: orderDetails.totalAmount,
+          cardType: orderDetails.cardType,
+          quantity: orderDetails.quantity,
+          type: orderDetails.type,
+        }),
+      );
+
+      window.location.href = data.paymentLink;
     } catch (error) {
-      toast.error("Payment failed. Please try again.");
-    } finally {
+      toast.error(error.message || "Payment failed. Please try again.");
       setLoading(false);
     }
   };
@@ -152,30 +110,30 @@ const CheckoutPageClient = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin w-10 h-10 border-4 border-softMintGreen border-t-transparent rounded-full mx-auto mb-4"></div>
+          <div className="animate-spin w-10 h-10 border-4 border-softMintGreen border-t-transparent rounded-full mx-auto mb-4" />
           <p className="text-softMintGreen font-oswald text-lg">Loading...</p>
         </div>
       </div>
     );
   }
 
+  const showQuantity = orderDetails.quantity > 1;
+
   return (
     <>
       <noscript>
         <meta
           name="description"
-          content="Secure checkout for NOUR MAISON gift cards and products. We accept Visa, Mastercard, and American Express."
+          content="Secure checkout for NOUR MAISON gift cards and products."
         />
       </noscript>
 
       <div className="min-h-screen">
         <Toaster position="top-center" />
 
-        <div className=" mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        <div className="mx-auto px-4 sm:px-6 py-6 sm:py-10">
           <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
-            {/* Left - Order Summary & What You Get */}
             <div className="lg:col-span-2 space-y-5">
-              {/* Order Summary Card */}
               <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
                 <div className="bg-softMintGreen px-5 py-3">
                   <h2 className="text-lg sm:text-xl font-seasons text-white">
@@ -183,7 +141,7 @@ const CheckoutPageClient = () => {
                   </h2>
                 </div>
 
-                <div className="p-5">
+                <div className="p-5 space-y-4">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-pestachio rounded-lg flex items-center justify-center flex-shrink-0">
                       <span className="text-xl text-softMintGreen font-seasons">
@@ -192,26 +150,80 @@ const CheckoutPageClient = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-base text-gray-800 font-oswald">
-                        {orderDetails.type === "gift-card"
-                          ? "Nour Maison Gift Card"
-                          : "Store Item"}
+                        {orderDetails.cardType || "Nour Maison Gift Card"}
                       </h3>
-                      <p className="text-whiteGray text-sm">Digital Delivery</p>
+                      <p className="text-whiteGray text-sm font-oswald">
+                        Digital Delivery
+                      </p>
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex justify-between items-center">
-                      <span className="font-seasons text-gray-800">Amount</span>
-                      <span className="text-xl font-bold text-logoGold font-oswald">
-                        £{orderDetails.amount?.toFixed(2)}
-                      </span>
+                  <div className="border-t border-gray-100 pt-4 space-y-2">
+                    <div className="flex justify-between text-gray-600 font-oswald text-sm">
+                      <span>Unit Price</span>
+                      <span>£{orderDetails.unitAmount.toFixed(2)}</span>
+                    </div>
+
+                    {showQuantity && (
+                      <div className="flex justify-between text-gray-600 font-oswald text-sm">
+                        <span>Quantity</span>
+                        <span>× {orderDetails.quantity}</span>
+                      </div>
+                    )}
+
+                    <div className="flex justify-between text-gray-600 font-oswald text-sm">
+                      <span>Processing Fee</span>
+                      <span>£0.00</span>
+                    </div>
+
+                    <div className="border-t border-gray-100 pt-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-seasons text-gray-800 text-base">
+                          Total
+                        </span>
+                        <span className="text-xl font-bold text-logoGold font-oswald">
+                          £{orderDetails.totalAmount.toFixed(2)}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* What You Get */}
+              {(orderDetails.senderName || orderDetails.senderEmail) && (
+                <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-5">
+                  <h3 className="text-base sm:text-lg font-seasons text-softMintGreen mb-3">
+                    Customer Details
+                  </h3>
+                  <ul className="space-y-2 font-oswald text-sm text-gray-600">
+                    {orderDetails.senderName && (
+                      <li className="flex items-center gap-2">
+                        <span className="text-logoGold font-semibold min-w-[70px]">
+                          Name:
+                        </span>
+                        <span>{orderDetails.senderName}</span>
+                      </li>
+                    )}
+                    {orderDetails.senderEmail && (
+                      <li className="flex items-center gap-2">
+                        <span className="text-logoGold font-semibold min-w-[70px]">
+                          Email:
+                        </span>
+                        <span>{orderDetails.senderEmail}</span>
+                      </li>
+                    )}
+                    {orderDetails.senderWhats && (
+                      <li className="flex items-center gap-2">
+                        <span className="text-logoGold font-semibold min-w-[70px]">
+                          WhatsApp:
+                        </span>
+                        <span>{orderDetails.senderWhats}</span>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+
               <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-5">
                 <h3 className="text-base sm:text-lg font-seasons text-softMintGreen mb-4">
                   What You Will Receive
@@ -245,7 +257,6 @@ const CheckoutPageClient = () => {
                 </ul>
               </div>
 
-              {/* Back Link - Desktop */}
               <div className="hidden lg:block text-center">
                 <button
                   onClick={() => router.back()}
@@ -269,10 +280,8 @@ const CheckoutPageClient = () => {
               </div>
             </div>
 
-            {/* Right - Card Details & Payment */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden sticky top-24">
-                {/* Header */}
                 <div className="bg-logoGold px-5 py-3">
                   <div className="flex items-center gap-2">
                     <FaLock className="text-white" />
@@ -283,89 +292,62 @@ const CheckoutPageClient = () => {
                 </div>
 
                 <div className="p-5 space-y-5">
-                  {/* Card Details Form */}
-                  <div className="space-y-4">
-                    {/* Cardholder Name */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2 font-oswald">
-                        Cardholder Name
-                      </label>
-                      <input
-                        type="text"
-                        name="cardholderName"
-                        value={cardDetails.cardholderName}
-                        onChange={handleCardChange}
-                        placeholder="Name on card"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-softMintGreen transition-all font-oswald"
-                      />
-                    </div>
-
-                    {/* Card Number */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2 font-oswald">
-                        Card Number
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          name="cardNumber"
-                          value={cardDetails.cardNumber}
-                          onChange={handleCardChange}
-                          placeholder="1234 5678 9012 3456"
-                          maxLength="19"
-                          className="w-full px-4 py-3 pl-12 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-softMintGreen transition-all font-oswald"
-                        />
-                        <FaCreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                      </div>
-                    </div>
-
-                    {/* Expiry & CVV */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2 font-oswald">
-                          Expiry Date
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="text"
-                            name="expiryDate"
-                            value={cardDetails.expiryDate}
-                            onChange={handleCardChange}
-                            placeholder="MM/YY"
-                            maxLength="5"
-                            className="w-full px-4 py-3 pl-12 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-softMintGreen transition-all font-oswald"
-                          />
-                          <FaCalendarAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                        </div>
+                  <div className="bg-pestachio/30 rounded-lg p-5 border border-gray-100">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                        <FaCreditCard className="text-softMintGreen text-xl" />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2 font-oswald">
-                          CVV
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="text"
-                            name="cvv"
-                            value={cardDetails.cvv}
-                            onChange={handleCardChange}
-                            placeholder="123"
-                            maxLength="4"
-                            className="w-full px-4 py-3 pl-12 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-softMintGreen transition-all font-oswald"
-                          />
-                          <FaShieldAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                        </div>
+                        <h4 className="font-seasons text-xl text-softMintGreen mb-2">
+                          Secure Hosted Payment
+                        </h4>
+                        <p className="font-oswald text-sm text-gray-600 leading-6">
+                          You will be redirected to Dojo secure checkout to
+                          complete your payment. Your card details are entered
+                          only on Dojo and are not stored by Nour Maison.
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Divider */}
-                  <div className="border-t border-gray-100"></div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="rounded-lg border border-gray-100 p-4 bg-white">
+                      <div className="flex items-center gap-2 mb-2">
+                        <FaShieldAlt className="text-softMintGreen" />
+                        <span className="font-semibold text-gray-800 font-oswald text-sm">
+                          Encrypted Checkout
+                        </span>
+                      </div>
+                      <p className="text-xs text-whiteGray">
+                        Payment is processed securely through Dojo hosted
+                        checkout.
+                      </p>
+                    </div>
 
-                  {/* Price Summary */}
+                    <div className="rounded-lg border border-gray-100 p-4 bg-white">
+                      <div className="flex items-center gap-2 mb-2">
+                        <BsShieldCheck className="text-softMintGreen" />
+                        <span className="font-semibold text-gray-800 font-oswald text-sm">
+                          No Card Storage
+                        </span>
+                      </div>
+                      <p className="text-xs text-whiteGray">
+                        We do not collect or save your card number, expiry date,
+                        or CVV.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-100" />
+
                   <div className="space-y-2">
                     <div className="flex justify-between text-gray-600 font-oswald text-sm">
                       <span>Subtotal</span>
-                      <span>£{orderDetails.amount?.toFixed(2)}</span>
+                      <span>
+                        {showQuantity
+                          ? `£${orderDetails.unitAmount.toFixed(2)} × ${orderDetails.quantity}`
+                          : `£${orderDetails.unitAmount.toFixed(2)}`}
+                      </span>
                     </div>
                     <div className="flex justify-between text-gray-600 font-oswald text-sm">
                       <span>Processing Fee</span>
@@ -377,13 +359,12 @@ const CheckoutPageClient = () => {
                           Total
                         </span>
                         <span className="text-2xl font-bold text-logoGold font-oswald">
-                          £{orderDetails.amount?.toFixed(2)}
+                          £{orderDetails.totalAmount.toFixed(2)}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Pay Button */}
                   <button
                     onClick={handlePayment}
                     disabled={loading}
@@ -391,26 +372,24 @@ const CheckoutPageClient = () => {
                   >
                     {loading ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Processing...</span>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span>Redirecting to Dojo...</span>
                       </>
                     ) : (
                       <>
                         <FaLock className="text-sm" />
-                        <span>Pay £{orderDetails.amount?.toFixed(2)}</span>
+                        <span>Pay £{orderDetails.totalAmount.toFixed(2)}</span>
                       </>
                     )}
                   </button>
 
-                  {/* Security Note */}
                   <div className="flex items-center gap-2 text-sm text-gray-500 bg-pestachio/30 p-3 rounded-lg">
                     <FaLock className="text-softMintGreen flex-shrink-0" />
                     <span className="font-oswald">
-                      Your card details are encrypted and secure
+                      You will complete your payment on Dojo secure checkout
                     </span>
                   </div>
 
-                  {/* Security Badge & Cards */}
                   <div className="bg-offWhite rounded-lg p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
@@ -443,7 +422,6 @@ const CheckoutPageClient = () => {
                     </p>
                   </div>
 
-                  {/* Terms */}
                   <p className="text-xs text-center text-whiteGray">
                     By proceeding, you agree to our{" "}
                     <Link
@@ -462,7 +440,6 @@ const CheckoutPageClient = () => {
                   </p>
                 </div>
 
-                {/* Footer */}
                 <div className="bg-offWhite px-5 py-2 text-center border-t border-gray-100">
                   <p className="text-xs text-whiteGray">
                     Operated by{" "}
@@ -473,7 +450,6 @@ const CheckoutPageClient = () => {
             </div>
           </div>
 
-          {/* Back Link - Mobile */}
           <div className="lg:hidden mt-6 text-center">
             <button
               onClick={() => router.back()}

@@ -1,63 +1,58 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import PagesBanner from "../../../components/PagesBanner/PagesBanner";
-import giftcatds from "../data/giftCards";
-import categories from "../data/categories";
+import { useSearchParams } from "next/navigation";
+import { useMemo, useState } from "react";
 import FlipGiftCard from "../../../components/Cards/FlipGiftCard/FlipGiftCard";
+import PagesBanner from "../../../components/PagesBanner/PagesBanner";
 import GiftForm from "../../../components/bages/CreateGiftPage/GiftForm";
+import giftcatds from "../data/giftCards";
 
 const CreateGiftPage = () => {
-  const [giftData, setGiftData] = useState(null);
-  const [flipped, setFlipped] = useState(false);
+  const searchParams = useSearchParams();
+
+  const giftData = useMemo(() => {
+    const cardId = searchParams.get("card_id");
+    if (!cardId) return null;
+    return (
+      giftcatds
+        .flatMap((item) => item.cards || [])
+        .find((card) => Number(card.id) === Number(cardId)) || null
+    );
+  }, [searchParams]);
 
   const [newGift, setNewGift] = useState({
+    quantity: 1,
     amount: "",
-    toName: "",
-    toEmial: "",
     senderName: "",
+    senderEmail: "",
+    senderWhats: "",
     hideName: false,
   });
-
-  useEffect(() => {
-    // Check if we're running in the browser
-    if (typeof window !== "undefined") {
-      const search = window.location.search;
-      const urlParams = new URLSearchParams(search);
-      const cardId = urlParams.get("card_id");
-
-      if (cardId) {
-        // Filter the cards based on the cardId from the URL
-        const selectedCard = giftcatds
-          .map((item) => item.cards)
-          .flat(2)
-          .find((card) => Number(card.id) === Number(cardId));
-        setGiftData(selectedCard);
-      }
-    }
-  }, []);
 
   return (
     <div className="gift_cards_page">
       <PagesBanner
-        title={giftData?.category}
+        title={giftData?.category || "Gift Card"}
         slogan={"Luxury, Wrapped in a Card"}
         scrollTo={"gift_form"}
       />
-      <div className="flex flex-col lg:flex-row justify-center p-10 mt-10 container mx-auto">
-        <FlipGiftCard
-          flipped={flipped}
-          setFlipped={setFlipped}
-          newGiftData={newGift}
-          data={giftData}
-        />
-        <GiftForm
-          flipped={flipped}
-          setFlipped={setFlipped}
-          setNewGift={setNewGift}
-          newGift={newGift}
-          data={giftData}
-        />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mx-auto">
+          {/* Left: Card Preview */}
+          <div className="flex justify-center lg:justify-end">
+            <FlipGiftCard data={giftData} />
+          </div>
+
+          {/* Right: Form */}
+          <div className="flex justify-center lg:justify-start">
+            <GiftForm
+              setNewGift={setNewGift}
+              newGift={newGift}
+              data={giftData}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

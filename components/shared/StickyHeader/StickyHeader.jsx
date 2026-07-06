@@ -1,15 +1,14 @@
 // components/StickyHeader/StickyHeader.jsx
 "use client";
-import React, { useEffect, useState } from "react";
-import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import cx from "classnames";
-import MenuButton from "../../../utils/MenuButton/MenuButton";
+import { useEffect, useState } from "react";
 import { Dropdown } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
+import MenuButton from "../../../utils/MenuButton/MenuButton";
 
 import { usePathname, useRouter } from "next/navigation";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
-import CristmasMenuButton from "../../../utils/CristmasMenuButton/CristmasMenuButton";
 import useBookingUrl from "../../../Hooks/useBookingUrl";
 
 const StickyHeader = ({ open, setOpen }) => {
@@ -70,6 +69,7 @@ const StickyHeader = ({ open, setOpen }) => {
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
+    { id: 11, name: "STORE", path: "/store", type: "navigate" },
   ];
 
   const isMenuActive =

@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import cx from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import useBookingUrl from "../../../Hooks/useBookingUrl";
 import AnimButton from "../../../utils/AnimButton/AnimButton";
 import "./style.scss";
-import { useRouter, usePathname } from "next/navigation";
-import useBookingUrl from "../../../Hooks/useBookingUrl";
 
 const Sidebar = ({ open, setOpen }) => {
   const [expandedMenu, setExpandedMenu] = useState(null);
@@ -47,6 +47,7 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
+    { id: 11, name: "STORE", path: "/store", type: "navigate" },
   ];
 
   // ✅ التعديل هنا - Cleanup مضمون + إرجاع الـ overflow للقيمة الأصلية
@@ -96,12 +97,12 @@ const Sidebar = ({ open, setOpen }) => {
             style={
               open
                 ? {
-                  backgroundImage: `url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundBlendMode: "multiply",
-                }
+                    backgroundImage: `url("https://res.cloudinary.com/dhebgz7qh/image/upload/v1767443801/t9noktexya7m7o2dtum4_hbidy9.jpg")`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundBlendMode: "multiply",
+                  }
                 : {}
             }
             initial={{ opacity: 0 }}

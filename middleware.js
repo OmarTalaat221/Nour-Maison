@@ -32,6 +32,7 @@ const VALID_ROUTES = new Set([
   "/portfolio",
   "/become-a-member",
   "/free-coffee",
+  "/halal-restaurant-milton-keynes",
 ]);
 
 // ✅ Dynamic routes prefixes
