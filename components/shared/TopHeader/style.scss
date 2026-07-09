@@ -1,66 +1,73 @@
-
-
-.site_header{
-
+.site_header {
 }
 
-.site_header_content_btn{
+.site_header_content_btn {
   display: none !important;
 }
 
-  
 @media (min-width: 959px) {
-  /* Your styles here */
-  .site_header_content{
-    // padding-inline: 150px !important;
-  }
-  .site_header_content_navs{
-    display: block !important;
-  }
-
-  .site_header_content_btn{
+  .site_header_content_navs {
     display: flex !important;
   }
-  
+
+  .site_header_content_btn {
+    display: flex !important;
+  }
 }
 
-/* Extra small devices (phones, less than 576px) */
-@media (max-width: 575.98px) {
-  /* Your styles here */
-  
+@media (min-width: 959px) and (max-width: 1099.98px) {
+  .site_header_content {
+    padding-inline: 14px !important;
+    gap: 8px !important;
+  }
+
+  .site_header_content_btn a {
+    transform: scale(0.82);
+    transform-origin: right center;
+  }
 }
 
-/* Small devices (tablets, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  /* Your styles here */
-  
+@media (min-width: 1100px) and (max-width: 1199.98px) {
+  .site_header_content {
+    padding-inline: 18px !important;
+  }
 
+  .site_header_content_btn a {
+    transform: scale(0.88);
+    transform-origin: right center;
+  }
 }
 
-/* Medium devices (desktops, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  /* Your styles here */
-
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Your styles here */
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) and (max-width: 1399.98px) {
-  /* Your styles here */
+  .site_header_content {
+    padding-inline: 24px !important;
+  }
+
+  .site_header_content_btn a {
+    transform: scale(0.94);
+    transform-origin: right center;
+  }
 }
 
-/* Extra extra large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-  /* Your styles here */
+  .site_header_content_btn a {
+    transform: scale(1);
+  }
 }
-
 
 .nav-dropdown {
   position: relative;
+}
+
+/* حل مشكلة الهوفر من غير تغيير الديزاين */
+.nav-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -8px;
+  right: -8px;
+  height: 24px;
+  background: transparent;
 }
 
 .nav-dropdown > button {
@@ -77,6 +84,11 @@
   pointer-events: auto;
 }
 
+.nav-dropdown:hover .nav-dropdown-menu--right,
+.nav-dropdown:focus-within .nav-dropdown-menu--right {
+  transform: translate3d(0, 0, 0);
+}
+
 .nav-dropdown:hover .nav-dropdown-arrow,
 .nav-dropdown:focus-within .nav-dropdown-arrow {
   transform: rotate(180deg);
@@ -87,6 +99,7 @@
   top: calc(100% + 14px);
   left: 50%;
   min-width: 250px;
+  max-height: min(70vh, 400px);
   padding: 10px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.98);
@@ -100,6 +113,40 @@
     visibility 0.22s ease,
     transform 0.22s ease;
   z-index: 9999999;
+
+  /* تحسين مكان الاسكرول */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+  background-clip: padding-box;
+
+  /* إخفاء الاسكرول بار من فايرفوكس */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-dropdown-menu-inner {
+  display: block;
+  width: 100%;
+}
+
+.nav-dropdown-menu--right {
+  left: auto;
+  right: 0;
+  transform: translate3d(0, 10px, 0);
+}
+
+.nav-dropdown-menu--large {
+  min-width: min(560px, calc(100vw - 32px));
+}
+
+.nav-dropdown-menu--large .nav-dropdown-menu-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: row;
+  gap: 4px;
+  align-content: start;
 }
 
 .nav-dropdown-menu::before {
@@ -109,6 +156,23 @@
   left: 0;
   right: 0;
   height: 14px;
+}
+
+/* إخفاء الاسكرول بار من كروم/سفاري */
+.nav-dropdown-menu::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.nav-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+  display: none;
+}
+
+.nav-dropdown-menu::-webkit-scrollbar-thumb {
+  background: transparent;
+  display: none;
 }
 
 .nav-dropdown-item {
@@ -121,9 +185,44 @@
   font-size: 14px;
   line-height: 1.35;
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .nav-dropdown-item:hover {
   text-decoration: none;
+}
+
+@media (min-width: 959px) and (max-width: 1199.98px) {
+  .nav-dropdown-menu {
+    min-width: 240px;
+  }
+
+  .nav-dropdown-menu--large {
+    min-width: min(380px, calc(100vw - 24px));
+  }
+
+  .nav-dropdown-menu--large .nav-dropdown-menu-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-dropdown-item {
+    font-size: 13px;
+    line-height: 1.25;
+    padding: 9px 12px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .nav-dropdown-menu--large {
+    min-width: min(500px, calc(100vw - 32px));
+  }
+
+  .nav-dropdown-menu--large .nav-dropdown-menu-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-dropdown-item {
+    font-size: 13px;
+  }
 }

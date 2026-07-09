@@ -7,6 +7,55 @@ import useBookingUrl from "../../../Hooks/useBookingUrl";
 import AnimButton from "../../../utils/AnimButton/AnimButton";
 import "./style.scss";
 
+const exploreItems = [
+  {
+    id: 1,
+    name: "Restaurant in Milton Keynes",
+    path: "/restaurant-milton-keynes",
+  },
+  { id: 2, name: "Halal Restaurant", path: "/halal-restaurant-milton-keynes" },
+  { id: 3, name: "Cafe in Milton Keynes", path: "/cafe-milton-keynes" },
+  {
+    id: 4,
+    name: "Breakfast in Milton Keynes",
+    path: "/breakfast-milton-keynes",
+  },
+  { id: 5, name: "Brunch Spot", path: "/brunch-spot-milton-keynes" },
+  { id: 6, name: "Halal Brunch", path: "/halal-brunch-milton-keynes" },
+  { id: 7, name: "Halal Food", path: "/halal-food-milton-keynes" },
+  {
+    id: 8,
+    name: "Family Restaurant",
+    path: "/family-restaurant-milton-keynes",
+  },
+  {
+    id: 9,
+    name: "Best Halal Restaurant",
+    path: "/best-halal-restaurant-milton-keynes",
+  },
+  { id: 10, name: "Afternoon Tea", path: "/afternoon-tea-milton-keynes" },
+  {
+    id: 11,
+    name: "Halal Roast Dinner",
+    path: "/halal-roast-dinner-milton-keynes",
+  },
+  {
+    id: 12,
+    name: "French Middle Eastern Restaurant",
+    path: "/french-middle-eastern-restaurant-milton-keynes",
+  },
+  {
+    id: 13,
+    name: "Special Occasion Restaurant",
+    path: "/special-occasion-restaurant-milton-keynes",
+  },
+  {
+    id: 14,
+    name: "Where to Eat in Milton Keynes",
+    path: "/where-to-eat-in-milton-keynes",
+  },
+];
+
 const Sidebar = ({ open, setOpen }) => {
   const [expandedMenu, setExpandedMenu] = useState(null);
   const router = useRouter();
@@ -47,7 +96,14 @@ const Sidebar = ({ open, setOpen }) => {
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
-    { id: 11, name: "STORE", path: "/store", type: "navigate" },
+    { id: 12, name: "STORE", path: "/store", type: "navigate" },
+    {
+      id: 13,
+      name: "EXPLORE",
+      path: "/restaurant-milton-keynes",
+      type: "navigate",
+      items: exploreItems,
+    },
   ];
 
   // ✅ التعديل هنا - Cleanup مضمون + إرجاع الـ overflow للقيمة الأصلية

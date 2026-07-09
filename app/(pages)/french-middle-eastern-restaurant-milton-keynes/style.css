@@ -1,0 +1,86 @@
+/* ═══════════════════════════════════════════
+   Halal Restaurant MK — Pattern Background
+   ═══════════════════════════════════════════ */
+
+.halal-mk-content {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Pattern layer */
+.halal-mk-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/seo-pattern-2.webp");
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 600px auto;
+  opacity: 0.5;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Soft cream overlay for balance */
+.halal-mk-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 246, 220, 0.35) 0%,
+    rgba(251, 246, 220, 0.2) 50%,
+    rgba(251, 246, 220, 0.35) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ─── Responsive pattern sizing ─── */
+
+/* Mobile */
+@media (max-width: 640px) {
+  .halal-mk-content::before {
+    background-size: 320px auto;
+    opacity: 0.42;
+  }
+}
+
+/* Small tablet */
+@media (min-width: 641px) and (max-width: 900px) {
+  .halal-mk-content::before {
+    background-size: 420px auto;
+    opacity: 0.45;
+  }
+}
+
+/* Tablet / small desktop */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .halal-mk-content::before {
+    background-size: 550px auto;
+    opacity: 0.48;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1281px) and (max-width: 1600px) {
+  .halal-mk-content::before {
+    background-size: 650px auto;
+    opacity: 0.5;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1601px) {
+  .halal-mk-content::before {
+    background-size: 750px auto;
+    opacity: 0.48;
+  }
+}
+
+/* Reduced motion / low preference */
+@media (prefers-reduced-motion: reduce) {
+  .halal-mk-content::before {
+    opacity: 0.35;
+  }
+}

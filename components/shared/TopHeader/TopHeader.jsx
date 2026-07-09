@@ -11,6 +11,79 @@ import useBookingUrl from "../../../Hooks/useBookingUrl";
 import AnimButton from "../../../utils/AnimButton/AnimButton";
 import "./style.scss";
 
+const exploreItems = [
+  {
+    id: 1,
+    name: "Restaurant in Milton Keynes",
+    path: "/restaurant-milton-keynes",
+  },
+  {
+    id: 2,
+    name: "Halal Restaurant",
+    path: "/halal-restaurant-milton-keynes",
+  },
+  {
+    id: 3,
+    name: "Cafe in Milton Keynes",
+    path: "/cafe-milton-keynes",
+  },
+  {
+    id: 4,
+    name: "Breakfast in Milton Keynes",
+    path: "/breakfast-milton-keynes",
+  },
+  {
+    id: 5,
+    name: "Brunch Spot",
+    path: "/brunch-spot-milton-keynes",
+  },
+  {
+    id: 6,
+    name: "Halal Brunch",
+    path: "/halal-brunch-milton-keynes",
+  },
+  {
+    id: 7,
+    name: "Halal Food",
+    path: "/halal-food-milton-keynes",
+  },
+  {
+    id: 8,
+    name: "Family Restaurant",
+    path: "/family-restaurant-milton-keynes",
+  },
+  {
+    id: 9,
+    name: "Best Halal Restaurant",
+    path: "/best-halal-restaurant-milton-keynes",
+  },
+  {
+    id: 10,
+    name: "Afternoon Tea",
+    path: "/afternoon-tea-milton-keynes",
+  },
+  {
+    id: 11,
+    name: "Halal Roast Dinner",
+    path: "/halal-roast-dinner-milton-keynes",
+  },
+  {
+    id: 12,
+    name: "French Middle Eastern Restaurant",
+    path: "/french-middle-eastern-restaurant-milton-keynes",
+  },
+  {
+    id: 13,
+    name: "Special Occasion Restaurant",
+    path: "/special-occasion-restaurant-milton-keynes",
+  },
+  {
+    id: 14,
+    name: "Where to Eat in Milton Keynes",
+    path: "/where-to-eat-in-milton-keynes",
+  },
+];
+
 const navItems = [
   { id: 1, name: "HOME", path: "/" },
   {
@@ -43,22 +116,20 @@ const navItems = [
   { id: 8, name: "CONTACT US", path: "/contact-us" },
   { id: 10, name: "BLOGS", path: "/blog" },
   { id: 11, name: "STORE", path: "/store" },
+  {
+    id: 12,
+    name: "EXPLORE",
+    path: "/restaurant-milton-keynes",
+    items: exploreItems,
+    alignRight: true,
+    large: true,
+  },
 ];
 
 const hiddenPages = [
   "/privacy-policy-2",
   "/terms-and-conditions",
   "/refund-policy",
-];
-
-const menuActivePaths = [
-  "/menu",
-  "/menu-gallery",
-  "/kids-menu",
-  "/roast-menu",
-  "/afternoon-tea-menu",
-  "/ramadan-iftar-menu-milton-keynes",
-  "/eid-al-adha-dinner-menu-milton-keynes",
 ];
 
 const TopHeader = () => {
@@ -71,13 +142,19 @@ const TopHeader = () => {
     return null;
   }
 
-  const isMenuActive = menuActivePaths.includes(pathname);
+  const isDropdownActive = (item) => {
+    if (!item.items) {
+      return pathname === item.path;
+    }
+
+    return item.items.some((subItem) => pathname === subItem.path);
+  };
 
   return (
     <div className="relative z-[999999]">
       <header
         className={cx(
-          "top-0 z-[999999] right-0 left-0 transition-all duration-300",
+          "site_header top-0 z-[999999] right-0 left-0 transition-all duration-300",
           {
             "relative bg-sageGreen shadow-md py-3": headerWithBg,
             "absolute mt-6": !headerWithBg,
@@ -85,8 +162,8 @@ const TopHeader = () => {
         )}
       >
         <div>
-          <div className="flex items-center justify-between px-6 md:px-10">
-            <div className="md:flex md:items-center md:gap-12">
+          <div className="site_header_content flex items-center justify-between px-4 sm:px-6 md:px-8 xl:px-10 gap-3">
+            <div className="md:flex md:items-center md:gap-8 xl:gap-12 shrink-0">
               <Link
                 href="/"
                 prefetch={false}
@@ -108,27 +185,27 @@ const TopHeader = () => {
                   height={100}
                   sizes="(max-width: 768px) 70px, 100px"
                   className={cx("transition-all duration-300", {
-                    "w-[60px] sm:!w-[60px] md:!w-[70px] lg:!w-[80px]":
+                    "w-[58px] sm:!w-[60px] md:!w-[68px] lg:!w-[74px] xl:!w-[80px]":
                       headerWithBg,
-                    "w-[70px] sm:!w-[70px] md:!w-[80px] lg:!w-[100px]":
+                    "w-[68px] sm:!w-[70px] md:!w-[78px] lg:!w-[86px] xl:!w-[100px]":
                       !headerWithBg,
                   })}
                 />
               </Link>
             </div>
 
-            <div className="lg:flex md:items-center md:gap-12 hidden min-h-full">
-              <nav aria-label="Global" className="hidden lg:block">
-                <ul className="flex items-center gap-3 lg:gap-6 text-sm">
+            <div className="site_header_content_navs hidden min-[959px]:flex flex-1 items-center justify-center min-w-0">
+              <nav aria-label="Global" className="w-full">
+                <ul className="flex items-center justify-center gap-4 min-[1100px]:gap-2 xl:gap-4 2xl:gap-6 text-sm whitespace-nowrap">
                   {navItems.map((item) => {
                     if (!item.items) {
                       return (
-                        <li key={item.id}>
+                        <li key={item.id} className="shrink-0">
                           <Link
                             href={item.path}
                             prefetch={false}
                             className={cx(
-                              "group relative no-underline hover:no-underline inline-flex items-center px-1 py-2 !font-seasons font-semibold tracking-[0.25em] text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:tracking-[0.32em] active:translate-y-0",
+                              "group relative no-underline hover:no-underline inline-flex items-center px-1 py-2 !font-seasons font-semibold tracking-[0.12em] min-[1100px]:tracking-[0.16em] xl:tracking-[0.22em] 2xl:tracking-[0.25em] text-[9px] min-[1100px]:text-[10px] xl:text-[11px] 2xl:text-[13px] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:tracking-[0.16em] min-[1100px]:hover:tracking-[0.2em] xl:hover:tracking-[0.28em] 2xl:hover:tracking-[0.32em] active:translate-y-0",
                               {
                                 "text-white hover:!text-goldenOrange":
                                   !headerWithBg,
@@ -170,18 +247,24 @@ const TopHeader = () => {
                       );
                     }
 
+                    const active = isDropdownActive(item);
+
                     return (
-                      <li key={item.id} className="nav-dropdown">
+                      <li
+                        key={item.id}
+                        className={cx("nav-dropdown shrink-0", {
+                          "nav-dropdown--last": item.alignRight,
+                        })}
+                      >
                         <button
                           type="button"
                           className={cx(
-                            "group relative inline-flex items-center gap-2 px-1 py-2 cursor-pointer !font-seasons font-semibold tracking-[0.25em] text-[calc(5px+0.65vw)] lg:text-[calc(8px+0.2vw)] xl:text-[calc(10px+0.25vw)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:tracking-[0.32em]",
+                            "group relative inline-flex items-center gap-1 px-1 py-2 cursor-pointer !font-seasons font-semibold tracking-[0.12em] min-[1100px]:tracking-[0.16em] xl:tracking-[0.22em] 2xl:tracking-[0.25em] text-[9px] min-[1100px]:text-[10px] xl:text-[11px] 2xl:text-[13px] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:tracking-[0.16em] min-[1100px]:hover:tracking-[0.2em] xl:hover:tracking-[0.28em] 2xl:hover:tracking-[0.32em]",
                             {
                               "text-white hover:text-white": !headerWithBg,
                               "text-white hover:text-logoGold": headerWithBg,
-                              "!text-goldenOrange":
-                                isMenuActive && !headerWithBg,
-                              "!text-logoGold": isMenuActive && headerWithBg,
+                              "!text-goldenOrange": active && !headerWithBg,
+                              "!text-logoGold": active && headerWithBg,
                             },
                           )}
                         >
@@ -217,34 +300,43 @@ const TopHeader = () => {
                                 "bg-gradient-to-r from-transparent via-white/90 to-transparent":
                                   !headerWithBg,
                                 "bg-logoGold": headerWithBg,
+                                "w-[120%]": active,
                               },
                             )}
                           />
                         </button>
 
-                        <div className="nav-dropdown-menu">
-                          {item.items.map((subItem) => (
-                            <Link
-                              key={subItem.id}
-                              href={subItem.path}
-                              prefetch={false}
-                              className={cx(
-                                "nav-dropdown-item relative transition-all duration-200 hover:!bg-logoGold/10 hover:!text-logoGold",
-                                {
-                                  "!text-logoGold !bg-logoGold/5 !font-bold":
-                                    pathname === subItem.path,
-                                },
-                              )}
-                            >
-                              {subItem.name}
+                        <div
+                          className={cx("nav-dropdown-menu", {
+                            "nav-dropdown-menu--large": item.large,
+                            "nav-dropdown-menu--right": item.alignRight,
+                          })}
+                        >
+                          {/* أضف هذا الـ wrapper */}
+                          <div className="nav-dropdown-menu-inner">
+                            {item.items.map((subItem) => (
+                              <Link
+                                key={subItem.id}
+                                href={subItem.path}
+                                prefetch={false}
+                                className={cx(
+                                  "nav-dropdown-item relative transition-all duration-200 hover:!bg-logoGold/10 hover:!text-logoGold",
+                                  {
+                                    "!text-logoGold !bg-logoGold/5 !font-bold":
+                                      pathname === subItem.path,
+                                  },
+                                )}
+                              >
+                                {subItem.name}
 
-                              {subItem.new && (
-                                <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
-                                  New
-                                </span>
-                              )}
-                            </Link>
-                          ))}
+                                {subItem.new && (
+                                  <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-2 rounded-sm text-xs">
+                                    New
+                                  </span>
+                                )}
+                              </Link>
+                            ))}
+                          </div>
                         </div>
                       </li>
                     );
@@ -253,7 +345,7 @@ const TopHeader = () => {
               </nav>
             </div>
 
-            <div className="hidden lg:flex gap-3">
+            <div className="site_header_content_btn hidden min-[959px]:flex gap-3 shrink-0 whitespace-nowrap">
               <Link href={bookingUrl} prefetch={false}>
                 <AnimButton
                   text="BOOK NOW"

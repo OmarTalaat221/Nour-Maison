@@ -11,6 +11,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        nav: "959px",
+        nav2: "1100px",
         mdd: "960px",
         animation: {
           borderPulse: "rotate 10s linear infinite",

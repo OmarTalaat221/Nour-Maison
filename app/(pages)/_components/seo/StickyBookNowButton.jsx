@@ -21,11 +21,12 @@ const DEFAULT_SECTIONS = [
   { selector: "[data-book-button-side='right']", side: "right" },
 ];
 
-const DoodleArrow = memo(function DoodleArrow() {
+const DoodleArrow = memo(function DoodleArrow({ pathRefs }) {
   return (
     <span className="nour-gsap-book-doodle" aria-hidden="true">
       <svg viewBox="0 0 170 150" fill="none">
         <path
+          ref={(el) => (pathRefs.current[0] = el)}
           d="M18 18 C34 44 53 67 87 73 C115 78 120 49 96 50 C72 51 70 84 97 101 C113 111 126 121 141 133"
           stroke="currentColor"
           strokeWidth="7"
@@ -33,6 +34,7 @@ const DoodleArrow = memo(function DoodleArrow() {
           strokeLinejoin="round"
         />
         <path
+          ref={(el) => (pathRefs.current[1] = el)}
           d="M141 133 L119 127 M141 133 L132 111"
           stroke="currentColor"
           strokeWidth="7"
@@ -55,6 +57,8 @@ const StickyBookNowButton = ({
   const wrapRef = useRef(null);
   const buttonRef = useRef(null);
   const innerRef = useRef(null);
+  const doodlePathsRef = useRef([]);
+  const introTweenRef = useRef(null);
 
   const currentSideRef = useRef("right");
   const reduceMotionRef = useRef(false);
@@ -76,6 +80,8 @@ const StickyBookNowButton = ({
     const wrapEl = wrapRef.current;
     const buttonEl = buttonRef.current;
     const innerEl = innerRef.current;
+    const doodleEl = wrapEl?.querySelector(".nour-gsap-book-doodle");
+    const paths = doodlePathsRef.current.filter(Boolean);
 
     if (!wrapEl || !buttonEl || !innerEl) return;
 
@@ -240,7 +246,7 @@ const StickyBookNowButton = ({
       yPercent: -50,
       x: getDesktopX("right"),
       rotation: 2,
-      autoAlpha: 1,
+      autoAlpha: 0, // مخفي في البداية
       zIndex: 999999,
       pointerEvents: "none",
       willChange: "transform",
@@ -257,6 +263,98 @@ const StickyBookNowButton = ({
       transformOrigin: "50% 50%",
     });
 
+    // ============================
+    // ✨ Intro Animation
+    // ============================
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // إعداد الـ paths للرسم
+    if (paths.length && doodleEl) {
+      paths.forEach((path) => {
+        const length = path.getTotalLength();
+        gsap.set(path, {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+          opacity: 1,
+        });
+      });
+
+      gsap.set(doodleEl, { autoAlpha: 0 });
+    }
+
+    // البوتون يبدأ صغير ومخفي
+    gsap.set(innerEl, {
+      scale: 0.3,
+      opacity: 0,
+    });
+
+    const introTl = gsap.timeline({
+      delay: 0.3,
+      onStart: () => {
+        gsap.set(wrapEl, { autoAlpha: 1 });
+      },
+    });
+
+    if (paths.length && doodleEl && !reduceMotion) {
+      // 1) اظهار حاوية الدودل
+      introTl.to(doodleEl, {
+        autoAlpha: 1,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+
+      // 2) رسم السهم (الخط الأساسي)
+      introTl.to(paths[0], {
+        strokeDashoffset: 0,
+        duration: 1.1,
+        ease: "power2.inOut",
+      });
+
+      // 3) رسم رأس السهم
+      if (paths[1]) {
+        introTl.to(
+          paths[1],
+          {
+            strokeDashoffset: 0,
+            duration: 0.35,
+            ease: "power2.out",
+          },
+          "-=0.15",
+        );
+      }
+
+      // 4) ظهور البوتون بحركة لطيفة (bounce)
+      introTl.to(
+        innerEl,
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.7,
+          ease: "elastic.out(1, 0.6)",
+        },
+        "-=0.25",
+      );
+    } else {
+      // لو reduce motion → ظهور مباشر
+      if (doodleEl) gsap.set(doodleEl, { autoAlpha: 1 });
+      if (paths.length) {
+        paths.forEach((path) => gsap.set(path, { strokeDashoffset: 0 }));
+      }
+      introTl.to(innerEl, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+
+    introTweenRef.current = introTl;
+
+    // ============================
+    // باقي الكود زي ما هو
+    // ============================
     const mm = gsap.matchMedia();
 
     mm.add(
@@ -331,7 +429,8 @@ const StickyBookNowButton = ({
       },
     );
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // idle bounce يبدأ بعد ما intro يخلص
+    if (!reduceMotion) {
       idleTweenRef.current = gsap.to(innerEl, {
         y: -14,
         duration: 1.45,
@@ -339,6 +438,7 @@ const StickyBookNowButton = ({
         yoyo: true,
         ease: "sine.inOut",
         force3D: true,
+        delay: 2.2, // بعد ما intro يخلص
       });
     }
 
@@ -351,6 +451,9 @@ const StickyBookNowButton = ({
         cancelAnimationFrame(refreshFrameRef.current);
         refreshFrameRef.current = null;
       }
+
+      introTweenRef.current?.kill();
+      introTweenRef.current = null;
 
       idleTweenRef.current?.kill();
       idleTweenRef.current = null;
@@ -374,7 +477,7 @@ const StickyBookNowButton = ({
           onClick={handleClick}
           className="nour-gsap-book-btn"
         >
-          <DoodleArrow />
+          <DoodleArrow pathRefs={doodlePathsRef} />
 
           <span ref={innerRef} className="nour-gsap-book-inner">
             <span className="nour-gsap-book-light" />

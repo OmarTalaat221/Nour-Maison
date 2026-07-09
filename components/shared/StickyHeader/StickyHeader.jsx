@@ -1,15 +1,62 @@
-// components/StickyHeader/StickyHeader.jsx
 "use client";
 import cx from "classnames";
 import { useEffect, useState } from "react";
-import { Dropdown } from "rsuite";
-import "rsuite/dist/rsuite.min.css";
 import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import MenuButton from "../../../utils/MenuButton/MenuButton";
+import "./stickyHeader.scss";
 
 import { usePathname, useRouter } from "next/navigation";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
 import useBookingUrl from "../../../Hooks/useBookingUrl";
+
+const exploreItems = [
+  {
+    id: 1,
+    name: "Restaurant in Milton Keynes",
+    path: "/restaurant-milton-keynes",
+  },
+  { id: 2, name: "Halal Restaurant", path: "/halal-restaurant-milton-keynes" },
+  { id: 3, name: "Cafe in Milton Keynes", path: "/cafe-milton-keynes" },
+  {
+    id: 4,
+    name: "Breakfast in Milton Keynes",
+    path: "/breakfast-milton-keynes",
+  },
+  { id: 5, name: "Brunch Spot", path: "/brunch-spot-milton-keynes" },
+  { id: 6, name: "Halal Brunch", path: "/halal-brunch-milton-keynes" },
+  { id: 7, name: "Halal Food", path: "/halal-food-milton-keynes" },
+  {
+    id: 8,
+    name: "Family Restaurant",
+    path: "/family-restaurant-milton-keynes",
+  },
+  {
+    id: 9,
+    name: "Best Halal Restaurant",
+    path: "/best-halal-restaurant-milton-keynes",
+  },
+  { id: 10, name: "Afternoon Tea", path: "/afternoon-tea-milton-keynes" },
+  {
+    id: 11,
+    name: "Halal Roast Dinner",
+    path: "/halal-roast-dinner-milton-keynes",
+  },
+  {
+    id: 12,
+    name: "French Middle Eastern Restaurant",
+    path: "/french-middle-eastern-restaurant-milton-keynes",
+  },
+  {
+    id: 13,
+    name: "Special Occasion Restaurant",
+    path: "/special-occasion-restaurant-milton-keynes",
+  },
+  {
+    id: 14,
+    name: "Where to Eat in Milton Keynes",
+    path: "/where-to-eat-in-milton-keynes",
+  },
+];
 
 const StickyHeader = ({ open, setOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -53,7 +100,6 @@ const StickyHeader = ({ open, setOpen }) => {
           id: 6,
           name: "Ramadan Iftar Menu",
           path: "/ramadan-iftar-menu-milton-keynes",
-          // new: true,
         },
         {
           id: 7,
@@ -69,7 +115,16 @@ const StickyHeader = ({ open, setOpen }) => {
     { id: 5, name: "ABOUT US", path: "/about-us", type: "link" },
     { id: 8, name: "CONTACT US", path: "/contact-us", type: "navigate" },
     { id: 10, name: "BLOGS", path: "/blog", type: "navigate" },
-    { id: 11, name: "STORE", path: "/store", type: "navigate" },
+    { id: 12, name: "STORE", path: "/store", type: "navigate" },
+    {
+      id: 13,
+      name: "EXPLORE",
+      path: "/restaurant-milton-keynes",
+      type: "navigate",
+      items: exploreItems,
+      alignRight: true,
+      large: true,
+    },
   ];
 
   const isMenuActive =
@@ -80,9 +135,11 @@ const StickyHeader = ({ open, setOpen }) => {
     pathname === "/ramadan-iftar-menu-milton-keynes" ||
     pathname === "/eid-al-adha-dinner-menu-milton-keynes";
 
+  const isExploreActive = exploreItems.some((s) => pathname === s.path);
+
   return (
     <>
-      {/* ✅ Menu Button - Fixed z-index and positioning */}
+      {/* ✅ Menu Button */}
       <div
         className={cx(
           "lg:hidden absolute right-3 xs:right-4 sm:right-5 top-3 xs:top-4 sm:top-5 z-[999999998]",
@@ -122,7 +179,7 @@ const StickyHeader = ({ open, setOpen }) => {
             },
           )}
         >
-          {/* Branches - Hidden on mobile */}
+          {/* Branches */}
           <div className="hidden lg:block">
             <BranchesImage
               variant={"top-right"}
@@ -153,21 +210,23 @@ const StickyHeader = ({ open, setOpen }) => {
                 </div>
               </div>
 
-              {/* Navigation - Hidden on mobile/tablet, shown on lg+ */}
+              {/* Navigation - نفس الديزاين الأصلي */}
               <div className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-12">
                 <nav aria-label="Global">
                   <ul className="flex m-0 items-center gap-3 xl:gap-4 2xl:gap-6 text-sm">
                     {navItems.map((item, index) => {
+                      const active =
+                        pathname === item?.path ||
+                        (item.name === "MENU" && isMenuActive) ||
+                        (item.name === "EXPLORE" && isExploreActive);
+
                       return (
                         <li
                           key={index}
                           className={cx({
-                            "text-goldenOrange":
-                              pathname === item?.path ||
-                              (item.items && isMenuActive),
-                            "text-softMintGreen":
-                              pathname !== item?.path &&
-                              !(item.items && isMenuActive),
+                            "text-goldenOrange": active,
+                            "text-softMintGreen": !active,
+                            "sticky-nav-dropdown": !!item.items,
                           })}
                         >
                           {!item?.items ? (
@@ -184,50 +243,64 @@ const StickyHeader = ({ open, setOpen }) => {
                               ></span>
                             </div>
                           ) : (
-                            <Dropdown
-                              placement="bottomStart"
-                              renderToggle={(props, ref) => (
-                                <div
-                                  {...props}
-                                  ref={ref}
+                            <>
+                              <div
+                                className={cx(
+                                  "whitespace-nowrap m-0 font-seasons font-bold tracking-wider transition relative group cursor-pointer hover:text-goldenOrange text-[11px] lg:text-[12px] xl:text-[13px] 2xl:text-[15px]",
+                                  {
+                                    "text-goldenOrange":
+                                      (item.name === "MENU" && isMenuActive) ||
+                                      (item.name === "EXPLORE" &&
+                                        isExploreActive),
+                                  },
+                                )}
+                              >
+                                {item.name}
+                                <span
                                   className={cx(
-                                    "whitespace-nowrap m-0 font-seasons font-bold tracking-wider transition relative group cursor-pointer hover:text-goldenOrange text-[11px] lg:text-[12px] xl:text-[13px] 2xl:text-[15px]",
+                                    "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-8px] xl:bottom-[-10px] left-0 h-[2px] xl:h-[3px] bg-goldenOrange transition-all duration-300",
                                     {
-                                      "text-goldenOrange": isMenuActive,
+                                      "!w-full":
+                                        (item.name === "MENU" &&
+                                          isMenuActive) ||
+                                        (item.name === "EXPLORE" &&
+                                          isExploreActive),
                                     },
                                   )}
-                                >
-                                  {item.name}
-                                  <span
-                                    className={cx(
-                                      "w-0 whitespace-nowrap m-0 leading-none group-hover:w-full absolute bottom-[-8px] xl:bottom-[-10px] left-0 h-[2px] xl:h-[3px] bg-goldenOrange transition-all duration-300",
-                                      { "!w-full": isMenuActive },
-                                    )}
-                                  ></span>
+                                ></span>
+                              </div>
+
+                              <div
+                                className={cx("sticky-nav-dropdown-menu", {
+                                  "sticky-nav-dropdown-menu--large": item.large,
+                                  "sticky-nav-dropdown-menu--right":
+                                    item.alignRight,
+                                })}
+                              >
+                                <div className="sticky-nav-dropdown-menu-inner">
+                                  {item.items.map((subItem) => (
+                                    <div
+                                      key={subItem.id}
+                                      onClick={() => navigate(subItem.path)}
+                                      className={cx(
+                                        "sticky-nav-dropdown-item",
+                                        {
+                                          "sticky-nav-dropdown-item--active":
+                                            pathname === subItem.path,
+                                        },
+                                      )}
+                                    >
+                                      {subItem.name}
+                                      {subItem?.new && (
+                                        <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-1.5 xl:px-2 rounded-sm text-[10px] xl:text-xs">
+                                          New
+                                        </span>
+                                      )}
+                                    </div>
+                                  ))}
                                 </div>
-                              )}
-                            >
-                              {item.items.map((subItem) => (
-                                <Dropdown.Item
-                                  key={subItem.id}
-                                  onSelect={() => navigate(subItem.path)}
-                                  className={cx(
-                                    "relative transition-all duration-200 hover:!bg-logoGold/10 hover:!text-logoGold text-sm",
-                                    {
-                                      "!text-logoGold !bg-logoGold/5 !font-bold":
-                                        pathname === subItem.path,
-                                    },
-                                  )}
-                                >
-                                  {subItem.name}
-                                  {subItem?.new && (
-                                    <span className="absolute top-[-6px] right-[-10px] bg-logoGold text-white px-1.5 xl:px-2 rounded-sm text-[10px] xl:text-xs">
-                                      New
-                                    </span>
-                                  )}
-                                </Dropdown.Item>
-                              ))}
-                            </Dropdown>
+                              </div>
+                            </>
                           )}
                         </li>
                       );
@@ -236,7 +309,7 @@ const StickyHeader = ({ open, setOpen }) => {
                 </nav>
               </div>
 
-              {/* Book Now Button - Hidden on mobile */}
+              {/* Book Now Button */}
               <div className="hidden lg:flex gap-3">
                 <button
                   className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white hidden"
@@ -246,7 +319,7 @@ const StickyHeader = ({ open, setOpen }) => {
                 </button>
               </div>
 
-              {/* Spacer for mobile to balance the layout */}
+              {/* Spacer for mobile */}
               <div className="w-[45px] xs:w-[50px] sm:w-[55px] lg:hidden"></div>
             </div>
           </div>

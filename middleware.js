@@ -32,7 +32,20 @@ const VALID_ROUTES = new Set([
   "/portfolio",
   "/become-a-member",
   "/free-coffee",
+  "/restaurant-milton-keynes",
   "/halal-restaurant-milton-keynes",
+  "/cafe-milton-keynes",
+  "/breakfast-milton-keynes",
+  "/brunch-spot-milton-keynes",
+  "/halal-brunch-milton-keynes",
+  "/halal-food-milton-keynes",
+  "/family-restaurant-milton-keynes",
+  "/best-halal-restaurant-milton-keynes",
+  "/afternoon-tea-milton-keynes",
+  "/halal-roast-dinner-milton-keynes",
+  "/french-middle-eastern-restaurant-milton-keynes",
+  "/special-occasion-restaurant-milton-keynes",
+  "/where-to-eat-in-milton-keynes",
 ]);
 
 // ✅ Dynamic routes prefixes

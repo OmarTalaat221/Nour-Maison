@@ -15,7 +15,7 @@ export async function GET() {
 
   try {
     const response = await fetch(
-      "https://camp-coding.tech/nour_maison/user/get_custom_blogs_data.php"
+      "https://camp-coding.tech/nour_maison/user/get_custom_blogs_data.php",
     );
     const data = await response.json();
     const blogs = data?.message?.blogs || [];
@@ -40,7 +40,21 @@ export async function GET() {
       "/afternoon-tea-menu",
       "/all-blogs",
       "/afternoon-tea-booking",
-      "/eid-al-adha-dinner-menu-milton-keynes"
+      "/eid-al-adha-dinner-menu-milton-keynes",
+      "/restaurant-milton-keynes",
+      "/halal-restaurant-milton-keynes",
+      "/cafe-milton-keynes",
+      "/breakfast-milton-keynes",
+      "/brunch-spot-milton-keynes",
+      "/halal-brunch-milton-keynes",
+      "/halal-food-milton-keynes",
+      "/family-restaurant-milton-keynes",
+      "/best-halal-restaurant-milton-keynes",
+      "/afternoon-tea-milton-keynes",
+      "/halal-roast-dinner-milton-keynes",
+      "/french-middle-eastern-restaurant-milton-keynes",
+      "/special-occasion-restaurant-milton-keynes",
+      "/where-to-eat-in-milton-keynes",
     ];
 
     const now = escapeXml(new Date().toISOString());
@@ -55,7 +69,7 @@ export async function GET() {
           <lastmod>${now}</lastmod>
           <changefreq>daily</changefreq>
           <priority>${page === "" ? "1.0" : "0.8"}</priority>
-        </url>`
+        </url>`,
       )
       .join("")}
 
@@ -68,7 +82,7 @@ export async function GET() {
           <lastmod>${now}</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.7</priority>
-        </url>`
+        </url>`,
       )
       .join("")}
   </urlset>`;

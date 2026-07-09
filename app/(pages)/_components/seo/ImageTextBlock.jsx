@@ -8,6 +8,7 @@ const ImageTextBlock = ({
   imageAlt,
   reverse = false,
   id,
+  imagePosition = "center center",
 }) => {
   return (
     <section
@@ -19,14 +20,14 @@ const ImageTextBlock = ({
           reverse ? "lg:flex-row-reverse" : "lg:flex-row"
         } gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center`}
       >
-        {/* Image */}
         <div className="w-full lg:w-1/2">
-          <div className="nm-image-frame relative aspect-[4/3] w-full">
+          <div className="nm-image-frame relative aspect-[4/3] w-full overflow-hidden">
             <Image
               src={imageSrc}
               alt={imageAlt}
               fill
               className="object-cover"
+              style={{ objectPosition: imagePosition }}
               loading="lazy"
               sizes="(max-width: 1024px) 95vw, 50vw"
               quality={80}
@@ -34,7 +35,6 @@ const ImageTextBlock = ({
           </div>
         </div>
 
-        {/* Text */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
           {eyebrow && (
             <p className="font-pacifico text-goldenOrange text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 sm:mb-3">
@@ -48,7 +48,6 @@ const ImageTextBlock = ({
             </h2>
           )}
 
-          {/* Decorative line for text side */}
           <div
             className={`decorative-line mb-4 sm:mb-5 ${
               reverse ? "lg:ml-0 lg:mr-auto" : "lg:mr-0 lg:ml-0"
