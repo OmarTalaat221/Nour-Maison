@@ -5,7 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import BottomBg from "../../../../utils/BottomBg/BottomBg";
+import BottomBg from "../../../../utils/bottomBg/BottomBg";
+// import BottomBg from "../../../../utils/BottomBg/BottomBg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
