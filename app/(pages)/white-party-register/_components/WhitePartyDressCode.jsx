@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Link as ScrollLink } from "react-scroll";
-import BottomBg from "../../../../utils/BottomBg/BottomBg";
+import BottomBg from "../../../../utils/bottomBg/BottomBg";
+// import BottomBg from "../../../../utils/BottomBg/BottomBg";
 
 const DRESS_CODE_BG = "/images/dress-code-bg.webp";
 const DRESS_CODE_ALT =
