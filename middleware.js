@@ -22,7 +22,6 @@ const VALID_ROUTES = new Set([
   "/all-blogs",
   "/afternoon-tea-booking",
   "/eid-al-adha-dinner-menu-milton-keynes",
-  // الصفحات الإضافية الموجودة في الـ folder structure
   "/christmas-menu",
   "/checkout",
   "/payment",
@@ -46,6 +45,7 @@ const VALID_ROUTES = new Set([
   "/french-middle-eastern-restaurant-milton-keynes",
   "/special-occasion-restaurant-milton-keynes",
   "/where-to-eat-in-milton-keynes",
+  "/white-party-register",
 ]);
 
 // ✅ Dynamic routes prefixes

@@ -55,6 +55,7 @@ export async function GET() {
       "/french-middle-eastern-restaurant-milton-keynes",
       "/special-occasion-restaurant-milton-keynes",
       "/where-to-eat-in-milton-keynes",
+      // "/white-party-register",
     ];
 
     const now = escapeXml(new Date().toISOString());

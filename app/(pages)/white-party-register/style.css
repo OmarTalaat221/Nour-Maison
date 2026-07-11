@@ -1,0 +1,870 @@
+/* ═══════════════════════════════════════════
+   WHITE PARTY — Full Stylesheet
+   ═══════════════════════════════════════════ */
+
+/* ─── Shimmer effect for cards ─── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shimmer:nth-child(1)::before {
+  animation-delay: 0s;
+}
+.shimmer:nth-child(2)::before {
+  animation-delay: 0.5s;
+}
+.shimmer:nth-child(3)::before {
+  animation-delay: 1s;
+}
+.shimmer:nth-child(4)::before {
+  animation-delay: 1.5s;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+/* ─── Shimmer for buttons ─── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmerBtn 2.5s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shimmerBtn {
+  0% {
+    left: -100%;
+  }
+  60%,
+  100% {
+    left: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Branches Sway Animation
+   ═══════════════════════════════════════════ */
+.wp-branch-tl {
+  transform: translate(-30%, -25%) rotate(180deg) scaleX(-1);
+  transform-origin: top left;
+  animation: wp-sway-tl 6s ease-in-out infinite;
+  backface-visibility: hidden;
+}
+
+.wp-branch-tr {
+  transform: translate(30%, -25%) rotate(180deg);
+  transform-origin: top right;
+  animation: wp-sway-tr 7s ease-in-out infinite;
+  backface-visibility: hidden;
+}
+
+@keyframes wp-sway-tl {
+  0%,
+  100% {
+    transform: translate(-30%, -25%) rotate(180deg) scaleX(-1);
+  }
+  25% {
+    transform: translate(-30%, -24%) rotate(181.5deg) scaleX(-1);
+  }
+  50% {
+    transform: translate(-30%, -23%) rotate(183deg) scaleX(-1);
+  }
+  75% {
+    transform: translate(-30%, -24%) rotate(181.5deg) scaleX(-1);
+  }
+}
+
+@keyframes wp-sway-tr {
+  0%,
+  100% {
+    transform: translate(30%, -25%) rotate(180deg);
+  }
+  25% {
+    transform: translate(30%, -24%) rotate(178.5deg);
+  }
+  50% {
+    transform: translate(30%, -23%) rotate(177deg);
+  }
+  75% {
+    transform: translate(30%, -24%) rotate(178.5deg);
+  }
+}
+
+/* ─── Cards: gentle floating ─── */
+.wp-float {
+  animation: wp-float-anim 5s ease-in-out infinite;
+  animation-delay: var(--wp-delay, 0s);
+  will-change: transform;
+}
+
+@keyframes wp-float-anim {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.wp-float:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Small labels: fade pulse ─── */
+.wp-fade-pulse {
+  animation: wp-fade-pulse-anim 3.5s ease-in-out infinite;
+}
+
+@keyframes wp-fade-pulse-anim {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+/* ─── Bullets: pulse glow ─── */
+.wp-bullet-pulse {
+  animation: wp-bullet-pulse-anim 2.4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@keyframes wp-bullet-pulse-anim {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(221, 153, 51, 0.4);
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 18px rgba(221, 153, 51, 0.75);
+  }
+}
+
+/* ─── Highlight items hover ─── */
+.wp-highlight-item {
+  transition: transform 0.3s ease;
+}
+
+.wp-highlight-item:hover {
+  transform: translateX(4px);
+}
+
+/* ─── Description card breathe ─── */
+.wp-breathe {
+  animation: wp-breathe-anim 6s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@keyframes wp-breathe-anim {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  50% {
+    transform: scale(1.008);
+    box-shadow:
+      0 25px 35px -5px rgba(202, 133, 45, 0.15),
+      0 15px 15px -5px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* ─── CTA card soft golden glow ─── */
+.wp-cta-glow {
+  animation: wp-cta-glow-anim 4s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+@keyframes wp-cta-glow-anim {
+  0%,
+  100% {
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 0 rgba(221, 153, 51, 0);
+  }
+  50% {
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 40px rgba(221, 153, 51, 0.25);
+  }
+}
+
+/* ─── Book Now button bounce ─── */
+.wp-btn-bounce {
+  animation: wp-btn-bounce-anim 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes wp-btn-bounce-anim {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+.wp-btn-bounce:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════════════════════════════════════════
+   TICKET — Golden Shimmer Sweep
+   ═══════════════════════════════════════════ */
+.wp-gold-shimmer {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  animation: wp-gold-shimmer-sweep 5s ease-in-out infinite;
+}
+
+@keyframes wp-gold-shimmer-sweep {
+  0% {
+    background-position: -100% 0;
+  }
+  50%,
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ─── Ticket floats subtly ─── */
+.wp-ticket {
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ─── Perforation shimmer ─── */
+.wp-perforation span {
+  animation: wp-perf-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes wp-perf-shimmer {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   WHITE PARTY FORM — Local overrides
+   Scoped to .wp-form-wrapper only
+   ═══════════════════════════════════════════ */
+
+/* Wrapper allows dropdown to overflow */
+.wp-form-wrapper {
+  overflow: visible !important;
+}
+
+/* Inputs: smaller height + white bg + border */
+.wp-form-wrapper .custom_input input,
+.wp-form-wrapper .custom_input textarea,
+.wp-form-wrapper .custom_select .select_input_container input {
+  width: 100%;
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  border: 2px solid #e8e2d4 !important;
+  color: #3a352f !important;
+  font-size: 15px !important;
+  transition: all 0.25s ease !important;
+  outline: none !important;
+}
+
+.wp-form-wrapper .custom_input input::placeholder,
+.wp-form-wrapper .custom_input textarea::placeholder,
+.wp-form-wrapper .custom_select .select_input_container input::placeholder {
+  color: #a8a094 !important;
+  font-weight: 400 !important;
+}
+
+.wp-form-wrapper .custom_input input:focus,
+.wp-form-wrapper .custom_input textarea:focus,
+.wp-form-wrapper .custom_select .select_input_container input:focus {
+  border-color: #dd9933 !important;
+  box-shadow: 0 0 0 3px rgba(221, 153, 51, 0.15) !important;
+}
+
+/* Textarea */
+.wp-form-wrapper .custom_input textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Select icon color */
+.wp-form-wrapper .custom_select .select_icon {
+  color: #dd9933 !important;
+}
+
+/* ─── Select dropdown: fix stacking context ─── */
+.wp-form-wrapper .custom_select {
+  position: relative;
+  z-index: 1;
+}
+
+.wp-form-wrapper .custom_select .select_input_container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Boost z-index of the select field (fallback for browsers without :has()) */
+.wp-form-wrapper .wp-field-select {
+  position: relative;
+  z-index: 50;
+}
+
+/* Modern browsers with :has() support - boost when dropdown is open */
+.wp-form-wrapper .wp-field:has(.custom_select_list) {
+  position: relative;
+  z-index: 9999 !important;
+}
+
+.wp-form-wrapper .custom_select_list {
+  position: absolute !important;
+  top: calc(100% + 4px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  max-height: 220px !important;
+  overflow-y: auto !important;
+  border-radius: 12px !important;
+  border: 2px solid #e8e2d4 !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
+  background: #ffffff !important;
+  padding: 6px !important;
+}
+
+.wp-form-wrapper .custom_select_item {
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  color: #3a352f !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  margin-bottom: 2px !important;
+  background: transparent !important;
+}
+
+.wp-form-wrapper .custom_select_item:hover {
+  background: #fdf5e6 !important;
+  color: #dd9933 !important;
+}
+
+.wp-form-wrapper .custom_select_item.active,
+.wp-form-wrapper .custom_select_item.active.bg-green-100 {
+  background: #dd9933 !important;
+  color: #ffffff !important;
+}
+
+.wp-form-wrapper .custom_select_item.active:hover {
+  background: #ca852d !important;
+  color: #ffffff !important;
+}
+
+/* Scrollbar */
+.wp-form-wrapper .custom_select_list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wp-form-wrapper .custom_select_list::-webkit-scrollbar-track {
+  background: #f5f0e6;
+  border-radius: 3px;
+}
+
+.wp-form-wrapper .custom_select_list::-webkit-scrollbar-thumb {
+  background: #dd9933;
+  border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   Reduced motion support
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .wp-branch-tl,
+  .wp-branch-tr,
+  .wp-float,
+  .wp-fade-pulse,
+  .wp-bullet-pulse,
+  .wp-breathe,
+  .wp-cta-glow,
+  .wp-heading-shimmer,
+  .wp-btn-bounce,
+  .wp-gold-shimmer,
+  .wp-perforation span,
+  .shimmer::before,
+  .shimmer-btn::before {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   Section 3: Bring a Friend
+   ============================================ */
+
+/* Front ticket floating */
+.bf-ticket-front {
+  animation: bfTicketFloatFront 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes bfTicketFloatFront {
+  0%,
+  100% {
+    transform: rotate(6deg) translateY(0);
+  }
+  50% {
+    transform: rotate(6deg) translateY(-10px);
+  }
+}
+
+/* Back ticket floating (opposite phase) */
+.bf-ticket-back {
+  animation: bfTicketFloatBack 6s ease-in-out infinite;
+  animation-delay: -3s;
+  will-change: transform;
+}
+
+@keyframes bfTicketFloatBack {
+  0%,
+  100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-10deg) translateY(-8px);
+  }
+}
+
+/* Badge pulse */
+.bf-badge {
+  animation: bfBadgePulse 3s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@keyframes bfBadgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(221, 153, 51, 0.35);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 15px 35px -5px rgba(221, 153, 51, 0.55);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bf-ticket-front,
+  .bf-ticket-back,
+  .bf-badge {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   Section 4: What to Expect
+   ============================================ */
+
+/* Featured cards icon glow */
+.exp-icon-glow {
+  box-shadow:
+    0 10px 25px -5px rgba(221, 153, 51, 0.4),
+    0 0 0 4px rgba(221, 153, 51, 0.08);
+  animation: expIconPulse 3s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+@keyframes expIconPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 25px -5px rgba(221, 153, 51, 0.4),
+      0 0 0 4px rgba(221, 153, 51, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 15px 35px -5px rgba(221, 153, 51, 0.55),
+      0 0 0 8px rgba(221, 153, 51, 0.12);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .exp-icon-glow {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   Section 5: Event Schedule (Timeline)
+   ============================================ */
+
+/* ─── Badge active state ─── */
+.sch-badge {
+  will-change: transform, border-color, box-shadow;
+}
+
+.sch-badge-active {
+  border-color: #dd9933 !important;
+  transform: scale(1.15);
+  box-shadow:
+    0 0 0 6px rgba(221, 153, 51, 0.12),
+    0 0 25px rgba(221, 153, 51, 0.5);
+}
+
+.sch-badge-active .sch-badge-icon {
+  color: #dd9933;
+}
+
+/* Sunset badge active — warmer color */
+.sch-item-sunset .sch-badge-active {
+  border-color: #c56e15 !important;
+  box-shadow:
+    0 0 0 6px rgba(197, 110, 21, 0.15),
+    0 0 30px rgba(197, 110, 21, 0.55);
+}
+
+.sch-item-sunset .sch-badge-active .sch-badge-icon {
+  color: #c56e15;
+}
+
+/* Finale — even warmer */
+.sch-item-finale .sch-badge-active {
+  border-color: #a85610 !important;
+  box-shadow:
+    0 0 0 8px rgba(168, 86, 16, 0.18),
+    0 0 40px rgba(168, 86, 16, 0.65);
+}
+
+/* Highlight badges — mint ring pulse */
+.sch-badge-highlight .sch-badge-ring {
+  animation: schBadgeRingPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes schBadgeRingPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    border-color: rgba(180, 215, 175, 0);
+  }
+  50% {
+    transform: scale(1.25);
+    border-color: rgba(180, 215, 175, 0.7);
+  }
+}
+
+/* ─── Sparkles on activation ─── */
+.sch-sparkle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dd9933;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(221, 153, 51, 0.8);
+}
+
+.sch-badge-active .sch-sparkle {
+  animation: schSparkle 1.2s ease-out forwards;
+}
+
+.sch-badge-active .sch-sparkle-1 {
+  animation-delay: 0s;
+  --sx: -25px;
+  --sy: -25px;
+}
+
+.sch-badge-active .sch-sparkle-2 {
+  animation-delay: 0.1s;
+  --sx: 25px;
+  --sy: -25px;
+}
+
+.sch-badge-active .sch-sparkle-3 {
+  animation-delay: 0.2s;
+  --sx: -25px;
+  --sy: 25px;
+}
+
+.sch-badge-active .sch-sparkle-4 {
+  animation-delay: 0.3s;
+  --sx: 25px;
+  --sy: 25px;
+}
+
+@keyframes schSparkle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--sx) * 0.5),
+        calc(-50% + var(--sy) * 0.5)
+      )
+      scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy)))
+      scale(0.3);
+  }
+}
+
+/* ─── Card active state ─── */
+.sch-card {
+  will-change: transform, border-color, box-shadow;
+}
+
+.sch-card-active {
+  border-color: rgba(221, 153, 51, 0.4);
+  box-shadow:
+    0 20px 40px -10px rgba(221, 153, 51, 0.2),
+    0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Sunset cards — warm tint */
+.sch-card-sunset {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(253, 240, 220, 0.75) 100%
+  );
+}
+
+.sch-card-sunset.sch-card-active {
+  border-color: rgba(197, 110, 21, 0.4);
+  box-shadow:
+    0 20px 40px -10px rgba(197, 110, 21, 0.25),
+    0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Finale card — even warmer + subtle glow */
+.sch-card-finale {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(251, 226, 190, 0.85) 100%
+  );
+}
+
+.sch-card-finale.sch-card-active {
+  border-color: rgba(168, 86, 16, 0.5);
+  box-shadow:
+    0 25px 50px -10px rgba(168, 86, 16, 0.3),
+    0 0 40px rgba(221, 153, 51, 0.15);
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .sch-badge-active {
+    transform: none;
+  }
+  .sch-badge-highlight .sch-badge-ring,
+  .sch-badge-active .sch-sparkle {
+    animation: none !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer-wrapper {
+    transition: none !important;
+  }
+  .faq-item * {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   Section 8: Final CTA — Sparkles & Teaser
+   ============================================ */
+
+/* Teaser icon subtle pulse */
+.fcta-teaser-icon {
+  animation: fctaTeaserPulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes fctaTeaserPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15) rotate(15deg);
+    opacity: 1;
+  }
+}
+
+/* ─── Floating sparkles ─── */
+.fcta-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #dd9933;
+  box-shadow:
+    0 0 10px rgba(221, 153, 51, 0.9),
+    0 0 20px rgba(221, 153, 51, 0.5);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: fctaFloat 8s ease-in-out infinite;
+}
+
+.fcta-sparkle-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 7s;
+}
+.fcta-sparkle-2 {
+  top: 25%;
+  left: 85%;
+  animation-delay: 1s;
+  animation-duration: 9s;
+  width: 3px;
+  height: 3px;
+}
+.fcta-sparkle-3 {
+  top: 55%;
+  left: 15%;
+  animation-delay: 2s;
+  animation-duration: 8s;
+  width: 5px;
+  height: 5px;
+}
+.fcta-sparkle-4 {
+  top: 70%;
+  left: 80%;
+  animation-delay: 3s;
+  animation-duration: 7.5s;
+}
+.fcta-sparkle-5 {
+  top: 40%;
+  left: 5%;
+  animation-delay: 1.5s;
+  animation-duration: 10s;
+  width: 3px;
+  height: 3px;
+}
+.fcta-sparkle-6 {
+  top: 85%;
+  left: 50%;
+  animation-delay: 2.5s;
+  animation-duration: 8.5s;
+}
+.fcta-sparkle-7 {
+  top: 10%;
+  left: 60%;
+  animation-delay: 4s;
+  animation-duration: 9s;
+  width: 3px;
+  height: 3px;
+}
+.fcta-sparkle-8 {
+  top: 60%;
+  left: 92%;
+  animation-delay: 0.5s;
+  animation-duration: 8s;
+  width: 4px;
+  height: 4px;
+}
+
+@keyframes fctaFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-40px) scale(0.9);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-60px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.5);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fcta-teaser-icon,
+  .fcta-sparkle {
+    animation: none !important;
+  }
+  .fcta-sparkle {
+    opacity: 0.6;
+  }
+}

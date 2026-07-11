@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { memo } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import { useHeader } from "../../../app/context/HeaderContext";
 import { useNotFound } from "../../../app/context/NoutFoundContext";
 import useBookingUrl from "../../../Hooks/useBookingUrl";
@@ -132,6 +133,11 @@ const hiddenPages = [
   "/refund-policy",
 ];
 
+// ─── Pages where BOOK NOW should scroll to a section instead of navigating ───
+const scrollBookPages = {
+  "/white-party-register": "ticket-booking",
+};
+
 const TopHeader = () => {
   const { isNotFound } = useNotFound();
   const { headerWithBg } = useHeader();
@@ -149,6 +155,9 @@ const TopHeader = () => {
 
     return item.items.some((subItem) => pathname === subItem.path);
   };
+
+  // ─── Check if current page uses scroll-to-section for BOOK NOW ───
+  const scrollTarget = scrollBookPages[pathname];
 
   return (
     <div className="relative z-[999999]">
@@ -312,7 +321,6 @@ const TopHeader = () => {
                             "nav-dropdown-menu--right": item.alignRight,
                           })}
                         >
-                          {/* أضف هذا الـ wrapper */}
                           <div className="nav-dropdown-menu-inner">
                             {item.items.map((subItem) => (
                               <Link
@@ -346,12 +354,28 @@ const TopHeader = () => {
             </div>
 
             <div className="site_header_content_btn hidden min-[959px]:flex gap-3 shrink-0 whitespace-nowrap">
-              <Link href={bookingUrl} prefetch={false}>
-                <AnimButton
-                  text="BOOK NOW"
-                  variant={headerWithBg ? "solid" : "default"}
-                />
-              </Link>
+              {scrollTarget ? (
+                <ScrollLink
+                  to={scrollTarget}
+                  smooth={true}
+                  duration={500}
+                  offset={-120}
+                  className="cursor-pointer"
+                  aria-label="Scroll to booking section"
+                >
+                  <AnimButton
+                    text="BOOK NOW"
+                    variant={headerWithBg ? "solid" : "default"}
+                  />
+                </ScrollLink>
+              ) : (
+                <Link href={bookingUrl} prefetch={false}>
+                  <AnimButton
+                    text="BOOK NOW"
+                    variant={headerWithBg ? "solid" : "default"}
+                  />
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 import cx from "classnames";
 import { useEffect, useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import BranchesImage from "../../../utils/BranchesImage/BranchesImage";
 import MenuButton from "../../../utils/MenuButton/MenuButton";
 import "./stickyHeader.scss";
@@ -57,6 +58,11 @@ const exploreItems = [
     path: "/where-to-eat-in-milton-keynes",
   },
 ];
+
+// ─── Pages where BOOK NOW should scroll to a section instead of navigating ───
+const scrollBookPages = {
+  "/white-party-register": "ticket-booking",
+};
 
 const StickyHeader = ({ open, setOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -137,6 +143,9 @@ const StickyHeader = ({ open, setOpen }) => {
 
   const isExploreActive = exploreItems.some((s) => pathname === s.path);
 
+  // ─── Check if current page uses scroll-to-section for BOOK NOW ───
+  const scrollTarget = scrollBookPages[pathname];
+
   return (
     <>
       {/* ✅ Menu Button */}
@@ -210,7 +219,7 @@ const StickyHeader = ({ open, setOpen }) => {
                 </div>
               </div>
 
-              {/* Navigation - نفس الديزاين الأصلي */}
+              {/* Navigation */}
               <div className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-12">
                 <nav aria-label="Global">
                   <ul className="flex m-0 items-center gap-3 xl:gap-4 2xl:gap-6 text-sm">
@@ -311,12 +320,25 @@ const StickyHeader = ({ open, setOpen }) => {
 
               {/* Book Now Button */}
               <div className="hidden lg:flex gap-3">
-                <button
-                  className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white hidden"
-                  onClick={() => (window.location.href = bookingUrl)}
-                >
-                  BOOK NOW
-                </button>
+                {scrollTarget ? (
+                  <ScrollLink
+                    to={scrollTarget}
+                    smooth={true}
+                    duration={500}
+                    offset={-120}
+                    className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white cursor-pointer"
+                    aria-label="Scroll to booking section"
+                  >
+                    BOOK NOW
+                  </ScrollLink>
+                ) : (
+                  <button
+                    className="font-seasons tracking-widest site_header_content_btn outlined_btn px-7 !py-3 hover:scale-110 transition-[.4s] whitespace-nowrap bg-logoGold text-white hidden"
+                    onClick={() => (window.location.href = bookingUrl)}
+                  >
+                    BOOK NOW
+                  </button>
+                )}
               </div>
 
               {/* Spacer for mobile */}
